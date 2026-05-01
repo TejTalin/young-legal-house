@@ -1,5 +1,5 @@
 :root {
-    --bg-color: #454545; /* Dark Mode */
+    --bg-color: #454545; 
     --text-color: #ffffff;
     --grey-text: #cccccc;
     --glass-bg: rgba(255, 255, 255, 0.08);
@@ -7,7 +7,7 @@
 }
 
 body.light-mode {
-    --bg-color: #e0ddd8; /* Light Mode */
+    --bg-color: #e0ddd8; 
     --text-color: #000000;
     --grey-text: #444444;
     --glass-bg: rgba(0, 0, 0, 0.05);
@@ -43,11 +43,11 @@ body {
     align-items: center; 
     max-width: 1600px; 
     margin: 0 auto; 
-    position: relative; 
+    position: relative; /* Essential for exact centering */
 }
 
 .nav-left { flex: 1; display: flex; align-items: center; }
-.nav-logo { height: 85px; transition: filter 0.3s; }
+.nav-logo { height: 85px; transition: filter 0.3s; } 
 body.light-mode .nav-logo { filter: invert(1); } 
 
 .nav-center { 
@@ -62,19 +62,14 @@ body.light-mode .nav-logo { filter: invert(1); }
     white-space: nowrap;
 }
 
-.nav-right { 
-    flex: 1; 
-    display: flex; 
-    justify-content: flex-end; 
-    align-items: center; 
-    gap: 1rem; 
-}
+.nav-right { flex: 1; display: flex; justify-content: flex-end; align-items: center; gap: 1rem; }
 
+/* THE FIX FOR ONE LINE & CENTERING */
 .nav-menu { 
     display: flex; 
     gap: 0.8rem; 
     align-items: center; 
-    flex-wrap: nowrap; 
+    flex-wrap: nowrap; /* Forbids breaking into two lines */
 }
 
 .glass-pill {
@@ -88,11 +83,11 @@ body.light-mode .nav-logo { filter: invert(1); }
     backdrop-filter: blur(10px);
     transition: all 0.3s ease;
     cursor: pointer;
-    white-space: nowrap; 
-    flex-shrink: 0; 
+    white-space: nowrap; /* Forbids text wrapping */
+    flex-shrink: 0; /* Prevents the pill from shrinking and squishing the text */
     display: inline-flex;
-    align-items: center; 
-    justify-content: center; 
+    align-items: center; /* Dead center vertically */
+    justify-content: center; /* Dead center horizontally */
     text-align: center;
 }
 
@@ -108,16 +103,7 @@ body.light-mode .nav-logo { filter: invert(1); }
 
 /* === GRIDS & TITLES === */
 .container { padding: 40px 5% 60px; max-width: 1400px; margin: 0 auto; }
-
-.section-title { 
-    text-align: center; 
-    font-size: 2rem; 
-    font-weight: 700; 
-    margin-bottom: 40px; 
-    letter-spacing: 1px; 
-    width: 100%;
-    display: block;
-}
+.section-title { text-align: center; font-size: 2rem; font-weight: 700; margin-bottom: 40px; letter-spacing: 1px; width: 100%; display: block;}
 
 .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; justify-items: center; }
 
@@ -134,17 +120,9 @@ body.light-mode .nav-logo { filter: invert(1); }
 
 /* === FOOTER === */
 footer { padding: 50px 5% 30px; border-top: 1px solid var(--glass-border); margin-top: 40px; }
-
-.footer-top { 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-    margin-bottom: 40px;
-}
-
+.footer-top { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 30px; margin-bottom: 40px;}
 .footer-links a { color: var(--grey-text); text-decoration: none; font-size: 0.9rem; margin-right: 20px; transition: 0.3s;}
 .footer-links a:hover { color: var(--text-color); }
-
 .footer-socials { font-size: 1.8rem; display: flex; gap: 25px; }
 .soc-icon { transition: transform 0.3s; }
 .soc-icon:hover { transform: scale(1.1); }
@@ -155,19 +133,18 @@ footer { padding: 50px 5% 30px; border-top: 1px solid var(--glass-border); margi
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    text-align: center; 
     border-top: 1px solid rgba(150, 150, 150, 0.1); 
     padding-top: 20px; 
     width: 100%; 
-    text-align: center;
 }
-
-.newsletter { margin-bottom: 10px; font-size: 0.85rem; color: var(--grey-text); }
+.newsletter { display: block; margin-bottom: 10px; font-size: 0.85rem; color: var(--grey-text); }
 .copyright { font-size: 0.9rem; font-weight: 700; }
 
 /* === MOBILE COMPATIBILITY === */
 @media (max-width: 1024px) {
     .nav-container { flex-direction: column; gap: 15px; }
-    .nav-center { position: relative; left: 0; transform: none; margin: 10px 0; }
+    .nav-center { position: relative; left: 0; transform: none; margin: 10px 0; } 
     .nav-menu { flex-wrap: wrap; justify-content: center; }
     .footer-top { flex-direction: column; text-align: center; justify-content: center; gap: 20px; }
     .footer-socials { justify-content: center; }
