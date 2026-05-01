@@ -3,81 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sectoral Blogs | Young Legal House</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    <title>Blogs | Young Legal House</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-<body>
+<body class="dark-mode">
+    <script>if (localStorage.getItem('ylh-theme') === 'light') document.body.classList.add('light-mode');</script>
+    <div class="custom-cursor" id="customCursor"></div>
 
-    <header class="navbar">
-        <nav class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="blogs.html" class="active-link">Blogs</a>
-            <a href="about.html">About</a>
-            <a href="team.html">Team</a>
-            <a href="join.html">Join Us</a>
-            <button class="theme-btn" id="themeToggle">Mode</button>
-        </nav>
+    <header class="navbar" id="mainNav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-left"><img src="logoylh.png" alt="YLH Logo" class="nav-logo"></a>
+            <a href="index.html" class="nav-center">Young Legal House</a>
+            <div class="nav-right">
+                <nav class="nav-menu">
+                    <a href="blogs.html" class="glass-pill active-nav">Blogs</a>
+                    <a href="events.html" class="glass-pill">Events</a>
+                    <div class="menu-wrapper">
+                        <button class="glass-pill hamburger-btn" id="menuToggle"><i class="fas fa-bars"></i></button>
+                        <div class="dropdown-menu glass-card" id="dropdownMenu">
+                            <a href="about.html">About</a><a href="team.html">Team</a><a href="join.html">Join Us</a><a href="contact.html">Contact Us</a>
+                        </div>
+                    </div>
+                </nav>
+                <button class="theme-btn glass-pill" id="themeToggle"><i class="fas fa-moon" id="themeIcon"></i></button>
+            </div>
+        </div>
     </header>
 
-    <section class="page-header">
-        <h1 class="page-title">Sectoral Blogs</h1>
-        <p class="hero-text">Cutting-edge analysis on Corporate, Tax, and ADR. Skip the textbooks, learn the practice.</p>
-    </section>
-
-    <section class="container">
-        <div class="pillars-grid">
-            
-            <article class="glass-card blog-card">
-                <div class="blog-category">Corporate & M&A</div>
-                <h3 class="blog-title">Structuring Cross-Border Acquisitions in 2026: A Playbook</h3>
-                <p>An inside look at the regulatory hurdles and deal-structuring frameworks used by Tier-1 firms for outbound investments.</p>
-                <a href="#" class="read-more">Read Briefing &rarr;</a>
-            </article>
-
-            <article class="glass-card blog-card">
-                <div class="blog-category">Dispute Resolution</div>
-                <h3 class="blog-title">The Evolution of Emergency Arbitral Awards in India</h3>
-                <p>Analyzing recent Supreme Court jurisprudence on the enforceability of emergency arbitrator orders under the Arbitration Act.</p>
-                <a href="#" class="read-more">Read Briefing &rarr;</a>
-            </article>
-
-            <article class="glass-card blog-card">
-                <div class="blog-category">Taxation</div>
-                <h3 class="blog-title">Navigating the New Digital Services Tax Landscape</h3>
-                <p>How the shifting international tax framework impacts tech giants and startup scaling models operating out of India.</p>
-                <a href="#" class="read-more">Read Briefing &rarr;</a>
-            </article>
-
-            <article class="glass-card blog-card">
-                <div class="blog-category">Intellectual Property</div>
-                <h3 class="blog-title">AI Generative Models vs. Copyright Infringement</h3>
-                <p>The looming legal battles over training data and how IP practitioners are preparing for the deep-tech revolution.</p>
-                <a href="#" class="read-more">Read Briefing &rarr;</a>
-            </article>
-
+    <main class="page-spacing container">
+        <h1 class="section-title">Legal Insights & Articles</h1>
+        
+        <div class="search-container">
+            <input type="text" id="blogSearch" class="blog-search" placeholder="Search articles by keyword...">
         </div>
-    </section>
+
+        <div class="filter-container" id="filterContainer">
+            <button class="filter-pill active" data-filter="All">All</button>
+            <button class="filter-pill" data-filter="Tax">Tax</button>
+            <button class="filter-pill" data-filter="TMT">TMT</button>
+            <button class="filter-pill" data-filter="Corporate">Corporate</button>
+            <button class="filter-pill" data-filter="Litigation">Litigation</button>
+            <button class="filter-pill" data-filter="M&A">M&A</button>
+            <button class="filter-pill" data-filter="ADR">ADR</button>
+            <button class="filter-pill" data-filter="IPR">IPR</button>
+            <button class="filter-pill" data-filter="Others">Others</button>
+        </div>
+
+        <div class="cards-grid" id="blogsGrid"></div>
+    </main>
 
     <footer>
-        <div class="footer-content">
-            <div class="social-links">
-                <a href="https://linkedin.com" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                <a href="https://instagram.com" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="https://linktr.ee" target="_blank" title="Linktree"><i class="fas fa-link"></i></a>
-                <a href="mailto:contact@younglegalhouse.com" title="Email Us"><i class="fas fa-envelope"></i></a>
+        <div class="footer-top">
+            <div class="footer-links"><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Service</a><a href="cookies.html">Cookie Policy</a><a href="legal.html">Legal</a></div>
+            <div class="footer-socials">
+                <a href="#" class="soc-icon" style="color: #0077b5;"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="soc-icon" style="color: #e1306c;"><i class="fab fa-instagram"></i></a>
             </div>
-            <div class="newsletter-badge">Newsletter coming soon</div>
-            <div class="footer-bottom">
-                &copy; 2026 Young Legal House. Architecture by the CDO.
-            </div>
+        </div>
+        <div class="footer-bottom">
+            <span class="newsletter">Newsletter: Coming soon stay tuned over here</span>
+            <p class="copyright">&copy; 2026 Young Legal House</p>
         </div>
     </footer>
 
     <script src="script.js"></script>
+    <script src="blogs-data.js"></script>
 </body>
 </html>
