@@ -281,3 +281,54 @@ footer { padding: 50px 5% 30px; border-top: 1px solid var(--glass-border); margi
     max-width: 740px; /* Matches the width of the two top cards combined */
     margin-top: 20px;
 }
+/* === BLOGS HUB & SEARCH === */
+.search-container { max-width: 800px; margin: 0 auto 30px; }
+.blog-search { 
+    width: 100%; padding: 15px 25px; border-radius: 50px; 
+    background: var(--glass-bg); border: 1px solid var(--glass-border); 
+    color: var(--text-color); font-size: 1.1rem; outline: none; 
+    backdrop-filter: blur(10px); transition: border-color 0.3s;
+}
+.blog-search:focus { border-color: var(--text-color); }
+
+.filter-container { 
+    display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-bottom: 50px; 
+}
+.filter-pill { 
+    padding: 8px 22px; border-radius: 30px; border: 1px solid var(--glass-border); 
+    background: transparent; color: var(--text-color); font-size: 0.95rem; 
+    cursor: pointer; transition: all 0.3s ease; 
+}
+.filter-pill.active, .filter-pill:hover { 
+    background: var(--text-color); color: var(--bg-color); 
+}
+
+/* === ARTICLE READER STYLES === */
+.article-wrapper { max-width: 900px; margin: 0 auto; }
+.article-header { text-align: center; margin-bottom: 40px; }
+.article-category { 
+    font-size: 0.9rem; color: var(--grey-text); text-transform: uppercase; 
+    letter-spacing: 2px; margin-bottom: 10px; display: block;
+}
+.article-title { font-size: clamp(2rem, 4vw, 3.5rem); margin-bottom: 15px; }
+.article-meta { 
+    display: flex; justify-content: space-between; align-items: center; 
+    color: var(--grey-text); font-style: italic; font-size: 1rem; 
+    border-bottom: 1px solid var(--glass-border); padding-bottom: 20px; 
+}
+.article-body { 
+    text-align: justify; /* Requirement: Text justified */
+    line-height: 1.9; font-size: 1.15rem; margin-bottom: 60px; 
+    color: var(--text-color);
+}
+.article-nav { 
+    display: flex; justify-content: space-between; align-items: center; 
+    border-top: 1px solid var(--glass-border); padding-top: 30px; 
+}
+.nav-link { 
+    color: var(--text-color); text-decoration: none; font-weight: 700; 
+    max-width: 45%; transition: color 0.3s;
+}
+.nav-link:hover { color: var(--grey-text); }
+.nav-link.next { text-align: right; }
+.nav-label { display: block; font-size: 0.8rem; color: var(--grey-text); text-transform: uppercase; margin-bottom: 5px; }
