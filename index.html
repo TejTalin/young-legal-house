@@ -9,27 +9,25 @@
     <style>
         /* === STRICT BLACK, WHITE, & GREY VARIABLES === */
         :root {
-            /* Light Theme */
-            --bg-base: #F5F5F5; /* Very light grey background */
-            --bg-surface: #FFFFFF; /* Pure white cards */
-            --text-main: #000000; /* Pure black text */
-            --text-muted: #666666; /* Medium grey for secondary text */
-            --accent-main: #000000; /* Black for buttons/accents */
-            --accent-invert: #FFFFFF; /* White text on black buttons */
-            --border-light: #E0E0E0; /* Light grey borders */
+            --bg-base: #F5F5F5; 
+            --bg-surface: #FFFFFF; 
+            --text-main: #000000; 
+            --text-muted: #666666; 
+            --accent-main: #000000; 
+            --accent-invert: #FFFFFF; 
+            --border-light: #E0E0E0; 
             --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
             --shadow-lg: 0 10px 25px -3px rgba(0, 0, 0, 0.1);
         }
 
         body.dark-mode {
-            /* Dark Theme */
-            --bg-base: #0A0A0A; /* Almost pure black background */
-            --bg-surface: #141414; /* Slightly lighter black for cards */
-            --text-main: #FFFFFF; /* Pure white text */
-            --text-muted: #A0A0A0; /* Light grey for secondary text */
-            --accent-main: #FFFFFF; /* White for buttons/accents */
-            --accent-invert: #000000; /* Black text on white buttons */
-            --border-light: #2A2A2A; /* Dark grey borders */
+            --bg-base: #0A0A0A; 
+            --bg-surface: #141414; 
+            --text-main: #FFFFFF; 
+            --text-muted: #A0A0A0; 
+            --accent-main: #FFFFFF; 
+            --accent-invert: #000000; 
+            --border-light: #2A2A2A; 
             --shadow-sm: 0 4px 6px -1px rgba(255, 255, 255, 0.05);
             --shadow-lg: 0 10px 25px -3px rgba(0, 0, 0, 0.8);
         }
@@ -37,7 +35,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
         html { scroll-behavior: smooth; }
         body { background-color: var(--bg-base); color: var(--text-main); transition: background-color 0.3s ease, color 0.3s ease; }
-        a { text-decoration: none; color: inherit; }
+        a { text-decoration: none; color: inherit; cursor: pointer; }
         ul { list-style: none; }
 
         /* === STICKY HEADER NAV === */
@@ -46,110 +44,51 @@
             background-color: rgba(var(--bg-surface), 0.95);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border-light);
-            z-index: 1000;
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 1rem 5%;
+            z-index: 1000; display: flex; justify-content: space-between; align-items: center; padding: 1rem 5%;
         }
-
         .logo img { height: 35px; transition: filter 0.3s ease; }
-        /* Only invert the logo if we are in dark mode */
         body.dark-mode .logo img { filter: invert(1) brightness(2); }
-
         .nav-links { display: flex; gap: 2rem; align-items: center; font-weight: 500; font-size: 0.95rem; }
         .nav-links a { transition: color 0.2s, border-bottom 0.2s; border-bottom: 2px solid transparent; padding-bottom: 2px; }
         .nav-links a:hover { color: var(--text-main); border-bottom: 2px solid var(--text-main); }
-        
-        .theme-btn {
-            background: var(--bg-surface); border: 1px solid var(--border-light);
-            padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;
-            color: var(--text-main); font-weight: 600; font-size: 0.85rem;
-            transition: all 0.2s ease;
-        }
+        .theme-btn { background: var(--bg-surface); border: 1px solid var(--border-light); padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; color: var(--text-main); font-weight: 600; font-size: 0.85rem; transition: all 0.2s ease; }
         .theme-btn:hover { border-color: var(--text-main); }
 
         /* === HERO SECTION === */
-        .hero {
-            padding: 150px 5% 100px; text-align: center;
-            background: var(--bg-surface);
-            border-bottom: 1px solid var(--border-light);
-        }
+        .hero { padding: 150px 5% 100px; text-align: center; background: var(--bg-surface); border-bottom: 1px solid var(--border-light); }
         .hero h1 { font-size: 3.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem; letter-spacing: -1px; text-transform: uppercase; }
         .hero p { font-size: 1.15rem; color: var(--text-muted); max-width: 600px; margin: 0 auto 2.5rem; }
-        
-        .btn-main { 
-            background: var(--accent-main); color: var(--accent-invert); 
-            padding: 0.8rem 2.5rem; border-radius: 0; /* Sharp corners for brutalist look */
-            font-weight: 700; border: 2px solid var(--accent-main); 
-            cursor: pointer; transition: all 0.2s; 
-            text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;
-        }
+        .btn-main { background: var(--accent-main); color: var(--accent-invert); padding: 0.8rem 2.5rem; font-weight: 700; border: 2px solid var(--accent-main); cursor: pointer; transition: all 0.2s; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px; }
         .btn-main:hover { background: transparent; color: var(--accent-main); }
 
         /* === SECTORAL BLOG SECTION === */
+        .container { padding: 4rem 5%; max-width: 1200px; margin: 0 auto; }
         .section-header { text-align: center; margin-bottom: 3rem; }
         .section-header h2 { font-size: 2.2rem; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: -0.5px; }
         .section-header p { color: var(--text-muted); }
-
-        .container { padding: 4rem 5%; max-width: 1200px; margin: 0 auto; }
-
         .blog-filters { display: flex; justify-content: center; gap: 1rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
-        .filter-btn { 
-            background: transparent; border: 1px solid var(--border-light); 
-            color: var(--text-muted); padding: 0.5rem 1.5rem; border-radius: 20px; 
-            cursor: pointer; font-weight: 500; transition: all 0.2s; 
-        }
-        .filter-btn.active, .filter-btn:hover { 
-            background: var(--text-main); color: var(--bg-surface); border-color: var(--text-main); 
-        }
-
+        .filter-btn { background: transparent; border: 1px solid var(--border-light); color: var(--text-muted); padding: 0.5rem 1.5rem; border-radius: 20px; cursor: pointer; font-weight: 500; transition: all 0.2s; }
+        .filter-btn.active, .filter-btn:hover { background: var(--text-main); color: var(--bg-surface); border-color: var(--text-main); }
         .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
-        .blog-card { 
-            background: var(--bg-surface); border: 1px solid var(--border-light); 
-            border-radius: 0; /* Sharp corners */
-            overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; 
-        }
+        
+        /* Dynamic Blog Cards */
+        .blog-card { background: var(--bg-surface); border: 1px solid var(--border-light); overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer; }
         .blog-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); border-color: var(--text-main); }
         .blog-content { padding: 2rem; }
-        .blog-tag { 
-            display: inline-block; border: 1px solid var(--text-main); 
-            color: var(--text-main); padding: 0.2rem 0.6rem; 
-            font-size: 0.7rem; font-weight: 700; text-transform: uppercase; 
-            margin-bottom: 1rem; letter-spacing: 1px;
-        }
+        .blog-tag { display: inline-block; border: 1px solid var(--text-main); color: var(--text-main); padding: 0.2rem 0.6rem; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; margin-bottom: 1rem; letter-spacing: 1px; }
         .blog-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; line-height: 1.3; }
         .blog-excerpt { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; }
-        .read-more { color: var(--text-main); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.5px; border-bottom: 1px solid var(--text-main); padding-bottom: 2px;}
+        .read-more { color: var(--text-main); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.5px; border-bottom: 1px solid var(--text-main); padding-bottom: 2px; }
 
-        /* === MEET THE TEAM SECTION === */
-        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem; }
-        .team-card { 
-            text-align: center; background: var(--bg-surface); padding: 2rem; 
-            border: 1px solid var(--border-light); 
-        }
-        .team-avatar { 
-            width: 80px; height: 80px; background: var(--bg-base); 
-            border: 1px solid var(--border-light); border-radius: 50%; 
-            margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; 
-            font-size: 1.2rem; color: var(--text-main); font-weight: bold;
-        }
-        .team-role { color: var(--text-muted); font-size: 0.75rem; font-weight: 700; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 1px;}
-        .cdo-card { border: 2px solid var(--text-main); } /* Highlights your card in pure black/white */
-
-        /* === DPDP COOKIE BANNER === */
-        .cookie-banner { 
-            position: fixed; bottom: -100px; left: 5%; right: 5%; max-width: 800px; margin: 0 auto; 
-            background: var(--bg-surface); border: 2px solid var(--text-main); 
-            padding: 1.5rem; display: flex; justify-content: space-between; align-items: center; 
-            box-shadow: var(--shadow-lg); z-index: 2000; transition: bottom 0.5s ease; 
-        }
-        .cookie-banner.show { bottom: 30px; }
-        .cookie-text { font-size: 0.9rem; color: var(--text-muted); }
-        .cookie-text strong { color: var(--text-main); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px;}
-        .cookie-btn { 
-            background: var(--text-main); color: var(--bg-surface); border: none; 
-            padding: 0.6rem 1.5rem; cursor: pointer; font-weight: 600; margin-left: 1rem; 
-            text-transform: uppercase; font-size: 0.8rem;
-        }
+        /* === ARTICLE READER VIEW (Hidden by default) === */
+        #reader-view { display: none; padding: 120px 5% 50px; max-width: 800px; margin: 0 auto; min-height: 100vh; }
+        .back-btn { display: inline-block; margin-bottom: 2rem; font-weight: 600; cursor: pointer; color: var(--text-muted); border-bottom: 1px solid transparent; transition: all 0.2s;}
+        .back-btn:hover { color: var(--text-main); border-bottom: 1px solid var(--text-main); }
+        .reader-tag { display: inline-block; border: 1px solid var(--text-main); padding: 0.2rem 0.6rem; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; margin-bottom: 1.5rem; letter-spacing: 1px; }
+        .reader-title { font-size: 3rem; font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem; letter-spacing: -1px; }
+        .reader-meta { display: flex; gap: 2rem; border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light); padding: 1rem 0; margin-bottom: 2.5rem; color: var(--text-muted); font-size: 0.9rem; }
+        .reader-meta strong { color: var(--text-main); }
+        .reader-body { font-size: 1.15rem; line-height: 1.8; color: var(--text-main); white-space: pre-line; }
 
         /* === FOOTER === */
         footer { background: var(--bg-surface); padding: 4rem 5% 2rem; border-top: 1px solid var(--border-light); margin-top: 4rem; }
@@ -163,183 +102,242 @@
 <body>
 
     <header class="navbar">
-        <a href="#" class="logo">
+        <a href="#" class="logo" onclick="closeArticle()">
             <img src="logo.png" alt="YLH Logo">
         </a>
         <nav class="nav-links">
-            <a href="#home">Home</a>
-            <a href="#blogs">Intelligence</a>
-            <a href="#team">Board</a>
-            <a href="#about">About</a>
+            <a onclick="closeArticle()" href="#home">Home</a>
+            <a onclick="closeArticle()" href="#blogs">Blogs</a>
             <button class="theme-btn" id="themeToggle">Toggle Mode</button>
         </nav>
     </header>
 
-    <section class="hero" id="home">
-        <h1>The Legal Operating System.</h1>
-        <p>Sectoral intelligence, high-stakes networking, and exclusive tools designed for India’s top law students and practitioners.</p>
-        <button class="btn-main" onclick="document.getElementById('blogs').scrollIntoView();">Access the Hub</button>
-    </section>
+    <div id="main-view">
+        <section class="hero" id="home">
+            <h1>The Legal Operating System.</h1>
+            <p>Sectoral intelligence, high-stakes networking, and exclusive tools designed for India’s top law students and practitioners.</p>
+            <button class="btn-main" onclick="document.getElementById('blogs').scrollIntoView();">Access Blogs</button>
+        </section>
 
-    <section class="container" id="blogs">
-        <div class="section-header">
-            <h2>Intelligence Hub</h2>
-            <p>Filter by sector to access curated insights.</p>
-        </div>
+        <section class="container" id="blogs">
+            <div class="section-header">
+                <h2>Blogs</h2>
+                <p>Curated insights across all legal sectors.</p>
+            </div>
 
-        <div class="blog-filters">
-            <button class="filter-btn active" onclick="filterBlogs('all')">All</button>
-            <button class="filter-btn" onclick="filterBlogs('corporate')">Corporate</button>
-            <button class="filter-btn" onclick="filterBlogs('litigation')">Litigation</button>
-            <button class="filter-btn" onclick="filterBlogs('current')">Current Affairs</button>
-        </div>
+            <div class="blog-filters">
+                <button class="filter-btn active" onclick="filterBlogs('All')">All</button>
+                <button class="filter-btn" onclick="filterBlogs('Corporate')">Corporate</button>
+                <button class="filter-btn" onclick="filterBlogs('Tax')">Tax</button>
+                <button class="filter-btn" onclick="filterBlogs('ADR')">ADR</button>
+                <button class="filter-btn" onclick="filterBlogs('Litigation')">Litigation</button>
+                <button class="filter-btn" onclick="filterBlogs('Family Law')">Family Law</button>
+            </div>
 
-        <div class="blog-grid" id="blogGrid">
-            <div class="blog-card" data-category="corporate">
-                <div class="blog-content">
-                    <span class="blog-tag">Corporate</span>
-                    <h3 class="blog-title">Navigating M&A Deal Structures</h3>
-                    <p class="blog-excerpt">A breakdown of cross-border mergers and regulatory hurdles for corporate interns.</p>
-                    <a href="#" class="read-more">Read Brief</a>
-                </div>
+            <div class="blog-grid" id="blogGrid"></div>
+        </section>
+        
+        <footer>
+            <div class="footer-bottom">
+                &copy; 2026 Young Legal House. Architecture by the CDO.
             </div>
-            <div class="blog-card" data-category="litigation">
-                <div class="blog-content">
-                    <span class="blog-tag">Litigation</span>
-                    <h3 class="blog-title">Supreme Court: Arbitral Awards</h3>
-                    <p class="blog-excerpt">Recent procedural shifts in challenging domestic arbitration under Section 34.</p>
-                    <a href="#" class="read-more">Read Brief</a>
-                </div>
-            </div>
-            <div class="blog-card" data-category="current">
-                <div class="blog-content">
-                    <span class="blog-tag">Current Affairs</span>
-                    <h3 class="blog-title">DPDP Enforcement Framework</h3>
-                    <p class="blog-excerpt">How the DPDP Act is reshaping compliance for Indian tech companies.</p>
-                    <a href="#" class="read-more">Read Brief</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="container" id="team">
-        <div class="section-header">
-            <h2>Executive Board</h2>
-            <p>The leadership team driving YLH.</p>
-        </div>
-        <div class="team-grid">
-            <div class="team-card">
-                <div class="team-avatar">AN</div>
-                <div class="team-role">Founder</div>
-                <h3 style="font-size: 1.1rem;">Achyuta Narayanan</h3>
-            </div>
-            <div class="team-card cdo-card">
-                <div class="team-avatar">CDO</div>
-                <div class="team-role">Chief Digital Officer</div>
-                <h3 style="font-size: 1.1rem;">[Your Name]</h3>
-            </div>
-            <div class="team-card">
-                <div class="team-avatar">AG</div>
-                <div class="team-role">Head of Ops</div>
-                <h3 style="font-size: 1.1rem;">Amishee Gupta</h3>
-            </div>
-            <div class="team-card">
-                <div class="team-avatar">NA</div>
-                <div class="team-role">Social Media</div>
-                <h3 style="font-size: 1.1rem;">Navya Arun</h3>
-            </div>
-            <div class="team-card">
-                <div class="team-avatar">RT</div>
-                <div class="team-role">Advisor</div>
-                <h3 style="font-size: 1.1rem;">Radhini Thalavai</h3>
-            </div>
-        </div>
-    </section>
-
-    <div class="cookie-banner" id="cookieBanner">
-        <div class="cookie-text">
-            <strong>DPDP Act Compliance:</strong> We use cookies to optimize your experience and analyze traffic.
-        </div>
-        <button class="cookie-btn" onclick="acceptCookies()">Accept</button>
+        </footer>
     </div>
 
-    <footer id="about">
-        <div class="container footer-grid">
-            <div class="footer-col">
-                <img src="logo.png" alt="YLH Logo" style="height: 30px; margin-bottom: 1rem;" id="footerLogo">
-                <p style="color: var(--text-muted); font-size: 0.85rem;">Building the ecosystem for India's future legal minds.</p>
-            </div>
-            <div class="footer-col">
-                <h4>Directory</h4>
-                <ul>
-                    <li>About Us</li>
-                    <li>Contact Directory</li>
-                    <li>Join WhatsApp Hub</li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Compliance</h4>
-                <ul>
-                    <li>Privacy Policy</li>
-                    <li>Terms of Use</li>
-                    <li>Cookie Protocol</li>
-                </ul>
-            </div>
+    <div id="reader-view">
+        <span class="back-btn" onclick="closeArticle()">&larr; Back to Blogs</span>
+        <div class="reader-tag" id="readerTag">Category</div>
+        <h1 class="reader-title" id="readerTitle">Article Title</h1>
+        <div class="reader-meta">
+            <div>Written by: <strong id="readerAuthor">Author Name</strong></div>
+            <div>Published: <strong id="readerDate">Date</strong></div>
         </div>
-        <div class="footer-bottom">
-            &copy; 2026 Young Legal House. Architecture by the CDO.
+        <div class="reader-body" id="readerContent">
+            Article content goes here...
         </div>
-    </footer>
+    </div>
 
     <script>
-        // --- Dark Mode Logic ---
-        const body = document.body;
-        const toggleBtn = document.getElementById('themeToggle');
-        const footerLogo = document.getElementById('footerLogo');
+        // CDO INSTRUCTIONS: When an intern sends a blog, just copy and paste 
+        // a block below. Change the title, author, date, and paste the text in "content".
+        // The website will do the rest automatically!
         
-        // Initial check
-        if (localStorage.getItem('theme') === 'dark') {
-            body.classList.add('dark-mode');
-            footerLogo.style.filter = 'invert(1) brightness(2)';
-        }
-        
-        toggleBtn.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
-            const isDark = body.classList.contains('dark-mode');
-            localStorage.setItem('theme', isDark ? 'dark' : 'light');
-            
-            // Toggle footer logo specifically
-            footerLogo.style.filter = isDark ? 'invert(1) brightness(2)' : 'none';
-        });
+        const database = [
+            // CORPORATE BLOGS (3)
+            {
+                id: 1, category: "Corporate", author: "Achyuta Narayanan", date: "May 1, 2026",
+                title: "Navigating M&A Deal Structures",
+                excerpt: "A breakdown of cross-border mergers and regulatory hurdles.",
+                content: "When analyzing cross-border Mergers and Acquisitions in 2026, the primary hurdle remains regulatory compliance. \n\nInterns looking to excel in corporate law must understand the difference between asset purchases and stock purchases..."
+            },
+            {
+                id: 2, category: "Corporate", author: "Amishee Gupta", date: "April 28, 2026",
+                title: "The Rise of ESG in Boardrooms",
+                excerpt: "Why environmental, social, and governance metrics dictate corporate deals.",
+                content: "ESG is no longer a buzzword. It is a strict legal requirement for publicly traded companies. \n\nLawyers are now tasked with auditing supply chains to ensure compliance with the new sustainability directives..."
+            },
+            {
+                id: 3, category: "Corporate", author: "Navya Arun", date: "April 25, 2026",
+                title: "FEMA Regulations for Tech Startups",
+                excerpt: "Foreign Direct Investment limits and compliance for Indian unicorns.",
+                content: "For a tech startup raising capital from foreign venture capitalists, strict adherence to the Foreign Exchange Management Act (FEMA) is critical. \n\nPenalties for non-compliance can severely disrupt funding rounds..."
+            },
 
-        // --- Sectoral Blog Filter Logic ---
-        function filterBlogs(category) {
-            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+            // TAX BLOGS (3)
+            {
+                id: 4, category: "Tax", author: "Intern Rahul", date: "May 2, 2026",
+                title: "GST Implications on Digital Assets",
+                excerpt: "How the revenue department views crypto and digital tokens.",
+                content: "The taxation of digital assets remains a grey area. However, recent circulars indicate a strict 28% GST on all utility tokens. \n\nThis article breaks down the recent tribunal ruling and its impact on Web3 startups."
+            },
+            {
+                id: 5, category: "Tax", author: "Intern Priya", date: "April 20, 2026",
+                title: "Direct Tax Code: What Changed?",
+                excerpt: "A simplified guide to the new personal income tax slabs.",
+                content: "The recent budget introduced sweeping changes to the Direct Tax Code. \n\nThe old regime is officially being phased out, forcing taxpayers to optimize their investments differently..."
+            },
+            {
+                id: 6, category: "Tax", author: "Intern Ankit", date: "April 15, 2026",
+                title: "Corporate Tax Evasion Loopholes",
+                excerpt: "Analyzing the landmark Supreme Court ruling on shell companies.",
+                content: "The lifting of the corporate veil has become a standard procedure for the IT Department when investigating shell corporations registered in tax havens..."
+            },
 
-            const cards = document.querySelectorAll('.blog-card');
-            cards.forEach(card => {
-                if (category === 'all' || card.getAttribute('data-category') === category) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
+            // ADR BLOGS (3)
+            {
+                id: 7, category: "ADR", author: "Radhini Thalavai", date: "April 30, 2026",
+                title: "Challenging Arbitral Awards",
+                excerpt: "Recent procedural shifts under Section 34 of the Act.",
+                content: "The scope of judicial intervention in domestic arbitration is intentionally narrow. \n\nHowever, 'patent illegality' remains the most utilized ground for setting aside an award under Section 34..."
+            },
+            {
+                id: 8, category: "ADR", author: "Intern Sneha", date: "April 18, 2026",
+                title: "Mediation Act 2026: A Review",
+                excerpt: "How mandatory pre-litigation mediation is changing commercial disputes.",
+                content: "Before approaching commercial courts, parties are now mandated to exhaust mediation. \n\nThis has drastically reduced the burden on the judiciary but requires lawyers to develop strong negotiation skills..."
+            },
+            {
+                id: 9, category: "ADR", author: "Intern Dev", date: "April 10, 2026",
+                title: "International Commercial Arbitration",
+                excerpt: "Choosing the right seat: Singapore vs. London.",
+                content: "The 'Seat' of arbitration determines the supervisory jurisdiction of the courts. \n\nFor Indian parties, SIAC (Singapore) has emerged as the preferred destination over traditional venues like London..."
+            },
+
+            // LITIGATION BLOGS (3)
+            {
+                id: 10, category: "Litigation", author: "Radhini Thalavai", date: "May 1, 2026",
+                title: "The Art of Cross-Examination",
+                excerpt: "Essential techniques for junior advocates in trial courts.",
+                content: "Cross-examination is an art, not a science. A junior advocate must learn never to ask a question to which they do not already know the answer. \n\nPreparation of the witness and studying the CrPC is paramount..."
+            },
+            {
+                id: 11, category: "Litigation", author: "Intern Rohan", date: "April 22, 2026",
+                title: "Bail Jurisprudence in India",
+                excerpt: "Analyzing the 'Bail is rule, jail is exception' doctrine.",
+                content: "Despite the Supreme Court's repeated emphasis, trial courts often act conservatively when granting bail in high-profile cases. \n\nThis article examines recent precedents under the PMLA framework..."
+            },
+            {
+                id: 12, category: "Litigation", author: "Intern Maya", date: "April 12, 2026",
+                title: "Writ Petitions under Article 226",
+                excerpt: "When to approach the High Court vs. Alternate Remedies.",
+                content: "The High Court's extraordinary jurisdiction under Article 226 is a powerful tool. \n\nHowever, courts will dismiss petitions if an efficacious alternative statutory remedy exists..."
+            },
+
+            // FAMILY LAW BLOGS (3)
+            {
+                id: 13, category: "Family Law", author: "Intern Kabir", date: "May 3, 2026",
+                title: "Mutual Consent Divorce Procedures",
+                excerpt: "The waiver of the 6-month cooling-off period.",
+                content: "The Supreme Court has clarified that the 6-month statutory waiting period for mutual consent divorce under the Hindu Marriage Act is not mandatory, but directory. \n\nFamily courts can waive it under specific circumstances..."
+            },
+            {
+                id: 14, category: "Family Law", author: "Intern Riya", date: "April 26, 2026",
+                title: "Child Custody and Welfare",
+                excerpt: "How courts determine the 'best interests of the child'.",
+                content: "In custody battles, the financial superiority of one parent does not guarantee custody. \n\nThe paramount consideration for any family court is the emotional and psychological welfare of the child..."
+            },
+            {
+                id: 15, category: "Family Law", author: "Intern Aisha", date: "April 14, 2026",
+                title: "Inheritance Rights of Daughters",
+                excerpt: "A decade after the Vineeta Sharma judgement.",
+                content: "The amendment to the Hindu Succession Act gave daughters equal coparcenary rights. \n\nWe analyze how this is currently being executed in partition suits across district courts..."
+            }
+        ];
+
+        // ==========================================
+        // SYSTEM ENGINE (Do not touch this part)
+        // ==========================================
+
+        const blogGrid = document.getElementById('blogGrid');
+        const mainView = document.getElementById('main-view');
+        const readerView = document.getElementById('reader-view');
+        let currentFilter = 'All';
+
+        // 1. Build the Grid
+        function renderBlogs() {
+            blogGrid.innerHTML = '';
+            database.forEach(blog => {
+                if (currentFilter === 'All' || blog.category === currentFilter) {
+                    const card = document.createElement('div');
+                    card.className = 'blog-card';
+                    card.innerHTML = `
+                        <div class="blog-content">
+                            <span class="blog-tag">${blog.category}</span>
+                            <h3 class="blog-title">${blog.title}</h3>
+                            <p class="blog-excerpt">${blog.excerpt}</p>
+                            <span class="read-more">Read Article</span>
+                        </div>
+                    `;
+                    // Click event to open article
+                    card.onclick = () => openArticle(blog.id);
+                    blogGrid.appendChild(card);
                 }
             });
         }
 
-        // --- Cookie Banner Logic ---
-        window.onload = () => {
-            if (!localStorage.getItem('cookiesAccepted')) {
-                setTimeout(() => {
-                    document.getElementById('cookieBanner').classList.add('show');
-                }, 1500);
+        // 2. Filter Logic
+        function filterBlogs(category) {
+            currentFilter = category;
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            renderBlogs();
+        }
+
+        // 3. Open Article Logic
+        function openArticle(id) {
+            const blog = database.find(b => b.id === id);
+            if(blog) {
+                document.getElementById('readerTag').innerText = blog.category;
+                document.getElementById('readerTitle').innerText = blog.title;
+                document.getElementById('readerAuthor').innerText = blog.author;
+                document.getElementById('readerDate').innerText = blog.date;
+                document.getElementById('readerContent').innerText = blog.content;
+                
+                mainView.style.display = 'none';
+                readerView.style.display = 'block';
+                window.scrollTo(0, 0); // Scroll to top
             }
         }
 
-        function acceptCookies() {
-            localStorage.setItem('cookiesAccepted', 'true');
-            document.getElementById('cookieBanner').classList.remove('show');
+        // 4. Close Article Logic
+        function closeArticle() {
+            readerView.style.display = 'none';
+            mainView.style.display = 'block';
         }
+
+        // --- Dark Mode Logic ---
+        const body = document.body;
+        const toggleBtn = document.getElementById('themeToggle');
+        if (localStorage.getItem('theme') === 'dark') body.classList.add('dark-mode');
+        
+        toggleBtn.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            localStorage.setItem('theme', body.classList.contains('dark-mode') ? 'dark' : 'light');
+        });
+
+        // Init
+        renderBlogs();
+
     </script>
 </body>
 </html>
