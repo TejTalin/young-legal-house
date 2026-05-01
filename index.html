@@ -10,27 +10,29 @@
 </head>
 <body class="dark-mode">
 
-    <div class="bg-glow"></div>
-
     <header class="navbar" id="mainNav">
         <div class="nav-container">
-            <a href="index.html" class="nav-brand">
+            <a href="index.html" class="nav-left">
                 <img src="logoylh.png" alt="YLH Logo" class="nav-logo">
-                <span class="nav-title">Young Legal House</span>
             </a>
             
-            <nav class="nav-menu">
-                <a href="blogs.html">Blogs</a>
-                <a href="about.html">About</a>
-                <a href="team.html">Team</a>
-                <a href="events.html">Events</a>
-                <a href="join.html">Join Us</a>
-                <a href="contact.html">Contact Us</a>
-            </nav>
-
-            <button class="theme-btn" id="themeToggle">
-                <i class="fas fa-circle-half-stroke"></i>
-            </button>
+            <a href="index.html" class="nav-center">
+                Young Legal House
+            </a>
+            
+            <div class="nav-right">
+                <nav class="nav-menu">
+                    <a href="blogs.html" class="glass-pill">Blogs</a>
+                    <a href="about.html" class="glass-pill">About</a>
+                    <a href="team.html" class="glass-pill">Team</a>
+                    <a href="events.html" class="glass-pill">Events</a>
+                    <a href="join.html" class="glass-pill">Join Us</a>
+                    <a href="contact.html" class="glass-pill">Contact Us</a>
+                </nav>
+                <button class="theme-btn glass-pill" id="themeToggle">
+                    <i class="fas fa-moon" id="themeIcon"></i>
+                </button>
+            </div>
         </div>
     </header>
 
@@ -41,44 +43,42 @@
                 <p>“ Building the next generation of legal excellence. ”</p>
                 <p>“ Shaping pathways for future professionals. ”</p>
             </div>
-            <a href="join.html" class="btn-main">Join Us</a>
+            <a href="join.html" class="btn-main glass-pill">Join Us</a>
         </section>
 
         <section class="container">
-            <h2 class="section-label">Upcoming Events</h2>
-            <div class="events-grid">
-                <div class="glass-card event-card">
+            <div class="cards-grid">
+                <div class="glass-card">
                     <h3>CrPC Workshop</h3>
-                    <p>Offline | Chennai</p>
-                    <span class="date">Dates to be Announced</span>
-                    <a href="register.html" class="reg-btn">Register (₹200)</a>
+                    <p class="card-detail">Offline | Chennai</p>
+                    <span class="card-date">Dates to be Announced</span>
+                    <a href="register.html" class="action-link">Register (₹200)</a>
                 </div>
-                <div class="glass-card event-card">
+                <div class="glass-card">
                     <h3>ADR Workshop</h3>
-                    <p>Online | Virtual</p>
-                    <span class="date">Dates to be Announced</span>
-                    <a href="register.html" class="reg-btn">Register (₹200)</a>
+                    <p class="card-detail">Online | Virtual</p>
+                    <span class="card-date">Dates to be Announced</span>
+                    <a href="register.html" class="action-link">Register (₹200)</a>
                 </div>
             </div>
         </section>
 
         <section class="container">
-            <h2 class="section-label">Latest Intelligence</h2>
-            <div class="blogs-footer-grid">
-                <div class="blog-min-card">
-                    <span class="area">Corporate</span>
-                    <h4>M&A Deal Structures</h4>
-                    <a href="blogs.html">Read Briefing &rarr;</a>
+            <div class="cards-grid">
+                <div class="glass-card">
+                    <h3>M&A Deal Structures</h3>
+                    <p class="card-detail">Corporate</p>
+                    <a href="blogs.html" class="action-link">Read Article</a>
                 </div>
-                <div class="blog-min-card">
-                    <span class="area">Tax</span>
-                    <h4>Digital Tax Laws</h4>
-                    <a href="blogs.html">Read Briefing &rarr;</a>
+                <div class="glass-card">
+                    <h3>Digital Tax Laws</h3>
+                    <p class="card-detail">Taxation</p>
+                    <a href="blogs.html" class="action-link">Read Article</a>
                 </div>
-                <div class="blog-min-card">
-                    <span class="area">ADR</span>
-                    <h4>Arbitration Trends</h4>
-                    <a href="blogs.html">Read Briefing &rarr;</a>
+                <div class="glass-card">
+                    <h3>Arbitration Trends</h3>
+                    <p class="card-detail">Dispute Resolution</p>
+                    <a href="blogs.html" class="action-link">Read Article</a>
                 </div>
             </div>
         </section>
@@ -87,21 +87,23 @@
     <footer>
         <div class="footer-content">
             <div class="footer-left">
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
-                <a href="#">Cookie Policy</a>
-                <a href="#">Legal</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="cookies.html">Cookie Policy</a>
+                <a href="legal.html">Legal</a>
             </div>
+            
             <div class="footer-center">
-                <p>&copy; 2026 Young Legal House</p>
-                <span class="newsletter">Newsletter: Coming Soon. Stay Tuned.</span>
+                <span class="newsletter">Newsletter: Coming soon, stay tuned over here.</span>
+                <p class="copyright">&copy; 2026 Young Legal House</p>
             </div>
+            
             <div class="footer-right">
-                <a href="https://www.linkedin.com/company/young-legal-house/" class="soc-ln"><i class="fab fa-linkedin"></i></a>
-                <a href="https://www.instagram.com/younglegalhouse/" class="soc-ig"><i class="fab fa-instagram"></i></a>
-                <a href="https://linktr.ee/younglegalhouse" class="soc-lt"><i class="fas fa-link"></i></a>
-                <a href="mailto:connect.ylh@gmail.com" class="soc-em"><i class="fas fa-envelope"></i></a>
-                <a href="#" class="soc-wa"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://www.linkedin.com/company/young-legal-house/" class="soc-icon" style="color: #0077b5;"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.instagram.com/younglegalhouse/" class="soc-icon" style="color: #e1306c;"><i class="fab fa-instagram"></i></a>
+                <a href="https://linktr.ee/younglegalhouse" class="soc-icon" style="color: #43ea80;"><i class="fas fa-link"></i></a>
+                <a href="mailto:connect.ylh@gmail.com" class="soc-icon email-icon"><i class="fas fa-envelope"></i></a>
+                <a href="#" class="soc-icon" style="color: #25d366;"><i class="fab fa-whatsapp"></i></a>
             </div>
         </div>
     </footer>
