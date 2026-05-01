@@ -1,6 +1,6 @@
 /* === EXACT COLOR THEMES === */
 :root {
-    --bg-color: #454545; /* Dark Mode Base */
+    --bg-color: #454545; /* Dark Mode */
     --text-color: #ffffff;
     --grey-text: #cccccc;
     --glass-bg: rgba(255, 255, 255, 0.08);
@@ -8,14 +8,13 @@
 }
 
 body.light-mode {
-    --bg-color: #e0ddd8; /* Light Mode Base */
+    --bg-color: #e0ddd8; /* Light Mode */
     --text-color: #000000;
     --grey-text: #444444;
     --glass-bg: rgba(0, 0, 0, 0.05);
     --glass-border: rgba(0, 0, 0, 0.15);
 }
 
-/* === UNIVERSAL SETTINGS === */
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Lora', serif; }
 
 body { 
@@ -25,89 +24,74 @@ body {
     overflow-x: hidden; 
 }
 
-/* === THE BIGGER, BLURRED NAVBAR === */
+/* === NAVBAR === */
 .navbar {
-    position: fixed; 
-    top: 0; 
-    width: 100%; 
-    z-index: 2000;
-    padding: 1.5rem 5%; /* Bigger bar */
-    background: var(--glass-bg); 
-    backdrop-filter: blur(25px); /* Heavy blur */
-    -webkit-backdrop-filter: blur(25px);
-    border-bottom: 1px solid var(--glass-border);
-    transition: opacity 0.6s ease; /* Smooth scroll fade */
+    position: fixed; top: 0; width: 100%; z-index: 2000;
+    padding: 1.5rem 5%; background: var(--glass-bg); 
+    backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
+    border-bottom: 1px solid var(--glass-border); transition: opacity 0.6s ease;
 }
-
-.nav-container { 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-    max-width: 1600px; 
-    margin: 0 auto; 
-}
-
-/* Left: Logo */
+.nav-container { display: flex; justify-content: space-between; align-items: center; max-width: 1600px; margin: 0 auto; }
 .nav-left { flex: 1; display: flex; align-items: center; }
 .nav-logo { height: 60px; transition: filter 0.3s; }
-body.light-mode .nav-logo { filter: invert(1); } /* Black logo on light mode */
-
-/* Center: Title */
-.nav-center { 
-    flex: 1; 
-    text-align: center; 
-    font-size: 1.6rem; 
-    font-weight: 700; 
-    text-decoration: none; 
-    color: inherit; 
-    letter-spacing: 0.5px;
-}
-
-/* Right: Navigation Pills */
+body.light-mode .nav-logo { filter: invert(1); }
+.nav-center { flex: 1; text-align: center; font-size: 1.6rem; font-weight: 700; text-decoration: none; color: inherit; letter-spacing: 0.5px; }
 .nav-right { flex: 1; display: flex; justify-content: flex-end; align-items: center; gap: 1rem; }
 .nav-menu { display: flex; gap: 0.8rem; }
-
-/* The Glass Pills */
 .glass-pill {
-    text-decoration: none;
-    color: var(--text-color);
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    padding: 8px 18px;
-    border-radius: 50px; /* Round boundaries */
-    font-size: 0.95rem;
-    backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
-    cursor: pointer;
+    text-decoration: none; color: var(--text-color); background: var(--glass-bg);
+    border: 1px solid var(--glass-border); padding: 8px 18px; border-radius: 50px;
+    font-size: 0.95rem; backdrop-filter: blur(10px); transition: all 0.3s ease; cursor: pointer;
 }
-.glass-pill:hover { background: var(--text-color); color: var(--bg-color); }
+.glass-pill:hover, .active-nav { background: var(--text-color); color: var(--bg-color); }
 .theme-btn { border: 1px solid var(--glass-border); padding: 8px 15px; }
 
-/* === HERO SECTION === */
+/* === COMMON LAYOUTS === */
+.page-spacing { padding-top: 150px; } /* Pushes content below the sticky navbar */
+.container { padding: 40px 5% 60px; max-width: 1400px; margin: 0 auto; }
+.cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; justify-items: center; }
+
+/* === HERO SECTION (Home Page) === */
 .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
 .hero-main-title { font-size: clamp(3rem, 6vw, 5rem); font-weight: 700; margin-bottom: 30px; }
 .hero-divider p { font-style: italic; color: var(--grey-text); line-height: 1.8; font-size: 1.2rem; }
-.btn-main { margin-top: 40px; padding: 15px 40px; font-weight: 700; font-size: 1.1rem; }
+.btn-main { margin-top: 40px; padding: 15px 40px; font-weight: 700; font-size: 1.1rem; border: 1px solid var(--glass-border); }
 
-/* === UNIFORM GRID (EVENTS & BLOGS) === */
-.container { padding: 40px 5% 60px; max-width: 1400px; margin: 0 auto; }
-.cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; justify-items: center; }
-
+/* === GLASS CARDS === */
 .glass-card { 
-    background: var(--glass-bg); 
-    border: 1px solid var(--glass-border); 
-    padding: 40px; 
-    border-radius: 20px; 
-    backdrop-filter: blur(15px); 
-    text-align: center;
-    width: 100%;
-    max-width: 500px;
+    background: var(--glass-bg); border: 1px solid var(--glass-border); 
+    padding: 40px; border-radius: 20px; backdrop-filter: blur(15px); 
+    text-align: center; width: 100%; max-width: 500px;
 }
 .glass-card h3 { font-size: 1.5rem; margin-bottom: 10px; }
 .card-detail { color: var(--grey-text); font-size: 1rem; margin-bottom: 5px; }
 .card-date { display: block; color: var(--text-color); font-weight: 700; margin-bottom: 20px; }
 .action-link { display: inline-block; color: var(--grey-text); text-decoration: underline; font-weight: 700; transition: color 0.3s;}
 .action-link:hover { color: var(--text-color); }
+
+/* === ABOUT PAGE SPECIFICS === */
+.text-center-section { text-align: center; max-width: 900px; margin: 0 auto 40px; }
+.page-title { font-size: 3rem; font-weight: 700; margin-bottom: 30px; letter-spacing: 2px; }
+.about-text { font-size: 1.2rem; line-height: 2; color: var(--grey-text); }
+.message-card { display: flex; flex-direction: column; justify-content: space-between; }
+.card-role { font-size: 1.3rem; margin-bottom: 20px; color: var(--text-color); }
+.message-quote { font-style: italic; color: var(--grey-text); line-height: 1.8; margin-bottom: 30px; flex-grow: 1; }
+.card-author { font-weight: 700; font-size: 1.1rem; color: var(--text-color); }
+
+/* === FEEDBACK FORM (GLASS UI) === */
+.form-section { text-align: center; max-width: 800px; margin: 0 auto; }
+.form-title { font-size: 2rem; margin-bottom: 10px; }
+.form-subtitle { color: var(--grey-text); margin-bottom: 40px; font-style: italic; }
+.glass-form { display: flex; flex-direction: column; gap: 20px; text-align: left; }
+.glass-input { 
+    width: 100%; background: var(--glass-bg); border: 1px solid var(--glass-border); 
+    color: var(--text-color); padding: 18px 20px; border-radius: 12px; 
+    font-size: 1rem; font-family: 'Lora', serif; outline: none; transition: border 0.3s;
+}
+.glass-input::placeholder { color: var(--grey-text); opacity: 0.7; }
+.glass-input:focus { border-color: var(--text-color); }
+.word-count-indicator { font-size: 0.9rem; color: var(--grey-text); text-align: right; margin-top: -10px; }
+#submitBtn:disabled { opacity: 0.5; cursor: not-allowed; }
 
 /* === FOOTER === */
 footer { padding: 50px 5% 30px; border-top: 1px solid var(--glass-border); margin-top: 40px; }
@@ -120,12 +104,11 @@ footer { padding: 50px 5% 30px; border-top: 1px solid var(--glass-border); margi
 .footer-right { font-size: 1.8rem; display: flex; gap: 25px; }
 .soc-icon { transition: transform 0.3s; }
 .soc-icon:hover { transform: scale(1.1); }
-.email-icon { color: var(--grey-text); } /* Email stays neutral to match theme */
+.email-icon { color: var(--grey-text); } 
 
-/* Responsive Adjustments */
+/* Responsive */
 @media (max-width: 1024px) {
     .nav-container { flex-direction: column; gap: 15px; }
-    .nav-left, .nav-right { justify-content: center; }
     .nav-menu { flex-wrap: wrap; justify-content: center; }
     .footer-content { flex-direction: column; text-align: center; }
 }
