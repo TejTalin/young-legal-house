@@ -1,78 +1,63 @@
 /* === APPLE INTELLIGENCE UI VARIABLES === */
 :root {
     --bg-gradient: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
-    --glass-bg: rgba(255, 255, 255, 0.5);
+    --glass-bg: rgba(255, 255, 255, 0.6);
     --glass-border: rgba(255, 255, 255, 0.8);
     --text-main: #000000; 
     --text-muted: #666666; 
     --accent-main: #000000; 
     --accent-invert: #FFFFFF; 
     --shadow-glass: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
-    --card-glow: inset 0 0 20px rgba(255,255,255,0.5);
 }
 
 body.dark-mode {
     --bg-gradient: linear-gradient(135deg, #0f1012 0%, #17181c 100%);
-    --glass-bg: rgba(20, 20, 25, 0.4);
+    --glass-bg: rgba(20, 20, 25, 0.6);
     --glass-border: rgba(255, 255, 255, 0.08);
     --text-main: #F5F5F7; 
     --text-muted: #A1A1A6; 
     --accent-main: #F5F5F7; 
     --accent-invert: #000000; 
     --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.6);
-    --card-glow: inset 0 0 20px rgba(255,255,255,0.02);
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body { 
     background: var(--bg-gradient); color: var(--text-main); 
-    /* MODERN SANS-SERIF FONT */
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; 
-    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); 
+    transition: all 0.4s ease; 
     min-height: 100vh; overflow-x: hidden;
 }
 
 a { text-decoration: none; color: inherit; }
 
-/* === CUSTOM FLOATING CURSOR === */
-.cursor-dot, .cursor-outline {
-    position: fixed; top: 0; left: 0; transform: translate(-50%, -50%);
-    border-radius: 50%; z-index: 9999; pointer-events: none;
-}
-.cursor-dot { width: 8px; height: 8px; background-color: var(--text-main); }
-.cursor-outline { 
-    width: 40px; height: 40px; border: 1px solid var(--text-main); 
-    transition: width 0.2s, height 0.2s, background-color 0.2s; 
-}
-.hovered .cursor-outline { width: 60px; height: 60px; background-color: rgba(150,150,150,0.1); }
-
 /* === STICKY GLASS HEADER NAV === */
 .navbar {
-    position: fixed; top: 0; width: 100%;
+    position: fixed; top: 0; left: 0; width: 100%;
     background: var(--glass-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--glass-border);
     z-index: 1000; display: flex; justify-content: center; padding: 1.2rem 5%;
 }
 .nav-links { display: flex; gap: 3rem; align-items: center; font-weight: 500; font-size: 0.9rem; letter-spacing: 0.5px;}
-.nav-links a { transition: color 0.2s; position: relative; color: var(--text-muted); }
+.nav-links a { transition: color 0.2s; color: var(--text-muted); }
 .nav-links a:hover, .nav-links a.active-link { color: var(--text-main); }
 .theme-btn { 
-    background: transparent; border: 1px solid var(--text-muted); 
-    padding: 0.3rem 1rem; border-radius: 20px; color: var(--text-muted); font-weight: 500; font-size: 0.8rem; transition: all 0.3s ease;
+    background: transparent; border: 1px solid var(--text-muted); cursor: pointer;
+    padding: 0.4rem 1.2rem; border-radius: 20px; color: var(--text-muted); font-weight: 500; font-size: 0.8rem; transition: all 0.3s ease;
 }
 .theme-btn:hover { background: var(--text-main); color: var(--accent-invert); border-color: var(--text-main); }
 
 /* === CENTERED HERO SECTION === */
-.hero { padding: 160px 5% 100px; text-align: center; display: flex; flex-direction: column; align-items: center; }
+.hero { padding: 180px 5% 100px; text-align: center; display: flex; flex-direction: column; align-items: center; }
 .brand-centerpiece { margin-bottom: 2rem; }
-.main-logo { height: 70px; margin-bottom: 1rem; transition: filter 0.3s ease; }
-body.dark-mode .main-logo { filter: invert(1) brightness(2); }
-.brand-title { font-size: 3.5rem; font-weight: 800; letter-spacing: -1px; line-height: 1; margin-bottom: 1rem;}
-.hero-subtitle { font-size: 1.5rem; font-weight: 500; color: var(--text-muted); margin-bottom: 1.5rem; letter-spacing: -0.5px;}
-.hero-text { font-size: 1.1rem; color: var(--text-muted); max-width: 600px; margin: 0 auto 3rem; line-height: 1.6; font-weight: 400;}
+.main-logo { height: 90px; margin-bottom: 1rem; border-radius: 8px; transition: filter 0.3s ease; }
+body.dark-mode .main-logo { filter: invert(1); }
+.brand-title { font-size: 3.5rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 1rem;}
+.hero-subtitle { font-size: 1.5rem; font-weight: 500; color: var(--text-muted); margin-bottom: 1.5rem;}
+.hero-text { font-size: 1.1rem; color: var(--text-muted); max-width: 600px; margin: 0 auto 3rem; line-height: 1.6;}
 
-.btn-main { background: var(--accent-main); color: var(--accent-invert); padding: 1rem 2.5rem; border-radius: 30px; font-weight: 600; transition: all 0.3s; font-size: 0.95rem; }
+.btn-main { background: var(--accent-main); color: var(--accent-invert); padding: 1rem 2.5rem; border-radius: 30px; font-weight: 600; transition: all 0.3s; display: inline-block; }
 .btn-main:hover { transform: scale(1.05); box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
 
 /* === APPLE GLASS CARDS === */
@@ -81,31 +66,22 @@ body.dark-mode .main-logo { filter: invert(1) brightness(2); }
 
 .glass-card { 
     background: var(--glass-bg); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
-    border: 1px solid var(--glass-border); box-shadow: var(--shadow-glass), var(--card-glow);
-    padding: 3rem 2rem; border-radius: 24px; transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-    text-align: center;
+    border: 1px solid var(--glass-border); box-shadow: var(--shadow-glass);
+    padding: 3rem 2rem; border-radius: 24px; transition: transform 0.3s ease; text-align: center;
 }
-.glass-card:hover { transform: translateY(-10px); border-color: var(--text-muted); }
+.glass-card:hover { transform: translateY(-10px); }
 .card-icon { font-size: 2rem; margin-bottom: 1.5rem; color: var(--text-main); }
-.glass-card h3 { font-size: 1.4rem; font-weight: 700; margin-bottom: 1rem; letter-spacing: -0.5px; }
+.glass-card h3 { font-size: 1.4rem; font-weight: 700; margin-bottom: 1rem; }
 .glass-card p { color: var(--text-muted); font-size: 1rem; line-height: 1.6; }
 
 /* === MANIFESTO === */
 .manifesto-section { padding: 2rem 5% 6rem; max-width: 900px; margin: 0 auto; }
-.manifesto-card p { font-size: 1.8rem; font-weight: 500; line-height: 1.4; color: var(--text-main); letter-spacing: -0.5px;}
+.manifesto-card p { font-size: 1.8rem; font-weight: 500; line-height: 1.4; color: var(--text-main); }
 
 /* === FOOTER === */
 footer { padding: 4rem 5% 3rem; border-top: 1px solid var(--glass-border); text-align: center; }
 .social-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; }
-.social-links a { font-size: 1.5rem; color: var(--text-muted); transition: all 0.3s ease; }
-.social-links a:hover { color: var(--text-main); transform: translateY(-3px); }
-.newsletter-badge { display: inline-block; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 0.5rem 1.5rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 3rem; }
-.footer-bottom { color: var(--text-muted); font-size: 0.85rem; font-weight: 400;}
-
-/* Hide cursor on mobile */
-@media (max-width: 768px) {
-    * { cursor: auto; }
-    .cursor-dot, .cursor-outline { display: none; }
-    .nav-links { gap: 1.5rem; font-size: 0.8rem; }
-    .brand-title { font-size: 2.5rem; }
-}
+.social-links a { font-size: 1.5rem; color: var(--text-muted); transition: color 0.3s ease; }
+.social-links a:hover { color: var(--text-main); }
+.newsletter-badge { display: inline-block; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 0.5rem 1.5rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; color: var(--text-muted); margin-bottom: 3rem; }
+.footer-bottom { color: var(--text-muted); font-size: 0.85rem; }
