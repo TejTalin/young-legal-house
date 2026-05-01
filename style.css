@@ -25,7 +25,8 @@ body.dark-mode {
 html { scroll-behavior: smooth; }
 body { 
     background: var(--bg-gradient); color: var(--text-main); 
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; 
+    /* Upgraded to Outfit for that sleek tech feel */
+    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif; 
     transition: all 0.4s ease; 
     min-height: 100vh; overflow-x: hidden;
 }
@@ -39,12 +40,13 @@ a { text-decoration: none; color: inherit; }
     border-bottom: 1px solid var(--glass-border);
     z-index: 1000; display: flex; justify-content: center; padding: 1.2rem 5%;
 }
-.nav-links { display: flex; gap: 3rem; align-items: center; font-weight: 500; font-size: 0.9rem; letter-spacing: 0.5px;}
+.nav-links { display: flex; gap: 3rem; align-items: center; font-weight: 500; font-size: 0.95rem; letter-spacing: 0.5px;}
 .nav-links a { transition: color 0.2s; color: var(--text-muted); }
 .nav-links a:hover, .nav-links a.active-link { color: var(--text-main); }
 .theme-btn { 
     background: transparent; border: 1px solid var(--text-muted); cursor: pointer;
-    padding: 0.4rem 1.2rem; border-radius: 20px; color: var(--text-muted); font-weight: 500; font-size: 0.8rem; transition: all 0.3s ease;
+    padding: 0.4rem 1.2rem; border-radius: 20px; color: var(--text-muted); font-weight: 500; font-size: 0.85rem; transition: all 0.3s ease;
+    font-family: 'Outfit', sans-serif;
 }
 .theme-btn:hover { background: var(--text-main); color: var(--accent-invert); border-color: var(--text-main); }
 
@@ -53,11 +55,18 @@ a { text-decoration: none; color: inherit; }
 .brand-centerpiece { margin-bottom: 2rem; }
 .main-logo { height: 90px; margin-bottom: 1rem; border-radius: 8px; transition: filter 0.3s ease; }
 body.dark-mode .main-logo { filter: invert(1); }
-.brand-title { font-size: 3.5rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 1rem;}
-.hero-subtitle { font-size: 1.5rem; font-weight: 500; color: var(--text-muted); margin-bottom: 1.5rem;}
-.hero-text { font-size: 1.1rem; color: var(--text-muted); max-width: 600px; margin: 0 auto 3rem; line-height: 1.6;}
+.brand-title { 
+    /* Upgraded to Playfair Display for absolute authority */
+    font-family: 'Playfair Display', serif; 
+    font-size: 4rem; 
+    font-weight: 800; 
+    letter-spacing: -1.5px; 
+    margin-bottom: 1rem;
+}
+.hero-subtitle { font-size: 1.6rem; font-weight: 500; color: var(--text-muted); margin-bottom: 1.5rem; letter-spacing: -0.5px;}
+.hero-text { font-size: 1.15rem; color: var(--text-muted); max-width: 600px; margin: 0 auto 3rem; line-height: 1.6;}
 
-.btn-main { background: var(--accent-main); color: var(--accent-invert); padding: 1rem 2.5rem; border-radius: 30px; font-weight: 600; transition: all 0.3s; display: inline-block; }
+.btn-main { background: var(--accent-main); color: var(--accent-invert); padding: 1rem 2.5rem; border-radius: 30px; font-weight: 600; transition: all 0.3s; display: inline-block; font-size: 1rem; }
 .btn-main:hover { transform: scale(1.05); box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
 
 /* === APPLE GLASS CARDS === */
@@ -71,17 +80,17 @@ body.dark-mode .main-logo { filter: invert(1); }
 }
 .glass-card:hover { transform: translateY(-10px); }
 .card-icon { font-size: 2rem; margin-bottom: 1.5rem; color: var(--text-main); }
-.glass-card h3 { font-size: 1.4rem; font-weight: 700; margin-bottom: 1rem; }
-.glass-card p { color: var(--text-muted); font-size: 1rem; line-height: 1.6; }
+.glass-card h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; letter-spacing: -0.5px; }
+.glass-card p { color: var(--text-muted); font-size: 1.05rem; line-height: 1.6; }
 
 /* === MANIFESTO === */
 .manifesto-section { padding: 2rem 5% 6rem; max-width: 900px; margin: 0 auto; }
-.manifesto-card p { font-size: 1.8rem; font-weight: 500; line-height: 1.4; color: var(--text-main); }
+.manifesto-card p { font-size: 1.8rem; font-weight: 500; line-height: 1.4; color: var(--text-main); letter-spacing: -0.5px;}
 
 /* === FOOTER === */
 footer { padding: 4rem 5% 3rem; border-top: 1px solid var(--glass-border); text-align: center; }
 .social-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; }
 .social-links a { font-size: 1.5rem; color: var(--text-muted); transition: color 0.3s ease; }
 .social-links a:hover { color: var(--text-main); }
-.newsletter-badge { display: inline-block; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 0.5rem 1.5rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; color: var(--text-muted); margin-bottom: 3rem; }
-.footer-bottom { color: var(--text-muted); font-size: 0.85rem; }
+.newsletter-badge { display: inline-block; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 0.5rem 1.5rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; color: var(--text-muted); margin-bottom: 3rem; letter-spacing: 1px;}
+.footer-bottom { color: var(--text-muted); font-size: 0.9rem; }
