@@ -3,125 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Young Legal House is a dedicated initiative empowering law students across India with networking, internships, and growth.">
-    <title>Young Legal House | Future Legal Professionals</title>
+    <title>YLH | Legal Intelligence & Blogs</title>
     
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        :root { --bg-dark: #050505; --surface: #121212; --surface-hover: #1f1f1f; --text-main: #ffffff; --text-muted: #a0a0a0; --accent: #ffffff; --border: #333333; }
+        :root { --bg-dark: #050505; --surface: #121212; --text-main: #ffffff; --text-muted: #888888; --border: #222222; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Inter', sans-serif; background-color: var(--bg-dark); color: var(--text-main); line-height: 1.6; scroll-behavior: smooth; overflow-x: hidden; }
-        h1, h2, h3, .brand { font-family: 'Space Grotesk', sans-serif; text-transform: uppercase; letter-spacing: -0.5px; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-dark); color: var(--text-main); padding-top: 100px; }
+        h1, h2, h3, .brand { font-family: 'Space Grotesk', sans-serif; text-transform: uppercase; }
         a { text-decoration: none; color: inherit; }
 
-        nav { position: fixed; top: 0; width: 100%; z-index: 1000; background: rgba(5, 5, 5, 0.8); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; padding: 1rem 5%; }
+        nav { position: fixed; top: 0; width: 100%; z-index: 1000; background: rgba(5, 5, 5, 0.7); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 5%; }
         .brand { font-size: 1.5rem; font-weight: 700; letter-spacing: 2px; }
-        .nav-links { display: flex; gap: 2rem; }
-        .nav-links a { font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); transition: color 0.3s; }
-        .nav-links a:hover { color: var(--accent); }
+        .nav-links { display: flex; gap: 2.5rem; }
+        .nav-links a { font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted); transition: color 0.3s; }
+        .nav-links a:hover { color: #fff; }
 
-        /* UPGRADED HERO SECTION WITH BACKGROUND IMAGE */
-        header { 
-            min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; 
-            text-align: center; padding: 0 5%; 
-            background: linear-gradient(rgba(5, 5, 5, 0.7), rgba(5, 5, 5, 0.95)), url('https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=2000&auto=format&fit=crop') no-repeat center center/cover;
-        }
-        .hero-title { font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 700; line-height: 1.1; margin-bottom: 1rem; text-shadow: 0 4px 20px rgba(0,0,0,0.5); }
-        .hero-subtitle { font-family: 'Space Grotesk', sans-serif; font-size: clamp(1rem, 2vw, 1.5rem); color: #ddd; letter-spacing: 2px; margin-bottom: 2.5rem; text-transform: uppercase; max-width: 800px; }
-        .btn-primary { background: var(--text-main); color: var(--bg-dark); padding: 1rem 2rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1rem; border-radius: 50px; transition: transform 0.3s, box-shadow 0.3s; display: inline-block; }
-        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(255,255,255,0.1); }
+        .header-section { text-align: center; padding: 4rem 5%; }
+        .header-section h1 { font-size: 3.5rem; margin-bottom: 1rem; }
+        
+        /* Premium Search Bar */
+        .search-container { max-width: 600px; margin: 3rem auto; position: relative; }
+        .search-container i { position: absolute; left: 20px; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 1.2rem; }
+        .search-input { width: 100%; background: var(--surface); border: 1px solid var(--border); border-radius: 50px; padding: 1.2rem 1.2rem 1.2rem 3.5rem; color: white; font-size: 1rem; font-family: 'Inter', sans-serif; outline: none; transition: border-color 0.3s; }
+        .search-input:focus { border-color: white; }
 
-        section { padding: 6rem 5%; max-width: 1400px; margin: 0 auto; border-bottom: 1px solid var(--border); }
-        .section-header { font-size: 2.5rem; margin-bottom: 3rem; position: relative; display: inline-block; }
-        .grid { display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+        .blog-grid { max-width: 1200px; margin: 0 auto 8rem auto; padding: 0 5%; display: flex; flex-direction: column; gap: 2rem; }
         
-        .card { background: var(--surface); padding: 2rem; border: 1px solid var(--border); border-radius: 12px; transition: all 0.3s ease; display: flex; flex-direction: column; }
-        .card:hover { transform: translateY(-5px); background: var(--surface-hover); border-color: #555; }
-        .tag { font-family: 'Space Grotesk', sans-serif; font-size: 0.75rem; color: var(--bg-dark); background: var(--text-main); padding: 4px 10px; border-radius: 4px; align-self: flex-start; margin-bottom: 1rem; font-weight: 700; }
-        .card h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
-        .card p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; flex-grow: 1; }
-        
-        .avatar { width: 80px; height: 80px; background: var(--text-main); color: var(--bg-dark); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: bold; margin-bottom: 1rem; font-family: 'Space Grotesk', sans-serif; }
-        .team-title { font-weight: 600; color: var(--accent); margin-bottom: 0.5rem !important; font-size: 0.85rem !important; text-transform: uppercase; letter-spacing: 1px; }
+        /* Premium Blog Post List Item */
+        .blog-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 2.5rem; display: flex; flex-direction: column; gap: 1rem; transition: transform 0.3s; }
+        .blog-card:hover { transform: translateX(10px); border-color: #444; }
+        .blog-meta { display: flex; gap: 1.5rem; font-size: 0.85rem; color: var(--text-muted); font-family: 'Space Grotesk', sans-serif; text-transform: uppercase; letter-spacing: 1px; }
+        .blog-meta span i { margin-right: 5px; color: white; }
+        .blog-title { font-size: 2rem; }
+        .blog-excerpt { color: #aaa; font-size: 1.1rem; line-height: 1.7; }
+        .read-btn { align-self: flex-start; margin-top: 1rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid white; padding-bottom: 3px; }
 
-        footer { padding: 4rem 5%; text-align: center; color: var(--text-muted); font-size: 0.95rem; background-color: #000; border-top: 1px solid var(--border); }
-        .contact-info { margin-bottom: 2.5rem; display: flex; flex-direction: column; gap: 10px; align-items: center; }
-        .contact-info h3 { font-size: 1.5rem; color: var(--text-main); margin-bottom: 1rem; }
-        .contact-info a { color: var(--text-main); font-weight: 600; text-decoration: underline; text-underline-offset: 4px; }
-        
-        .cookie-banner { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); width: 90%; max-width: 600px; background: rgba(20, 20, 20, 0.9); backdrop-filter: blur(10px); border: 1px solid var(--border); padding: 1.5rem; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; z-index: 2000; }
-        .cookie-btn { background: white; color: black; border: none; padding: 0.5rem 1rem; border-radius: 6px; font-weight: bold; cursor: pointer; }
-        
-        @media (max-width: 768px) { .nav-links { display: none; } .cookie-banner { flex-direction: column; gap: 1rem; text-align: center; } }
     </style>
 </head>
 <body>
 
     <nav>
-        <a href="#" class="brand">YLH</a>
+        <a href="index.html" class="brand">YLH</a>
         <div class="nav-links">
-            <a href="#about">Community</a>
-            <a href="#blogs">Blogs</a>
-            <a href="#events">Events</a>
-            <a href="#team">Team</a>
-            <a href="#contact">Contact</a>
+            <a href="index.html">Overview</a>
+            <a href="blogs.html" style="color: white; border-bottom: 2px solid white; padding-bottom: 5px;">Blogs</a>
+            <a href="index.html#team">Team</a>
         </div>
     </nav>
 
-    <header id="home">
-        <h1 class="hero-title">YOUNG LEGAL HOUSE</h1>
-        <h2 class="hero-subtitle">Bridging the gap between academic theory and real-world legal innovation for India's next generation of professionals.</h2>
-        <a href="https://www.linkedin.com/company/young-legal-house/" target="_blank" class="btn-primary">Enter the House</a>
-    </header>
-
-    <section id="about">
-        <h2 class="section-header">The Initiative</h2>
-        <div class="grid">
-            <div class="card" style="grid-column: 1 / -1;">
-                <p style="font-size: 1.2rem; color: var(--text-main); margin-bottom: 1rem;">Young Legal House is a dedicated initiative empowering law students across India.</p>
-                <p style="font-size: 1.1rem;">We provide a common platform for learning, networking, and professional growth, connecting aspiring legal professionals with internships, training programs, competitions, events, and career opportunities. Our mission is to build a vibrant, informed, and collaborative legal community.</p>
-            </div>
+    <div class="header-section">
+        <h1>Legal Intelligence</h1>
+        <p style="color: var(--text-muted); font-size: 1.2rem;">Insights, analyses, and perspectives from the Young Legal House network.</p>
+        
+        <div class="search-container">
+            <i class="fas fa-search"></i>
+            <input type="text" id="searchInput" class="search-input" placeholder="Search by topic, keyword, or author...">
         </div>
-    </section>
-
-    <section id="blogs">
-        <h2 class="section-header">Latest Intelligence</h2>
-        <div class="grid">
-            <div class="card"><div class="tag">Tech Law</div><h3>AI Regulation in 2026</h3><p>How global jurisdictions are responding to the rapid deployment of artificial intelligence.</p></div>
-            <div class="card"><div class="tag">Corporate</div><h3>Modern M&A Strategies</h3><p>Analyzing the shift in merger tactics among startups and legacy tech giants.</p></div>
-            <div class="card"><div class="tag">Rights</div><h3>Data Privacy Post-GDPR</h3><p>The evolving landscape of consumer data protection.</p></div>
-        </div>
-    </section>
-
-    <section id="team">
-        <h2 class="section-header">The Core Team</h2>
-        <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
-            <div class="card" style="align-items: center; text-align: center;"><div class="avatar">AN</div><h3>Achyuta Narayanan</h3><p class="team-title">Founder</p><p style="font-size: 0.85rem;">Final-year Law Candidate & Emerging Legal Professional</p></div>
-            <div class="card" style="align-items: center; text-align: center;"><div class="avatar">AG</div><h3>Amishee Gupta</h3><p class="team-title">Core Team</p><p style="font-size: 0.85rem;">Ex-Legal Intern at Afridi & Angell | 2nd Year Law Student</p></div>
-            <div class="card" style="align-items: center; text-align: center;"><div class="avatar">RT</div><h3>Radhini Veera Thalavai</h3><p class="team-title">Core Team</p><p style="font-size: 0.85rem;">Advocate, Madras High Court</p></div>
-            <div class="card" style="align-items: center; text-align: center;"><div class="avatar">NA</div><h3>Navya Arun</h3><p class="team-title">Core Team</p><p style="font-size: 0.85rem;">Second Year Law Student at Christ University, Bangalore</p></div>
-        </div>
-    </section>
-
-    <footer id="contact">
-        <div class="contact-info">
-            <h3>Connect With Us</h3>
-            <div style="background: var(--surface); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border); max-width: 400px; margin: 1rem auto;">
-                📍 No. 31/42 PV Iyer Street<br>Broadway, Chennai - 600001
-            </div>
-            <p>Email: <a href="mailto:connect.ylh@gmail.com">connect.ylh@gmail.com</a></p>
-            <p>Network: <a href="https://www.linkedin.com/company/young-legal-house/" target="_blank">Follow us on LinkedIn</a></p>
-        </div>
-        <p>&copy; 2026 Young Legal House. Redefining Legal Ecosystems.</p>
-    </footer>
-
-    <div class="cookie-banner" id="cookieBanner">
-        <p>We use cookies to personalize content, enable ads, and analyze our traffic. By clicking accept, you consent to our use of cookies.</p>
-        <button class="cookie-btn" onclick="document.getElementById('cookieBanner').style.display='none'">Accept Cookies</button>
     </div>
+
+    <div class="blog-grid" id="blogGrid">
+        
+        <div class="blog-card" data-title="AI Regulation in 2026" data-author="Achyuta Narayanan">
+            <div class="blog-meta">
+                <span><i class="fas fa-calendar"></i> May 1, 2026</span>
+                <span><i class="fas fa-user-pen"></i> Achyuta Narayanan</span>
+                <span><i class="fas fa-tag"></i> Tech Law</span>
+            </div>
+            <h2 class="blog-title">AI Regulation in 2026: Global Jurisdictions</h2>
+            <p class="blog-excerpt">An in-depth analysis of how global jurisdictions are responding to the rapid deployment of artificial intelligence in corporate environments, and what it means for Indian tech policy.</p>
+            <a href="blog-post-1.html" class="read-btn">Read Full Article <i class="fas fa-arrow-right" style="margin-left: 5px;"></i></a>
+        </div>
+
+        <div class="blog-card" data-title="Modern Mergers" data-author="Amishee Gupta">
+            <div class="blog-meta">
+                <span><i class="fas fa-calendar"></i> April 24, 2026</span>
+                <span><i class="fas fa-user-pen"></i> Amishee Gupta</span>
+                <span><i class="fas fa-tag"></i> Corporate</span>
+            </div>
+            <h2 class="blog-title">Modern M&A Strategies in a Shifting Economy</h2>
+            <p class="blog-excerpt">Analyzing the shift in merger tactics among startups and legacy tech giants, focusing on regulatory hurdles and antitrust compliance.</p>
+            <a href="#" class="read-btn">Read Full Article <i class="fas fa-arrow-right" style="margin-left: 5px;"></i></a>
+        </div>
+
+    </div>
+
+    <script>
+        document.getElementById('searchInput').addEventListener('keyup', function() {
+            let filter = this.value.toLowerCase();
+            let cards = document.querySelectorAll('.blog-card');
+            
+            cards.forEach(card => {
+                let title = card.getAttribute('data-title').toLowerCase();
+                let author = card.getAttribute('data-author').toLowerCase();
+                let excerpt = card.querySelector('.blog-excerpt').innerText.toLowerCase();
+                
+                if (title.includes(filter) || author.includes(filter) || excerpt.includes(filter)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    </script>
 
 </body>
 </html>
