@@ -12,7 +12,7 @@
 
 body.dark-mode {
     --bg-gradient: linear-gradient(135deg, #0f1012 0%, #17181c 100%);
-    --glass-bg: rgba(20, 20, 25, 0.6);
+    --glass-bg: rgba(20, 20, 25, 0.85);
     --glass-border: rgba(255, 255, 255, 0.08);
     --text-main: #F5F5F7; 
     --text-muted: #A1A1A6; 
@@ -21,14 +21,14 @@ body.dark-mode {
     --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.6);
 }
 
-/* === RESET & BASE STYLES === */
+/* === RESET & UNIFORM FONT (LATO) === */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
+
 body { 
     background: var(--bg-gradient); 
     color: var(--text-main); 
-    /* The sleek tech font for the whole site */
-    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif; 
+    font-family: 'Lato', sans-serif; /* Applied Lato globally */
     transition: all 0.4s ease; 
     min-height: 100vh; 
     overflow-x: hidden;
@@ -43,36 +43,48 @@ a { text-decoration: none; color: inherit; }
     border-bottom: 1px solid var(--glass-border);
     z-index: 1000; display: flex; justify-content: center; padding: 1.2rem 5%;
 }
-.nav-links { display: flex; gap: 3rem; align-items: center; font-weight: 500; font-size: 0.95rem; letter-spacing: 0.5px;}
+.nav-links { display: flex; gap: 3rem; align-items: center; font-weight: 700; font-size: 0.95rem; letter-spacing: 0.5px;}
 .nav-links a { transition: color 0.2s; color: var(--text-muted); }
 .nav-links a:hover, .nav-links a.active-link { color: var(--text-main); }
 .theme-btn { 
     background: transparent; border: 1px solid var(--text-muted); cursor: pointer;
-    padding: 0.4rem 1.2rem; border-radius: 20px; color: var(--text-muted); font-weight: 500; font-size: 0.85rem; transition: all 0.3s ease;
-    font-family: 'Outfit', sans-serif;
+    padding: 0.4rem 1.2rem; border-radius: 20px; color: var(--text-muted); font-weight: 700; font-size: 0.85rem; transition: all 0.3s ease;
+    font-family: 'Lato', sans-serif;
 }
 .theme-btn:hover { background: var(--text-main); color: var(--accent-invert); border-color: var(--text-main); }
 
-/* === CENTERED HERO SECTION (Homepage) === */
+/* === CENTERED HERO SECTION & LOGO FIX === */
 .hero { padding: 180px 5% 100px; text-align: center; display: flex; flex-direction: column; align-items: center; }
 .brand-centerpiece { margin-bottom: 2rem; }
-.main-logo { height: 90px; margin-bottom: 1rem; border-radius: 8px; transition: filter 0.3s ease; }
-body.dark-mode .main-logo { filter: invert(1); }
+
+/* The Logo Fix */
+.main-logo { 
+    width: 140px; /* Fixed size to prevent it from getting huge */
+    height: auto;
+    margin-bottom: 1rem; 
+    /* Because your logo is white, we invert it to black for Light Mode */
+    filter: invert(1); 
+    transition: filter 0.3s ease; 
+}
+body.dark-mode .main-logo { 
+    /* Turns the logo back to white for Dark Mode */
+    filter: none; 
+}
+
 .brand-title { 
-    /* The luxury serif font for the brand name */
-    font-family: 'Playfair Display', serif; 
+    font-family: 'Lato', sans-serif; /* Unified to Lato */
     font-size: 4rem; 
-    font-weight: 800; 
-    letter-spacing: -1.5px; 
+    font-weight: 900; 
+    letter-spacing: -1px; 
     margin-bottom: 1rem;
 }
-.hero-subtitle { font-size: 1.6rem; font-weight: 500; color: var(--text-muted); margin-bottom: 1.5rem; letter-spacing: -0.5px;}
+.hero-subtitle { font-size: 1.6rem; font-weight: 700; color: var(--text-muted); margin-bottom: 1.5rem;}
 .hero-text { font-size: 1.15rem; color: var(--text-muted); max-width: 600px; margin: 0 auto 3rem; line-height: 1.6;}
 
-.btn-main { background: var(--accent-main); color: var(--accent-invert); padding: 1rem 2.5rem; border-radius: 30px; font-weight: 600; transition: all 0.3s; display: inline-block; font-size: 1rem; }
+.btn-main { background: var(--accent-main); color: var(--accent-invert); padding: 1rem 2.5rem; border-radius: 30px; font-weight: 700; transition: all 0.3s; display: inline-block; font-size: 1rem; }
 .btn-main:hover { transform: scale(1.05); box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
 
-/* === APPLE GLASS CARDS (Universal) === */
+/* === CARDS === */
 .container { padding: 2rem 5% 5rem; max-width: 1200px; margin: 0 auto; }
 .pillars-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
 
@@ -83,58 +95,48 @@ body.dark-mode .main-logo { filter: invert(1); }
 }
 .glass-card:hover { transform: translateY(-10px); }
 .card-icon { font-size: 2rem; margin-bottom: 1.5rem; color: var(--text-main); }
-.glass-card h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; letter-spacing: -0.5px; }
+.glass-card h3 { font-size: 1.5rem; font-weight: 900; margin-bottom: 1rem; }
 .glass-card p { color: var(--text-muted); font-size: 1.05rem; line-height: 1.6; }
 
-/* === MANIFESTO (Homepage) === */
-.manifesto-section { padding: 2rem 5% 6rem; max-width: 900px; margin: 0 auto; }
-.manifesto-card p { font-size: 1.8rem; font-weight: 500; line-height: 1.4; color: var(--text-main); letter-spacing: -0.5px;}
-
-/* === BLOGS PAGE SPECIFIC STYLES === */
-.page-header { padding: 160px 5% 60px; text-align: center; }
-.page-title { 
-    font-family: 'Playfair Display', serif; 
-    font-size: 3.5rem; 
-    font-weight: 800; 
-    margin-bottom: 1rem; 
-    letter-spacing: -1px;
-}
-.blog-card { 
-    text-align: left; 
-    padding: 2.5rem; 
-    display: flex;
-    flex-direction: column;
-}
-.blog-category { 
-    font-size: 0.8rem; 
-    font-weight: 700; 
-    text-transform: uppercase; 
-    color: var(--text-muted); 
-    margin-bottom: 1rem; 
-    letter-spacing: 1.5px;
-}
-.blog-title { 
-    font-family: 'Playfair Display', serif; 
-    font-size: 1.6rem; 
-    margin-bottom: 1rem; 
-    line-height: 1.3;
-    letter-spacing: 0;
-}
-.read-more { 
-    margin-top: auto; 
-    padding-top: 1.5rem;
-    display: inline-block; 
-    font-weight: 600; 
-    color: var(--text-main); 
-    font-size: 0.95rem;
-    transition: transform 0.3s ease;
-}
-.read-more:hover { transform: translateX(5px); }
-
-/* === FOOTER (Universal) === */
+/* === FOOTER === */
 footer { padding: 4rem 5% 3rem; border-top: 1px solid var(--glass-border); text-align: center; }
-.social-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; }
-.social-links a { font-size: 1.5rem; color: var(--text-muted); transition: color 0.3s ease; }
-.social-links a:hover { color: var(--text-main); }
-.newsletter-badge { display: inline-block; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 0.5rem 1.5rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; color: var(--text-muted); margin-bottom: 3rem; letter-spacing: 1px;}
 .footer-bottom { color: var(--text-muted); font-size: 0.9rem; }
+
+
+/* ========================================= */
+/* === MOBILE RESPONSIVENESS (THE FIX) === */
+/* ========================================= */
+@media screen and (max-width: 768px) {
+    /* Shrink the top spacing */
+    .hero {
+        padding: 130px 5% 60px;
+    }
+    
+    /* Wrap the navigation so it doesn't run off the screen */
+    .nav-links {
+        gap: 1.2rem;
+        font-size: 0.85rem;
+        flex-wrap: wrap; 
+        justify-content: center;
+    }
+
+    /* Shrink the massive title to fit a phone screen */
+    .brand-title {
+        font-size: 2.5rem;
+    }
+    
+    /* Shrink the subtitle */
+    .hero-subtitle {
+        font-size: 1.3rem;
+    }
+
+    /* Force the cards to stack neatly on top of each other */
+    .pillars-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Make the logo slightly smaller on phones */
+    .main-logo {
+        width: 110px;
+    }
+}
