@@ -1,32 +1,37 @@
 document.addEventListener("DOMContentLoaded", () => {
+    
+    // ==========================================
+    // 1. NAVBAR SCROLL FADE LOGIC
+    // ==========================================
     const nav = document.getElementById('mainNav');
-    const themeBtn = document.getElementById('themeToggle');
-    const themeIcon = document.getElementById('themeIcon');
     let lastScrollY = window.scrollY;
 
-    // 1. SCROLL FADE LOGIC
     window.addEventListener('scroll', () => {
         const currentScrollY = window.scrollY;
 
-        // If scrolling down AND we are not at the very top
+        // Hide if scrolling down past 50px
         if (currentScrollY > lastScrollY && currentScrollY > 50) {
-            nav.style.opacity = '0'; // Fade out
-            nav.style.pointerEvents = 'none'; // Prevent clicking while invisible
+            nav.style.opacity = '0'; 
+            nav.style.pointerEvents = 'none'; 
         } 
-        // If scrolling up
+        // Show if scrolling up
         else {
-            nav.style.opacity = '1'; // Fade in
-            nav.style.pointerEvents = 'auto'; // Re-enable clicks
+            nav.style.opacity = '1'; 
+            nav.style.pointerEvents = 'auto'; 
         }
-        
         lastScrollY = currentScrollY;
     });
 
+    // ==========================================
     // 2. THEME TOGGLE LOGIC
+    // ==========================================
+    const themeBtn = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+
     themeBtn.addEventListener('click', () => {
         document.body.classList.toggle('light-mode');
         
-        // Swap icon between Moon (Dark Mode) and Sun (Light Mode)
+        // Swap Icon
         if (document.body.classList.contains('light-mode')) {
             themeIcon.classList.remove('fa-moon');
             themeIcon.classList.add('fa-sun');
@@ -35,4 +40,32 @@ document.addEventListener("DOMContentLoaded", () => {
             themeIcon.classList.add('fa-moon');
         }
     });
+
+    // ==========================================
+    // 3. ABOUT PAGE: WORD COUNT VALIDATION
+    // ==========================================
+    const feedbackMessage = document.getElementById('feedbackMessage');
+    const wordCountDisplay = document.getElementById('wordCountDisplay');
+    const submitBtn = document.getElementById('submitBtn');
+
+    if (feedbackMessage) {
+        feedbackMessage.addEventListener('input', () => {
+            // Get text, trim spaces, split by spaces to count words
+            const text = feedbackMessage.value.trim();
+            const words = text.length > 0 ? text.split(/\s+/) : [];
+            const wordCount = words.length;
+
+            // Update display text
+            wordCountDisplay.innerText = `Words: ${wordCount} / 50 minimum`;
+
+            // Enable submit button only if 50+ words are typed
+            if (wordCount >= 50) {
+                submitBtn.disabled = false;
+                wordCountDisplay.style.color = "var(--text-color)"; // Turn white/black when valid
+            } else {
+                submitBtn.disabled = true;
+                wordCountDisplay.style.color = "var(--grey-text)"; // Stay grey when invalid
+            }
+        });
+    }
 });
