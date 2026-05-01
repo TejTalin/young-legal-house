@@ -439,3 +439,118 @@ footer { padding: 50px 5% 30px; border-top: 1px solid var(--glass-border); margi
 }
 
 .register-btn:hover { opacity: 0.8; }
+
+/* === JOIN US PAGE STYLES === */
+.join-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr; /* Left side slightly wider */
+    gap: 40px;
+    margin-top: 40px;
+}
+
+@media (max-width: 800px) {
+    .join-grid { grid-template-columns: 1fr; } /* Stacks on mobile */
+}
+
+/* Glass Form Styles */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 700;
+    color: var(--text-color);
+    font-size: 0.95rem;
+}
+
+.form-input, .form-select, .form-textarea {
+    width: 100%;
+    padding: 14px 20px;
+    border-radius: 12px;
+    background: transparent;
+    border: 1px solid var(--glass-border);
+    color: var(--text-color);
+    font-family: 'Lora', serif;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+/* In light mode, we need a slight background for inputs to be visible */
+body.light-mode .form-input, 
+body.light-mode .form-select, 
+body.light-mode .form-textarea {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+    border-color: var(--text-color);
+    box-shadow: 0 0 10px rgba(150, 150, 150, 0.2);
+}
+
+/* Fix for dropdown options styling */
+.form-select option {
+    background: var(--bg-color);
+    color: var(--text-color);
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 15px;
+    border-radius: 30px;
+    background: var(--text-color);
+    color: var(--bg-color);
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.3s, transform 0.3s;
+    font-family: 'Lora', serif;
+    font-size: 1.1rem;
+    margin-top: 10px;
+}
+
+.submit-btn:hover {
+    opacity: 0.8;
+    transform: translateY(-2px);
+}
+
+/* Subscription Card */
+.subscription-card {
+    text-align: center;
+    padding: 40px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid var(--text-color); /* Highlighted border */
+}
+
+.sub-price {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+}
+
+.sub-currency { font-size: 1.5rem; margin-right: 5px; }
+.sub-month { font-size: 1rem; color: var(--grey-text); font-weight: 400; }
+
+.sub-perks {
+    text-align: left;
+    margin: 20px 0 30px;
+    list-style: none;
+}
+
+.sub-perks li {
+    margin-bottom: 12px;
+    color: var(--grey-text);
+    font-size: 1.05rem;
+}
+
+.sub-perks i {
+    color: var(--text-color);
+    margin-right: 10px;
+}
