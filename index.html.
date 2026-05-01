@@ -3,36 +3,184 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Young Legal House | Emerging Jurisprudence</title>
+    <title>Young Legal House | Future Legal Professionals</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+    
     <style>
-        :root { --navy: #1a2a6c; --gold: #b8860b; --offwhite: #f8f9fa; }
-        body { font-family: 'Times New Roman', serif; background: var(--offwhite); margin: 0; color: #333; }
-        header { background: var(--navy); color: white; padding: 60px 20px; text-align: center; border-bottom: 5px solid var(--gold); }
-        .logo { font-size: 2.5rem; letter-spacing: 4px; font-weight: bold; text-transform: uppercase; }
-        .container { max-width: 900px; margin: 40px auto; padding: 20px; background: white; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
-        h2 { color: var(--navy); border-bottom: 2px solid var(--gold); display: inline-block; padding-bottom: 5px; }
-        p { line-height: 1.8; font-size: 1.1rem; color: #444; }
-        .footer { text-align: center; font-size: 0.9rem; padding: 40px; color: #777; }
-        .btn { background: var(--navy); color: white; padding: 12px 25px; text-decoration: none; display: inline-block; margin-top: 20px; transition: 0.3s; }
-        .btn:hover { background: var(--gold); }
+        /* MODERN DARK THEME VARIABLES */
+        :root {
+            --bg-dark: #050505;
+            --surface: #121212;
+            --surface-hover: #1f1f1f;
+            --text-main: #ffffff;
+            --text-muted: #a0a0a0;
+            --accent: #ffffff; /* Keeping it stark black and white like the logo */
+            --border: #333333;
+        }
+
+        /* RESET & BASE */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-dark); color: var(--text-main); line-height: 1.6; scroll-behavior: smooth; overflow-x: hidden; }
+        h1, h2, h3, .brand { font-family: 'Space Grotesk', sans-serif; text-transform: uppercase; letter-spacing: -0.5px; }
+        a { text-decoration: none; color: inherit; }
+
+        /* GLASS NAVIGATION */
+        nav { 
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            background: rgba(5, 5, 5, 0.8); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            display: flex; justify-content: space-between; align-items: center; padding: 1rem 5%;
+        }
+        .brand { font-size: 1.5rem; font-weight: 700; letter-spacing: 2px; }
+        .nav-links { display: flex; gap: 2rem; }
+        .nav-links a { font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); transition: color 0.3s; }
+        .nav-links a:hover { color: var(--accent); }
+
+        /* HERO SECTION */
+        header { 
+            min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; 
+            text-align: center; padding: 0 5%; background: radial-gradient(circle at center, #1a1a1a 0%, #050505 100%);
+        }
+        .hero-title { font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 700; line-height: 1.1; margin-bottom: 1rem; }
+        .hero-subtitle { font-family: 'Space Grotesk', sans-serif; font-size: clamp(1rem, 2vw, 1.5rem); color: var(--text-muted); letter-spacing: 2px; margin-bottom: 2.5rem; text-transform: uppercase; }
+        .btn-primary { 
+            background: var(--text-main); color: var(--bg-dark); padding: 1rem 2rem; font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700; font-size: 1rem; border-radius: 50px; transition: transform 0.3s, box-shadow 0.3s; 
+        }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(255,255,255,0.1); }
+
+        /* SECTIONS & GRIDS (Fully Responsive) */
+        section { padding: 6rem 5%; max-width: 1400px; margin: 0 auto; border-bottom: 1px solid var(--border); }
+        .section-header { font-size: 2.5rem; margin-bottom: 3rem; position: relative; display: inline-block; }
+        
+        .grid { display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+        
+        /* FUTURISTIC CARDS */
+        .card { 
+            background: var(--surface); padding: 2rem; border: 1px solid var(--border); border-radius: 12px;
+            transition: all 0.3s ease; display: flex; flex-direction: column; 
+        }
+        .card:hover { transform: translateY(-5px); background: var(--surface-hover); border-color: #555; }
+        .tag { font-family: 'Space Grotesk', sans-serif; font-size: 0.75rem; color: var(--bg-dark); background: var(--text-main); padding: 4px 10px; border-radius: 4px; align-self: flex-start; margin-bottom: 1rem; font-weight: 700; }
+        .card h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .card p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; flex-grow: 1; }
+        .card-link { font-weight: 600; font-size: 0.9rem; text-transform: uppercase; display: flex; align-items: center; gap: 5px; }
+        .card-link:hover { gap: 10px; } /* Little arrow animation */
+
+        /* FOOTER & COOKIES */
+        footer { padding: 4rem 5%; text-align: center; color: var(--text-muted); font-size: 0.9rem; }
+        .cookie-banner {
+            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); width: 90%; max-width: 600px;
+            background: rgba(20, 20, 20, 0.9); backdrop-filter: blur(10px); border: 1px solid var(--border);
+            padding: 1.5rem; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; z-index: 2000;
+        }
+        .cookie-btn { background: white; color: black; border: none; padding: 0.5rem 1rem; border-radius: 6px; font-weight: bold; cursor: pointer; }
+
+        /* MOBILE MENU ADJUSTMENTS */
+        @media (max-width: 768px) {
+            .nav-links { display: none; /* In a real build, we'd add a hamburger menu here */ }
+            section { padding: 4rem 5%; }
+            .cookie-banner { flex-direction: column; gap: 1rem; text-align: center; }
+        }
     </style>
 </head>
 <body>
-    <header>
-        <div class="logo">Young Legal House</div>
-        <p><i>The Future of Law Starts Here</i></p>
+
+    <nav>
+        <a href="#" class="brand">YLH</a>
+        <div class="nav-links">
+            <a href="#about">Community</a>
+            <a href="#blogs">Blogs</a>
+            <a href="#sectors">Sectors</a>
+            <a href="#events">Events</a>
+            <a href="#team">Team</a>
+        </div>
+    </nav>
+
+    <header id="home">
+        <h1 class="hero-title">YOUNG LEGAL HOUSE</h1>
+        <h2 class="hero-subtitle">Exploring Pathways for Future Legal Professionals</h2>
+        <a href="#about" class="btn-primary">Enter the House</a>
     </header>
-    <div class="container">
-        <h2>Our Mission</h2>
-        <p>Young Legal House is a premier community initiative designed to support, mentor, and elevate the next generation of legal practitioners. We bridge the gap between academic theory and courtroom reality.</p>
-        
-        <h2>The Initiative</h2>
-        <p>From research workshops to networking sessions, we provide the foundation for young minds to thrive in the complex landscape of modern jurisprudence.</p>
-        
-        <a href="mailto:info@younglegalhouse.com" class="btn">Contact the House</a>
+
+    <section id="about">
+        <h2 class="section-header">The Community</h2>
+        <div class="grid">
+            <div class="card" style="grid-column: 1 / -1;">
+                <p style="font-size: 1.2rem; color: var(--text-main);">We are not just another law blog. Young Legal House is a modern ecosystem built for the next generation of jurisprudence. Designed to be fast, accessible, and cutting-edge, we bridge the gap between academic theory and real-world legal innovation.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="blogs">
+        <h2 class="section-header">Latest Intelligence</h2>
+        <div class="grid">
+            <div class="card">
+                <div class="tag">Tech Law</div>
+                <h3>AI Regulation in 2026</h3>
+                <p>How global jurisdictions are responding to the rapid deployment of artificial intelligence in corporate environments.</p>
+                <a href="#" class="card-link">Read Article &rarr;</a>
+            </div>
+            <div class="card">
+                <div class="tag">Corporate</div>
+                <h3>Modern M&A Strategies</h3>
+                <p>Analyzing the shift in merger tactics among Silicon Valley startups and legacy tech giants.</p>
+                <a href="#" class="card-link">Read Article &rarr;</a>
+            </div>
+            <div class="card">
+                <div class="tag">Rights</div>
+                <h3>Data Privacy Post-GDPR</h3>
+                <p>The evolving landscape of consumer data protection and what it means for digital businesses.</p>
+                <a href="#" class="card-link">Read Article &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="events">
+        <h2 class="section-header">Upcoming Events</h2>
+        <div class="grid">
+            <div class="card">
+                <div class="tag">Virtual</div>
+                <h3>Future of Law Summit</h3>
+                <p>Join top-tier professionals discussing the intersection of code and law.</p>
+                <p style="color: var(--text-main); font-weight: bold; margin-top: auto;">Oct 15, 2026</p>
+            </div>
+            <div class="card">
+                <div class="tag">In-Person</div>
+                <h3>Networking Mixer: Delhi</h3>
+                <p>An exclusive evening for young professionals to connect with industry veterans.</p>
+                <p style="color: var(--text-main); font-weight: bold; margin-top: auto;">Nov 02, 2026</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="team">
+        <h2 class="section-header">The Core</h2>
+        <div class="grid">
+            <div class="card" style="align-items: center; text-align: center;">
+                <div style="width: 80px; height: 80px; background: #333; border-radius: 50%; margin-bottom: 1rem;"></div>
+                <h3>Jane Doe</h3>
+                <p>Founder / Lead Strategist</p>
+            </div>
+            <div class="card" style="align-items: center; text-align: center;">
+                <div style="width: 80px; height: 80px; background: #333; border-radius: 50%; margin-bottom: 1rem;"></div>
+                <h3>John Smith</h3>
+                <p>Head of Digital Rights</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Young Legal House. Redefining Legal Ecosystems.</p>
+    </footer>
+
+    <div class="cookie-banner" id="cookieBanner">
+        <p>We use minimal cookies to ensure optimal performance. No tracking, just functionality.</p>
+        <button class="cookie-btn" onclick="document.getElementById('cookieBanner').style.display='none'">Acknowledge</button>
     </div>
-    <div class="footer">
-        &copy; 2026 Young Legal House. All Rights Reserved.
-    </div>
+
 </body>
 </html>
