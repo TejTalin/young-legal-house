@@ -43,7 +43,7 @@ body {
     align-items: center; 
     max-width: 1600px; 
     margin: 0 auto; 
-    position: relative; /* Essential for exact centering */
+    position: relative; 
 }
 
 .nav-left { flex: 1; display: flex; align-items: center; }
@@ -64,12 +64,11 @@ body.light-mode .nav-logo { filter: invert(1); }
 
 .nav-right { flex: 1; display: flex; justify-content: flex-end; align-items: center; gap: 1rem; }
 
-/* THE FIX FOR ONE LINE & CENTERING */
 .nav-menu { 
     display: flex; 
     gap: 0.8rem; 
     align-items: center; 
-    flex-wrap: nowrap; /* Forbids breaking into two lines */
+    flex-wrap: nowrap; 
 }
 
 .glass-pill {
@@ -83,16 +82,66 @@ body.light-mode .nav-logo { filter: invert(1); }
     backdrop-filter: blur(10px);
     transition: all 0.3s ease;
     cursor: pointer;
-    white-space: nowrap; /* Forbids text wrapping */
-    flex-shrink: 0; /* Prevents the pill from shrinking and squishing the text */
+    white-space: nowrap; 
+    flex-shrink: 0; 
     display: inline-flex;
-    align-items: center; /* Dead center vertically */
-    justify-content: center; /* Dead center horizontally */
+    align-items: center; 
+    justify-content: center; 
     text-align: center;
 }
 
 .glass-pill:hover, .active-nav { background: var(--text-color); color: var(--bg-color); }
 .theme-btn { border: 1px solid var(--glass-border); padding: 8px 15px; }
+
+/* === HAMBURGER DROPDOWN MENU === */
+.menu-wrapper {
+    position: relative;
+}
+
+.hamburger-btn {
+    font-size: 1.1rem;
+    padding: 8px 18px;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 130%; 
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 15px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 15px;
+    backdrop-filter: blur(25px);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    min-width: 160px;
+    z-index: 3000;
+}
+
+.dropdown-menu.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-menu a {
+    color: var(--text-color);
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 8px;
+    transition: background 0.3s ease;
+    text-align: left;
+    font-size: 0.95rem;
+}
+
+.dropdown-menu a:hover {
+    background: var(--glass-border);
+}
 
 /* === LAYOUT & HERO === */
 .page-spacing { padding-top: 150px; } 
@@ -141,6 +190,27 @@ footer { padding: 50px 5% 30px; border-top: 1px solid var(--glass-border); margi
 .newsletter { display: block; margin-bottom: 10px; font-size: 0.85rem; color: var(--grey-text); }
 .copyright { font-size: 0.9rem; font-weight: 700; }
 
+/* === CUSTOM CURSOR === */
+.custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    border: 1.5px solid var(--text-color); 
+    border-radius: 50%;
+    pointer-events: none; 
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s, height 0.2s, background-color 0.2s;
+}
+
+.custom-cursor.click-effect {
+    width: 30px;
+    height: 30px;
+    background-color: var(--glass-border);
+}
+
 /* === MOBILE COMPATIBILITY === */
 @media (max-width: 1024px) {
     .nav-container { flex-direction: column; gap: 15px; }
@@ -160,4 +230,5 @@ footer { padding: 50px 5% 30px; border-top: 1px solid var(--glass-border); margi
     .section-title { font-size: 1.5rem; }
     .cards-grid { grid-template-columns: 1fr; } 
     .footer-links a { display: inline-block; margin-bottom: 10px; margin-right: 15px;}
+    .custom-cursor { display: none; } /* Turns off custom cursor for mobile users */
 }
