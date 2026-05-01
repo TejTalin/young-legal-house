@@ -1,18 +1,23 @@
 const nav = document.getElementById('mainNav');
+const themeBtn = document.getElementById('themeToggle');
 let lastScrollY = window.scrollY;
 
-// SCROLL LOGIC: Fade out on down, Fade in on up
+// SCROLL FADE LOGIC
 window.addEventListener('scroll', () => {
-    if (window.scrollY > lastScrollY) {
-        nav.classList.add('nav-hidden'); // Scrolling Down
+    const currentScrollY = window.scrollY;
+
+    if (currentScrollY > lastScrollY && currentScrollY > 150) {
+        // Scrolling Down - Hide
+        nav.classList.add('nav-hidden');
     } else {
-        nav.classList.remove('nav-hidden'); // Scrolling Up
+        // Scrolling Up - Show
+        nav.classList.remove('nav-hidden');
     }
-    lastScrollY = window.scrollY;
+    lastScrollY = currentScrollY;
 });
 
-// THEME TOGGLE
-const themeBtn = document.getElementById('themeToggle');
+// THEME SWITCHER
 themeBtn.addEventListener('click', () => {
     document.body.classList.toggle('light-mode');
+    document.body.classList.toggle('dark-mode');
 });
