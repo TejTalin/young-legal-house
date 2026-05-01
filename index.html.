@@ -1,1 +1,38 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Young Legal House | Emerging Jurisprudence</title>
+    <style>
+        :root { --navy: #1a2a6c; --gold: #b8860b; --offwhite: #f8f9fa; }
+        body { font-family: 'Times New Roman', serif; background: var(--offwhite); margin: 0; color: #333; }
+        header { background: var(--navy); color: white; padding: 60px 20px; text-align: center; border-bottom: 5px solid var(--gold); }
+        .logo { font-size: 2.5rem; letter-spacing: 4px; font-weight: bold; text-transform: uppercase; }
+        .container { max-width: 900px; margin: 40px auto; padding: 20px; background: white; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        h2 { color: var(--navy); border-bottom: 2px solid var(--gold); display: inline-block; padding-bottom: 5px; }
+        p { line-height: 1.8; font-size: 1.1rem; color: #444; }
+        .footer { text-align: center; font-size: 0.9rem; padding: 40px; color: #777; }
+        .btn { background: var(--navy); color: white; padding: 12px 25px; text-decoration: none; display: inline-block; margin-top: 20px; transition: 0.3s; }
+        .btn:hover { background: var(--gold); }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Young Legal House</div>
+        <p><i>The Future of Law Starts Here</i></p>
+    </header>
+    <div class="container">
+        <h2>Our Mission</h2>
+        <p>Young Legal House is a premier community initiative designed to support, mentor, and elevate the next generation of legal practitioners. We bridge the gap between academic theory and courtroom reality.</p>
+        
+        <h2>The Initiative</h2>
+        <p>From research workshops to networking sessions, we provide the foundation for young minds to thrive in the complex landscape of modern jurisprudence.</p>
+        
+        <a href="mailto:info@younglegalhouse.com" class="btn">Contact the House</a>
+    </div>
+    <div class="footer">
+        &copy; 2026 Young Legal House. All Rights Reserved.
+    </div>
+</body>
+</html>
