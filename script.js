@@ -1,19 +1,32 @@
-// === THEME TOGGLE LOGIC ===
+// === THEME TOGGLE & MEMORY LOGIC ===
 const themeToggle = document.getElementById('themeToggle');
 const themeIcon = document.getElementById('themeIcon');
 const body = document.body;
 
+// 1. Check memory when the page first loads
+const savedTheme = localStorage.getItem('ylh-theme');
+
+if (savedTheme === 'light') {
+    body.classList.add('light-mode');
+    if (themeIcon) {
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
+    }
+}
+
+// 2. Change theme and update memory when the button is clicked
 if (themeToggle) {
     themeToggle.addEventListener('click', () => {
         body.classList.toggle('light-mode');
         
-        // Swap between Moon and Sun icons depending on the theme
         if (body.classList.contains('light-mode')) {
             themeIcon.classList.remove('fa-moon');
             themeIcon.classList.add('fa-sun');
+            localStorage.setItem('ylh-theme', 'light'); // Save to memory
         } else {
             themeIcon.classList.remove('fa-sun');
             themeIcon.classList.add('fa-moon');
+            localStorage.setItem('ylh-theme', 'dark'); // Save to memory
         }
     });
 }
@@ -25,7 +38,7 @@ const dropdownMenu = document.getElementById('dropdownMenu');
 if (menuToggle && dropdownMenu) {
     // Open/Close menu when clicking the hamburger
     menuToggle.addEventListener('click', (e) => {
-        e.stopPropagation(); // Prevents click from instantly closing the menu
+        e.stopPropagation(); 
         dropdownMenu.classList.toggle('show');
     });
 
