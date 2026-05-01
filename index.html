@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="dark-mode">
+    <div class="custom-cursor" id="customCursor"></div>
 
     <header class="navbar" id="mainNav">
         <div class="nav-container">
@@ -23,11 +24,20 @@
             <div class="nav-right">
                 <nav class="nav-menu">
                     <a href="blogs.html" class="glass-pill">Blogs</a>
-                    <a href="about.html" class="glass-pill">About</a>
-                    <a href="team.html" class="glass-pill">Team</a>
                     <a href="events.html" class="glass-pill">Events</a>
-                    <a href="join.html" class="glass-pill">Join Us</a>
-                    <a href="contact.html" class="glass-pill">Contact Us</a>
+                    
+                    <div class="menu-wrapper">
+                        <button class="glass-pill hamburger-btn" id="menuToggle">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                        
+                        <div class="dropdown-menu glass-card" id="dropdownMenu">
+                            <a href="about.html">About</a>
+                            <a href="team.html">Team</a>
+                            <a href="join.html">Join Us</a>
+                            <a href="contact.html">Contact Us</a>
+                        </div>
+                    </div>
                 </nav>
                 <button class="theme-btn glass-pill" id="themeToggle">
                     <i class="fas fa-moon" id="themeIcon"></i>
