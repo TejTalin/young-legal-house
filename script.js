@@ -1,38 +1,14 @@
-document.addEventListener("DOMContentLoaded", () => {
-    
-    // ==========================================
-    // 1. NAVBAR SCROLL FADE LOGIC
-    // ==========================================
-    const nav = document.getElementById('mainNav');
-    let lastScrollY = window.scrollY;
+// === THEME TOGGLE LOGIC ===
+const themeToggle = document.getElementById('themeToggle');
+const themeIcon = document.getElementById('themeIcon');
+const body = document.body;
 
-    window.addEventListener('scroll', () => {
-        const currentScrollY = window.scrollY;
-
-        // Hide if scrolling down past 50px
-        if (currentScrollY > lastScrollY && currentScrollY > 50) {
-            nav.style.opacity = '0'; 
-            nav.style.pointerEvents = 'none'; 
-        } 
-        // Show if scrolling up
-        else {
-            nav.style.opacity = '1'; 
-            nav.style.pointerEvents = 'auto'; 
-        }
-        lastScrollY = currentScrollY;
-    });
-
-    // ==========================================
-    // 2. THEME TOGGLE LOGIC
-    // ==========================================
-    const themeBtn = document.getElementById('themeToggle');
-    const themeIcon = document.getElementById('themeIcon');
-
-    themeBtn.addEventListener('click', () => {
-        document.body.classList.toggle('light-mode');
+if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+        body.classList.toggle('light-mode');
         
-        // Swap Icon
-        if (document.body.classList.contains('light-mode')) {
+        // Swap between Moon and Sun icons depending on the theme
+        if (body.classList.contains('light-mode')) {
             themeIcon.classList.remove('fa-moon');
             themeIcon.classList.add('fa-sun');
         } else {
@@ -40,32 +16,44 @@ document.addEventListener("DOMContentLoaded", () => {
             themeIcon.classList.add('fa-moon');
         }
     });
+}
 
-    // ==========================================
-    // 3. ABOUT PAGE: WORD COUNT VALIDATION
-    // ==========================================
-    const feedbackMessage = document.getElementById('feedbackMessage');
-    const wordCountDisplay = document.getElementById('wordCountDisplay');
-    const submitBtn = document.getElementById('submitBtn');
+// === HAMBURGER MENU LOGIC ===
+const menuToggle = document.getElementById('menuToggle');
+const dropdownMenu = document.getElementById('dropdownMenu');
 
-    if (feedbackMessage) {
-        feedbackMessage.addEventListener('input', () => {
-            // Get text, trim spaces, split by spaces to count words
-            const text = feedbackMessage.value.trim();
-            const words = text.length > 0 ? text.split(/\s+/) : [];
-            const wordCount = words.length;
+if (menuToggle && dropdownMenu) {
+    // Open/Close menu when clicking the hamburger
+    menuToggle.addEventListener('click', (e) => {
+        e.stopPropagation(); // Prevents click from instantly closing the menu
+        dropdownMenu.classList.toggle('show');
+    });
 
-            // Update display text
-            wordCountDisplay.innerText = `Words: ${wordCount} / 50 minimum`;
+    // Close menu when clicking anywhere else on the screen
+    document.addEventListener('click', (e) => {
+        if (!dropdownMenu.contains(e.target) && e.target !== menuToggle) {
+            dropdownMenu.classList.remove('show');
+        }
+    });
+}
 
-            // Enable submit button only if 50+ words are typed
-            if (wordCount >= 50) {
-                submitBtn.disabled = false;
-                wordCountDisplay.style.color = "var(--text-color)"; // Turn white/black when valid
-            } else {
-                submitBtn.disabled = true;
-                wordCountDisplay.style.color = "var(--grey-text)"; // Stay grey when invalid
-            }
-        });
-    }
-});
+// === CUSTOM CURSOR LOGIC ===
+const cursor = document.getElementById('customCursor');
+
+if (cursor) {
+    // Make circle follow the mouse
+    document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+    });
+
+    // Add shrinking fill animation when user clicks
+    document.addEventListener('mousedown', () => {
+        cursor.classList.add('click-effect');
+    });
+
+    // Remove animation when user releases click
+    document.addEventListener('mouseup', () => {
+        cursor.classList.remove('click-effect');
+    });
+}
