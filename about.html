@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Young Legal House</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-mode">
+
+    <header class="navbar" id="mainNav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-left">
+                <img src="logoylh.png" alt="YLH Logo" class="nav-logo">
+            </a>
+            <a href="index.html" class="nav-center">Young Legal House</a>
+            <div class="nav-right">
+                <nav class="nav-menu">
+                    <a href="blogs.html" class="glass-pill">Blogs</a>
+                    <a href="about.html" class="glass-pill active-nav">About</a>
+                    <a href="team.html" class="glass-pill">Team</a>
+                    <a href="events.html" class="glass-pill">Events</a>
+                    <a href="join.html" class="glass-pill">Join Us</a>
+                    <a href="contact.html" class="glass-pill">Contact Us</a>
+                </nav>
+                <button class="theme-btn glass-pill" id="themeToggle">
+                    <i class="fas fa-moon" id="themeIcon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="page-spacing">
+        <section class="container text-center-section">
+            <h1 class="page-title">ABOUT</h1>
+            <p class="about-text">
+                Young Legal House is a dedicated initiative empowering law students across India. We provide a common platform for learning, networking, and professional growth, connecting aspiring legal professionals with internships, training programs, competitions, events, and career opportunities. Our mission is to build a vibrant, informed, and collaborative legal community.
+            </p>
+        </section>
+
+        <section class="container">
+            <div class="cards-grid">
+                <div class="glass-card message-card">
+                    <h3 class="card-role">The Founder's Vision</h3>
+                    <p class="message-quote">"We created Young Legal House because the journey from a law student to a top-tier practitioner shouldn't be a solo endeavor. This platform is designed to bridge the gap between theory and execution."</p>
+                    <span class="card-author">- Achyuta R</span>
+                </div>
+                <div class="glass-card message-card">
+                    <h3 class="card-role">The Architect's Blueprint</h3>
+                    <p class="message-quote">"Technology should elevate the legal profession, not complicate it. I built this ecosystem to be seamless, futuristic, and focused entirely on connecting our community without friction."</p>
+                    <span class="card-author">- Tej Talin</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="container form-section">
+            <h2 class="form-title">Shape Our Future</h2>
+            <p class="form-subtitle">Please share inputs on how to build this community to a better reach.</p>
+            
+            <form id="feedbackForm" class="glass-form">
+                <input type="text" placeholder="Name" required class="glass-input">
+                <input type="email" placeholder="Email ID" required class="glass-input">
+                <textarea id="feedbackMessage" placeholder="Your message... (Minimum 50 words)" rows="6" required class="glass-input"></textarea>
+                <div class="word-count-indicator" id="wordCountDisplay">Words: 0 / 50 minimum</div>
+                <button type="submit" class="btn-main glass-pill" id="submitBtn" disabled>Submit Feedback</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-left">
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="cookies.html">Cookie Policy</a>
+                <a href="legal.html">Legal</a>
+            </div>
+            <div class="footer-center">
+                <span class="newsletter">Newsletter: Coming soon, stay tuned over here.</span>
+                <p class="copyright">&copy; 2026 Young Legal House</p>
+            </div>
+            <div class="footer-right">
+                <a href="https://www.linkedin.com/company/young-legal-house/" class="soc-icon" style="color: #0077b5;"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.instagram.com/younglegalhouse/" class="soc-icon" style="color: #e1306c;"><i class="fab fa-instagram"></i></a>
+                <a href="https://linktr.ee/younglegalhouse" class="soc-icon" style="color: #43ea80;"><i class="fas fa-link"></i></a>
+                <a href="mailto:connect.ylh@gmail.com" class="soc-icon email-icon"><i class="fas fa-envelope"></i></a>
+                <a href="#" class="soc-icon" style="color: #25d366;"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
