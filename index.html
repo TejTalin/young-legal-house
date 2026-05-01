@@ -3,64 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Young Legal House | The Legal Operating System</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
-    
+    <title>Young Legal House</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="dark-mode"> <header class="navbar" id="mainNav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <img src="logo.png" alt="YLH" class="nav-logo">
+                <span class="nav-title">Young Legal House</span>
+            </a>
+            
+            <nav class="nav-menu">
+                <a href="blogs.html">Blogs</a>
+                <a href="about.html">About</a>
+                <a href="team.html">Team</a>
+                <a href="events.html">Events</a>
+                <a href="join.html">Join Us</a>
+                <a href="contact.html">Contact Us</a>
+            </nav>
 
-    <header class="navbar">
-        <nav class="nav-links">
-            <a href="index.html" class="active-link">Home</a>
-            <a href="blogs.html">Blogs</a>
-            <a href="about.html">About</a>
-            <a href="team.html">Team</a>
-            <a href="join.html">Join Us</a>
-            <button class="theme-btn" id="themeToggle">Mode</button>
-        </nav>
+            <button class="theme-btn" id="themeToggle">
+                <i class="fas fa-sun"></i> / <i class="fas fa-moon"></i>
+            </button>
+        </div>
     </header>
 
     <section class="hero">
-        <div class="brand-centerpiece">
-            <img src="logoylh.png" alt="YLH Logo" class="main-logo">
-            <h1 class="brand-title">Young Legal House</h1>
+        <h1 class="hero-main-title">Young Legal House</h1>
+        <p class="hero-tagline">“ Building the next generation of legal excellence. ”</p>
+        <p class="hero-tagline">“ Shaping pathways for future professionals. ”</p>
+        <a href="join.html" class="btn-glass">Join Us</a>
+    </section>
+
+    <section class="container glass-panel">
+        <h2 class="section-title">Upcoming Events</h2>
+        <div class="events-grid">
+            <div class="event-card">
+                <h3>CrPC Workshop</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Offline | Chennai</p>
+                <p><i class="fas fa-calendar"></i> Dates to be Announced</p>
+                <a href="register.html" class="register-link">Register (₹200) &rarr;</a>
+            </div>
+            <div class="event-card">
+                <h3>ADR Workshop</h3>
+                <p><i class="fas fa-video"></i> Online</p>
+                <p><i class="fas fa-calendar"></i> Dates to be Announced</p>
+                <a href="register.html" class="register-link">Register (₹200) &rarr;</a>
+            </div>
         </div>
-        <h2 class="hero-subtitle">The Legal Operating System.</h2>
-        <p class="hero-text">Sectoral intelligence, high-stakes networking, and exclusive tools designed for India’s top law students and practitioners.</p>
-        <a href="blogs.html" class="btn-main">Enter the Hub</a>
     </section>
 
     <section class="container">
-        <div class="pillars-grid">
-            <div class="glass-card">
-                <i class="fas fa-layer-group card-icon"></i>
-                <h3>Sectoral Blogs</h3>
-                <p>Cutting-edge analysis on Corporate, Tax, and ADR. Skip the textbooks, learn the practice.</p>
+        <h2 class="section-title">Latest Intelligence</h2>
+        <div class="footer-blogs">
+            <div class="blog-preview glass-card">
+                <span class="category">Corporate</span>
+                <h4>M&A Deal Structures</h4>
+                <a href="blogs.html">Read Article</a>
             </div>
-            <div class="glass-card">
-                <i class="fas fa-network-wired card-icon"></i>
-                <h3>High-Stakes Networking</h3>
-                <p>Connect with the top 1% of law students and junior practitioners across the country.</p>
+            <div class="blog-preview glass-card">
+                <span class="category">Tax</span>
+                <h4>Digital Tax Laws</h4>
+                <a href="blogs.html">Read Article</a>
             </div>
-            <div class="glass-card">
-                <i class="fas fa-cube card-icon"></i>
-                <h3>Exclusive Architecture</h3>
-                <p>Frameworks, moot strategies, and deal-structuring templates built by industry insiders.</p>
+            <div class="blog-preview glass-card">
+                <span class="category">ADR</span>
+                <h4>Arbitration Trends</h4>
+                <a href="blogs.html">Read Article</a>
             </div>
         </div>
     </section>
 
     <footer>
-        <div class="footer-content">
-            <div class="footer-bottom">
-                &copy; 2026 Young Legal House. Architecture by the CDO.
+        <div class="footer-top">
+            <div class="footer-legal-links">
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="cookies.html">Cookie Policy</a>
+                <a href="legal.html">Legal</a>
             </div>
+            
+            <div class="footer-socials">
+                <a href="https://www.linkedin.com/company/young-legal-house/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.instagram.com/younglegalhouse/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://linktr.ee/younglegalhouse" target="_blank"><i class="fas fa-tree"></i></a>
+                <a href="mailto:connect.ylh@gmail.com"><i class="fas fa-envelope"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+        
+        <div class="newsletter-box">
+            Newsletter: Coming Soon. Stay Tuned.
+        </div>
+        
+        <div class="footer-bottom">
+            &copy; 2026 Young Legal House.
         </div>
     </footer>
 
