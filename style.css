@@ -1,79 +1,131 @@
+/* === EXACT COLOR THEMES === */
 :root {
-    --primary: #000000;
-    --secondary: #ffffff;
-    --grey: #86868b;
-    --glass: rgba(255, 255, 255, 0.03);
-    --glass-border: rgba(255, 255, 255, 0.1);
+    --bg-color: #454545; /* Dark Mode Base */
+    --text-color: #ffffff;
+    --grey-text: #cccccc;
+    --glass-bg: rgba(255, 255, 255, 0.08);
+    --glass-border: rgba(255, 255, 255, 0.15);
 }
 
 body.light-mode {
-    --primary: #f5f5f7;
-    --secondary: #000000;
-    --glass: rgba(0, 0, 0, 0.03);
-    --glass-border: rgba(0, 0, 0, 0.1);
+    --bg-color: #e0ddd8; /* Light Mode Base */
+    --text-color: #000000;
+    --grey-text: #444444;
+    --glass-bg: rgba(0, 0, 0, 0.05);
+    --glass-border: rgba(0, 0, 0, 0.15);
 }
 
+/* === UNIVERSAL SETTINGS === */
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Lora', serif; }
 
-body { background-color: var(--primary); color: var(--secondary); transition: background 0.5s; overflow-x: hidden; }
-
-/* ANIMATED MESH BACKGROUND */
-.bg-glow {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: radial-gradient(circle at 50% 50%, rgba(142, 142, 147, 0.15), transparent 50%);
-    z-index: -1; animation: pulse 8s infinite alternate;
+body { 
+    background-color: var(--bg-color); 
+    color: var(--text-color); 
+    transition: background-color 0.5s ease, color 0.5s ease; 
+    overflow-x: hidden; 
 }
-@keyframes pulse { from { transform: scale(1); opacity: 0.5; } to { transform: scale(1.5); opacity: 0.8; } }
 
-/* NAVBAR */
+/* === THE BIGGER, BLURRED NAVBAR === */
 .navbar {
-    position: fixed; top: 0; width: 100%; z-index: 1000;
-    padding: 1rem 5%; background: var(--glass); backdrop-filter: blur(25px);
-    border-bottom: 1px solid var(--glass-border); transition: 0.5s ease;
+    position: fixed; 
+    top: 0; 
+    width: 100%; 
+    z-index: 2000;
+    padding: 1.5rem 5%; /* Bigger bar */
+    background: var(--glass-bg); 
+    backdrop-filter: blur(25px); /* Heavy blur */
+    -webkit-backdrop-filter: blur(25px);
+    border-bottom: 1px solid var(--glass-border);
+    transition: opacity 0.6s ease; /* Smooth scroll fade */
 }
-.nav-hidden { transform: translateY(-100%); opacity: 0; }
-.nav-container { display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto; }
-.nav-brand { display: flex; align-items: center; gap: 15px; text-decoration: none; color: inherit; }
-.nav-logo { height: 50px; transition: 0.3s; }
-body.dark-mode .nav-logo { filter: none; }
-body.light-mode .nav-logo { filter: invert(1); }
 
-.nav-menu { display: flex; gap: 2rem; }
-.nav-menu a { text-decoration: none; color: inherit; font-size: 0.9rem; opacity: 0.7; transition: 0.3s; }
-.nav-menu a:hover { opacity: 1; }
+.nav-container { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    max-width: 1600px; 
+    margin: 0 auto; 
+}
 
-/* HERO */
+/* Left: Logo */
+.nav-left { flex: 1; display: flex; align-items: center; }
+.nav-logo { height: 60px; transition: filter 0.3s; }
+body.light-mode .nav-logo { filter: invert(1); } /* Black logo on light mode */
+
+/* Center: Title */
+.nav-center { 
+    flex: 1; 
+    text-align: center; 
+    font-size: 1.6rem; 
+    font-weight: 700; 
+    text-decoration: none; 
+    color: inherit; 
+    letter-spacing: 0.5px;
+}
+
+/* Right: Navigation Pills */
+.nav-right { flex: 1; display: flex; justify-content: flex-end; align-items: center; gap: 1rem; }
+.nav-menu { display: flex; gap: 0.8rem; }
+
+/* The Glass Pills */
+.glass-pill {
+    text-decoration: none;
+    color: var(--text-color);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    padding: 8px 18px;
+    border-radius: 50px; /* Round boundaries */
+    font-size: 0.95rem;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+.glass-pill:hover { background: var(--text-color); color: var(--bg-color); }
+.theme-btn { border: 1px solid var(--glass-border); padding: 8px 15px; }
+
+/* === HERO SECTION === */
 .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
-.hero-main-title { font-size: clamp(3rem, 8vw, 5rem); font-weight: 700; margin-bottom: 20px; }
-.hero-divider p { font-style: italic; color: var(--grey); line-height: 1.8; }
-.btn-main { margin-top: 40px; padding: 15px 50px; border: 1px solid var(--secondary); border-radius: 50px; text-decoration: none; color: inherit; transition: 0.3s; font-weight: 700; }
-.btn-main:hover { background: var(--secondary); color: var(--primary); }
+.hero-main-title { font-size: clamp(3rem, 6vw, 5rem); font-weight: 700; margin-bottom: 30px; }
+.hero-divider p { font-style: italic; color: var(--grey-text); line-height: 1.8; font-size: 1.2rem; }
+.btn-main { margin-top: 40px; padding: 15px 40px; font-weight: 700; font-size: 1.1rem; }
 
-/* GRID SYSTEMS */
-.container { padding: 80px 5%; max-width: 1400px; margin: 0 auto; }
-.section-label { font-size: 1.5rem; margin-bottom: 40px; text-align: center; }
-.events-grid, .blogs-footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+/* === UNIFORM GRID (EVENTS & BLOGS) === */
+.container { padding: 40px 5% 60px; max-width: 1400px; margin: 0 auto; }
+.cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; justify-items: center; }
 
-.glass-card { background: var(--glass); border: 1px solid var(--glass-border); padding: 40px; border-radius: 30px; backdrop-filter: blur(10px); }
-.reg-btn { display: inline-block; margin-top: 20px; color: var(--grey); text-decoration: none; font-weight: 700; }
+.glass-card { 
+    background: var(--glass-bg); 
+    border: 1px solid var(--glass-border); 
+    padding: 40px; 
+    border-radius: 20px; 
+    backdrop-filter: blur(15px); 
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+}
+.glass-card h3 { font-size: 1.5rem; margin-bottom: 10px; }
+.card-detail { color: var(--grey-text); font-size: 1rem; margin-bottom: 5px; }
+.card-date { display: block; color: var(--text-color); font-weight: 700; margin-bottom: 20px; }
+.action-link { display: inline-block; color: var(--grey-text); text-decoration: underline; font-weight: 700; transition: color 0.3s;}
+.action-link:hover { color: var(--text-color); }
 
-/* SOCIAL LOGO COLOURS */
-.soc-ln:hover { color: #0077b5 !important; } /* LinkedIn Blue */
-.soc-ig:hover { color: #e1306c !important; } /* Instagram Pink */
-.soc-wa:hover { color: #25d366 !important; } /* WhatsApp Green */
-.soc-lt:hover { color: #43ea80 !important; } /* Linktree Green */
-.soc-em:hover { color: var(--grey) !important; }
-
-/* FOOTER */
-footer { padding: 60px 5% 30px; border-top: 1px solid var(--glass-border); }
+/* === FOOTER === */
+footer { padding: 50px 5% 30px; border-top: 1px solid var(--glass-border); margin-top: 40px; }
 .footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 30px; }
-.footer-left a { color: var(--grey); text-decoration: none; font-size: 0.8rem; margin-right: 15px; }
-.footer-right { font-size: 1.5rem; display: flex; gap: 20px; }
-.footer-right a { color: var(--secondary); transition: 0.3s; }
-.newsletter { display: block; margin-top: 10px; font-size: 0.7rem; color: var(--grey); letter-spacing: 1px; }
+.footer-left a { color: var(--grey-text); text-decoration: none; font-size: 0.9rem; margin-right: 20px; transition: 0.3s;}
+.footer-left a:hover { color: var(--text-color); }
+.footer-center { text-align: center; }
+.newsletter { display: block; margin-bottom: 10px; font-size: 0.85rem; color: var(--grey-text); }
+.copyright { font-size: 0.9rem; font-weight: 700; }
+.footer-right { font-size: 1.8rem; display: flex; gap: 25px; }
+.soc-icon { transition: transform 0.3s; }
+.soc-icon:hover { transform: scale(1.1); }
+.email-icon { color: var(--grey-text); } /* Email stays neutral to match theme */
 
-/* MOBILE */
-@media (max-width: 768px) {
-    .nav-menu { display: none; }
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+    .nav-container { flex-direction: column; gap: 15px; }
+    .nav-left, .nav-right { justify-content: center; }
+    .nav-menu { flex-wrap: wrap; justify-content: center; }
     .footer-content { flex-direction: column; text-align: center; }
 }
