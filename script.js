@@ -1,9 +1,9 @@
-// 1. THEME TOGGLE LOGIC
+// THEME
 const themeToggle = document.getElementById('themeToggle');
 const themeIcon = document.getElementById('themeIcon');
 
-function setTheme(isLight) {
-    if (isLight) {
+function applyTheme(theme) {
+    if (theme === 'light') {
         document.body.classList.add('light-mode');
         if(themeIcon) themeIcon.className = 'fas fa-sun';
     } else {
@@ -12,31 +12,27 @@ function setTheme(isLight) {
     }
 }
 
-themeToggle.addEventListener('click', () => {
-    const isLight = !document.body.classList.contains('light-mode');
-    setTheme(isLight);
-    localStorage.setItem('ylh-theme', isLight ? 'light' : 'dark');
+themeToggle?.addEventListener('click', () => {
+    const isLight = document.body.classList.toggle('light-mode');
+    const theme = isLight ? 'light' : 'dark';
+    localStorage.setItem('ylh-theme', theme);
+    applyTheme(theme);
 });
 
-// LOAD PREFERENCE
-if (localStorage.getItem('ylh-theme') === 'light') setTheme(true);
+if (localStorage.getItem('ylh-theme') === 'light') applyTheme('light');
 
-// 2. HAMBURGER MENU LOGIC
+// MENU
 const menuToggle = document.getElementById('menuToggle');
 const dropdownMenu = document.getElementById('dropdownMenu');
 
-if(menuToggle) {
-    menuToggle.addEventListener('click', (e) => {
-        e.stopPropagation();
-        dropdownMenu.classList.toggle('show');
-    });
-}
-
-document.addEventListener('click', () => {
-    if(dropdownMenu) dropdownMenu.classList.remove('show');
+menuToggle?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    dropdownMenu?.classList.toggle('show');
 });
 
-// 3. CURSOR LOGIC
+document.addEventListener('click', () => dropdownMenu?.classList.remove('show'));
+
+// CURSOR
 const cursor = document.querySelector('.custom-cursor');
 document.addEventListener('mousemove', (e) => {
     if(cursor) {
