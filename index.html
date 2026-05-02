@@ -3,39 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Young Legal House</title>
+    <title>Young Legal House | Home</title>
+    
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body>
-    <div class="custom-cursor"></div>
+<body class="dark-mode">
+    <div class="custom-cursor" id="customCursor"></div>
 
-    <header class="navbar">
+    <header class="navbar" id="mainNav">
         <div class="nav-container">
-            <a href="index.html" class="nav-left"><img src="logoylh.png" class="nav-logo"></a>
+            <a href="index.html" class="nav-left">
+                <img src="logoylh.png" alt="YLH Logo" class="nav-logo">
+            </a>
+            
             <a href="index.html" class="nav-center">Young Legal House</a>
+            
             <div class="nav-right">
-                <a href="blogs.html" class="glass-pill">Blogs</a>
-                <a href="events.html" class="glass-pill">Events</a>
-                <div class="menu-wrapper">
-                    <button class="glass-pill" id="menuToggle"><i class="fas fa-bars"></i></button>
-                    <div class="dropdown-menu" id="dropdownMenu">
-                        <a href="about.html">About</a>
-                        <a href="team.html">Team</a>
-                        <a href="join.html">Join Us</a>
-                        <a href="contact.html">Contact Us</a>
+                <nav class="nav-menu" style="display: flex; gap: 10px; align-items: center;">
+                    <a href="blogs.html" class="glass-pill">Blogs</a>
+                    <a href="events.html" class="glass-pill">Events</a>
+                    
+                    <div class="menu-wrapper">
+                        <button class="glass-pill" id="menuToggle" aria-label="Menu">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                        <div class="dropdown-menu" id="dropdownMenu">
+                            <a href="about.html">About</a>
+                            <a href="team.html">Team</a>
+                            <a href="join.html">Join Us</a>
+                            <a href="contact.html">Contact Us</a>
+                        </div>
                     </div>
-                </div>
-                <button class="glass-pill" id="themeToggle"><i class="fas fa-moon" id="themeIcon"></i></button>
+                </nav>
+
+                <button class="glass-pill" id="themeToggle" title="Toggle Light/Dark Mode">
+                    <i class="fas fa-moon" id="themeIcon"></i>
+                </button>
             </div>
         </div>
     </header>
 
-    <main style="width: 90%; max-width: 1200px; margin: 0 auto;">
-        <h1 style="font-size: 3rem; margin-bottom: 20px;">Welcome to YLH</h1>
-        <p>Your content will now start perfectly below the header.</p>
+    <main class="container">
+        <section style="padding: 120px 0 60px; text-align: center;">
+            <h1 class="section-title">Legal Excellence, Reimagined.</h1>
+            <p style="font-size: 1.25rem; color: var(--grey-text); max-width: 750px; margin: 0 auto 40px; line-height: 1.8;">
+                Welcome to Young Legal House. We are a community of dedicated legal minds, providing deep-dive research, networking, and career growth opportunities for the next generation of lawyers.
+            </p>
+            
+            <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                <a href="blogs.html" class="glass-pill" style="padding: 15px 40px; font-weight: 700; font-size: 1rem;">Explore Blogs</a>
+                <a href="join.html" class="glass-pill" style="padding: 15px 40px; font-weight: 700; font-size: 1rem; background: var(--text-color); color: var(--bg-color);">Join Our Team</a>
+            </div>
+        </section>
+
+        <div class="cards-grid">
+            <div class="glass-card" style="padding: 40px; text-align: left;">
+                <i class="fas fa-book-open" style="font-size: 2rem; margin-bottom: 20px;"></i>
+                <h3>Legal Research</h3>
+                <p style="color: var(--grey-text); margin-top: 10px;">Access high-quality articles and insights across Corporate, Tax, and Family law.</p>
+            </div>
+            <div class="glass-card" style="padding: 40px; text-align: left;">
+                <i class="fas fa-calendar-check" style="font-size: 2rem; margin-bottom: 20px;"></i>
+                <h3>Curated Events</h3>
+                <p style="color: var(--grey-text); margin-top: 10px;">Stay updated with National Moot Courts and legal masterclasses happening offline and online.</p>
+            </div>
+            <div class="glass-card" style="padding: 40px; text-align: left;">
+                <i class="fas fa-users" style="font-size: 2rem; margin-bottom: 20px;"></i>
+                <h3>Expert Community</h3>
+                <p style="color: var(--grey-text); margin-top: 10px;">Connect with our founders and team of researchers to build your professional network.</p>
+            </div>
+        </div>
     </main>
+
+    <footer>
+        <div class="footer-top">
+            <div class="footer-links">
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="cookies.html">Cookie Policy</a>
+                <a href="legal.html">Legal</a>
+            </div>
+            <div class="footer-socials">
+                <a href="https://www.linkedin.com/company/young-legal-house/" class="soc-icon" style="color: #0077b5;"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.instagram.com/younglegalhouse/" class="soc-icon" style="color: #e1306c;"><i class="fab fa-instagram\"></i></a>
+                <a href="mailto:connect.ylh@gmail.com" class="soc-icon"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+        <div class="footer-bottom" style="text-align: center; margin-top: 30px;">
+            <p class="copyright">&copy; 2026 Young Legal House</p>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>
