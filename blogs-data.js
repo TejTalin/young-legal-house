@@ -147,3 +147,42 @@ if (articleContainer) {
         articleContainer.innerHTML = '<h1 style="text-align: center;">Article not found.</h1><div style="text-align: center; margin-top: 20px;"><a href="blogs.html" class="action-link">Return to Blogs</a></div>';
     }
 }
+// Function to render blog cards onto the grid
+function renderBlogs(filter = 'All') {
+    const blogsGrid = document.getElementById('blogsGrid');
+    if (!blogsGrid) return; // Exit if not on the blogs page
+
+    blogsGrid.innerHTML = '';
+
+    const filtered = filter === 'All' 
+        ? database 
+        : database.filter(b => b.category === filter);
+
+    filtered.forEach(blog => {
+        const card = document.createElement('div');
+        // USES THE NEW MASTER CSS CLASS
+        card.className = 'glass-card'; 
+        card.innerHTML = `
+            <div style="display:flex; justify-content:between; margin-bottom:10px; font-size:0.8rem; opacity:0.7;">
+                <span>${blog.category}</span>
+                <span style="margin-left:auto;">${blog.date}</span>
+            </div>
+            <h3 style="margin-bottom:15px;">${blog.title}</h3>
+            <p style="font-size:0.9rem; color:var(--grey-text); margin-bottom:20px;">${blog.excerpt}</p>
+            <a href="article.html?id=${blog.id}" class="glass-pill" style="display:inline-block; font-size:0.8rem;">Read Article</a>
+        `;
+        blogsGrid.appendChild(card);
+    });
+}
+
+// Category filter logic
+document.querySelectorAll('.filter-pill').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active-nav'));
+        btn.classList.add('active-nav');
+        renderBlogs(btn.getAttribute('data-filter'));
+    });
+});
+
+// Initial load
+document.addEventListener('DOMContentLoaded', () => renderBlogs());
