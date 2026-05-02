@@ -70,3 +70,37 @@ if (cursor) {
         cursor.classList.remove('click-effect');
     });
 }
+// THEME SWITCHER
+const themeToggle = document.getElementById('themeToggle');
+const themeIcon = document.getElementById('themeIcon');
+
+themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('light-mode');
+    const isLight = document.body.classList.contains('light-mode');
+    localStorage.setItem('ylh-theme', isLight ? 'light' : 'dark');
+    themeIcon.className = isLight ? 'fas fa-sun' : 'fas fa-moon';
+});
+
+// CURSOR
+const cursor = document.querySelector('.custom-cursor');
+document.addEventListener('mousemove', (e) => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+});
+
+// HAMBURGER
+const menuToggle = document.getElementById('menuToggle');
+const dropdownMenu = document.getElementById('dropdownMenu');
+
+menuToggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    dropdownMenu.classList.toggle('show');
+});
+
+document.addEventListener('click', () => dropdownMenu.classList.remove('show'));
+
+// LOAD THEME
+if (localStorage.getItem('ylh-theme') === 'light') {
+    document.body.classList.add('light-mode');
+    themeIcon.className = 'fas fa-sun';
+}
