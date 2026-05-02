@@ -1,188 +1,111 @@
-// A standard 500-word sample text to fulfill the requirement for all 21 blogs.
-const sampleText = `The rapid evolution of legal frameworks in recent years has necessitated a profound reevaluation of traditional practice methodologies. As globalization intersects with hyper-digitalization, legal practitioners are increasingly tasked with navigating a labyrinth of multijurisdictional compliance mandates. At the core of this transformation is the fundamental need to balance aggressive corporate expansion with stringent regulatory oversight. Historically, precedent provided a reliable anchor; however, the contemporary legal landscape is characterized by unprecedented volatility, rendering historical models somewhat obsolete.
-
-In analyzing current market trends, one must consider the profound implications of systemic risk management. Corporations are no longer merely reactive to legal disputes; they are actively engaging in preemptive risk mitigation. This paradigm shift requires legal counsel to operate not just as defenders of the enterprise, but as strategic architects of its growth. The integration of advanced technological solutions into daily operations further complicates this dynamic, introducing novel vulnerabilities in data privacy, intellectual property rights, and cross-border data flows. Consequently, robust contractual safeguards have become the linchpin of sustainable commercial relationships.
-
-Furthermore, the judiciary's approach to interpreting these novel complex agreements has shown a marked pivot towards prioritizing commercial efficacy over rigid textualism. Courts are increasingly willing to look beyond the four corners of a document to ascertain the true intent of the parties, particularly in high-stakes commercial disputes. This judicial pragmatism places an added burden on drafting attorneys to ensure absolute clarity and foresight in their documentation. The margin for error is shrinking, and the cost of ambiguity has never been higher.
-
-As we look toward the horizon, it is evident that the future of legal practice will be defined by adaptability. Practitioners must cultivate a deep understanding of the commercial realities facing their clients, moving beyond theoretical legal analysis to provide actionable, business-centric advice. This holistic approach is essential for navigating the multifaceted challenges of the modern economy. The intersection of law and commerce is becoming increasingly fluid, demanding a more agile and innovative approach from legal professionals across all sectors. Ultimately, success will hinge on the ability to anticipate regulatory shifts and proactively construct resilient legal architectures that can withstand the rigors of an unpredictable global market.`;
-
-// The Database of 21 Blogs (3 per category, distinct authors and dates)
-const blogsDatabase = [
-    // TAX
-    { id: 'tax-1', category: 'Tax', title: 'Digital Taxation in the Modern Era', author: 'Rohan Sharma', date: 'May 1, 2026', content: sampleText },
-    { id: 'tax-2', category: 'Tax', title: 'Cross-Border GST Implications', author: 'Neha Gupta', date: 'April 20, 2026', content: sampleText },
-    { id: 'tax-3', category: 'Tax', title: 'Corporate Tax Restructuring Strategies', author: 'Vikram Singh', date: 'April 5, 2026', content: sampleText },
-    // TMT
-    { id: 'tmt-1', category: 'TMT', title: 'AI Regulation and Tech Law', author: 'Ananya Patel', date: 'May 2, 2026', content: sampleText },
-    { id: 'tmt-2', category: 'TMT', title: 'Data Privacy in Telecommunications', author: 'Karan Desai', date: 'April 18, 2026', content: sampleText },
-    { id: 'tmt-3', category: 'TMT', title: 'Media Broadcasting Licensing', author: 'Priya Verma', date: 'March 30, 2026', content: sampleText },
-    // CORPORATE
-    { id: 'corp-1', category: 'Corporate', title: 'Corporate Governance Standards', author: 'Amit Shah', date: 'May 3, 2026', content: sampleText },
-    { id: 'corp-2', category: 'Corporate', title: 'Navigating ESG Compliance', author: 'Sneha Reddy', date: 'April 25, 2026', content: sampleText },
-    { id: 'corp-3', category: 'Corporate', title: 'Director Liabilities under Company Act', author: 'Rajesh Kumar', date: 'April 10, 2026', content: sampleText },
-    // LITIGATION
-    { id: 'lit-1', category: 'Litigation', title: 'Trends in Commercial Litigation', author: 'Meera Rao', date: 'April 28, 2026', content: sampleText },
-    { id: 'lit-2', category: 'Litigation', title: 'Evidence Admissibility in E-Courts', author: 'Sanjay Dutt', date: 'April 15, 2026', content: sampleText },
-    { id: 'lit-3', category: 'Litigation', title: 'Class Action Suits in India', author: 'Pooja Iyer', date: 'March 25, 2026', content: sampleText },
-    // M&A
-    { id: 'ma-1', category: 'M&A', title: 'Structuring Cross-Border M&A Deals', author: 'Arjun Nair', date: 'May 4, 2026', content: sampleText },
-    { id: 'ma-2', category: 'M&A', title: 'Due Diligence in Tech Acquisitions', author: 'Kavita Menon', date: 'April 22, 2026', content: sampleText },
-    { id: 'ma-3', category: 'M&A', title: 'Hostile Takeovers: Legal Defenses', author: 'Rahul Bajaj', date: 'April 2, 2026', content: sampleText },
-    // ADR
-    { id: 'adr-1', category: 'ADR', title: 'Arbitration in Commercial Disputes', author: 'Tanya Singh', date: 'April 29, 2026', content: sampleText },
-    { id: 'adr-2', category: 'ADR', title: 'Mediation as a Pre-Litigation Strategy', author: 'Deepak Chopra', date: 'April 12, 2026', content: sampleText },
-    { id: 'adr-3', category: 'ADR', title: 'Enforcing International Arbitral Awards', author: 'Simran Kaur', date: 'March 28, 2026', content: sampleText },
-    // IPR
-    { id: 'ipr-1', category: 'IPR', title: 'Protecting Software Patents', author: 'Aditya Joshi', date: 'May 5, 2026', content: sampleText },
-    { id: 'ipr-2', category: 'IPR', title: 'Trademark Infringement in E-Commerce', author: 'Nisha Agarwal', date: 'April 24, 2026', content: sampleText },
-    { id: 'ipr-3', category: 'IPR', title: 'Copyright Law and Generative AI', author: 'Varun Dhawan', date: 'April 8, 2026', content: sampleText }
-];
-
-// === LOGIC FOR BLOGS.HTML (HUB) ===
-const blogsGrid = document.getElementById('blogsGrid');
-const searchInput = document.getElementById('blogSearch');
-const filterBtns = document.querySelectorAll('.filter-pill');
-
-if (blogsGrid) {
-    let currentFilter = 'All';
-
-    function renderBlogs(blogsToRender) {
-        blogsGrid.innerHTML = '';
-        if (blogsToRender.length === 0) {
-            blogsGrid.innerHTML = '<p style="color: var(--grey-text); text-align: center; width: 100%;">No articles found matching your search.</p>';
-            return;
-        }
-
-        blogsToRender.forEach(blog => {
-            // Creates the preview card
-            const card = document.createElement('div');
-            card.className = 'glass-card';
-            card.innerHTML = `
-                <span class="article-category">${blog.category}</span>
-                <h3>${blog.title}</h3>
-                <p class="card-detail" style="margin-bottom: 20px;">By ${blog.author} | ${blog.date}</p>
-                <p style="color: var(--grey-text); margin-bottom: 20px; font-size: 0.95rem;">${blog.content.substring(0, 100)}...</p>
-                <a href="article.html?id=${blog.id}" class="action-link">Read Full Article</a>
-            `;
-            blogsGrid.appendChild(card);
-        });
-    }
-
-    // Filter Logic
-    function filterAndSearch() {
-        const searchTerm = searchInput.value.toLowerCase();
-        const filteredBlogs = blogsDatabase.filter(blog => {
-            const matchesFilter = currentFilter === 'All' || blog.category === currentFilter;
-            // Searches inside both the title AND the full content
-            const matchesSearch = blog.title.toLowerCase().includes(searchTerm) || blog.content.toLowerCase().includes(searchTerm);
-            return matchesFilter && matchesSearch;
-        });
-        renderBlogs(filteredBlogs);
-    }
-
-    // Event Listeners
-    if (searchInput) searchInput.addEventListener('input', filterAndSearch);
+document.addEventListener('DOMContentLoaded', () => {
     
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            filterBtns.forEach(b => b.classList.remove('active'));
-            e.target.classList.add('active');
-            currentFilter = e.target.getAttribute('data-filter');
-            filterAndSearch();
-        });
-    });
-
-    // Initial render
-    renderBlogs(blogsDatabase);
-}
-
-// === LOGIC FOR ARTICLE.HTML (READER) ===
-const articleContainer = document.getElementById('articleContainer');
-
-if (articleContainer) {
-    const urlParams = new URLSearchParams(window.location.search);
-    const blogId = urlParams.get('id');
-    
-    // Find the current blog and its index
-    const currentIndex = blogsDatabase.findIndex(b => b.id === blogId);
-    
-    if (currentIndex !== -1) {
-        const blog = blogsDatabase[currentIndex];
-        
-        // Determine Next and Previous blogs
-        const prevBlog = currentIndex > 0 ? blogsDatabase[currentIndex - 1] : null;
-        const nextBlog = currentIndex < blogsDatabase.length - 1 ? blogsDatabase[currentIndex + 1] : null;
-
-        // Construct HTML (Title Center, Date Left, Author Right)
-        let html = `
-            <div class="article-header">
-                <span class="article-category">${blog.category}</span>
-                <h1 class="article-title">${blog.title}</h1>
-                <div class="article-meta">
-                    <span>Published: ${blog.date}</span>
-                    <span>By ${blog.author}</span>
-                </div>
-            </div>
-            <div class="article-body">
-                ${blog.content.split('\n\n').map(para => `<p style="margin-bottom: 20px;">${para}</p>`).join('')}
-            </div>
-            <div class="article-nav">
-        `;
-
-        if (prevBlog) {
-            html += `<a href="article.html?id=${prevBlog.id}" class="nav-link prev"><span class="nav-label">Previous Article</span><i class="fas fa-arrow-left"></i> ${prevBlog.title}</a>`;
-        } else {
-            html += `<div></div>`; // Empty div to keep flexbox spacing correct
-        }
-
-        if (nextBlog) {
-            html += `<a href="article.html?id=${nextBlog.id}" class="nav-link next"><span class="nav-label">Next Article</span>${nextBlog.title} <i class="fas fa-arrow-right"></i></a>`;
-        }
-
-        html += `</div>`;
-        articleContainer.innerHTML = html;
-
-    } else {
-        articleContainer.innerHTML = '<h1 style="text-align: center;">Article not found.</h1><div style="text-align: center; margin-top: 20px;"><a href="blogs.html" class="action-link">Return to Blogs</a></div>';
-    }
-}
-// Function to render blog cards onto the grid
-function renderBlogs(filter = 'All') {
+    // --- 1. BLOGS GRID & SEARCH LOGIC ---
     const blogsGrid = document.getElementById('blogsGrid');
-    if (!blogsGrid) return; // Exit if not on the blogs page
+    const searchInput = document.getElementById('searchInput'); // The Search Bar
+    
+    if (blogsGrid) {
+        let currentFilter = 'All';
+        let currentSearch = '';
 
-    blogsGrid.innerHTML = '';
+        function renderBlogs() {
+            blogsGrid.innerHTML = '';
+            
+            // 1. Filter by Category
+            let filtered = currentFilter === 'All' 
+                ? database 
+                : database.filter(b => b.category === currentFilter);
 
-    const filtered = filter === 'All' 
-        ? database 
-        : database.filter(b => b.category === filter);
+            // 2. Filter by Search Word (Looks inside the 500-word content!)
+            if (currentSearch.trim() !== '') {
+                const term = currentSearch.toLowerCase();
+                filtered = filtered.filter(b => 
+                    b.content.toLowerCase().includes(term) || 
+                    b.title.toLowerCase().includes(term)
+                );
+            }
 
-    filtered.forEach(blog => {
-        const card = document.createElement('div');
-        // USES THE NEW MASTER CSS CLASS
-        card.className = 'glass-card'; 
-        card.innerHTML = `
-            <div style="display:flex; justify-content:between; margin-bottom:10px; font-size:0.8rem; opacity:0.7;">
-                <span>${blog.category}</span>
-                <span style="margin-left:auto;">${blog.date}</span>
-            </div>
-            <h3 style="margin-bottom:15px;">${blog.title}</h3>
-            <p style="font-size:0.9rem; color:var(--grey-text); margin-bottom:20px;">${blog.excerpt}</p>
-            <a href="article.html?id=${blog.id}" class="glass-pill" style="display:inline-block; font-size:0.8rem;">Read Article</a>
-        `;
-        blogsGrid.appendChild(card);
-    });
-}
+            // 3. Render the Cards
+            if (filtered.length === 0) {
+                blogsGrid.innerHTML = '<p style="text-align:center; width:100%; color:var(--grey-text);">No articles found matching your search.</p>';
+                return;
+            }
 
-// Category filter logic
-document.querySelectorAll('.filter-pill').forEach(btn => {
-    btn.addEventListener('click', () => {
-        document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active-nav'));
-        btn.classList.add('active-nav');
-        renderBlogs(btn.getAttribute('data-filter'));
-    });
+            filtered.forEach(blog => {
+                const card = document.createElement('div');
+                card.className = 'glass-card'; 
+                card.innerHTML = `
+                    <div style="display:flex; justify-content:space-between; margin-bottom:10px; font-size:0.8rem; color:var(--grey-text);">
+                        <span>${blog.category}</span>
+                        <span>${blog.date}</span>
+                    </div>
+                    <h3 style="margin-bottom:15px; font-size:1.3rem;">${blog.title}</h3>
+                    <p style="font-size:0.95rem; color:var(--grey-text); margin-bottom:20px;">${blog.excerpt}</p>
+                    <a href="article.html?id=${blog.id}" class="action-link" style="font-size:0.9rem;">Read Full Article &rarr;</a>
+                `;
+                blogsGrid.appendChild(card);
+            });
+        }
+
+        // Search Bar Event Listener
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => {
+                currentSearch = e.target.value;
+                renderBlogs();
+            });
+        }
+
+        // Category Filter Buttons
+        document.querySelectorAll('.filter-pill').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentFilter = btn.getAttribute('data-filter');
+                renderBlogs();
+            });
+        });
+
+        renderBlogs();
+    }
+
+    // --- 2. FULL ARTICLE LOGIC ---
+    const articleContainer = document.getElementById('articleContainer');
+    
+    if (articleContainer) {
+        const urlParams = new URLSearchParams(window.location.search);
+        const articleId = parseInt(urlParams.get('id'));
+        const blogIndex = database.findIndex(b => b.id === articleId);
+        
+        if (blogIndex !== -1) {
+            const blog = database[blogIndex];
+            const prevBlog = database[blogIndex - 1];
+            const nextBlog = database[blogIndex + 1];
+
+            // Renders exactly as requested: Category top, Title Center, Author/Date below. Text Justified.
+            let html = `
+                <div class="article-header" style="text-align:center; margin-bottom: 40px;">
+                    <span style="font-size: 0.9rem; color: var(--grey-text); text-transform: uppercase; letter-spacing: 2px;">${blog.category}</span>
+                    <h1 style="font-size: 2.5rem; margin: 15px 0; font-family: 'Lora', serif;">${blog.title}</h1>
+                    <div style="display:flex; justify-content:space-between; color: var(--grey-text); font-style: italic; font-size: 1rem; border-bottom: 1px solid var(--glass-border); padding-bottom: 20px;">
+                        <span>Published: ${blog.date}</span>
+                        <span>By ${blog.author}</span>
+                    </div>
+                </div>
+                <div class="article-body" style="line-height: 1.9; font-size: 1.15rem; margin-bottom: 60px; text-align: justify; font-family: 'Lora', serif;">
+                    ${blog.content.split('\n\n').map(para => `<p style="margin-bottom: 20px;">${para}</p>`).join('')}
+                </div>
+                <div style="display:flex; justify-content:space-between; border-top: 1px solid var(--glass-border); padding-top:30px; margin-bottom: 40px;">
+            `;
+
+            if (prevBlog) html += `<a href="article.html?id=${prevBlog.id}" style="color:var(--text-color); text-decoration:none; font-weight:bold;">&larr; Previous: ${prevBlog.title}</a>`;
+            else html += `<div></div>`;
+
+            if (nextBlog) html += `<a href="article.html?id=${nextBlog.id}" style="color:var(--text-color); text-decoration:none; font-weight:bold; text-align:right;">Next: ${nextBlog.title} &rarr;</a>`;
+
+            html += `</div>`;
+            articleContainer.innerHTML = html;
+        } else {
+            articleContainer.innerHTML = '<h1 style="text-align: center;">Article not found.</h1>';
+        }
+    }
 });
-
-// Initial load
-document.addEventListener('DOMContentLoaded', () => renderBlogs());
