@@ -199,3 +199,43 @@ if (modalOverlay) {
 
 // Run the render function when the page loads
 renderEvents();
+const offlineGrid = document.getElementById('offlineEventsGrid');
+const onlineGrid = document.getElementById('onlineEventsGrid');
+const modalOverlay = document.getElementById('eventModal');
+const modalBody = document.getElementById('modalBody');
+
+function renderEvents() {
+    if(!offlineGrid || !onlineGrid) return;
+
+    eventsDatabase.forEach(event => {
+        const card = document.createElement('div');
+        card.className = 'glass-card'; // Matches Master CSS
+        card.innerHTML = `
+            <h3 style="margin-bottom:10px;">${event.title}</h3>
+            <p style="font-size:0.85rem; opacity:0.8; margin-bottom:5px;"><i class="fas fa-calendar"></i> ${event.date}</p>
+            <p style="font-size:0.85rem; opacity:0.8; margin-bottom:15px;"><i class="fas fa-map-marker-alt"></i> ${event.location}</p>
+            <button class="glass-pill" onclick="showEventDetails('${event.id}')">View Details</button>
+        `;
+        
+        if(event.type === 'offline') offlineGrid.appendChild(card);
+        else onlineGrid.appendChild(card);
+    });
+}
+
+function showEventDetails(id) {
+    const event = eventsDatabase.find(e => e.id === id);
+    if(!event || !modalBody) return;
+
+    modalBody.innerHTML = `
+        <h2 style="color:var(--text-color);">${event.title}</h2>
+        <hr style="margin:15px 0; border:0; border-top:1px solid var(--glass-border);">
+        <p><strong>Host:</strong> ${event.host}</p>
+        <p style="margin-top:10px;">${event.about}</p>
+        <div style="margin-top:20px;">
+            <a href="${event.regLink}" class="glass-pill" style="background:var(--text-color); color:var(--bg-color);">Register Now</a>
+        </div>
+    `;
+    modalOverlay.classList.add('show'); // Logic matches Master CSS/JS
+}
+
+document.addEventListener('DOMContentLoaded', renderEvents);
