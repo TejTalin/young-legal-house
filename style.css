@@ -1,4 +1,4 @@
-/* GLOBAL SETTINGS */
+/* === 1. UNIVERSAL COLOR SCHEME & FONT === */
 :root {
     --bg-color: #454545;
     --text-color: #ffffff;
@@ -26,15 +26,15 @@ body {
     background-color: var(--bg-color);
     color: var(--text-color);
     transition: background 0.4s ease, color 0.4s ease;
-    /* THIS FIXES THE OVERLAP: */
+    /* THIS IS THE OVERLAP FIX - DO NOT REMOVE */
     padding-top: 110px; 
-    overflow-x: hidden;
 }
 
-/* GLASS NAVBAR */
+/* === 2. THE BIG FIXED HEADER === */
 .navbar {
     position: fixed;
-    top: 0; 
+    top: 0;
+    left: 0;
     width: 100%;
     height: 90px;
     background: var(--glass-bg);
@@ -43,7 +43,7 @@ body {
     border-bottom: 1px solid var(--glass-border);
     display: flex;
     align-items: center;
-    z-index: 1000;
+    z-index: 9999;
 }
 
 .nav-container {
@@ -53,31 +53,34 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
 }
 
 .nav-center {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     font-weight: 700;
     text-decoration: none;
     color: var(--text-color);
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+    white-space: nowrap;
 }
 
-.nav-logo { height: 45px; }
+.nav-logo { height: 50px; }
 
-.nav-right { display: flex; align-items: center; gap: 10px; }
+.nav-right { display: flex; align-items: center; gap: 15px; }
 
+/* === 3. INTERACTIVE UI ELEMENTS === */
 .glass-pill {
-    padding: 8px 18px;
+    padding: 8px 22px;
     background: var(--glass-bg);
     border: 1px solid var(--glass-border);
     border-radius: 30px;
     color: var(--text-color);
     text-decoration: none;
-    transition: 0.3s;
-    font-size: 0.9rem;
+    transition: 0.3s ease;
+    font-size: 0.95rem;
 }
 
 .glass-pill:hover, .active-nav {
@@ -85,27 +88,27 @@ body {
     color: var(--bg-color);
 }
 
-/* DROPDOWN MENU */
+/* HAMBURGER DROPDOWN */
 .menu-wrapper { position: relative; }
 .dropdown-menu {
     position: absolute;
-    top: 130%; right: 0;
+    top: 60px;
+    right: 0;
     background: var(--bg-color);
     border: 1px solid var(--glass-border);
-    border-radius: 12px;
-    width: 160px;
+    border-radius: 15px;
+    width: 180px;
     display: none;
     flex-direction: column;
     padding: 10px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
 }
 .dropdown-menu.show { display: flex; }
 .dropdown-menu a {
-    padding: 10px;
+    padding: 12px;
     color: var(--text-color);
     text-decoration: none;
     border-radius: 8px;
-    font-size: 0.9rem;
 }
 .dropdown-menu a:hover { background: var(--glass-border); }
 
@@ -113,23 +116,18 @@ body {
 .custom-cursor {
     position: fixed;
     top: 0; left: 0;
-    width: 30px; height: 30px;
+    width: 35px; height: 35px;
     border: 2px solid var(--text-color);
     border-radius: 50%;
     pointer-events: none;
-    z-index: 9999;
+    z-index: 10000;
     transform: translate(-50%, -50%);
-    transition: width 0.2s, height 0.2s;
 }
 
-/* CONTENT CONTAINER */
+/* === 4. CONTAINER FOR YOUR CONTENT === */
+/* This ensures your existing page layouts stay aligned */
 .container {
     width: 90%;
     max-width: 1200px;
     margin: 0 auto;
-}
-
-.section-title {
-    font-size: 2.5rem;
-    margin-bottom: 40px;
 }
