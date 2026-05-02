@@ -1,7 +1,11 @@
-/* YOUNG LEGAL HOUSE - FINAL UNIFORM CSS */
+/* =========================================
+   YOUNG LEGAL HOUSE - MASTER STYLESHEET
+   ========================================= */
+
 :root {
     --bg-color: #454545;
     --text-color: #ffffff;
+    --grey-text: #cccccc;
     --glass-bg: rgba(255, 255, 255, 0.05);
     --glass-border: rgba(255, 255, 255, 0.1);
 }
@@ -9,6 +13,9 @@
 .light-mode {
     --bg-color: #e0ddd8;
     --text-color: #000000;
+    --grey-text: #444444;
+    --glass-bg: rgba(0, 0, 0, 0.04);
+    --glass-border: rgba(0, 0, 0, 0.1);
 }
 
 * {
@@ -21,16 +28,16 @@
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
-    /* THIS FIXES THE OVERLAP ON ALL PAGES */
-    padding-top: 120px; 
-    transition: background 0.4s ease;
+    /* CRITICAL FIX: Pushes all content below the fixed header */
+    padding-top: 110px; 
+    transition: background 0.4s ease, color 0.4s ease;
+    line-height: 1.6;
 }
 
-/* THE HEADER */
+/* --- THE UNIVERSAL GLASS NAVBAR --- */
 .navbar {
     position: fixed;
-    top: 0;
-    left: 0;
+    top: 0; left: 0;
     width: 100%;
     height: 90px;
     background: var(--glass-bg);
@@ -39,7 +46,7 @@ body {
     border-bottom: 1px solid var(--glass-border);
     display: flex;
     align-items: center;
-    z-index: 9999;
+    z-index: 10000;
 }
 
 .nav-container {
@@ -53,7 +60,7 @@ body {
 }
 
 .nav-center {
-    font-size: 1.8rem;
+    font-size: 1.7rem;
     font-weight: 700;
     color: var(--text-color);
     text-decoration: none;
@@ -63,52 +70,80 @@ body {
     white-space: nowrap;
 }
 
-.nav-logo { height: 45px; }
+.nav-logo { height: 45px; width: auto; }
 
 .nav-right { display: flex; align-items: center; gap: 12px; }
 
-/* UI ELEMENTS */
+/* --- PILLS & NAVIGATION --- */
 .glass-pill {
-    padding: 8px 20px;
+    padding: 8px 18px;
     background: var(--glass-bg);
     border: 1px solid var(--glass-border);
     border-radius: 30px;
     color: var(--text-color);
     text-decoration: none;
     font-size: 0.9rem;
-    transition: 0.3s;
+    transition: 0.3s ease;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
 }
 
-.glass-pill:hover {
+.glass-pill:hover, .active-nav {
     background: var(--text-color);
     color: var(--bg-color);
 }
 
-/* HAMBURGER MENU */
+/* --- HAMBURGER & DROPDOWN --- */
 .menu-wrapper { position: relative; }
+
 .dropdown-menu {
     position: absolute;
     top: 55px;
     right: 0;
     background: var(--bg-color);
     border: 1px solid var(--glass-border);
-    border-radius: 12px;
-    width: 170px;
+    border-radius: 15px;
+    width: 180px;
     display: none;
     flex-direction: column;
     padding: 10px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
 }
+
 .dropdown-menu.show { display: flex; }
+
 .dropdown-menu a {
-    padding: 10px;
+    padding: 12px;
     color: var(--text-color);
     text-decoration: none;
-    border-radius: 5px;
+    border-radius: 8px;
 }
+
 .dropdown-menu a:hover { background: var(--glass-border); }
 
-/* CURSOR */
+/* --- CONTENT PROTECTION (Fixes "disturbed" layout) --- */
+.container, .page-spacing {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title {
+    font-size: 2.8rem;
+    margin-bottom: 25px;
+    font-weight: 700;
+}
+
+/* Fixes for grids found in your team and blog files */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+}
+
+/* --- CUSTOM CURSOR --- */
 .custom-cursor {
     position: fixed;
     top: 0; left: 0;
@@ -116,6 +151,20 @@ body {
     border: 2px solid var(--text-color);
     border-radius: 50%;
     pointer-events: none;
-    z-index: 10000;
+    z-index: 10001;
     transform: translate(-50%, -50%);
+}
+
+/* --- FOOTER (Matches your contact.html/team.html) --- */
+footer {
+    padding: 60px 5% 30px;
+    margin-top: 80px;
+    border-top: 1px solid var(--glass-border);
+}
+.footer-top, .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
 }
