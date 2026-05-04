@@ -5,24 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Young Legal House | Home</title>
     
-    <link rel="stylesheet" href="style.css?v=26">
+    <link rel="stylesheet" href="style.css?v=30">
     
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-/* THE ULTIMATE MOVEMENT BLOCKER */
-html, body { 
-    transform: none !important; 
-    perspective: none !important; 
-    filter: none !important; 
-    contain: none !important; 
-    will-change: auto !important; 
-    overflow-x: visible !important;
-}
+        /* =========================================================
+           THE ULTIMATE OVERRIDE: THIS FIXES THE SCROLL BUG
+           ========================================================= */
+        html, body { 
+            transform: none !important; 
+            perspective: none !important; 
+            filter: none !important; 
+            contain: none !important; 
+            overflow-x: visible !important; /* This stops the CSS file from breaking the fixed header */
+            overflow-y: visible !important;
+        }
 
         /* === 1. FIXED LOGO (Left) === */
-        /* Set to the exact same vertical level as the island */
         .global-logo-container {
             position: fixed !important;
             top: 30px !important; 
@@ -33,14 +34,12 @@ html, body {
             z-index: 99999 !important;
         }
         .global-logo-container img {
-            height: 140px !important; /* Visual size of the logo */
+            height: 140px !important; 
             width: auto !important;
         }
-        /* Forces the logo to be SOLID BLACK in light mode */
         body.light-mode .global-logo-container img { filter: brightness(0) !important; }
 
         /* === 2. FIXED THEME TOGGLE (Right) === */
-        /* Set to exactly 60px thickness and top: 30px to perfectly match the island */
         .global-theme-container {
             position: fixed !important;
             top: 30px !important;
@@ -69,10 +68,9 @@ html, body {
             
             width: 850px !important; 
             max-width: 90vw !important;
-            height: 60px !important; /* Exact same thickness as the theme toggle */
+            height: 60px !important; 
             padding: 0 40px !important;
             
-            /* Softer colors to match the theme scheme instead of pure black/white */
             background: rgba(35, 35, 35, 0.85) !important; 
             backdrop-filter: blur(30px) !important;
             -webkit-backdrop-filter: blur(30px) !important;
@@ -84,13 +82,10 @@ html, body {
             justify-content: space-between !important;
             align-items: center !important;
         }
-        /* Soft off-white glassy look for light mode */
         body.light-mode .dynamic-island-container { background: rgba(245, 245, 245, 0.85) !important; border-color: rgba(0,0,0,0.1) !important; box-shadow: 0 10px 20px rgba(0,0,0,0.05) !important; }
 
-        /* Spacer (Left side of Island) to push title to center */
         .island-spacer-group { flex: 1 !important; }
 
-        /* Title (Center of Island) */
         .island-center-title {
             font-family: 'Cormorant Garamond', serif !important;
             font-size: 1.5rem !important;
@@ -103,7 +98,6 @@ html, body {
         }
         body.light-mode .island-center-title { color: black !important; }
 
-        /* Navigation Links (Right side of Island) */
         .island-nav-group {
             display: flex !important;
             gap: 25px !important;
@@ -123,7 +117,6 @@ html, body {
         }
         body.light-mode .island-link-item { color: black !important; }
 
-        /* Dropdown Menu Styling */
         .menu-wrapper { position: relative; display: flex; align-items: center; }
         .dropdown-menu {
             position: absolute;
@@ -133,12 +126,11 @@ html, body {
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 12px;
             padding: 10px;
-            display: none; /* Hidden by default */
+            display: none; 
             flex-direction: column;
             min-width: 160px;
             box-shadow: 0 10px 20px rgba(0,0,0,0.5);
         }
-        /* JS will add this class to show the menu */
         .dropdown-menu.show { display: flex !important; }
         
         .dropdown-menu a {
@@ -150,12 +142,11 @@ html, body {
         body.light-mode .dropdown-menu a { color: black; }
         body.light-mode .dropdown-menu a:hover { background: rgba(0,0,0,0.05); }
 
-        /* Mobile Adjustments */
         @media (max-width: 1024px) {
             .global-logo-container img { height: 90px !important; }
             .global-theme-container { top: 20px !important; right: 20px !important; width: 45px !important; height: 45px !important; }
             .dynamic-island-container { 
-                top: 100px !important; /* Pushes island down below the logo */
+                top: 100px !important; 
                 width: 95% !important; 
                 padding: 0 20px !important;
             }
@@ -197,7 +188,7 @@ html, body {
         </nav>
     </header>
 
-<script>
+    <script>
         document.addEventListener('DOMContentLoaded', () => {
             // === 1. HAMBURGER MENU LOGIC ===
             const menuBtn = document.getElementById('menuToggleBtn');
@@ -219,7 +210,6 @@ html, body {
             const themeIcon = document.getElementById('themeIcon');
             const body = document.body;
 
-            // Check memory for previous choice
             const currentTheme = localStorage.getItem('ylh_theme');
             if (currentTheme === 'light') {
                 body.classList.remove('dark-mode');
@@ -231,16 +221,15 @@ html, body {
                 themeIcon.classList.replace('fa-sun', 'fa-moon');
             }
 
-            // Click to toggle
             themeToggle.addEventListener('click', () => {
                 if (body.classList.contains('light-mode')) {
                     body.classList.replace('light-mode', 'dark-mode');
                     themeIcon.classList.replace('fa-sun', 'fa-moon');
-                    localStorage.setItem('ylh_theme', 'dark'); // Save to memory
+                    localStorage.setItem('ylh_theme', 'dark');
                 } else {
                     body.classList.replace('dark-mode', 'light-mode');
                     themeIcon.classList.replace('fa-moon', 'fa-sun');
-                    localStorage.setItem('ylh_theme', 'light'); // Save to memory
+                    localStorage.setItem('ylh_theme', 'light');
                 }
             });
         });
