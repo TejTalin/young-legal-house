@@ -5,124 +5,120 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Young Legal House | Home</title>
     
-    <link rel="stylesheet" href="style.css?v=30">
+    <link rel="stylesheet" href="style.css?v=35">
     
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         /* =========================================================
-           THE ULTIMATE OVERRIDE: THIS FIXES THE SCROLL BUG
+           THE STICKY OVERRIDE: BYPASSES ALL SCROLL BUGS
            ========================================================= */
-        html, body { 
-            transform: none !important; 
-            perspective: none !important; 
-            filter: none !important; 
-            contain: none !important; 
-            overflow-x: visible !important; /* This stops the CSS file from breaking the fixed header */
-            overflow-y: visible !important;
+        html, body { overflow-x: clip !important; overflow-y: visible !important; }
+
+        .ultimate-sticky-wrapper {
+            position: sticky !important;
+            top: 30px !important; /* Anchors it 30px from the top of the screen */
+            width: 100%;
+            height: 60px !important;
+            z-index: 99999 !important;
+            pointer-events: none; /* Lets clicks pass through the empty space */
         }
 
-        /* === 1. FIXED LOGO (Left) === */
-        .global-logo-container {
-            position: fixed !important;
-            top: 30px !important; 
-            left: 30px !important;
-            height: 60px !important;
+        /* === 1. LOGO (Left) === */
+        .sticky-logo {
+            position: absolute;
+            left: 30px;
+            top: 0;
+            height: 60px;
             display: flex;
             align-items: center;
-            z-index: 99999 !important;
+            pointer-events: auto; /* Makes it clickable */
         }
-        .global-logo-container img {
-            height: 140px !important; 
-            width: auto !important;
-        }
-        body.light-mode .global-logo-container img { filter: brightness(0) !important; }
+        .sticky-logo img { height: 140px; width: auto; }
+        body.light-mode .sticky-logo img { filter: brightness(0); }
 
-        /* === 2. FIXED THEME TOGGLE (Right) === */
-        .global-theme-container {
-            position: fixed !important;
-            top: 30px !important;
-            right: 40px !important;
-            z-index: 99999 !important;
+        /* === 2. THEME TOGGLE (Right) === */
+        .sticky-theme-toggle {
+            position: absolute;
+            right: 40px;
+            top: 0;
             background: rgba(255,255,255,0.1);
             border: 1px solid rgba(255,255,255,0.2);
             color: white;
-            width: 60px !important; 
-            height: 60px !important;
+            width: 60px; 
+            height: 60px;
             border-radius: 50%;
             display: flex; justify-content: center; align-items: center;
             cursor: pointer;
             backdrop-filter: blur(10px);
             font-size: 1.2rem;
+            pointer-events: auto;
         }
-        body.light-mode .global-theme-container { background: rgba(0,0,0,0.05); color: black; border-color: rgba(0,0,0,0.2); }
+        body.light-mode .sticky-theme-toggle { background: rgba(0,0,0,0.05); color: black; border-color: rgba(0,0,0,0.2); }
 
         /* === 3. DYNAMIC ISLAND (Center) === */
-        .dynamic-island-container {
-            position: fixed !important;
-            top: 30px !important;
-            left: 50% !important;
-            transform: translateX(-50%) !important;
-            z-index: 99990 !important;
-            
-            width: 850px !important; 
-            max-width: 90vw !important;
-            height: 60px !important; 
-            padding: 0 40px !important;
-            
-            background: rgba(35, 35, 35, 0.85) !important; 
-            backdrop-filter: blur(30px) !important;
-            -webkit-backdrop-filter: blur(30px) !important;
-            border: 1px solid rgba(255, 255, 255, 0.1) !important;
-            border-radius: 100px !important;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.3) !important;
-            
-            display: flex !important;
-            justify-content: space-between !important;
-            align-items: center !important;
+        .sticky-island {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 0;
+            width: 850px; 
+            max-width: 90vw;
+            height: 60px; 
+            padding: 0 40px;
+            background: rgba(35, 35, 35, 0.85); 
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 100px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            pointer-events: auto;
         }
-        body.light-mode .dynamic-island-container { background: rgba(245, 245, 245, 0.85) !important; border-color: rgba(0,0,0,0.1) !important; box-shadow: 0 10px 20px rgba(0,0,0,0.05) !important; }
+        body.light-mode .sticky-island { background: rgba(245, 245, 245, 0.85); border-color: rgba(0,0,0,0.1); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
 
-        .island-spacer-group { flex: 1 !important; }
+        .island-spacer { flex: 1; }
 
-        .island-center-title {
-            font-family: 'Cormorant Garamond', serif !important;
-            font-size: 1.5rem !important;
-            font-weight: 800 !important;
-            color: white !important;
-            text-decoration: none !important;
-            letter-spacing: 2px !important;
-            white-space: nowrap !important;
-            flex: 0 0 auto !important;
+        .island-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: white;
+            text-decoration: none;
+            letter-spacing: 2px;
+            white-space: nowrap;
+            flex: 0 0 auto;
         }
-        body.light-mode .island-center-title { color: black !important; }
+        body.light-mode .island-title { color: black; }
 
-        .island-nav-group {
-            display: flex !important;
-            gap: 25px !important;
-            align-items: center !important;
-            justify-content: flex-end !important;
-            flex: 1 !important; 
+        .island-nav {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+            justify-content: flex-end;
+            flex: 1; 
         }
-        .island-link-item {
-            color: white !important;
-            text-decoration: none !important;
-            font-size: 0.95rem !important;
-            font-weight: 600 !important;
-            font-family: 'Plus Jakarta Sans', sans-serif !important;
-            background: none !important;
-            border: none !important;
-            cursor: pointer !important;
+        .island-nav a, .island-nav button {
+            color: white;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: none;
+            border: none;
+            cursor: pointer;
         }
-        body.light-mode .island-link-item { color: black !important; }
+        body.light-mode .island-nav a, body.light-mode .island-nav button { color: black; }
 
         .menu-wrapper { position: relative; display: flex; align-items: center; }
         .dropdown-menu {
             position: absolute;
             top: 45px;
             right: 0;
-            background: rgba(25, 25, 25, 0.98) !important;
+            background: rgba(25, 25, 25, 0.98);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 12px;
             padding: 10px;
@@ -131,66 +127,58 @@
             min-width: 160px;
             box-shadow: 0 10px 20px rgba(0,0,0,0.5);
         }
-        .dropdown-menu.show { display: flex !important; }
-        
-        .dropdown-menu a {
-            color: white; padding: 10px 15px; text-decoration: none; border-radius: 8px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.9rem;
-        }
+        .dropdown-menu.show { display: flex; }
+        .dropdown-menu a { padding: 10px 15px; font-size: 0.9rem; }
         .dropdown-menu a:hover { background: rgba(255,255,255,0.1); }
         
-        body.light-mode .dropdown-menu { background: rgba(250, 250, 250, 0.98) !important; border-color: rgba(0,0,0,0.1); }
-        body.light-mode .dropdown-menu a { color: black; }
+        body.light-mode .dropdown-menu { background: rgba(250, 250, 250, 0.98); border-color: rgba(0,0,0,0.1); }
         body.light-mode .dropdown-menu a:hover { background: rgba(0,0,0,0.05); }
 
         @media (max-width: 1024px) {
-            .global-logo-container img { height: 90px !important; }
-            .global-theme-container { top: 20px !important; right: 20px !important; width: 45px !important; height: 45px !important; }
-            .dynamic-island-container { 
-                top: 100px !important; 
-                width: 95% !important; 
-                padding: 0 20px !important;
-            }
-            .island-center-title { font-size: 1.1rem !important; }
-            .island-nav-group { gap: 15px !important; }
+            .ultimate-sticky-wrapper { top: 15px !important; height: auto !important; position: fixed !important; }
+            .sticky-logo { position: fixed; top: 15px; left: 15px; }
+            .sticky-logo img { height: 90px; }
+            .sticky-theme-toggle { position: fixed; top: 15px; right: 15px; width: 45px; height: 45px; }
+            .sticky-island { position: fixed; top: 100px; width: 95%; padding: 0 20px; }
+            .island-title { font-size: 1.1rem; }
+            .island-nav { gap: 15px; }
         }
     </style>
 </head>
 <body class="dark-mode">
 
-    <a href="index.html" class="global-logo-container">
-        <img src="logoylh.png" alt="Young Legal House Logo">
-    </a>
+    <div class="ultimate-sticky-wrapper">
+        
+        <a href="index.html" class="sticky-logo">
+            <img src="logoylh.png" alt="Young Legal House Logo">
+        </a>
 
-    <button class="global-theme-container" id="themeToggle">
-        <i class="fas fa-moon" id="themeIcon"></i>
-    </button>
-
-    <header class="dynamic-island-container">
-        <div class="island-spacer-group"></div>
-
-        <a href="index.html" class="island-center-title">YOUNG LEGAL HOUSE</a>
-
-        <nav class="island-nav-group">
-            <a href="blogs.html" class="island-link-item">Blogs</a>
-            <a href="events.html" class="island-link-item">Events</a>
-            
-            <div class="menu-wrapper">
-                <button class="island-link-item" id="menuToggleBtn">
-                    <i class="fas fa-bars"></i>
-                </button>
-                <div class="dropdown-menu" id="dropdownMenuContainer">
-                    <a href="about.html">About</a>
-                    <a href="team.html">Team</a>
-                    <a href="join.html">Join Us</a>
-                    <a href="contact.html">Contact Us</a>
+        <header class="sticky-island">
+            <div class="island-spacer"></div>
+            <a href="index.html" class="island-title">YOUNG LEGAL HOUSE</a>
+            <nav class="island-nav">
+                <a href="blogs.html">Blogs</a>
+                <a href="events.html">Events</a>
+                <div class="menu-wrapper">
+                    <button id="menuToggleBtn"><i class="fas fa-bars"></i></button>
+                    <div class="dropdown-menu" id="dropdownMenuContainer">
+                        <a href="about.html">About</a>
+                        <a href="team.html">Team</a>
+                        <a href="join.html">Join Us</a>
+                        <a href="contact.html">Contact Us</a>
+                    </div>
                 </div>
-            </div>
-        </nav>
-    </header>
+            </nav>
+        </header>
+
+        <button class="sticky-theme-toggle" id="themeToggle">
+            <i class="fas fa-moon" id="themeIcon"></i>
+        </button>
+
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // === 1. HAMBURGER MENU LOGIC ===
             const menuBtn = document.getElementById('menuToggleBtn');
             const dropMenu = document.getElementById('dropdownMenuContainer');
             
@@ -205,7 +193,6 @@
                 }
             });
 
-            // === 2. THEME TOGGLE LOGIC WITH MEMORY ===
             const themeToggle = document.getElementById('themeToggle');
             const themeIcon = document.getElementById('themeIcon');
             const body = document.body;
