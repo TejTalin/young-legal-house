@@ -195,6 +195,16 @@ body.light-mode .nav-logo { filter: invert(1); }
 /* === FOOTER === */
 footer { padding: 50px 5% 30px; border-top: 1px solid var(--glass-border); margin-top: 40px; }
 .footer-top { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 30px; margin-bottom: 40px;}
+/* === FOOTER LOGO === */
+.footer-logo {
+    height: 100px; /* Adjust this number if you want it bigger or smaller */
+    width: auto;
+    transition: filter 0.3s ease;
+}
+
+body.light-mode .footer-logo {
+    filter: invert(1); /* Ensures it turns black in light mode */
+}
 .footer-links a { color: var(--grey-text); text-decoration: none; font-size: 0.9rem; margin-right: 20px; transition: 0.3s;}
 .footer-links a:hover { color: var(--text-color); }
 .footer-socials { font-size: 1.8rem; display: flex; gap: 25px; }
