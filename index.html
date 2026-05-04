@@ -7,7 +7,7 @@
     
     <link rel="stylesheet" href="style.css">
     
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -16,11 +16,11 @@
 
     <header class="navbar" id="mainNav">
         <div class="nav-container">
-            <a href="/" class="nav-left">
+            <a href="index.html" class="nav-left">
                 <img src="logoylh.png" alt="YLH Logo" class="nav-logo">
             </a>
             
-            <a href="/" class="nav-center">Young Legal House</a>
+            <a href="index.html" class="nav-center">Young Legal House</a>
             
             <div class="nav-right">
                 <nav class="nav-menu" style="display: flex; gap: 10px; align-items: center;">
@@ -28,9 +28,7 @@
                     <a href="events.html" class="glass-pill">Events</a>
                     
                     <div class="menu-wrapper">
-                        <button class="glass-pill" id="menuToggle" aria-label="Menu">
-                            <i class="fas fa-bars"></i>
-                        </button>
+                        <button class="glass-pill" id="menuToggle"><i class="fas fa-bars"></i></button>
                         <div class="dropdown-menu" id="dropdownMenu">
                             <a href="about.html">About</a>
                             <a href="team.html">Team</a>
@@ -38,41 +36,40 @@
                             <a href="contact.html">Contact Us</a>
                         </div>
                     </div>
-                </nav>
 
-                <button class="glass-pill" id="themeToggle" title="Toggle Light/Dark Mode">
-                    <i class="fas fa-moon" id="themeIcon"></i>
-                </button>
+                    <button class="glass-pill" id="themeToggle"><i class="fas fa-moon" id="themeIcon"></i></button>
+                </nav>
             </div>
         </div>
     </header>
 
-    <main class="container">
-        <section style="padding: 120px 0 60px; text-align: center;">
-            <h1 class="section-title">Legal Excellence, Reimagined.</h1>
-            <p style="font-size: 1.25rem; color: var(--grey-text); max-width: 750px; margin: 0 auto 40px; line-height: 1.8;">
-                Welcome to Young Legal House. We are a community of dedicated legal minds, providing deep-dive research, networking, and career growth opportunities for the next generation of lawyers.
+    <main class="page-spacing container">
+        <div style="text-align: center; max-width: 900px; margin: 0 auto 60px;">
+            <h1 class="section-title" style="font-size: 3.5rem; margin-bottom: 20px;">Welcome to Young Legal House</h1>
+            <p style="color: var(--grey-text); font-size: 1.2rem; line-height: 1.8;">
+                Bridging the gap between legal theory and execution. We provide a premium ecosystem for law students and young professionals to network, learn, and accelerate their careers.
             </p>
-            
-            <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
-                <a href="blogs.html" class="glass-pill" style="padding: 15px 40px; font-weight: 700; font-size: 1rem;">Explore Blogs</a>
-                <a href="join.html" class="glass-pill" style="padding: 15px 40px; font-weight: 700; font-size: 1rem; background: var(--text-color); color: var(--bg-color);">Join Our Team</a>
+            <div style="margin-top: 30px; display: flex; justify-content: center; gap: 15px;">
+                <a href="join.html" class="glass-pill" style="background: var(--text-color); color: var(--bg-color); font-weight: bold; padding: 12px 30px; font-size: 1.1rem;">Join the Community</a>
+                <a href="blogs.html" class="glass-pill" style="padding: 12px 30px; font-size: 1.1rem;">Read Latest Insights</a>
             </div>
-        </section>
+        </div>
 
         <div class="cards-grid">
-            <div class="glass-card" style="padding: 40px; text-align: left;">
-                <i class="fas fa-book-open" style="font-size: 2rem; margin-bottom: 20px;"></i>
-                <h3>Legal Research</h3>
-                <p style="color: var(--grey-text); margin-top: 10px;">Access high-quality articles and insights across Corporate, Tax, and Family law.</p>
+            <div class="glass-card" style="text-align: center; padding: 40px 20px;">
+                <i class="fas fa-gavel" style="font-size: 3rem; color: var(--text-color); margin-bottom: 20px;"></i>
+                <h3>Curated Legal Insights</h3>
+                <p style="color: var(--grey-text); margin-top: 10px;">Access deep-dive articles across Corporate, Tax, TMT, Litigation, and more, written by industry peers.</p>
             </div>
-            <div class="glass-card" style="padding: 40px; text-align: left;">
-                <i class="fas fa-calendar-check" style="font-size: 2rem; margin-bottom: 20px;"></i>
-                <h3>Curated Events</h3>
-                <p style="color: var(--grey-text); margin-top: 10px;">Stay updated with National Moot Courts and legal masterclasses happening offline and online.</p>
+            
+            <div class="glass-card" style="text-align: center; padding: 40px 20px;">
+                <i class="fas fa-calendar-alt" style="font-size: 3rem; color: var(--text-color); margin-bottom: 20px;"></i>
+                <h3>Exclusive Events</h3>
+                <p style="color: var(--grey-text); margin-top: 10px;">Stay updated on national moot courts, workshops, and high-stakes online webinars.</p>
             </div>
-            <div class="glass-card" style="padding: 40px; text-align: left;">
-                <i class="fas fa-users" style="font-size: 2rem; margin-bottom: 20px;"></i>
+
+            <div class="glass-card" style="text-align: center; padding: 40px 20px;">
+                <i class="fas fa-users" style="font-size: 3rem; color: var(--text-color); margin-bottom: 20px;"></i>
                 <h3>Expert Community</h3>
                 <p style="color: var(--grey-text); margin-top: 10px;">Connect with our founders and team of researchers to build your professional network.</p>
             </div>
