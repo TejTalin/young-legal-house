@@ -5,69 +5,143 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Young Legal House | Home</title>
     
-    <link rel="stylesheet" href="style.css?v=13">
+    <link rel="stylesheet" href="style.css?v=20">
     
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
-        .super-fixed-logo {
+        /* Force the body to allow fixed elements */
+        html, body { transform: none !important; perspective: none !important; }
+
+        /* === 1. FIXED LOGO (Left) === */
+        .global-logo-container {
             position: fixed !important;
-            top: 15px !important;
+            top: 20px !important;
             left: 30px !important;
-            z-index: 999999 !important; /* Highest possible layer */
-            display: block !important;
+            z-index: 99999 !important;
         }
-        .super-fixed-logo img {
-            height: 220px !important;
+        .global-logo-container img {
+            height: 180px !important;
             width: auto !important;
-            transition: filter 0.3s, transform 0.3s ease;
         }
-        .super-fixed-logo img:hover {
-            transform: scale(1.05);
+
+        /* === 2. FIXED THEME TOGGLE (Right) === */
+        .global-theme-container {
+            position: fixed !important;
+            top: 30px !important;
+            right: 40px !important;
+            z-index: 99999 !important;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            width: 50px; height: 50px;
+            border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
         }
-        body.light-mode .super-fixed-logo img {
-            filter: invert(1) !important;
+        body.light-mode .global-theme-container { background: rgba(0,0,0,0.05); color: black; border-color: rgba(0,0,0,0.2); }
+
+        /* === 3. DYNAMIC ISLAND (Center) === */
+        .dynamic-island-container {
+            position: fixed !important;
+            top: 25px !important;
+            left: 50% !important;
+            transform: translateX(-50%) !important;
+            z-index: 99990 !important;
+            
+            width: 850px !important; /* Thick and wide */
+            max-width: 90vw !important;
+            height: 70px !important;
+            padding: 0 40px !important;
+            
+            background: rgba(20, 20, 20, 0.95) !important;
+            backdrop-filter: blur(30px) !important;
+            -webkit-backdrop-filter: blur(30px) !important;
+            border: 1px solid rgba(255, 255, 255, 0.15) !important;
+            border-radius: 100px !important;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4) !important;
+            
+            display: flex !important;
+            justify-content: space-between !important;
+            align-items: center !important;
         }
-        /* Mobile Scaling */
-        @media (max-width: 768px) {
-            .super-fixed-logo { top: 15px !important; left: 15px !important; }
-            .super-fixed-logo img { height: 90px !important; }
+        body.light-mode .dynamic-island-container { background: rgba(255,255,255,0.95) !important; border-color: rgba(0,0,0,0.1) !important; }
+
+        /* Navigation Links (Left side of Island) */
+        .island-nav-group {
+            display: flex !important;
+            gap: 25px !important;
+            align-items: center !important;
+            flex: 1 !important; /* Pushes from the left */
+        }
+        .island-link-item {
+            color: white !important;
+            text-decoration: none !important;
+            font-size: 1rem !important;
+            font-weight: 600 !important;
+            font-family: 'Plus Jakarta Sans', sans-serif !important;
+            background: none !important;
+            border: none !important;
+            cursor: pointer !important;
+        }
+        body.light-mode .island-link-item { color: black !important; }
+
+        /* Title (Center of Island) */
+        .island-center-title {
+            font-family: 'Cormorant Garamond', serif !important;
+            font-size: 1.6rem !important;
+            font-weight: 800 !important;
+            color: white !important;
+            text-decoration: none !important;
+            letter-spacing: 2px !important;
+            white-space: nowrap !important;
+            flex: 0 0 auto !important;
+        }
+        body.light-mode .island-center-title { color: black !important; }
+
+        /* Spacer (Right side of Island) */
+        .island-spacer-group {
+            flex: 1 !important; /* Pushes from the right to balance the title */
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 1024px) {
+            .global-logo-container img { height: 90px !important; }
+            .global-theme-container { top: 20px !important; right: 20px !important; }
+            .dynamic-island-container { 
+                top: 120px !important; /* Pushes island down below the logo */
+                width: 95% !important; 
+                padding: 0 20px !important;
+            }
+            .island-center-title { font-size: 1.1rem !important; }
+            .island-nav-group { gap: 10px !important; }
         }
     </style>
 </head>
 <body class="dark-mode">
-    <div class="custom-cursor" id="customCursor"></div>
 
- <a href="index.html" class="global-logo">
+    <a href="index.html" class="global-logo-container">
         <img src="logoylh.png" alt="Young Legal House Logo">
     </a>
 
-    <button class="global-theme-toggle" id="themeToggle">
+    <button class="global-theme-container" id="themeToggle">
         <i class="fas fa-moon" id="themeIcon"></i>
     </button>
 
-    <header class="dynamic-island">
-        <nav class="island-nav">
-            <a href="blogs.html" class="island-link">Blogs</a>
-            <a href="events.html" class="island-link">Events</a>
-            
-            <div class="menu-wrapper">
-                <button class="island-link hamburger-btn" id="menuToggle">
-                    <i class="fas fa-bars"></i>
-                </button>
-                <div class="dropdown-menu" id="dropdownMenu">
-                    <a href="about.html" class="nav-item">About</a>
-                    <a href="team.html" class="nav-item">Team</a>
-                    <a href="join.html" class="nav-item">Join Us</a>
-                    <a href="contact.html" class="nav-item">Contact Us</a>
-                </div>
-            </div>
+    <header class="dynamic-island-container">
+        <nav class="island-nav-group">
+            <a href="blogs.html" class="island-link-item">Blogs</a>
+            <a href="events.html" class="island-link-item">Events</a>
+            <button class="island-link-item" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
         </nav>
 
-        <a href="index.html" class="island-title">YOUNG LEGAL HOUSE</a>
-        
-        <div class="island-spacer"></div>
+        <a href="index.html" class="island-center-title">YOUNG LEGAL HOUSE</a>
+
+        <div class="island-spacer-group"></div>
     </header>
 
     <main class="page-spacing container">
