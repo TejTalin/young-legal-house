@@ -59,14 +59,15 @@ h1, h2, h3, h4, h5, h6 {
 /* === NEW FIXED INDEPENDENT LOGO === */
 .fixed-logo {
     position: fixed;
-    top: 20px;
-    left: 40px; /* Places it exactly where your red box is */
-    z-index: 3000; /* Keeps it layered on top of everything */
+    top: 15px; /* Moved slightly up so a bigger logo fits well */
+    left: 30px; /* Moved slightly left to align perfectly */
+    z-index: 3000; 
     display: block;
 }
 
 .nav-logo { 
-    height: 110px; /* Made larger and more visible */
+    height: 220px; /* 🚀 Drastically increased to fill your red box! */
+    width: auto; /* Ensures the logo doesn't stretch or distort */
     transition: filter 0.3s, transform 0.3s ease; 
 } 
 .nav-logo:hover { transform: scale(1.05); }
