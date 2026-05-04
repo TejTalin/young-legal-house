@@ -14,7 +14,7 @@ body.light-mode {
     --glass-border: rgba(0, 0, 0, 0.15);
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Lora', serif; }
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
 
 body { 
     background-color: var(--bg-color); 
@@ -22,6 +22,10 @@ body {
     transition: background-color 0.5s ease, color 0.5s ease; 
     overflow-x: hidden; 
     padding-top: 150px !important; /* This forces the content down below the glass header */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cormorant Garamond', serif;
 }
 
 /* === NAVBAR === */
@@ -473,7 +477,7 @@ footer { padding: 50px 5% 30px; border-top: 1px solid var(--glass-border); margi
     background: transparent;
     border: 1px solid var(--glass-border);
     color: var(--text-color);
-    font-family: 'Lora', serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 1rem;
     outline: none;
     transition: all 0.3s ease;
@@ -507,7 +511,7 @@ body.light-mode .form-textarea {
     border: none;
     cursor: pointer;
     transition: opacity 0.3s, transform 0.3s;
-    font-family: 'Lora', serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 1.1rem;
     margin-top: 10px;
 }
@@ -605,4 +609,3 @@ body.light-mode .form-textarea {
     transform: translateY(-5px);
     background: var(--bg-color);
 }
-
