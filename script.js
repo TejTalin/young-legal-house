@@ -43,3 +43,20 @@ document.addEventListener('mousemove', (e) => {
         cursor.style.top = e.clientY + 'px';
     }
 });
+
+// --- DYNAMIC ISLAND SCROLL EFFECT ---
+const navbar = document.querySelector('.navbar');
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+        // When scrolled down: Shrink the island slightly
+        navbar.style.padding = '5px 25px';
+        navbar.style.width = '85%';
+        navbar.style.top = '15px';
+    } else {
+        // At the top of the page: Return to normal size
+        navbar.style.padding = '10px 30px';
+        navbar.style.width = '90%';
+        navbar.style.top = '25px';
+    }
+});
