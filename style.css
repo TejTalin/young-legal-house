@@ -54,12 +54,23 @@ h1, h2, h3, h4, h5, h6 {
     width: 100%; 
 }
 
-.nav-left { flex: 1; display: flex; align-items: center; }
+.nav-left { flex: 1; display: block; } 
 
-/* Scaled down the logo slightly so it fits cleanly inside the floating pill */
-.nav-logo { height: 65px; transition: filter 0.3s, transform 0.3s ease; } 
+/* === NEW FIXED INDEPENDENT LOGO === */
+.fixed-logo {
+    position: fixed;
+    top: 20px;
+    left: 40px; /* Places it exactly where your red box is */
+    z-index: 3000; /* Keeps it layered on top of everything */
+    display: block;
+}
+
+.nav-logo { 
+    height: 110px; /* Made larger and more visible */
+    transition: filter 0.3s, transform 0.3s ease; 
+} 
 .nav-logo:hover { transform: scale(1.05); }
-body.light-mode .nav-logo { filter: invert(1); } 
+body.light-mode .nav-logo { filter: invert(1); }
 
 .nav-center { 
     position: absolute; 
