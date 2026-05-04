@@ -61,13 +61,13 @@ h1, h2, h3, h4, h5, h6 {
     position: fixed !important; 
     top: 15px !important; 
     left: 30px !important; 
-    z-index: 9999 !important; /* Forces it above absolutely everything */
+    z-index: 9999 !important; 
     display: block;
 }
 
 .nav-logo { 
-    height: 220px; /* 🚀 Drastically increased to fill your red box! */
-    width: auto; /* Ensures the logo doesn't stretch or distort */
+    height: 220px; 
+    width: auto; 
     transition: filter 0.3s, transform 0.3s ease; 
 } 
 .nav-logo:hover { transform: scale(1.05); }
