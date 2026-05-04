@@ -28,95 +28,140 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'Cormorant Garamond', serif;
 }
 
-/* === NAVBAR === */
-.navbar {
-    position: fixed; 
-    top: 25px; /* Floats the header down from the top edge */
-    left: 50%;
-    transform: translateX(-50%); /* Centers the island */
-    width: 90%; /* Leaves breathing room on the sides */
-    max-width: 1200px; /* Prevents it from stretching too far on huge monitors */
-    z-index: 2000;
-    padding: 10px 30px; /* Snug padding for the pill look */
-    background: var(--glass-bg); 
-    backdrop-filter: blur(25px); 
-    -webkit-backdrop-filter: blur(25px);
-    border: 1px solid var(--glass-border); 
-    border-radius: 100px; /* Gives it the perfectly rounded island shape */
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2); /* Soft shadow to make it float */
-    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1); 
-}
-
-.nav-container { 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-    width: 100%; 
-}
-
-.nav-left { flex: 1; display: block; } 
-
-/* === NEW FIXED INDEPENDENT LOGO === */
-.fixed-logo {
-    position: fixed !important; 
-    top: 15px !important; 
-    left: 30px !important; 
-    z-index: 9999 !important; 
+/* === 1. GLOBAL LOGO (Fixed Left) === */
+.global-logo {
+    position: fixed !important;
+    top: 15px !important;
+    left: 30px !important;
+    z-index: 9999 !important;
     display: block;
 }
+.global-logo img {
+    height: 180px; 
+    width: auto;
+    transition: filter 0.3s, transform 0.3s ease;
+}
+.global-logo:hover img { transform: scale(1.05); }
+body.light-mode .global-logo img { filter: invert(1); }
 
-.nav-logo { 
-    height: 220px; 
-    width: auto; 
-    transition: filter 0.3s, transform 0.3s ease; 
-} 
-.nav-logo:hover { transform: scale(1.05); }
-body.light-mode .nav-logo { filter: invert(1); }
 
-.nav-center { 
-    position: absolute; 
+/* === 2. GLOBAL THEME TOGGLE (Fixed Right) === */
+.global-theme-toggle {
+    position: fixed !important;
+    top: 30px !important;
+    right: 40px !important;
+    z-index: 9999 !important;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-color);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    backdrop-filter: blur(15px);
+    transition: all 0.3s ease;
+}
+.global-theme-toggle:hover { background: var(--text-color); color: var(--bg-color); }
+body.light-mode .global-theme-toggle { background: rgba(0, 0, 0, 0.05); border: 1px solid rgba(0, 0, 0, 0.2); }
+body.light-mode .global-theme-toggle:hover { background: #000; color: #fff; }
+
+
+/* === 3. DYNAMIC ISLAND (Fixed Center) === */
+.dynamic-island {
+    position: fixed !important;
+    top: 25px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    z-index: 9000 !important;
+    width: max-content; 
+    min-width: 600px;
+    padding: 18px 40px; 
+    background: rgba(20, 20, 20, 0.90); 
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 100px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+body.light-mode .dynamic-island { background: rgba(255, 255, 255, 0.95); border: 1px solid rgba(0, 0, 0, 0.1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); }
+
+/* Island Internal Elements */
+.island-nav { display: flex; gap: 20px; align-items: center; flex: 1; }
+.island-spacer { flex: 1; } 
+
+.island-link {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: color 0.3s;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+.island-link:hover { color: #a0a0a0; }
+
+.island-title {
+    font-family: 'Cormorant Garamond', serif; 
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text-color);
+    text-decoration: none;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 1.6rem; /* Slightly smaller to fit the sleek island */
-    font-weight: 800; 
-    text-decoration: none; 
-    color: inherit; 
-    letter-spacing: 2.5px;
-    white-space: nowrap;
-    text-transform: uppercase;
-    font-family: 'Gothic Extended', sans-serif !important;
 }
 
-.nav-right { flex: 1; display: flex; justify-content: flex-end; align-items: center; gap: 1rem; }
-
-.nav-menu { 
-    display: flex; 
-    gap: 0.8rem; 
-    align-items: center; 
-    flex-wrap: nowrap; 
-}
-
-.glass-pill {
-    text-decoration: none;
-    color: var(--text-color);
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    padding: 8px 20px; 
-    border-radius: 50px; 
-    font-size: 0.95rem;
-    backdrop-filter: blur(10px);
+/* === HAMBURGER DROPDOWN === */
+.menu-wrapper { position: relative; }
+.dropdown-menu {
+    position: absolute;
+    top: 200%; 
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 15px;
+    background: rgba(15, 15, 15, 0.98); 
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 15px;
+    min-width: 180px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
     transition: all 0.3s ease;
-    cursor: pointer;
-    white-space: nowrap; 
-    flex-shrink: 0; 
-    display: inline-flex;
-    align-items: center; 
-    justify-content: center; 
-    text-align: center;
 }
+body.light-mode .dropdown-menu { background: rgba(250, 250, 250, 0.98); border: 1px solid rgba(0, 0, 0, 0.1); }
+.dropdown-menu.show { opacity: 1; visibility: visible; transform: translateY(0); }
 
-.glass-pill:hover, .active-nav { background: var(--text-color); color: var(--bg-color); }
-.theme-btn { border: 1px solid var(--glass-border); padding: 8px 15px; }
+.nav-item {
+    color: var(--text-color);
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+    border-left: 3px solid transparent; 
+}
+.nav-item:hover { background: rgba(255, 255, 255, 0.1); }
+body.light-mode .nav-item:hover { background: rgba(0, 0, 0, 0.08); }
+
+.nav-item.active-page {
+    font-weight: 800;
+    border-left: 3px solid var(--text-color);
+    background: rgba(255, 255, 255, 0.05);
+}
+body.light-mode .nav-item.active-page { background: rgba(0, 0, 0, 0.05); }
 
 /* === HAMBURGER DROPDOWN MENU === */
 .menu-wrapper {
@@ -246,26 +291,21 @@ body.light-mode .footer-logo {
     background-color: var(--glass-border);
 }
 
-/* === MOBILE COMPATIBILITY === */
+/* === MOBILE HEADER COMPATIBILITY === */
 @media (max-width: 1024px) {
-    .nav-container { flex-direction: column; gap: 15px; }
-    .nav-center { position: relative; left: 0; transform: none; margin: 10px 0; } 
-    .nav-menu { flex-wrap: wrap; justify-content: center; }
-    .footer-top { flex-direction: column; text-align: center; justify-content: center; gap: 20px; }
-    .footer-socials { justify-content: center; }
+    .global-logo img { height: 100px; }
+    .global-theme-toggle { top: 20px !important; right: 20px !important; width: 40px; height: 40px; }
+    
+    .dynamic-island { 
+        top: 110px !important; 
+        width: 90%;
+        min-width: 0;
+        padding: 12px 20px; 
+    }
+    .island-nav { gap: 10px; }
+    .island-link { font-size: 0.9rem; }
+    .island-title { font-size: 1.1rem; }
 }
-
-@media (max-width: 768px) {
-    .navbar { padding: 1rem 3%; }
-    .fixed-logo { top: 15px; left: 15px; }
-    .nav-logo { height: 90px; } /* Slightly smaller for phone screens */
-    .nav-center { font-size: 1.3rem; margin-bottom: 10px; }
-    .glass-pill { padding: 6px 14px; font-size: 0.85rem; }
-    .hero-main-title { font-size: 2.5rem; }
-    .hero-divider p { font-size: 1rem; }
-    .section-title { font-size: 1.5rem; }
-    .cards-grid { grid-template-columns: 1fr; } 
-    .footer-links a { display: inline-block; margin-bottom: 10px; margin-right: 15px;}
     .custom-cursor { display: none; } /* Turns off custom cursor for mobile users */
 }
 /* === TEAM PAGE STYLES === */
