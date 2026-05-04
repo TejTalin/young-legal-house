@@ -20,7 +20,6 @@ body {
     background-color: var(--bg-color); 
     color: var(--text-color); 
     transition: background-color 0.5s ease, color 0.5s ease; 
-    overflow-x: hidden; 
     padding-top: 150px !important; /* This forces the content down below the glass header */
 }
 
@@ -307,7 +306,7 @@ body.light-mode .footer-logo {
     .island-title { font-size: 1.1rem; }
 }
     .custom-cursor { display: none; } /* Turns off custom cursor for mobile users */
-}
+
 /* === TEAM PAGE STYLES === */
 .team-container {
     display: flex;
