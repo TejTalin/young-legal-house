@@ -58,10 +58,10 @@ h1, h2, h3, h4, h5, h6 {
 
 /* === NEW FIXED INDEPENDENT LOGO === */
 .fixed-logo {
-    position: fixed; 
-    top: 15px; 
-    left: 30px; 
-    z-index: 3000; 
+    position: fixed !important; 
+    top: 15px !important; 
+    left: 30px !important; 
+    z-index: 9999 !important; /* Forces it above absolutely everything */
     display: block;
 }
 
