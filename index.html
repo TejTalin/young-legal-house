@@ -4,297 +4,279 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Young Legal House | Home</title>
-    <meta name="description" content="Young Legal House is a legal community for Indian law students — research, events, internships, and career growth.">
-
-    <!-- THE FIX: overflow-x on html, never on body -->
-    <style>
-        html { overflow-x: clip; }
-        body { overflow-x: visible; }
-    </style>
-
-    <link rel="stylesheet" href="style.css">
+    
+    <link rel="stylesheet" href="style.css?v=35">
+    
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
 
+    <style>
+        /* =========================================================
+           THE STICKY OVERRIDE: BYPASSES ALL SCROLL BUGS
+           ========================================================= */
+        html, body { overflow-x: clip !important; overflow-y: visible !important; }
+
+        .ultimate-sticky-wrapper {
+            position: sticky !important;
+            top: 30px !important; /* Anchors it 30px from the top of the screen */
+            width: 100%;
+            height: 60px !important;
+            z-index: 99999 !important;
+            pointer-events: none; /* Lets clicks pass through the empty space */
+        }
+
+        /* === 1. LOGO (Left) === */
+        .sticky-logo {
+            position: absolute;
+            left: 30px;
+            top: 0;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            pointer-events: auto; /* Makes it clickable */
+        }
+        .sticky-logo img { height: 140px; width: auto; }
+        body.light-mode .sticky-logo img { filter: brightness(0); }
+
+        /* === 2. THEME TOGGLE (Right) === */
+        .sticky-theme-toggle {
+            position: absolute;
+            right: 40px;
+            top: 0;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            width: 60px; 
+            height: 60px;
+            border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            font-size: 1.2rem;
+            pointer-events: auto;
+        }
+        body.light-mode .sticky-theme-toggle { background: rgba(0,0,0,0.05); color: black; border-color: rgba(0,0,0,0.2); }
+
+        /* === 3. DYNAMIC ISLAND (Center) === */
+        .sticky-island {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 0;
+            width: 850px; 
+            max-width: 90vw;
+            height: 60px; 
+            padding: 0 40px;
+            background: rgba(35, 35, 35, 0.85); 
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 100px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            pointer-events: auto;
+        }
+        body.light-mode .sticky-island { background: rgba(245, 245, 245, 0.85); border-color: rgba(0,0,0,0.1); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+
+        .island-spacer { flex: 1; }
+
+        .island-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: white;
+            text-decoration: none;
+            letter-spacing: 2px;
+            white-space: nowrap;
+            flex: 0 0 auto;
+        }
+        body.light-mode .island-title { color: black; }
+
+        .island-nav {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+            justify-content: flex-end;
+            flex: 1; 
+        }
+        .island-nav a, .island-nav button {
+            color: white;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        body.light-mode .island-nav a, body.light-mode .island-nav button { color: black; }
+
+        .menu-wrapper { position: relative; display: flex; align-items: center; }
+        .dropdown-menu {
+            position: absolute;
+            top: 45px;
+            right: 0;
+            background: rgba(25, 25, 25, 0.98);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 10px;
+            display: none; 
+            flex-direction: column;
+            min-width: 160px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+        .dropdown-menu.show { display: flex; }
+        .dropdown-menu a { padding: 10px 15px; font-size: 0.9rem; }
+        .dropdown-menu a:hover { background: rgba(255,255,255,0.1); }
+        
+        body.light-mode .dropdown-menu { background: rgba(250, 250, 250, 0.98); border-color: rgba(0,0,0,0.1); }
+        body.light-mode .dropdown-menu a:hover { background: rgba(0,0,0,0.05); }
+
+        @media (max-width: 1024px) {
+            .ultimate-sticky-wrapper { top: 15px !important; height: auto !important; position: fixed !important; }
+            .sticky-logo { position: fixed; top: 15px; left: 15px; }
+            .sticky-logo img { height: 90px; }
+            .sticky-theme-toggle { position: fixed; top: 15px; right: 15px; width: 45px; height: 45px; }
+            .sticky-island { position: fixed; top: 100px; width: 95%; padding: 0 20px; }
+            .island-title { font-size: 1.1rem; }
+            .island-nav { gap: 15px; }
+        }
+    </style>
+</head>
 <body class="dark-mode">
 
-    <!-- ══════════════════════════════════════════
-         CUSTOM CURSOR
-    ══════════════════════════════════════════ -->
-    <div class="custom-cursor" id="customCursor"></div>
+    <div class="ultimate-sticky-wrapper">
+        
+        <a href="index.html" class="sticky-logo">
+            <img src="logoylh.png" alt="Young Legal House Logo">
+        </a>
 
-    <!-- ══════════════════════════════════════════
-         HEADER — THREE INDEPENDENT FIXED ELEMENTS
-    ══════════════════════════════════════════ -->
-
-    <!-- 1. LOGO — fixed top left -->
-    <a href="index.html" class="global-logo" aria-label="Young Legal House Home">
-        <img src="logoylh.png" alt="Young Legal House Logo">
-    </a>
-
-    <!-- 2. DYNAMIC ISLAND — fixed top center -->
-    <header class="dynamic-island" role="navigation" aria-label="Main navigation">
-        <nav class="island-nav" aria-label="Left nav">
-            <a href="blogs.html" class="island-link">Blogs</a>
-            <a href="events.html" class="island-link">Events</a>
-        </nav>
-
-        <a href="index.html" class="island-title" aria-label="Young Legal House">YOUNG LEGAL HOUSE</a>
-
-        <nav class="island-nav" style="justify-content: flex-end;" aria-label="Right nav">
-            <div class="menu-wrapper">
-                <button class="island-link" id="menuToggle" aria-label="More pages" aria-expanded="false">
-                    <i class="fas fa-bars"></i>
-                </button>
-                <div class="dropdown-menu" id="dropdownMenu" role="menu">
-                    <a href="about.html" class="nav-item" role="menuitem">About</a>
-                    <a href="team.html" class="nav-item" role="menuitem">Team</a>
-                    <a href="join.html" class="nav-item" role="menuitem">Join Us</a>
-                    <a href="contact.html" class="nav-item" role="menuitem">Contact Us</a>
+        <header class="sticky-island">
+            <div class="island-spacer"></div>
+            <a href="index.html" class="island-title">YOUNG LEGAL HOUSE</a>
+            <nav class="island-nav">
+                <a href="blogs.html">Blogs</a>
+                <a href="events.html">Events</a>
+                <div class="menu-wrapper">
+                    <button id="menuToggleBtn"><i class="fas fa-bars"></i></button>
+                    <div class="dropdown-menu" id="dropdownMenuContainer">
+                        <a href="about.html">About</a>
+                        <a href="team.html">Team</a>
+                        <a href="join.html">Join Us</a>
+                        <a href="contact.html">Contact Us</a>
+                    </div>
                 </div>
-            </div>
-        </nav>
-    </header>
+            </nav>
+        </header>
 
-    <!-- 3. THEME TOGGLE — fixed top right -->
-    <button class="global-theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode">
-        <i class="fas fa-moon" id="themeIcon"></i>
-    </button>
+        <button class="sticky-theme-toggle" id="themeToggle">
+            <i class="fas fa-moon" id="themeIcon"></i>
+        </button>
 
-    <!-- ══════════════════════════════════════════
-         HERO SECTION
-    ══════════════════════════════════════════ -->
-    <main>
-        <section class="container" style="padding-top: 60px; padding-bottom: 60px; text-align: center;">
-            <h1 class="section-title" style="font-size: clamp(2.2rem, 5vw, 3.8rem); margin-bottom: 24px; letter-spacing: 1px;">
-                Legal Excellence, Reimagined.
-            </h1>
-            <p style="color: var(--grey-text); font-size: 1.15rem; line-height: 1.9; max-width: 720px; margin: 0 auto 40px;">
-                Welcome to Young Legal House — a community of dedicated legal minds providing deep-dive research, networking, and career growth opportunities for the next generation of lawyers.
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuBtn = document.getElementById('menuToggleBtn');
+            const dropMenu = document.getElementById('dropdownMenuContainer');
+            
+            menuBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                dropMenu.classList.toggle('show');
+            });
+            
+            document.addEventListener('click', (e) => {
+                if (!dropMenu.contains(e.target) && !menuBtn.contains(e.target)) {
+                    dropMenu.classList.remove('show');
+                }
+            });
+
+            const themeToggle = document.getElementById('themeToggle');
+            const themeIcon = document.getElementById('themeIcon');
+            const body = document.body;
+
+            const currentTheme = localStorage.getItem('ylh_theme');
+            if (currentTheme === 'light') {
+                body.classList.remove('dark-mode');
+                body.classList.add('light-mode');
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+            } else {
+                body.classList.add('dark-mode');
+                body.classList.remove('light-mode');
+                themeIcon.classList.replace('fa-sun', 'fa-moon');
+            }
+
+            themeToggle.addEventListener('click', () => {
+                if (body.classList.contains('light-mode')) {
+                    body.classList.replace('light-mode', 'dark-mode');
+                    themeIcon.classList.replace('fa-sun', 'fa-moon');
+                    localStorage.setItem('ylh_theme', 'dark');
+                } else {
+                    body.classList.replace('dark-mode', 'light-mode');
+                    themeIcon.classList.replace('fa-moon', 'fa-sun');
+                    localStorage.setItem('ylh_theme', 'light');
+                }
+            });
+        });
+    </script>
+
+    <main class="page-spacing container">
+        <div style="text-align: center; max-width: 900px; margin: 0 auto 60px;">
+            <h1 class="section-title" style="font-size: 3.5rem; margin-bottom: 20px;">Welcome to Young Legal House</h1>
+            <p style="color: var(--grey-text); font-size: 1.2rem; line-height: 1.8;">
+                Bridging the gap between legal theory and execution. We provide a premium ecosystem for law students and young professionals to network, learn, and accelerate their careers.
             </p>
-            <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
-                <a href="blogs.html" class="glass-pill" style="padding: 14px 36px; font-weight: 700; font-size: 1rem;">
-                    Explore Blogs
-                </a>
-                <a href="join.html" class="glass-pill" style="padding: 14px 36px; font-weight: 700; font-size: 1rem; background: var(--text-color); color: var(--bg-color);">
-                    Join Our Community
-                </a>
+            <div style="margin-top: 30px; display: flex; justify-content: center; gap: 15px;">
+                <a href="join.html" class="glass-pill" style="background: var(--text-color); color: var(--bg-color); font-weight: bold; padding: 12px 30px; font-size: 1.1rem;">Join the Community</a>
+                <a href="blogs.html" class="glass-pill" style="padding: 12px 30px; font-size: 1.1rem;">Read Latest Insights</a>
             </div>
-        </section>
+        </div>
 
-        <!-- ── FEATURE CARDS ─────────────────────── -->
-        <section class="container" style="padding-top: 0;">
-            <div class="cards-grid">
-
-                <div class="glass-card" style="padding: 40px 30px; text-align: left;">
-                    <i class="fas fa-book-open" style="font-size: 2.2rem; margin-bottom: 20px; display: block;"></i>
-                    <h3 style="margin-bottom: 12px;">Legal Research</h3>
-                    <p style="color: var(--grey-text); line-height: 1.7;">
-                        Access high-quality articles and insights across Tax, TMT, Corporate, Litigation, M&A, ADR, and IPR — written by law students, for law students.
-                    </p>
-                    <a href="blogs.html" class="action-link" style="display: inline-block; margin-top: 20px; font-size: 0.9rem;">
-                        Read Articles &rarr;
-                    </a>
-                </div>
-
-                <div class="glass-card" style="padding: 40px 30px; text-align: left;">
-                    <i class="fas fa-calendar-check" style="font-size: 2.2rem; margin-bottom: 20px; display: block;"></i>
-                    <h3 style="margin-bottom: 12px;">Curated Events</h3>
-                    <p style="color: var(--grey-text); line-height: 1.7;">
-                        Stay updated with National Moot Courts, legal masterclasses, and webinars happening offline and online across India.
-                    </p>
-                    <a href="events.html" class="action-link" style="display: inline-block; margin-top: 20px; font-size: 0.9rem;">
-                        View Events &rarr;
-                    </a>
-                </div>
-
-                <div class="glass-card" style="padding: 40px 30px; text-align: left;">
-                    <i class="fas fa-users" style="font-size: 2.2rem; margin-bottom: 20px; display: block;"></i>
-                    <h3 style="margin-bottom: 12px;">Expert Community</h3>
-                    <p style="color: var(--grey-text); line-height: 1.7;">
-                        Connect with our founders and team of researchers to build your professional network and accelerate your legal career.
-                    </p>
-                    <a href="team.html" class="action-link" style="display: inline-block; margin-top: 20px; font-size: 0.9rem;">
-                        Meet the Team &rarr;
-                    </a>
-                </div>
-
+        <div class="cards-grid">
+            <div class="glass-card" style="text-align: center; padding: 40px 20px;">
+                <i class="fas fa-gavel" style="font-size: 3rem; color: var(--text-color); margin-bottom: 20px;"></i>
+                <h3>Curated Legal Insights</h3>
+                <p style="color: var(--grey-text); margin-top: 10px;">Access deep-dive articles across Corporate, Tax, TMT, Litigation, and more, written by industry peers.</p>
             </div>
-        </section>
-
-        <!-- ── PRACTICE AREAS STRIP ───────────────── -->
-        <section class="container" style="padding-top: 20px;">
-            <h2 style="text-align: center; font-size: 1.4rem; font-weight: 600; margin-bottom: 24px; color: var(--grey-text); letter-spacing: 2px; text-transform: uppercase; font-family: 'Plus Jakarta Sans', sans-serif;">
-                Practice Areas
-            </h2>
-            <div style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: center;">
-                <a href="blogs.html" class="glass-pill" style="font-size: 0.9rem; padding: 8px 20px;">Tax</a>
-                <a href="blogs.html" class="glass-pill" style="font-size: 0.9rem; padding: 8px 20px;">TMT</a>
-                <a href="blogs.html" class="glass-pill" style="font-size: 0.9rem; padding: 8px 20px;">Corporate</a>
-                <a href="blogs.html" class="glass-pill" style="font-size: 0.9rem; padding: 8px 20px;">Litigation</a>
-                <a href="blogs.html" class="glass-pill" style="font-size: 0.9rem; padding: 8px 20px;">M&A</a>
-                <a href="blogs.html" class="glass-pill" style="font-size: 0.9rem; padding: 8px 20px;">ADR</a>
-                <a href="blogs.html" class="glass-pill" style="font-size: 0.9rem; padding: 8px 20px;">IPR</a>
+            
+            <div class="glass-card" style="text-align: center; padding: 40px 20px;">
+                <i class="fas fa-calendar-alt" style="font-size: 3rem; color: var(--text-color); margin-bottom: 20px;"></i>
+                <h3>Exclusive Events</h3>
+                <p style="color: var(--grey-text); margin-top: 10px;">Stay updated on national moot courts, workshops, and high-stakes online webinars.</p>
             </div>
-        </section>
 
-        <!-- ── PREMIUM CTA ────────────────────────── -->
-        <section class="container" style="padding-top: 40px; padding-bottom: 60px;">
-            <div class="glass-card" style="max-width: 800px; margin: 0 auto; padding: 60px 50px; text-align: center; border: 1px solid var(--text-color);">
-                <h2 style="font-size: 2rem; margin-bottom: 16px;">Stay Ahead of Every Deadline</h2>
-                <p style="color: var(--grey-text); font-size: 1.05rem; line-height: 1.8; margin-bottom: 32px;">
-                    Get curated internship lists, moot court deadlines, exclusive webinars, and monthly judgment roundups — delivered to you for just ₹39/month.
-                </p>
-                <a href="join.html" class="glass-pill" style="padding: 14px 40px; font-weight: 700; font-size: 1rem; background: var(--text-color); color: var(--bg-color);">
-                    Get Premium Access &rarr;
-                </a>
+            <div class="glass-card" style="text-align: center; padding: 40px 20px;">
+                <i class="fas fa-users" style="font-size: 3rem; color: var(--text-color); margin-bottom: 20px;"></i>
+                <h3>Expert Community</h3>
+                <p style="color: var(--grey-text); margin-top: 10px;">Connect with our founders and team of researchers to build your professional network.</p>
             </div>
-        </section>
-
+        </div>
     </main>
 
-    <!-- ══════════════════════════════════════════
-         FOOTER
-    ══════════════════════════════════════════ -->
-    <footer>
+      <footer>
         <div class="footer-top">
-            <img src="logoylh.png" alt="Young Legal House" class="footer-logo">
-
+            <img src="logoylh.png" alt="YLH Logo" class="footer-logo">
+            
             <div class="footer-links">
                 <a href="privacy.html">Privacy Policy</a>
                 <a href="terms.html">Terms of Service</a>
                 <a href="cookies.html">Cookie Policy</a>
                 <a href="legal.html">Legal</a>
             </div>
-
             <div class="footer-socials">
-                <a href="https://www.linkedin.com/company/young-legal-house/" class="soc-icon" aria-label="LinkedIn" style="color: #0077b5;">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-                <a href="https://www.instagram.com/younglegalhouse/" class="soc-icon" aria-label="Instagram" style="color: #e1306c;">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="https://linktr.ee/younglegalhouse" class="soc-icon" aria-label="Linktree" style="color: #43ea80;">
-                    <i class="fas fa-link"></i>
-                </a>
-                <a href="mailto:connect.ylh@gmail.com" class="soc-icon email-icon" aria-label="Email">
-                    <i class="fas fa-envelope"></i>
-                </a>
+                <a href="https://www.linkedin.com/company/young-legal-house/" class="soc-icon" style="color: #0077b5;"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.instagram.com/younglegalhouse/" class="soc-icon" style="color: #e1306c;"><i class="fab fa-instagram"></i></a>
+                <a href="https://linktr.ee/younglegalhouse" class="soc-icon" style="color: #43ea80;"><i class="fas fa-link"></i></a>
+                <a href="mailto:connect.ylh@gmail.com" class="soc-icon email-icon"><i class="fas fa-envelope"></i></a>
             </div>
         </div>
-
         <div class="footer-bottom">
-            <!-- Newsletter signup replacing the "coming soon" placeholder -->
-            <form
-                action="https://formspree.io/f/REPLACE_WITH_YOUR_ID"
-                method="POST"
-                style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 20px;"
-                aria-label="Newsletter signup"
-            >
-                <input
-                    type="email"
-                    name="email"
-                    placeholder="Enter your email for updates"
-                    required
-                    style="
-                        padding: 10px 20px;
-                        border-radius: 50px;
-                        border: 1px solid var(--glass-border);
-                        background: var(--glass-bg);
-                        color: var(--text-color);
-                        font-family: 'Plus Jakarta Sans', sans-serif;
-                        font-size: 0.9rem;
-                        outline: none;
-                        min-width: 260px;
-                        backdrop-filter: blur(10px);
-                    "
-                >
-                <button
-                    type="submit"
-                    class="glass-pill"
-                    style="padding: 10px 24px; font-weight: 700; font-size: 0.9rem; background: var(--text-color); color: var(--bg-color); border: none; cursor: pointer;"
-                >
-                    Notify Me
-                </button>
-            </form>
+            <span class="newsletter">Newsletter: Coming soon, stay tuned over here.</span>
             <p class="copyright">&copy; 2026 Young Legal House</p>
         </div>
     </footer>
-
-    <!-- ══════════════════════════════════════════
-         SCRIPTS
-    ══════════════════════════════════════════ -->
-    <script>
-    (function () {
-        // ── THEME ────────────────────────────────
-        const themeToggle = document.getElementById('themeToggle');
-        const themeIcon   = document.getElementById('themeIcon');
-        const body        = document.body;
-
-        function applyTheme(theme) {
-            if (theme === 'light') {
-                body.classList.remove('dark-mode');
-                body.classList.add('light-mode');
-                if (themeIcon) themeIcon.className = 'fas fa-sun';
-            } else {
-                body.classList.remove('light-mode');
-                body.classList.add('dark-mode');
-                if (themeIcon) themeIcon.className = 'fas fa-moon';
-            }
-        }
-
-        applyTheme(localStorage.getItem('ylh-theme') || 'dark');
-
-        if (themeToggle) {
-            themeToggle.addEventListener('click', () => {
-                const isLight = body.classList.contains('light-mode');
-                const next = isLight ? 'dark' : 'light';
-                localStorage.setItem('ylh-theme', next);
-                applyTheme(next);
-            });
-        }
-
-        // ── DROPDOWN MENU ────────────────────────
-        const menuToggle   = document.getElementById('menuToggle');
-        const dropdownMenu = document.getElementById('dropdownMenu');
-
-        if (menuToggle && dropdownMenu) {
-            menuToggle.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const isOpen = dropdownMenu.classList.toggle('show');
-                menuToggle.setAttribute('aria-expanded', isOpen);
-            });
-
-            document.addEventListener('click', (e) => {
-                if (!dropdownMenu.contains(e.target) && e.target !== menuToggle) {
-                    dropdownMenu.classList.remove('show');
-                    menuToggle.setAttribute('aria-expanded', 'false');
-                }
-            });
-
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') {
-                    dropdownMenu.classList.remove('show');
-                    menuToggle.setAttribute('aria-expanded', 'false');
-                }
-            });
-        }
-
-        // ── CUSTOM CURSOR (desktop only) ─────────
-        const cursor = document.getElementById('customCursor');
-        if (cursor && window.matchMedia('(pointer: fine)').matches) {
-            document.addEventListener('mousemove', (e) => {
-                cursor.style.left = e.clientX + 'px';
-                cursor.style.top  = e.clientY + 'px';
-            });
-            document.addEventListener('mousedown', () => cursor.classList.add('click-effect'));
-            document.addEventListener('mouseup',   () => cursor.classList.remove('click-effect'));
-        } else if (cursor) {
-            cursor.style.display = 'none';
-        }
-    })();
-    </script>
 
 </body>
 </html>
