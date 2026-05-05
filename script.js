@@ -36,6 +36,14 @@ document.addEventListener('DOMContentLoaded', () => {
         dropdownMenu?.classList.toggle('show');
     });
 
+    menuToggle?.addEventListener('mouseenter', () => {
+        dropdownMenu?.classList.add('show');
+    });
+
+    dropdownMenu?.parentElement?.addEventListener('mouseleave', () => {
+        dropdownMenu?.classList.remove('show');
+    });
+
     dropdownMenu?.addEventListener('click', (event) => event.stopPropagation());
 
     document.addEventListener('click', () => {

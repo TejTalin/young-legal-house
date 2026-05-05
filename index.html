@@ -33,7 +33,7 @@
             background-color: var(--bg-color) !important; 
             color: var(--text-color) !important; 
             font-family: 'Plus Jakarta Sans', sans-serif !important;
-            padding-top: 120px !important; 
+            padding-top: 100px !important; 
             overflow-x: clip !important; 
             overflow-y: visible !important; 
             margin: 0;
@@ -83,8 +83,9 @@
            THE STICKY HEADER (Symmetrical Spacing)
            ========================================================= */
         .ultimate-sticky-wrapper {
-            position: sticky !important;
-            top: 30px !important; 
+            position: fixed !important;
+            top: 20px !important; 
+            left: 0 !important;
             width: 100%;
             height: 60px !important;
             z-index: 99999 !important;
@@ -120,6 +121,7 @@
 
         .island-nav { display: flex; gap: 25px; align-items: center; justify-content: flex-end; flex: 1; }
         .island-nav a, .island-nav button { color: white; text-decoration: none; font-size: 0.95rem; font-weight: 600; font-family: 'Plus Jakarta Sans', sans-serif; background: none; border: none; cursor: pointer; }
+        .island-nav button { font-size: 1.25rem; font-weight: 900; line-height: 1; }
         body.light-mode .island-nav a, body.light-mode .island-nav button { color: black; }
 
         .menu-wrapper { position: relative; display: flex; align-items: center; }
@@ -128,6 +130,7 @@
             border-radius: 12px; padding: 10px; display: none; flex-direction: column; min-width: 160px; box-shadow: 0 10px 20px rgba(0,0,0,0.5);
         }
         .dropdown-menu.show { display: flex; }
+        .menu-wrapper:hover .dropdown-menu { display: flex; }
         .dropdown-menu a { padding: 10px 15px; font-size: 0.9rem; }
         .dropdown-menu a:hover { background: rgba(255,255,255,0.1); }
         
@@ -257,26 +260,26 @@
             </div>
         </div>
     </main>
-
     <footer>
         <div class="footer-top">
-            <img src="logoylh.png" alt="YLH Logo" class="footer-logo">
-            <div class="footer-links">
-                <a href="about.html">About</a>
-                <a href="team.html">Team</a>
-                <a href="join.html">Join Us</a>
-                <a href="contact.html">Contact</a>
+            <div class="footer-left">
+                <img src="logoylh.png" alt="YLH Logo" class="footer-logo">
+                <div class="footer-links">
+                    <a href="terms.html">Terms of Service</a>
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="cookies.html">Cookie Policy</a>
+                    <a href="about.html">About Us</a>
+                </div>
             </div>
-            <div class="footer-socials">
+            <div class="footer-center">
+                <p class="copyright">&copy; 2026 Young Legal House</p>
+            </div>
+            <div class="footer-socials footer-right">
                 <a href="https://www.linkedin.com/company/young-legal-house/" class="soc-icon" style="color: var(--text-color);"><i class="fab fa-linkedin"></i></a>
                 <a href="https://www.instagram.com/younglegalhouse/" class="soc-icon" style="color: var(--text-color);"><i class="fab fa-instagram"></i></a>
                 <a href="https://linktr.ee/younglegalhouse" class="soc-icon" style="color: var(--text-color);"><i class="fas fa-link"></i></a>
-                <a href="mailto:connect.ylh@gmail.com" class="soc-icon email-icon"><i class="fas fa-envelope"></i></a>
+                <a href="mailto:connect.ylh.com" class="soc-icon email-icon"><i class="fas fa-envelope"></i></a>
             </div>
-        </div>
-        <div class="footer-bottom">
-            <span class="newsletter" style="color: var(--grey-text); font-size: 0.85rem;">Newsletter: Coming soon, stay tuned over here.</span>
-            <p class="copyright" style="color: var(--grey-text); margin-top: 10px; font-size: 0.85rem;">&copy; 2026 Young Legal House</p>
         </div>
     </footer>
 
