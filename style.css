@@ -52,7 +52,7 @@ body.light-mode .global-logo img { filter: invert(1); }
 /* === 2. GLOBAL THEME TOGGLE (Fixed Right) === */
 .global-theme-toggle {
     position: fixed !important;
-    top: 30px !important;
+    top: 15px !important;
     right: 40px !important;
     z-index: 9999 !important;
     background: rgba(255, 255, 255, 0.1);
@@ -77,7 +77,7 @@ body.light-mode .global-theme-toggle:hover { background: #000; color: #fff; }
 /* === 3. DYNAMIC ISLAND (Fixed Center) === */
 .dynamic-island {
     position: fixed !important;
-    top: 25px !important;
+    top: 15px !important;
     left: 50% !important;
     transform: translateX(-50%) !important;
     z-index: 9000 !important;
@@ -218,7 +218,7 @@ body.light-mode .nav-item.active-page { background: rgba(0, 0, 0, 0.05); }
 }
 
 /* === LAYOUT & HERO === */
-.page-spacing { padding-top: 150px; } 
+.page-spacing { padding-top: 120px; } 
 .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
 .hero-main-title { font-size: clamp(3rem, 6vw, 5rem); font-weight: 700; margin-bottom: 30px; }
 .hero-divider p { font-style: italic; color: var(--grey-text); line-height: 1.8; font-size: 1.2rem; }
