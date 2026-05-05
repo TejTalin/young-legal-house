@@ -8,7 +8,7 @@ const eventsDatabase = [
         audience: 'Law students currently enrolled in 3-year or 5-year LL.B. programs.',
         details: 'Dates: Aug 12-14 | Time: 9:00 AM - 5:00 PM | Venue: Moot Court Hall, Campus Law Centre.',
         speakers: 'Hon. Justice A. Sharma, Adv. R. K. Singh',
-        regLink: '#'
+        regLink: 'contact.html'
     },
     {
         id: 'off-2', type: 'offline', title: 'M&A Masterclass', date: 'September 5, 2026', location: 'Taj Lands End, Mumbai',
@@ -17,7 +17,7 @@ const eventsDatabase = [
         audience: 'Corporate lawyers, in-house counsel, and final-year law students.',
         details: 'Date: Sep 5 | Time: 10:00 AM - 4:00 PM | Networking lunch included.',
         speakers: 'Priya Mehta (Partner), Rahul Desai (Senior Associate)',
-        regLink: '#'
+        regLink: 'contact.html'
     },
     {
         id: 'off-3', type: 'offline', title: 'IPR Prosecution Workshop', date: 'October 10, 2026', location: 'NLSIU Bangalore',
@@ -26,7 +26,7 @@ const eventsDatabase = [
         audience: 'IPR practitioners, patent agents, and law students.',
         details: 'Date: Oct 10 | Time: 11:00 AM - 3:00 PM | Bring your laptops for practical drafting sessions.',
         speakers: 'Pravin Anand, Safir Anand',
-        regLink: '#'
+        regLink: 'contact.html'
     },
     {
         id: 'off-4', type: 'offline', title: 'Litigation Strategy Summit', date: 'November 20, 2026', location: 'Supreme Court Bar',
@@ -35,7 +35,7 @@ const eventsDatabase = [
         audience: 'Litigating advocates with 1-5 years of experience.',
         details: 'Date: Nov 20 | Time: 2:00 PM - 6:00 PM | Venue: SCBA Lounge.',
         speakers: 'Mukul Rohatgi, Harish Salve',
-        regLink: '#'
+        regLink: 'contact.html'
     },
     {
         id: 'off-5', type: 'offline', title: 'Tax Law Conclave', date: 'December 15, 2026', location: 'IHC, New Delhi',
@@ -44,7 +44,7 @@ const eventsDatabase = [
         audience: 'Chartered Accountants, Tax Lawyers, and Corporate Counsel.',
         details: 'Date: Dec 15 | Time: 9:30 AM - 5:30 PM | Venue: India Habitat Centre.',
         speakers: 'V. Lakshmikumaran, Senior Revenue Officials',
-        regLink: '#'
+        regLink: 'contact.html'
     },
 
     // === ONLINE EVENTS (7) ===
@@ -55,7 +55,7 @@ const eventsDatabase = [
         audience: 'Anyone interested in the intersection of law and technology.',
         details: 'Date: July 25 | Time: 5:00 PM IST | Platform: Zoom.',
         speakers: 'Sanjay Krishnan (Tech Policy Expert)',
-        regLink: '#'
+        regLink: 'contact.html'
     },
     {
         id: 'on-2', type: 'online', title: 'Virtual Arbitration Training', date: 'August 5, 2026', location: 'Microsoft Teams',
@@ -64,7 +64,7 @@ const eventsDatabase = [
         audience: 'Arbitrators, mediators, and corporate dispute resolution lawyers.',
         details: 'Date: Aug 5 | Time: 2:30 PM IST | Platform: Microsoft Teams.',
         speakers: 'Gary Born, Lucy Reed',
-        regLink: '#'
+        regLink: 'contact.html'
     },
     {
         id: 'on-3', type: 'online', title: 'Drafting Commercial Contracts', date: 'August 22, 2026', location: 'Google Meet',
@@ -73,7 +73,7 @@ const eventsDatabase = [
         audience: 'Law students and junior corporate associates.',
         details: 'Date: Aug 22 | Time: 6:00 PM IST | Platform: Google Meet.',
         speakers: 'Cyril Shroff',
-        regLink: '#'
+        regLink: 'contact.html'
     },
     {
         id: 'on-4', type: 'online', title: 'Cryptocurrency Regulations', date: 'September 12, 2026', location: 'Zoom / Virtual',
@@ -82,7 +82,7 @@ const eventsDatabase = [
         audience: 'Fintech lawyers, crypto founders, and legal researchers.',
         details: 'Date: Sep 12 | Time: 4:00 PM IST | Platform: Zoom.',
         speakers: 'Nishith Desai, Vaibhav Parikh',
-        regLink: '#'
+        regLink: 'contact.html'
     },
     {
         id: 'on-5', type: 'online', title: 'Space Law Symposium', date: 'October 1, 2026', location: 'Webex',
@@ -91,7 +91,7 @@ const eventsDatabase = [
         audience: 'Aviation and space law enthusiasts.',
         details: 'Date: Oct 1 | Time: 10:00 AM IST | Platform: Webex.',
         speakers: 'Dr. K. Sivan, International Space Law Experts',
-        regLink: '#'
+        regLink: 'contact.html'
     },
     {
         id: 'on-6', type: 'online', title: 'Environmental Law Bootcamp', date: 'October 28, 2026', location: 'Zoom / Virtual',
@@ -100,7 +100,7 @@ const eventsDatabase = [
         audience: 'NGO workers, environmental activists, and law students.',
         details: 'Date: Oct 28 | Time: 3:00 PM IST | Platform: Zoom.',
         speakers: 'M.C. Mehta',
-        regLink: '#'
+        regLink: 'contact.html'
     },
     {
         id: 'on-7', type: 'online', title: 'International Humanitarian Law', date: 'November 10, 2026', location: 'Zoom / Virtual',
@@ -109,7 +109,7 @@ const eventsDatabase = [
         audience: 'Human rights lawyers and international law students.',
         details: 'Date: Nov 10 | Time: 5:00 PM IST | Platform: Zoom.',
         speakers: 'ICRC Legal Advisors',
-        regLink: '#'
+        regLink: 'contact.html'
     }
 ];
 

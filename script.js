@@ -1,95 +1,70 @@
-// === 1. THEME TOGGLE WITH MEMORY ===
-const themeToggle = document.getElementById('themeToggle');
-const themeIcon = document.getElementById('themeIcon');
-const body = document.body;
+document.addEventListener('DOMContentLoaded', () => {
+    const body = document.body;
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const menuToggle = document.getElementById('menuToggleBtn') || document.getElementById('menuToggle');
+    const dropdownMenu = document.getElementById('dropdownMenuContainer') || document.getElementById('dropdownMenu');
+    const cursor = document.getElementById('customCursor');
+    const navbar = document.querySelector('.navbar');
+    const feedbackMessage = document.getElementById('feedbackMessage');
+    const wordCountDisplay = document.getElementById('wordCountDisplay');
+    const submitBtn = document.getElementById('submitBtn');
 
-const currentTheme = localStorage.getItem('ylh_theme');
+    function setTheme(theme) {
+        const isLight = theme === 'light';
+        body.classList.toggle('light-mode', isLight);
+        body.classList.toggle('dark-mode', !isLight);
 
-if (currentTheme === 'light') {
-    body.classList.remove('dark-mode');
-    body.classList.add('light-mode');
-    themeIcon.classList.replace('fa-moon', 'fa-sun');
-} else {
-    body.classList.add('dark-mode');
-    body.classList.remove('light-mode');
-    themeIcon.classList.replace('fa-sun', 'fa-moon');
-}
+        if (themeIcon) {
+            themeIcon.classList.toggle('fa-moon', isLight);
+            themeIcon.classList.toggle('fa-sun', !isLight);
+        } else if (themeToggle) {
+            themeToggle.textContent = isLight ? '🌙' : '☀';
+        }
 
-themeToggle.addEventListener('click', () => {
-    if (body.classList.contains('light-mode')) {
-        body.classList.replace('light-mode', 'dark-mode');
-        themeIcon.classList.replace('fa-sun', 'fa-moon');
-        localStorage.setItem('ylh_theme', 'dark'); 
-    } else {
-        body.classList.replace('dark-mode', 'light-mode');
-        themeIcon.classList.replace('fa-moon', 'fa-sun');
-        localStorage.setItem('ylh_theme', 'light'); 
+        localStorage.setItem('ylh_theme', theme);
     }
-});
 
-// === 2. HAMBURGER MENU DROPDOWN ===
-const menuToggle = document.getElementById('menuToggle');
-const dropdownMenu = document.getElementById('dropdownMenu');
+    setTheme(localStorage.getItem('ylh_theme') || (body.classList.contains('light-mode') ? 'light' : 'dark'));
 
-menuToggle.addEventListener('click', (e) => {
-    e.stopPropagation();
-    dropdownMenu.classList.toggle('show');
-});
+    themeToggle?.addEventListener('click', () => {
+        setTheme(body.classList.contains('light-mode') ? 'dark' : 'light');
+    });
 
-document.addEventListener('click', (e) => {
-    if (!dropdownMenu.contains(e.target) && !menuToggle.contains(e.target)) {
-        dropdownMenu.classList.remove('show');
-    }
-});
+    menuToggle?.addEventListener('click', (event) => {
+        event.stopPropagation();
+        dropdownMenu?.classList.toggle('show');
+    });
 
-// === 3. HIGHLIGHT THE ACTIVE PAGE IN MENU ===
-const currentPath = window.location.pathname.split("/").pop();
-const navItems = document.querySelectorAll('.nav-item');
+    dropdownMenu?.addEventListener('click', (event) => event.stopPropagation());
 
-navItems.forEach(item => {
-    if (item.getAttribute('href') === currentPath || (currentPath === '' && item.getAttribute('href') === 'index.html')) {
-        item.classList.add('active-page');
-    }
-});
+    document.addEventListener('click', () => {
+        dropdownMenu?.classList.remove('show');
+    });
 
-// Load saved theme
-applyTheme(localStorage.getItem('ylh-theme') || 'dark');
+    document.querySelectorAll('.island-nav a, .nav-right a').forEach((item) => {
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        if (item.getAttribute('href') === currentPage) {
+            item.classList.add('active-page');
+        }
+    });
 
-// --- DROPDOWN MENU ---
-const menuToggle = document.getElementById('menuToggle');
-const dropdownMenu = document.getElementById('dropdownMenu');
+    document.addEventListener('mousemove', (event) => {
+        if (!cursor) return;
+        cursor.style.left = `${event.clientX}px`;
+        cursor.style.top = `${event.clientY}px`;
+    });
 
-menuToggle?.addEventListener('click', (e) => {
-    e.stopPropagation();
-    dropdownMenu?.classList.toggle('show');
-});
+    window.addEventListener('scroll', () => {
+        if (!navbar) return;
+        navbar.classList.toggle('is-scrolled', window.scrollY > 40);
+    });
 
-document.addEventListener('click', () => {
-    dropdownMenu?.classList.remove('show');
-});
-
-// --- CUSTOM CURSOR ---
-const cursor = document.getElementById('customCursor');
-document.addEventListener('mousemove', (e) => {
-    if (cursor) {
-        cursor.style.left = e.clientX + 'px';
-        cursor.style.top = e.clientY + 'px';
-    }
-});
-
-// --- DYNAMIC ISLAND SCROLL EFFECT ---
-const navbar = document.querySelector('.navbar');
-
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-        // When scrolled down: Shrink the island slightly
-        navbar.style.padding = '5px 25px';
-        navbar.style.width = '85%';
-        navbar.style.top = '15px';
-    } else {
-        // At the top of the page: Return to normal size
-        navbar.style.padding = '10px 30px';
-        navbar.style.width = '90%';
-        navbar.style.top = '25px';
+    if (feedbackMessage && wordCountDisplay && submitBtn) {
+        feedbackMessage.addEventListener('input', () => {
+            const wordCount = feedbackMessage.value.trim().split(/\s+/).filter(Boolean).length;
+            wordCountDisplay.textContent = `Words: ${wordCount} / 50 minimum`;
+            submitBtn.disabled = wordCount < 50;
+        });
     }
 });
