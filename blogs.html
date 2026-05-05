@@ -64,8 +64,11 @@
             <button class="filter-pill" data-filter="Others">Others</button>
         </div>
 
-        <div class="cards-grid" id="blogsGrid"></div>
+        <div class="cards-grid" id="blogsGrid">
+            <p style="text-align: center; width: 100%; grid-column: 1 / -1;">Loading latest insights...</p>
+        </div>
     </main>
+    
     <footer>
         <div class="footer-top">
             <div class="footer-left">
@@ -89,9 +92,49 @@
         </div>
     </footer>
 
-       <script src="database.js"></script>
-    <script src="blogs-data.js"></script>
-    
     <script src="script.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/contentful@latest/dist/contentful.browser.min.js"></script>
+    <script>
+        // 1. Enter your secret keys here
+        const client = contentful.createClient({
+            space: 'YOUR_SPACE_ID',       // Paste your Space ID here inside the quotes
+            accessToken: 'YOUR_ACCESS_TOKEN' // Paste your Access Token here inside the quotes
+        });
+
+        // 2. Fetch the articles from Contentful
+        client.getEntries({ content_type: 'article', order: '-sys.createdAt' }) 
+            .then((response) => {
+                const container = document.getElementById('blogsGrid');
+                container.innerHTML = ''; // Clear the "Loading..." text
+
+                // 3. Create a card for every article the team published
+                response.items.forEach(entry => {
+                    const title = entry.fields.title || 'Untitled';
+                    const author = entry.fields.author || 'YLH Team';
+                    const slug = entry.fields.slug || '#';
+                    
+                    // Format the date nicely
+                    let dateStr = 'Recently';
+                    if (entry.fields.date) {
+                        dateStr = new Date(entry.fields.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+                    }
+
+                    // This builds the HTML for the card automatically
+                    const cardHTML = `
+                        <div class="glass-card blog-item" style="text-align: left; background: var(--card-bg); padding: 30px; border-radius: 15px; border: 1px solid var(--card-border);">
+                            <span style="color: var(--grey-text); font-size: 0.85rem;">${dateStr} • By ${author}</span>
+                            <h3 class="section-title" style="font-size: 1.3rem; margin: 15px 0;">${title}</h3>
+                            <a href="article.html?id=${slug}" style="color: #6a0dad; text-decoration: none; font-weight: 600; font-size: 0.95rem;">Read Full Article &rarr;</a>
+                        </div>
+                    `;
+                    container.innerHTML += cardHTML;
+                });
+            })
+            .catch(err => {
+                console.error("Error fetching from Contentful:", err);
+                document.getElementById('blogsGrid').innerHTML = '<p style="text-align: center; width: 100%;">Failed to load articles. Please try again later.</p>';
+            });
+    </script>
 </body>
 </html>
