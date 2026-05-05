@@ -1,277 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Young Legal House | Home</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Website</title>
+    <style>
+        /* Basic Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
 
-    <link rel="stylesheet" href="style.css">
+        /* Navigation */
+        nav {
+            background-color: #2c3e50;
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 15px;
+        }
 
-<style>
+        /* Main Content */
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
 
-/* ===== FINAL HEADER SYSTEM (ALIGNED + STABLE) ===== /
+        .hero {
+            text-align: center;
+            padding: 2rem 0;
+        }
 
-body {
-    padding-top: 120px;
-}
+        .btn {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
 
-/ HEADER WRAPPER /
-.ylh-header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 9999;
-}
+        .btn:hover {
+            background: #2980b9;
+        }
 
-/ INNER FLEX SYSTEM /
-.ylh-header-inner {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 15px 30px;
-
-    display: flex;
-    align-items: center;        / KEY ALIGNMENT FIX /
-    justify-content: space-between;
-}
-
-/ LOGO (ZOOMED + ALIGNED) /
-.sticky-logo {
-    display: flex;
-    align-items: center;
-}
-
-.sticky-logo img {
-    height: 155px; / zoomed /
-    object-fit: contain;
-}
-
-body.light-mode .sticky-logo img {
-    filter: brightness(0);
-}
-
-/ CENTER ISLAND /
-.sticky-island {
-    flex: 1;
-    max-width: 850px;
-    margin: 0 40px;
-
-    height: 65px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding: 0 35px;
-
-    border-radius: 100px;
-    background: rgba(30,30,30,0.9);
-    backdrop-filter: blur(30px);
-    border: 1px solid rgba(255,255,255,0.1);
-}
-
-body.light-mode .sticky-island {
-    background: rgba(255,255,255,0.9);
-    border: 1px solid rgba(0,0,0,0.1);
-}
-
-/ TITLE /
-.island-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.4rem;
-    font-weight: 800;
-    letter-spacing: 2px;
-    color: white;
-    text-decoration: none;
-}
-
-body.light-mode .island-title {
-    color: black;
-}
-
-/ RIGHT NAV (YOUR REQUIREMENT) /
-.island-nav {
-    display: flex;
-    gap: 25px;
-    align-items: center;
-    margin-left: auto;
-}
-
-.island-nav a,
-.island-nav button {
-    color: white;
-    text-decoration: none;
-    font-weight: 600;
-    background: none;
-    border: none;
-    cursor: pointer;
-}
-
-body.light-mode .island-nav a,
-body.light-mode .island-nav button {
-    color: black;
-}
-
-/ DROPDOWN /
-.menu-wrapper {
-    position: relative;
-}
-
-.dropdown-menu {
-    position: absolute;
-    top: 50px;
-    right: 0;
-    display: none;
-    flex-direction: column;
-    background: rgba(20,20,20,0.95);
-    border-radius: 12px;
-    padding: 10px;
-    min-width: 160px;
-}
-
-.dropdown-menu.show {
-    display: flex;
-}
-
-.dropdown-menu a {
-    padding: 10px;
-    text-decoration: none;
-    color: white;
-}
-
-body.light-mode .dropdown-menu {
-    background: rgba(255,255,255,0.95);
-}
-
-body.light-mode .dropdown-menu a {
-    color: black;
-}
-
-/ THEME TOGGLE /
-.sticky-theme-toggle {
-    width: 60px;
-    height: 60px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 50%;
-    border: 1px solid rgba(255,255,255,0.2);
-    background: rgba(255,255,255,0.1);
-    backdrop-filter: blur(15px);
-    cursor: pointer;
-}
-
-body.light-mode .sticky-theme-toggle {
-    background: rgba(0,0,0,0.05);
-    color: black;
-}
-
-/ MOBILE */
-@media (max-width: 768px) {
-
-    body { padding-top: 140px; }
-
-    .sticky-logo img { height: 100px; }
-
-    .sticky-island {
-        margin: 0 10px;
-        height: 55px;
-        padding: 0 20px;
-    }
-
-    .island-title { font-size: 1.1rem; }
-
-    .sticky-theme-toggle {
-        width: 45px;
-        height: 45px;
-    }
-}
-
-</style>
+        /* Footer */
+        footer {
+            background: #f4f4f4;
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.9rem;
+        }
+    </style>
 </head>
+<body>
 
-<body class="dark-mode">
-
-<!-- HEADER -->
-<div class="ylh-header">
-  <div class="ylh-header-inner">
-
-    <a href="index.html" class="sticky-logo">
-      <img src="logoylh.png">
-    </a>
-
-    <div class="sticky-island">
-      <a class="island-title">YOUNG LEGAL HOUSE</a>
-
-      <nav class="island-nav">
-        <a href="blogs.html">Blogs</a>
-        <a href="events.html">Events</a>
-
-        <div class="menu-wrapper">
-          <button id="menuToggleBtn">☰</button>
-          <div class="dropdown-menu" id="dropdownMenuContainer">
-            <a href="about.html">About</a>
-            <a href="team.html">Team</a>
-            <a href="join.html">Join Us</a>
-            <a href="contact.html">Contact</a>
-          </div>
+    <nav>
+        <div class="logo"><strong>BrandName</strong></div>
+        <div class="links">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
         </div>
-      </nav>
-    </div>
+    </nav>
 
-    <button class="sticky-theme-toggle" id="themeToggle">🌙</button>
+    <main>
+        <section class="hero">
+            <h1>Welcome to My Project</h1>
+            <p>This is a clean, responsive template ready for your content. It uses internal CSS to keep everything in one file for easy setup.</p>
+            <a href="#" class="btn">Get Started</a>
+        </section>
 
-  </div>
-</div>
+        <hr>
 
-<script>
-document.addEventListener('DOMContentLoaded', () => {
+        <section>
+            <h2>Next Steps</h2>
+            <ul>
+                <li>Update the <strong>BrandName</strong> in the navigation.</li>
+                <li>Add your own content inside the <code>&lt;main&gt;</code> tags.</li>
+                <li>Change the primary color in the <code>&lt;style&gt;</code> section.</li>
+            </ul>
+        </section>
+    </main>
 
-    const menuBtn = document.getElementById('menuToggleBtn');
-    const dropMenu = document.getElementById('dropdownMenuContainer');
-
-    menuBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        dropMenu.classList.toggle('show');
-    });
-
-    document.addEventListener('click', (e) => {
-        if (!dropMenu.contains(e.target) && !menuBtn.contains(e.target)) {
-            dropMenu.classList.remove('show');
-        }
-    });
-
-    const themeToggle = document.getElementById('themeToggle');
-    const themeIcon = document.getElementById('themeIcon');
-    const body = document.body;
-
-    const currentTheme = localStorage.getItem('ylh_theme');
-
-    if (currentTheme === 'light') {
-        body.classList.add('light-mode');
-        themeIcon.classList.replace('fa-moon', 'fa-sun');
-    }
-
-    themeToggle.addEventListener('click', () => {
-        if (body.classList.contains('light-mode')) {
-            body.classList.remove('light-mode');
-            themeIcon.classList.replace('fa-sun', 'fa-moon');
-            localStorage.setItem('ylh_theme', 'dark');
-        } else {
-            body.classList.add('light-mode');
-            themeIcon.classList.replace('fa-moon', 'fa-sun');
-            localStorage.setItem('ylh_theme', 'light');
-        }
-    });
-
-});
-</script>
-
-<!-- KEEP YOUR EXISTING MAIN + FOOTER BELOW -->
+    <footer>
+        <p>&copy; 2026 Your Name. All rights reserved.</p>
+    </footer>
 
 </body>
 </html>
