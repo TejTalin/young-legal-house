@@ -233,7 +233,7 @@ body.light-mode .nav-container {
 
 .dropdown-menu {
   position: absolute;
-  top: calc(100% + 14px);
+  top: 100%;
   right: 0;
   z-index: 20;
   min-width: 180px;
@@ -259,6 +259,7 @@ body.light-mode .dropdown-menu {
 }
 
 .dropdown-menu a {
+  display: block;
   padding: 10px 12px;
   border-radius: 10px;
   color: var(--text-color);
@@ -664,8 +665,8 @@ footer {
     display: flex !important;
   }
 
-  .island-nav a,
-  .nav-right a {
+  .island-nav > a,
+  .nav-right > a {
     display: none;
   }
 
