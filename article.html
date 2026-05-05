@@ -129,7 +129,7 @@
                 // Convert Contentful's Rich Text into standard HTML using the special renderer script
                 let bodyHTML = '';
                 if (article.articleBody) {
-                    bodyHTML = window.contentfulRichText.documentToHtmlString(article.articleBody);
+                    bodyHTML = window.richText.documentToHtmlString(article.articleBody);
                 }
 
                 // 4. Inject everything into the empty shell
