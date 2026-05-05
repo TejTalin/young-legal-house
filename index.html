@@ -5,130 +5,126 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Young Legal House | Home</title>
     
-    <link rel="stylesheet" href="style.css?v=36">
+    <link rel="stylesheet" href="style.css?v=37">
     
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         /* =========================================================
-           THE STICKY OVERRIDE: BYPASSES ALL SCROLL BUGS
+           ROOT VARIABLES & CORE FIXES (Bypasses Cloudflare)
            ========================================================= */
-        html, body { overflow-x: clip !important; overflow-y: visible !important; }
+        :root {
+            --bg-color: #e8e6e1; /* Your light mode background */
+            --text-color: #111111;
+            --grey-text: #555555;
+            --card-bg: rgba(0, 0, 0, 0.04);
+            --card-border: rgba(0, 0, 0, 0.08);
+        }
+        body.dark-mode {
+            --bg-color: #181818; 
+            --text-color: #ffffff;
+            --grey-text: #aaaaaa;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --card-border: rgba(255, 255, 255, 0.1);
+        }
         
-        /* Pulls the main text up slightly to match the new header position */
-        body { padding-top: 120px !important; } 
+        body { 
+            background-color: var(--bg-color) !important; 
+            color: var(--text-color) !important; 
+            font-family: 'Plus Jakarta Sans', sans-serif !important;
+            padding-top: 120px !important; 
+            overflow-x: clip !important; 
+            overflow-y: visible !important; 
+        }
 
+        .section-title { 
+            font-family: 'Cormorant Garamond', serif !important; 
+            font-weight: 700;
+        }
+
+        /* =========================================================
+           3-COLUMN GRID & CARD STYLES
+           ========================================================= */
+        .cards-grid {
+            display: grid !important;
+            grid-template-columns: repeat(3, 1fr) !important;
+            gap: 30px !important;
+            max-width: 1100px !important;
+            margin: 0 auto 60px !important;
+            padding: 0 20px !important;
+        }
+
+        .glass-card {
+            background: var(--card-bg) !important;
+            border: 1px solid var(--card-border) !important;
+            border-radius: 20px !important;
+            padding: 40px 20px !important;
+            text-align: center !important;
+            transition: transform 0.3s ease !important;
+        }
+        .glass-card:hover { transform: translateY(-5px) !important; }
+
+        .glass-pill {
+            text-decoration: none !important;
+            border-radius: 50px !important;
+            border: 1px solid var(--card-border) !important;
+            display: inline-block !important;
+            transition: all 0.3s !important;
+        }
+
+        /* Mobile Layout */
+        @media (max-width: 768px) {
+            .cards-grid { grid-template-columns: 1fr !important; }
+        }
+
+        /* =========================================================
+           THE STICKY HEADER
+           ========================================================= */
         .ultimate-sticky-wrapper {
             position: sticky !important;
-            top: 15px !important; /* Pulled up closer to the top edge */
+            top: 15px !important; 
             width: 100%;
             height: 60px !important;
             z-index: 99999 !important;
-            pointer-events: none; /* Lets clicks pass through the empty space */
+            pointer-events: none; 
         }
 
-        /* === 1. LOGO (Left) === */
         .sticky-logo {
-            position: absolute;
-            left: 30px;
-            top: 0;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            pointer-events: auto; /* Makes it clickable */
+            position: absolute; left: 30px; top: 0; height: 60px; display: flex; align-items: center; pointer-events: auto; 
         }
         .sticky-logo img { height: 140px; width: auto; }
         body.light-mode .sticky-logo img { filter: brightness(0); }
 
-        /* === 2. THEME TOGGLE (Right) === */
         .sticky-theme-toggle {
-            position: absolute;
-            right: 40px;
-            top: 0;
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.2);
-            color: white;
-            width: 60px; 
-            height: 60px;
-            border-radius: 50%;
-            display: flex; justify-content: center; align-items: center;
-            cursor: pointer;
-            backdrop-filter: blur(10px);
-            font-size: 1.2rem;
-            pointer-events: auto;
+            position: absolute; right: 40px; top: 0;
+            background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white;
+            width: 60px; height: 60px; border-radius: 50%;
+            display: flex; justify-content: center; align-items: center; cursor: pointer; backdrop-filter: blur(10px); font-size: 1.2rem; pointer-events: auto;
         }
         body.light-mode .sticky-theme-toggle { background: rgba(0,0,0,0.05); color: black; border-color: rgba(0,0,0,0.2); }
 
-        /* === 3. DYNAMIC ISLAND (Center) === */
         .sticky-island {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            top: 0;
-            width: 850px; 
-            max-width: 90vw;
-            height: 60px; 
-            padding: 0 40px;
-            background: rgba(35, 35, 35, 0.85); 
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 100px;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            pointer-events: auto;
+            position: absolute; left: 50%; transform: translateX(-50%); top: 0;
+            width: 850px; max-width: 90vw; height: 60px; padding: 0 40px;
+            background: rgba(35, 35, 35, 0.85); backdrop-filter: blur(30px); border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 100px; box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+            display: flex; justify-content: space-between; align-items: center; pointer-events: auto;
         }
         body.light-mode .sticky-island { background: rgba(245, 245, 245, 0.85); border-color: rgba(0,0,0,0.1); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
 
         .island-spacer { flex: 1; }
-
-        .island-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: white;
-            text-decoration: none;
-            letter-spacing: 2px;
-            white-space: nowrap;
-            flex: 0 0 auto;
-        }
+        .island-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 800; color: white; text-decoration: none; letter-spacing: 2px; white-space: nowrap; flex: 0 0 auto; }
         body.light-mode .island-title { color: black; }
 
-        .island-nav {
-            display: flex;
-            gap: 25px;
-            align-items: center;
-            justify-content: flex-end;
-            flex: 1; 
-        }
-        .island-nav a, .island-nav button {
-            color: white;
-            text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 600;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background: none;
-            border: none;
-            cursor: pointer;
-        }
+        .island-nav { display: flex; gap: 25px; align-items: center; justify-content: flex-end; flex: 1; }
+        .island-nav a, .island-nav button { color: white; text-decoration: none; font-size: 0.95rem; font-weight: 600; font-family: 'Plus Jakarta Sans', sans-serif; background: none; border: none; cursor: pointer; }
         body.light-mode .island-nav a, body.light-mode .island-nav button { color: black; }
 
         .menu-wrapper { position: relative; display: flex; align-items: center; }
         .dropdown-menu {
-            position: absolute;
-            top: 45px;
-            right: 0;
-            background: rgba(25, 25, 25, 0.98);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 10px;
-            display: none; 
-            flex-direction: column;
-            min-width: 160px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            position: absolute; top: 45px; right: 0; background: rgba(25, 25, 25, 0.98); border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px; padding: 10px; display: none; flex-direction: column; min-width: 160px; box-shadow: 0 10px 20px rgba(0,0,0,0.5);
         }
         .dropdown-menu.show { display: flex; }
         .dropdown-menu a { padding: 10px 15px; font-size: 0.9rem; }
@@ -136,26 +132,18 @@
         
         body.light-mode .dropdown-menu { background: rgba(250, 250, 250, 0.98); border-color: rgba(0,0,0,0.1); }
         body.light-mode .dropdown-menu a:hover { background: rgba(0,0,0,0.05); }
-
-        @media (max-width: 1024px) {
-            .ultimate-sticky-wrapper { top: 15px !important; height: auto !important; position: fixed !important; }
-            .sticky-logo { position: fixed; top: 15px; left: 15px; }
-            .sticky-logo img { height: 90px; }
-            .sticky-theme-toggle { position: fixed; top: 15px; right: 15px; width: 45px; height: 45px; }
-            .sticky-island { position: fixed; top: 100px; width: 95%; padding: 0 20px; }
-            .island-title { font-size: 1.1rem; }
-            .island-nav { gap: 15px; }
-        }
+        
+        /* Footer Fixes */
+        footer { text-align: center; padding: 40px 20px; border-top: 1px solid var(--card-border); margin-top: 50px; }
+        .footer-logo { height: 80px; margin-bottom: 20px; }
+        .footer-links a { color: var(--grey-text); margin: 0 10px; text-decoration: none; font-size: 0.9rem; }
+        .footer-socials { margin: 20px 0; }
+        .soc-icon { font-size: 1.5rem; margin: 0 10px; text-decoration: none; }
+        body.light-mode .footer-logo { filter: brightness(0); }
     </style>
 </head>
-<body class="dark-mode">
-
-    <div class="ultimate-sticky-wrapper">
-        
-        <a href="index.html" class="sticky-logo">
-            <img src="logoylh.png" alt="Young Legal House Logo">
-        </a>
-
+<body class="light-mode"> <div class="ultimate-sticky-wrapper">
+        <a href="index.html" class="sticky-logo"><img src="logoylh.png" alt="Young Legal House Logo"></a>
         <header class="sticky-island">
             <div class="island-spacer"></div>
             <a href="index.html" class="island-title">YOUNG LEGAL HOUSE</a>
@@ -173,11 +161,7 @@
                 </div>
             </nav>
         </header>
-
-        <button class="sticky-theme-toggle" id="themeToggle">
-            <i class="fas fa-moon" id="themeIcon"></i>
-        </button>
-
+        <button class="sticky-theme-toggle" id="themeToggle"><i class="fas fa-moon" id="themeIcon"></i></button>
     </div>
 
     <script>
@@ -185,40 +169,32 @@
             const menuBtn = document.getElementById('menuToggleBtn');
             const dropMenu = document.getElementById('dropdownMenuContainer');
             
-            menuBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                dropMenu.classList.toggle('show');
-            });
-            
-            document.addEventListener('click', (e) => {
-                if (!dropMenu.contains(e.target) && !menuBtn.contains(e.target)) {
-                    dropMenu.classList.remove('show');
-                }
-            });
+            menuBtn.addEventListener('click', (e) => { e.stopPropagation(); dropMenu.classList.toggle('show'); });
+            document.addEventListener('click', (e) => { if (!dropMenu.contains(e.target) && !menuBtn.contains(e.target)) { dropMenu.classList.remove('show'); } });
 
             const themeToggle = document.getElementById('themeToggle');
             const themeIcon = document.getElementById('themeIcon');
             const body = document.body;
 
             const currentTheme = localStorage.getItem('ylh_theme');
-            if (currentTheme === 'light') {
-                body.classList.remove('dark-mode');
-                body.classList.add('light-mode');
+            if (currentTheme === 'dark') {
+                body.classList.remove('light-mode');
+                body.classList.add('dark-mode');
                 themeIcon.classList.replace('fa-moon', 'fa-sun');
             } else {
-                body.classList.add('dark-mode');
-                body.classList.remove('light-mode');
+                body.classList.add('light-mode');
+                body.classList.remove('dark-mode');
                 themeIcon.classList.replace('fa-sun', 'fa-moon');
             }
 
             themeToggle.addEventListener('click', () => {
                 if (body.classList.contains('light-mode')) {
                     body.classList.replace('light-mode', 'dark-mode');
-                    themeIcon.classList.replace('fa-sun', 'fa-moon');
+                    themeIcon.classList.replace('fa-moon', 'fa-sun');
                     localStorage.setItem('ylh_theme', 'dark');
                 } else {
                     body.classList.replace('dark-mode', 'light-mode');
-                    themeIcon.classList.replace('fa-moon', 'fa-sun');
+                    themeIcon.classList.replace('fa-sun', 'fa-moon');
                     localStorage.setItem('ylh_theme', 'light');
                 }
             });
@@ -231,28 +207,28 @@
             <p style="color: var(--grey-text); font-size: 1.2rem; line-height: 1.8;">
                 Bridging the gap between legal theory and execution. We provide a premium ecosystem for law students and young professionals to network, learn, and accelerate their careers.
             </p>
-            <div style="margin-top: 30px; display: flex; justify-content: center; gap: 15px;">
+            <div style="margin-top: 30px; display: flex; justify-content: center; align-items: center; gap: 20px;">
                 <a href="join.html" class="glass-pill" style="background: var(--text-color); color: var(--bg-color); font-weight: bold; padding: 12px 30px; font-size: 1.1rem;">Join the Community</a>
-                <a href="blogs.html" class="glass-pill" style="padding: 12px 30px; font-size: 1.1rem;">Read Latest Insights</a>
+                <a href="blogs.html" style="color: #6a0dad; text-decoration: underline; font-weight: 500; font-size: 1.1rem;">Read Latest Insights</a>
             </div>
         </div>
 
         <div class="cards-grid">
-            <div class="glass-card" style="text-align: center; padding: 40px 20px;">
+            <div class="glass-card">
                 <i class="fas fa-gavel" style="font-size: 3rem; color: var(--text-color); margin-bottom: 20px;"></i>
-                <h3>Curated Legal Insights</h3>
+                <h3 class="section-title" style="font-size: 1.5rem; margin-bottom: 10px;">Curated Legal Insights</h3>
                 <p style="color: var(--grey-text); margin-top: 10px;">Access deep-dive articles across Corporate, Tax, TMT, Litigation, and more, written by industry peers.</p>
             </div>
             
-            <div class="glass-card" style="text-align: center; padding: 40px 20px;">
+            <div class="glass-card">
                 <i class="fas fa-calendar-alt" style="font-size: 3rem; color: var(--text-color); margin-bottom: 20px;"></i>
-                <h3>Exclusive Events</h3>
+                <h3 class="section-title" style="font-size: 1.5rem; margin-bottom: 10px;">Exclusive Events</h3>
                 <p style="color: var(--grey-text); margin-top: 10px;">Stay updated on national moot courts, workshops, and high-stakes online webinars.</p>
             </div>
 
-            <div class="glass-card" style="text-align: center; padding: 40px 20px;">
+            <div class="glass-card">
                 <i class="fas fa-users" style="font-size: 3rem; color: var(--text-color); margin-bottom: 20px;"></i>
-                <h3>Expert Community</h3>
+                <h3 class="section-title" style="font-size: 1.5rem; margin-bottom: 10px;">Expert Community</h3>
                 <p style="color: var(--grey-text); margin-top: 10px;">Connect with our founders and team of researchers to build your professional network.</p>
             </div>
         </div>
@@ -261,7 +237,6 @@
     <footer>
         <div class="footer-top">
             <img src="logoylh.png" alt="YLH Logo" class="footer-logo">
-            
             <div class="footer-links">
                 <a href="privacy.html">Privacy Policy</a>
                 <a href="terms.html">Terms of Service</a>
@@ -276,8 +251,8 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <span class="newsletter">Newsletter: Coming soon, stay tuned over here.</span>
-            <p class="copyright">&copy; 2026 Young Legal House</p>
+            <span class="newsletter" style="color: var(--grey-text);">Newsletter: Coming soon, stay tuned over here.</span>
+            <p class="copyright" style="color: var(--grey-text); margin-top: 10px;">&copy; 2026 Young Legal House</p>
         </div>
     </footer>
 
