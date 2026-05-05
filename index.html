@@ -5,243 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Young Legal House | Home</title>
     
-    <link rel="stylesheet" href="style.css?v=40">
+    <link rel="stylesheet" href="style.css">
     
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <style>
-        /* =========================================================
-           ROOT VARIABLES & CORE FIXES
-           ========================================================= */
-        :root {
-            --bg-color: #e0ddd8; 
-            --text-color: #000000;
-            --grey-text: #333333;
-            --card-bg: rgba(0, 0, 0, 0.04);
-            --card-border: rgba(0, 0, 0, 0.08);
-        }
-        body.dark-mode {
-            --bg-color: #454545; 
-            --text-color: #ffffff;
-            --grey-text: #e6e6e6;
-            --card-bg: rgba(255, 255, 255, 0.05);
-            --card-border: rgba(255, 255, 255, 0.1);
-        }
-        
-        body { 
-            background-color: var(--bg-color) !important; 
-            color: var(--text-color) !important; 
-            font-family: 'Plus Jakarta Sans', sans-serif !important;
-            padding-top: 100px !important; 
-            overflow-x: clip !important; 
-            overflow-y: visible !important; 
-            margin: 0;
-        }
-
-        .section-title { 
-            font-family: 'Cormorant Garamond', serif !important; 
-            font-weight: 700;
-        }
-
-        /* =========================================================
-           3-COLUMN GRID & CARD STYLES
-           ========================================================= */
-        .cards-grid {
-            display: grid !important;
-            grid-template-columns: repeat(3, 1fr) !important;
-            gap: 30px !important;
-            max-width: 1100px !important;
-            margin: 0 auto 60px !important;
-            padding: 0 20px !important;
-        }
-
-        .glass-card {
-            background: var(--card-bg) !important;
-            border: 1px solid var(--card-border) !important;
-            border-radius: 20px !important;
-            padding: 40px 20px !important;
-            text-align: center !important;
-            transition: transform 0.3s ease !important;
-        }
-        .glass-card:hover { transform: translateY(-5px) !important; }
-
-        .glass-pill {
-            text-decoration: none !important;
-            border-radius: 50px !important;
-            border: 1px solid var(--card-border) !important;
-            display: inline-block !important;
-            transition: all 0.3s !important;
-        }
-
-        /* Mobile Layout */
-        @media (max-width: 768px) {
-            .cards-grid { grid-template-columns: 1fr !important; }
-        }
-
-        /* =========================================================
-           THE STICKY HEADER (Symmetrical Spacing)
-           ========================================================= */
-        .ultimate-sticky-wrapper {
-            position: absolute !important;
-            top: 20px !important; 
-            left: 0 !important;
-            width: 100%;
-            height: 60px !important;
-            z-index: 99999 !important;
-            pointer-events: none; 
-        }
-
-        .sticky-logo {
-            position: absolute; left: 30px; top: 0; height: 60px; display: flex; align-items: center; pointer-events: auto; 
-        }
-        .sticky-logo img { height: 140px; width: auto; }
-        body.light-mode .sticky-logo img { filter: brightness(0); }
-
-        .sticky-theme-toggle {
-            position: absolute; right: 40px; top: 0;
-            background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white;
-            width: 60px; height: 60px; border-radius: 50%;
-            display: flex; justify-content: center; align-items: center; cursor: pointer; backdrop-filter: blur(10px); font-size: 1.2rem; pointer-events: auto;
-        }
-        body.light-mode .sticky-theme-toggle { background: rgba(0,0,0,0.05); color: black; border-color: rgba(0,0,0,0.2); }
-
-        .sticky-island {
-            position: absolute; left: 50%; transform: translateX(-50%); top: 0;
-            width: 850px; max-width: 90vw; height: 60px; padding: 0 40px;
-            background: rgba(35, 35, 35, 0.85); backdrop-filter: blur(30px); border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 100px; box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-            display: flex; justify-content: space-between; align-items: center; pointer-events: auto;
-        }
-        body.light-mode .sticky-island { background: rgba(245, 245, 245, 0.85); border-color: rgba(0,0,0,0.1); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
-
-        .island-spacer { flex: 1; }
-        .island-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 800; color: white; text-decoration: none; letter-spacing: 2px; white-space: nowrap; flex: 0 0 auto; }
-        body.light-mode .island-title { color: black; }
-
-        .island-nav { display: flex; gap: 25px; align-items: center; justify-content: flex-end; flex: 1; }
-        .island-nav a, .island-nav button { color: white; text-decoration: none; font-size: 0.95rem; font-weight: 600; font-family: 'Plus Jakarta Sans', sans-serif; background: none; border: none; cursor: pointer; }
-        .island-nav button { font-size: 1.25rem; font-weight: 900; line-height: 1; }
-        body.light-mode .island-nav a, body.light-mode .island-nav button { color: black; }
-
-        .menu-wrapper { position: relative; display: flex; align-items: center; }
-        .dropdown-menu {
-            position: absolute; top: 45px; right: 0; background: rgba(25, 25, 25, 0.98); border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px; padding: 10px; display: none; flex-direction: column; min-width: 160px; box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-        }
-        .dropdown-menu.show { display: flex; }
-        .menu-wrapper:hover .dropdown-menu { display: flex; }
-        .dropdown-menu a { padding: 10px 15px; font-size: 0.9rem; }
-        .dropdown-menu a:hover { background: rgba(255,255,255,0.1); }
-        
-        body.light-mode .dropdown-menu { background: rgba(250, 250, 250, 0.98); border-color: rgba(0,0,0,0.1); }
-        body.light-mode .dropdown-menu a:hover { background: rgba(0,0,0,0.05); }
-        
-        /* =========================================================
-           FOOTER FIXES (Sleek & Compact)
-           ========================================================= */
-        footer { 
-            width: min(1320px, calc(100% - 80px));
-            margin: 40px auto 0; 
-            padding: 44px 0 !important; 
-            border-top: 1px solid var(--card-border); 
-        }
-        .footer-top {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            align-items: center;
-            gap: 30px;
-        }
-        .footer-left { justify-self: start; text-align: left; }
-        .footer-center { justify-self: center; text-align: center; }
-        .footer-right { justify-self: end; }
-        .footer-logo { 
-            width: 92px !important;
-            height: 92px !important; 
-            object-fit: contain;
-            margin-bottom: 14px !important; 
-        }
-        .footer-links { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
-        .footer-links a { 
-            color: var(--grey-text); 
-            margin: 0; 
-            text-decoration: none; 
-            font-size: 0.85rem; 
-        }
-        .footer-socials { 
-            display: flex;
-            justify-content: flex-end;
-            gap: 16px;
-            margin: 0 !important; 
-        }
-        .soc-icon { 
-            font-size: 1.3rem; 
-            margin: 0; 
-            text-decoration: none; 
-        }
-        body.light-mode .footer-logo { filter: brightness(0); }
-    </style>
 </head>
 <body class="light-mode">
+    <header class="navbar" id="mainNav">
+        <div class="ylh-header">
+  <div class="ylh-header-inner">
 
-    <div class="ultimate-sticky-wrapper">
-        <a href="index.html" class="sticky-logo"><img src="logoylh.png" alt="Young Legal House Logo"></a>
-        <header class="sticky-island">
-            <div class="island-spacer"></div>
-            <a href="index.html" class="island-title">YOUNG LEGAL HOUSE</a>
-            <nav class="island-nav">
-                <a href="blogs.html">Blogs</a>
-                <a href="events.html">Events</a>
-                <div class="menu-wrapper">
-                    <button id="menuToggleBtn"><i class="fas fa-bars"></i></button>
-                    <div class="dropdown-menu" id="dropdownMenuContainer">
-                        <a href="about.html">About</a>
-                        <a href="team.html">Team</a>
-                        <a href="join.html">Join Us</a>
-                        <a href="contact.html">Contact Us</a>
-                    </div>
-                </div>
-            </nav>
-        </header>
-        <button class="sticky-theme-toggle" id="themeToggle"><i class="fas fa-moon" id="themeIcon"></i></button>
+    <a href="index.html" class="sticky-logo">
+      <img src="logoylh.png" alt="Young Legal House Logo">
+    </a>
+
+    <div class="sticky-island">
+      <a href="index.html" class="island-title">YOUNG LEGAL HOUSE</a>
+
+      <nav class="island-nav">
+        <a href="blogs.html">Blogs</a>
+        <a href="events.html">Events</a>
+
+        <div class="menu-wrapper">
+          <button id="menuToggleBtn"><i class="fas fa-bars"></i></button>
+          <div class="dropdown-menu" id="dropdownMenuContainer">
+            <a href="about.html">About</a>
+            <a href="team.html">Team</a>
+            <a href="join.html">Join Us</a>
+            <a href="contact.html">Contact</a>
+          </div>
+        </div>
+      </nav>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const menuBtn = document.getElementById('menuToggleBtn');
-            const dropMenu = document.getElementById('dropdownMenuContainer');
-            
-            menuBtn.addEventListener('click', (e) => { e.stopPropagation(); dropMenu.classList.toggle('show'); });
-            document.addEventListener('click', (e) => { if (!dropMenu.contains(e.target) && !menuBtn.contains(e.target)) { dropMenu.classList.remove('show'); } });
+    <button class="sticky-theme-toggle" id="themeToggle"><i class="fas fa-moon" id="themeIcon"></i></button>
 
-            const themeToggle = document.getElementById('themeToggle');
-            const themeIcon = document.getElementById('themeIcon');
-            const body = document.body;
-
-            const currentTheme = localStorage.getItem('ylh_theme');
-            if (currentTheme === 'dark') {
-                body.classList.remove('light-mode');
-                body.classList.add('dark-mode');
-                themeIcon.classList.replace('fa-moon', 'fa-sun');
-            } else {
-                body.classList.add('light-mode');
-                body.classList.remove('dark-mode');
-                themeIcon.classList.replace('fa-sun', 'fa-moon');
-            }
-
-            themeToggle.addEventListener('click', () => {
-                if (body.classList.contains('light-mode')) {
-                    body.classList.replace('light-mode', 'dark-mode');
-                    themeIcon.classList.replace('fa-moon', 'fa-sun');
-                    localStorage.setItem('ylh_theme', 'dark');
-                } else {
-                    body.classList.replace('dark-mode', 'light-mode');
-                    themeIcon.classList.replace('fa-sun', 'fa-moon');
-                    localStorage.setItem('ylh_theme', 'light');
-                }
-            });
-        });
-    </script>
+  </div>
+</div>
+    </header>
 
     <main class="page-spacing container">
         <div style="text-align: center; max-width: 900px; margin: 0 auto 60px;">
@@ -298,5 +99,6 @@
         </div>
     </footer>
 
+    <script src="script.js"></script>
 </body>
 </html>
