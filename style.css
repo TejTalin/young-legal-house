@@ -16,11 +16,16 @@ body.light-mode {
 
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
 
+html {
+    overflow-x: clip; /* clip on HTML, never on body */
+}
+
 body { 
     background-color: var(--bg-color); 
     color: var(--text-color); 
     transition: background-color 0.5s ease, color 0.5s ease; 
-    padding-top: 150px !important; /* This forces the content down below the glass header */
+    overflow-x: visible; /* body must never clip or hide overflow */
+    padding-top: 160px;
 }
 
 h1, h2, h3, h4, h5, h6 {
