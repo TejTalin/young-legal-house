@@ -172,3 +172,65 @@ footer {
   gap:20px;
   font-size:1.5rem;
 }
+/* ===== FINAL HEADER FIX ===== */
+
+body {
+  padding-top: 120px;
+}
+
+/* HEADER */
+.ylh-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 9999;
+}
+
+.ylh-header-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 15px 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* LOGO */
+.sticky-logo img {
+  height: 150px;
+}
+
+/* ISLAND */
+.sticky-island {
+  flex: 1;
+  max-width: 850px;
+  margin: 0 40px;
+
+  height: 65px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 35px;
+  border-radius: 100px;
+}
+
+/* RIGHT NAV */
+.island-nav {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+  margin-left: auto;
+}
+
+/* TOGGLE */
+.sticky-theme-toggle {
+  width: 60px;
+  height: 60px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
