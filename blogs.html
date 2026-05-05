@@ -102,8 +102,8 @@
             accessToken: 'zvthVCQasvhPp2rhH1drQTA6eE6M9q6jkxtYEMMnXmQ'
         });
 
-        // 2. Fetch the articles from Contentful
-        client.getEntries({ content_type: 'article', order: '-sys.createdAt' }) 
+   // 2. Fetch the articles from Contentful (Updated ID)
+        client.getEntries({ content_type: 'blogPost', order: '-sys.createdAt' }) 
             .then((response) => {
                 const container = document.getElementById('blogsGrid');
                 container.innerHTML = ''; // Clear the "Loading..." text
@@ -114,10 +114,10 @@
                     const author = entry.fields.author || 'YLH Team';
                     const slug = entry.fields.slug || '#';
                     
-                    // Format the date nicely
+                    // Format the date nicely (Updated to match your "Publish Date" field)
                     let dateStr = 'Recently';
-                    if (entry.fields.date) {
-                        dateStr = new Date(entry.fields.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+                    if (entry.fields.publishDate) {
+                        dateStr = new Date(entry.fields.publishDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
                     }
 
                     // This builds the HTML for the card automatically
