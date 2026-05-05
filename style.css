@@ -51,8 +51,7 @@ img {
   display: block;
 }
 
-.custom-cursor,
-.fixed-logo {
+.custom-cursor {
   display: none;
 }
 
@@ -101,7 +100,7 @@ img {
 
 .navbar,
 .ylh-header {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -143,6 +142,7 @@ body.light-mode .footer-logo {
 
 .sticky-island,
 .nav-container {
+  position: relative;
   min-height: 64px;
   padding: 0 30px;
   border: 1px solid var(--glass-border);
@@ -162,7 +162,7 @@ body.light-mode .nav-container {
 }
 
 .sticky-island {
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .island-title,
@@ -180,7 +180,8 @@ body.light-mode .nav-container {
 
 .island-nav,
 .nav-right {
-  margin-left: auto;
+  position: absolute;
+  right: 30px;
   display: flex;
   align-items: center;
   gap: 18px;
@@ -633,7 +634,7 @@ footer {
 
   .sticky-island {
     min-height: 58px;
-    padding: 0 16px;
+    padding: 0 48px 0 16px;
     gap: 12px;
   }
 
@@ -644,6 +645,7 @@ footer {
 
   .island-nav,
   .nav-right {
+    right: 16px;
     gap: 10px;
   }
 
@@ -657,6 +659,10 @@ footer {
     height: 50px;
   }
 
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+
   .join-grid {
     grid-template-columns: 1fr;
   }
@@ -664,38 +670,6 @@ footer {
   .contact-info-card,
   .subscription-card {
     position: static;
-  }
-}
-
-@media (max-width: 560px) {
-  .container,
-  footer {
-    width: min(100% - 28px, 1120px);
-  }
-
-  .ylh-header-inner,
-  .nav-container {
-    grid-template-columns: 56px 1fr 46px;
-  }
-
-  .sticky-logo img,
-  .nav-logo {
-    width: 56px;
-    height: 56px;
-  }
-
-  .sticky-island {
-    padding: 0 12px;
-  }
-
-  .island-title,
-  .nav-center {
-    font-size: 0.82rem;
-  }
-
-  .glass-card,
-  .modal-content {
-    padding: 22px;
   }
 
   .footer-top {
@@ -714,4 +688,91 @@ footer {
     align-items: center;
     justify-content: center;
   }
+
+  .footer-logo {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 560px) {
+  body {
+    padding-top: 88px;
+  }
+
+  .container,
+  footer {
+    width: min(100% - 28px, 1120px);
+  }
+
+  .ylh-header-inner,
+  .nav-container {
+    grid-template-columns: 48px minmax(0, 1fr) 44px;
+    min-height: 82px;
+    gap: 8px;
+  }
+
+  .sticky-logo img,
+  .nav-logo {
+    width: 48px;
+    height: 48px;
+  }
+
+  .sticky-island {
+    min-height: 48px;
+    padding: 0 42px 0 10px;
+  }
+
+  .island-title,
+  .nav-center {
+    max-width: 100%;
+    overflow: hidden;
+    font-size: 0.78rem;
+    text-overflow: ellipsis;
+  }
+
+  .island-nav,
+  .nav-right {
+    right: 10px;
+  }
+
+  .island-nav button,
+  .nav-right button {
+    font-size: 1.15rem;
+  }
+
+  .sticky-theme-toggle {
+    width: 44px;
+    height: 44px;
+    font-size: 1rem;
+  }
+
+  .page-spacing {
+    padding-top: 8px;
+  }
+
+  .page-spacing > div:first-child {
+    margin-bottom: 34px !important;
+  }
+
+  .page-spacing > div:first-child .section-title {
+    font-size: 2.35rem !important;
+    line-height: 1.08 !important;
+  }
+
+  .page-spacing > div:first-child > div {
+    flex-wrap: wrap;
+    gap: 14px !important;
+  }
+
+  .glass-pill {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .glass-card,
+  .modal-content {
+    padding: 22px;
+  }
+
 }
