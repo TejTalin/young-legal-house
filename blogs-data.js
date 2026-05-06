@@ -1,111 +1,297 @@
-document.addEventListener('DOMContentLoaded', () => {
-    
-    // --- 1. BLOGS GRID & SEARCH LOGIC ---
-    const blogsGrid = document.getElementById('blogsGrid');
-    const searchInput = document.getElementById('searchInput'); // The Search Bar
-    
-    if (blogsGrid) {
-        let currentFilter = 'All';
-        let currentSearch = '';
+function escapeHtml(value) {
+  return String(value || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
 
-        function renderBlogs() {
-            blogsGrid.innerHTML = '';
-            
-            // 1. Filter by Category
-            let filtered = currentFilter === 'All' 
-                ? database 
-                : database.filter(b => b.category === currentFilter);
+function formatDate(dateValue) {
+  if (!dateValue) return "Recently";
+  return new Date(dateValue).toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric"
+  });
+}
 
-            // 2. Filter by Search Word (Looks inside the 500-word content!)
-            if (currentSearch.trim() !== '') {
-                const term = currentSearch.toLowerCase();
-                filtered = filtered.filter(b => 
-                    b.content.toLowerCase().includes(term) || 
-                    b.title.toLowerCase().includes(term)
-                );
-            }
+function assetUrl(asset) {
+  const url = asset && asset.fields && asset.fields.file && asset.fields.file.url;
+  return url ? `https:${url}` : "";
+}
 
-            // 3. Render the Cards
-            if (filtered.length === 0) {
-                blogsGrid.innerHTML = '<p style="text-align:center; width:100%; color:var(--grey-text);">No articles found matching your search.</p>';
-                return;
-            }
+function listValue(fieldValue) {
+  if (Array.isArray(fieldValue)) return fieldValue.filter(Boolean);
+  if (!fieldValue) return [];
+  return [fieldValue];
+}
 
-            filtered.forEach(blog => {
-                const card = document.createElement('div');
-                card.className = 'glass-card'; 
-                card.innerHTML = `
-                    <div style="display:flex; justify-content:space-between; margin-bottom:10px; font-size:0.8rem; color:var(--grey-text);">
-                        <span>${blog.category}</span>
-                        <span>${blog.date}</span>
-                    </div>
-                    <h3 style="margin-bottom:15px; font-size:1.3rem;">${blog.title}</h3>
-                    <p style="font-size:0.95rem; color:var(--grey-text); margin-bottom:20px;">${blog.excerpt}</p>
-                    <a href="article.html?id=${blog.id}" class="action-link" style="font-size:0.9rem;">Read Full Article &rarr;</a>
-                `;
-                blogsGrid.appendChild(card);
-            });
-        }
+function normalizePost(item) {
+  const fields = item.fields || {};
+  return {
+    id: item.sys && item.sys.id ? item.sys.id : fields.slug || fields.title,
+    title: fields.title || "Untitled",
+    slug: fields.slug || "",
+    author: fields.author || "YLH Team",
+    publishDate: fields.publishDate || (item.sys ? item.sys.createdAt : ""),
+    excerpt: fields.excerpt || "",
+    articleBody: fields.articleBody || null,
+    practiceAreas: listValue(fields.practiceArea),
+    contentType: fields.contentType || "Article",
+    thumbnail: assetUrl(fields.thumbnail)
+  };
+}
 
-        // Search Bar Event Listener
-        if (searchInput) {
-            searchInput.addEventListener('input', (e) => {
-                currentSearch = e.target.value;
-                renderBlogs();
-            });
-        }
+document.addEventListener("DOMContentLoaded", async function () {
+  const featuredEl = document.getElementById("featuredPublication");
+  const gridEl = document.getElementById("blogsGrid");
+  const searchEl = document.getElementById("searchInput");
+  const contentTypeListEl = document.getElementById("contentTypeFilterList");
+  const practiceAreaListEl = document.getElementById("practiceAreaFilterList");
+  const authorListEl = document.getElementById("authorFilterList");
+  const sortEl = document.getElementById("sortFilter");
+  const filterToggleBtn = document.getElementById("filterToggleBtn");
+  const filterPopover = document.getElementById("filterPopover");
+  const filterCloseBtn = document.getElementById("filterCloseBtn");
+  const activeFiltersBar = document.getElementById("activeFiltersBar");
 
-        // Category Filter Buttons
-        document.querySelectorAll('.filter-pill').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                currentFilter = btn.getAttribute('data-filter');
-                renderBlogs();
-            });
-        });
+  if (!featuredEl || !gridEl) return;
 
-        renderBlogs();
+  let allPosts = [];
+  let viewPosts = [];
+  let selectedContentTypes = new Set();
+  let selectedPracticeAreas = new Set();
+  let selectedAuthors = new Set();
+
+  function isSelected(selectionSet, value) {
+    return selectionSet.size === 0 || selectionSet.has(value);
+  }
+
+  function optionInputId(prefix, value) {
+    return `${prefix}-${String(value).toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
+  }
+
+  function renderFilterOptions(container, options, prefix, setRef) {
+    if (!container) return;
+    if (!options.length) {
+      container.innerHTML = '<p class="loading-note">No options</p>';
+      return;
     }
 
-    // --- 2. FULL ARTICLE LOGIC ---
-    const articleContainer = document.getElementById('articleContainer');
-    
-    if (articleContainer) {
-        const urlParams = new URLSearchParams(window.location.search);
-        const articleId = parseInt(urlParams.get('id'));
-        const blogIndex = database.findIndex(b => b.id === articleId);
-        
-        if (blogIndex !== -1) {
-            const blog = database[blogIndex];
-            const prevBlog = database[blogIndex - 1];
-            const nextBlog = database[blogIndex + 1];
+    container.innerHTML = options.map(function (opt) {
+      const id = optionInputId(prefix, opt);
+      return `
+        <label class="filter-option-item" for="${id}">
+          <input type="checkbox" id="${id}" value="${escapeHtml(opt)}">
+          <span>${escapeHtml(opt)}</span>
+        </label>
+      `;
+    }).join("");
 
-            // Renders exactly as requested: Category top, Title Center, Author/Date below. Text Justified.
-            let html = `
-                <div class="article-header" style="text-align:center; margin-bottom: 40px;">
-                    <span style="font-size: 0.9rem; color: var(--grey-text); text-transform: uppercase; letter-spacing: 2px;">${blog.category}</span>
-                    <h1 style="font-size: 2.5rem; margin: 15px 0; font-family: 'Lora', serif;">${blog.title}</h1>
-                    <div style="display:flex; justify-content:space-between; color: var(--grey-text); font-style: italic; font-size: 1rem; border-bottom: 1px solid var(--glass-border); padding-bottom: 20px;">
-                        <span>Published: ${blog.date}</span>
-                        <span>By ${blog.author}</span>
-                    </div>
-                </div>
-                <div class="article-body" style="line-height: 1.9; font-size: 1.15rem; margin-bottom: 60px; text-align: justify; font-family: 'Lora', serif;">
-                    ${blog.content.split('\n\n').map(para => `<p style="margin-bottom: 20px;">${para}</p>`).join('')}
-                </div>
-                <div style="display:flex; justify-content:space-between; border-top: 1px solid var(--glass-border); padding-top:30px; margin-bottom: 40px;">
-            `;
+    container.querySelectorAll('input[type="checkbox"]').forEach(function (checkbox) {
+      checkbox.addEventListener("change", function (event) {
+        const value = event.target.value;
+        if (event.target.checked) setRef.add(value);
+        else setRef.delete(value);
+        applyFiltersAndSort();
+      });
+    });
+  }
 
-            if (prevBlog) html += `<a href="article.html?id=${prevBlog.id}" style="color:var(--text-color); text-decoration:none; font-weight:bold;">&larr; Previous: ${prevBlog.title}</a>`;
-            else html += `<div></div>`;
+  function renderActiveFilters() {
+    if (!activeFiltersBar) return;
+    const chips = [];
+    selectedContentTypes.forEach(function (value) { chips.push({ type: "content", value: value }); });
+    selectedPracticeAreas.forEach(function (value) { chips.push({ type: "practice", value: value }); });
+    selectedAuthors.forEach(function (value) { chips.push({ type: "author", value: value }); });
 
-            if (nextBlog) html += `<a href="article.html?id=${nextBlog.id}" style="color:var(--text-color); text-decoration:none; font-weight:bold; text-align:right;">Next: ${nextBlog.title} &rarr;</a>`;
-
-            html += `</div>`;
-            articleContainer.innerHTML = html;
-        } else {
-            articleContainer.innerHTML = '<h1 style="text-align: center;">Article not found.</h1>';
-        }
+    if (!chips.length) {
+      activeFiltersBar.innerHTML = "";
+      return;
     }
+
+    activeFiltersBar.innerHTML = chips.map(function (chip) {
+      return `<button class="active-filter-chip" data-filter-type="${chip.type}" data-filter-value="${escapeHtml(chip.value)}">${escapeHtml(chip.value)} <span>&times;</span></button>`;
+    }).join("");
+
+    activeFiltersBar.querySelectorAll(".active-filter-chip").forEach(function (chipBtn) {
+      chipBtn.addEventListener("click", function () {
+        const type = chipBtn.getAttribute("data-filter-type");
+        const value = chipBtn.getAttribute("data-filter-value");
+        if (type === "content") selectedContentTypes.delete(value);
+        if (type === "practice") selectedPracticeAreas.delete(value);
+        if (type === "author") selectedAuthors.delete(value);
+
+        const input = document.querySelector(`input[value="${CSS.escape(value)}"]`);
+        if (input) input.checked = false;
+        applyFiltersAndSort();
+      });
+    });
+  }
+
+  if (filterToggleBtn && filterPopover) {
+    filterToggleBtn.addEventListener("click", function (event) {
+      event.stopPropagation();
+      filterPopover.classList.toggle("show");
+    });
+    filterToggleBtn.addEventListener("mouseenter", function () {
+      filterPopover.classList.add("show");
+    });
+  }
+
+  if (filterCloseBtn && filterPopover) {
+    filterCloseBtn.addEventListener("click", function () {
+      filterPopover.classList.remove("show");
+    });
+  }
+
+  document.addEventListener("click", function (event) {
+    if (!filterPopover || !filterToggleBtn) return;
+    const insidePopover = filterPopover.contains(event.target);
+    const clickedToggle = filterToggleBtn.contains(event.target);
+    if (!insidePopover && !clickedToggle) {
+      filterPopover.classList.remove("show");
+    }
+  });
+
+  if (filterPopover) {
+    filterPopover.addEventListener("mouseleave", function () {
+      filterPopover.classList.remove("show");
+    });
+  }
+
+  function renderFeatured(post) {
+    if (!post) {
+      featuredEl.innerHTML = '<p class="loading-note">No featured publication available yet.</p>';
+      return;
+    }
+
+    const tags = post.practiceAreas.map(function (area) {
+      return `<span class="meta-tag">${escapeHtml(area)}</span>`;
+    }).join("");
+
+    featuredEl.innerHTML = `
+      <div class="featured-grid">
+        <div class="featured-media">
+          ${
+            post.thumbnail
+              ? `<img src="${post.thumbnail}" alt="${escapeHtml(post.title)}">`
+              : '<div class="featured-image-fallback">Featured Publication</div>'
+          }
+        </div>
+        <div class="featured-content">
+          <div class="featured-label">Featured ${escapeHtml(post.contentType)}</div>
+          <h2>${escapeHtml(post.title)}</h2>
+          <p class="featured-meta">${formatDate(post.publishDate)} | ${escapeHtml(post.author)}</p>
+          <div class="meta-tag-row">${tags}</div>
+          <p>${escapeHtml(post.excerpt || "Read this publication for detailed legal analysis.")}</p>
+          <a class="action-link" href="article.html?id=${encodeURIComponent(post.slug)}">Read publication</a>
+        </div>
+      </div>
+    `;
+  }
+
+  function renderGrid(posts) {
+    if (!posts.length) {
+      gridEl.innerHTML = '<p class="loading-note">No publications match the selected filters.</p>';
+      return;
+    }
+
+    gridEl.innerHTML = posts.map(function (post) {
+      const areaTags = post.practiceAreas.map(function (area) {
+        return `<span class="meta-tag">${escapeHtml(area)}</span>`;
+      }).join("");
+
+      return `
+        <article class="glass-card publication-card">
+          <a class="card-image-wrap" href="article.html?id=${encodeURIComponent(post.slug)}" aria-label="Read ${escapeHtml(post.title)}">
+            ${
+              post.thumbnail
+                ? `<img src="${post.thumbnail}" alt="${escapeHtml(post.title)}" class="card-image">`
+                : '<div class="card-image-fallback">No Thumbnail</div>'
+            }
+          </a>
+          <div class="publication-card-body">
+            <div class="publication-meta-line">
+              <span class="content-type-badge">${escapeHtml(post.contentType)}</span>
+              <span>${formatDate(post.publishDate)}</span>
+            </div>
+            <h3><a href="article.html?id=${encodeURIComponent(post.slug)}">${escapeHtml(post.title)}</a></h3>
+            <p class="publication-meta-line">By ${escapeHtml(post.author)}</p>
+            <div class="meta-tag-row">${areaTags}</div>
+            <p>${escapeHtml(post.excerpt || "Open this publication to read the full legal brief.")}</p>
+            <a class="action-link" href="article.html?id=${encodeURIComponent(post.slug)}">Open article</a>
+          </div>
+        </article>
+      `;
+    }).join("");
+  }
+
+  function populateFilterOptions(posts) {
+    const contentTypes = [...new Set(posts.map(function (p) { return p.contentType; }))].sort();
+    const authors = [...new Set(posts.map(function (p) { return p.author; }))].sort();
+    const practiceAreas = [...new Set(posts.flatMap(function (p) { return p.practiceAreas; }))].sort();
+    renderFilterOptions(contentTypeListEl, contentTypes, "ctype", selectedContentTypes);
+    renderFilterOptions(practiceAreaListEl, practiceAreas, "parea", selectedPracticeAreas);
+    renderFilterOptions(authorListEl, authors, "author", selectedAuthors);
+  }
+
+  function applyFiltersAndSort() {
+    const search = (searchEl && searchEl.value ? searchEl.value : "").trim().toLowerCase();
+    const sortMode = sortEl ? sortEl.value : "latest";
+
+    viewPosts = allPosts.filter(function (post) {
+      const inSearch =
+        !search ||
+        post.title.toLowerCase().includes(search) ||
+        post.excerpt.toLowerCase().includes(search) ||
+        (post.articleBody && JSON.stringify(post.articleBody).toLowerCase().includes(search));
+
+      const matchesType = isSelected(selectedContentTypes, post.contentType);
+      const matchesAuthor = isSelected(selectedAuthors, post.author);
+      const matchesPractice = selectedPracticeAreas.size === 0 ||
+        post.practiceAreas.some(function (area) { return selectedPracticeAreas.has(area); });
+
+      return inSearch && matchesType && matchesAuthor && matchesPractice;
+    });
+
+    viewPosts.sort(function (a, b) {
+      if (sortMode === "oldest") return new Date(a.publishDate) - new Date(b.publishDate);
+      if (sortMode === "az") return a.title.localeCompare(b.title);
+      if (sortMode === "za") return b.title.localeCompare(a.title);
+      return new Date(b.publishDate) - new Date(a.publishDate);
+    });
+
+    renderGrid(viewPosts);
+    renderActiveFilters();
+  }
+
+  try {
+    const client = window.getContentfulClient();
+    const response = await client.getEntries({
+      content_type: window.CONTENTFUL_CONFIG.contentType,
+      order: "-fields.publishDate",
+      include: 2
+    });
+
+    allPosts = response.items.map(normalizePost).filter(function (post) {
+      return Boolean(post.slug);
+    });
+
+    renderFeatured(allPosts[0]);
+    populateFilterOptions(allPosts);
+    applyFiltersAndSort();
+
+    [searchEl, sortEl].forEach(function (el) {
+      if (!el) return;
+      el.addEventListener("input", applyFiltersAndSort);
+      el.addEventListener("change", applyFiltersAndSort);
+    });
+
+  } catch (error) {
+    console.error(error);
+    featuredEl.innerHTML = '<p class="loading-note">Unable to load featured publication.</p>';
+    gridEl.innerHTML = '<p class="loading-note">Failed to load publications. Check Contentful configuration and published entries.</p>';
+  }
 });
