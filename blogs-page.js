@@ -130,6 +130,28 @@ document.addEventListener("DOMContentLoaded", async function () {
     });
   }
 
+  if (filterToggleBtn && filterPopover) {
+    filterToggleBtn.addEventListener("click", function (event) {
+      event.stopPropagation();
+      filterPopover.classList.toggle("show");
+    });
+  }
+
+  if (filterCloseBtn && filterPopover) {
+    filterCloseBtn.addEventListener("click", function () {
+      filterPopover.classList.remove("show");
+    });
+  }
+
+  document.addEventListener("click", function (event) {
+    if (!filterPopover || !filterToggleBtn) return;
+    const insidePopover = filterPopover.contains(event.target);
+    const clickedToggle = filterToggleBtn.contains(event.target);
+    if (!insidePopover && !clickedToggle) {
+      filterPopover.classList.remove("show");
+    }
+  });
+
   function renderFeatured(post) {
     if (!post) {
       featuredEl.innerHTML = '<p class="loading-note">No featured publication available yet.</p>';
@@ -258,27 +280,6 @@ document.addEventListener("DOMContentLoaded", async function () {
       el.addEventListener("change", applyFiltersAndSort);
     });
 
-    if (filterToggleBtn && filterPopover) {
-      filterToggleBtn.addEventListener("click", function (event) {
-        event.stopPropagation();
-        filterPopover.classList.toggle("show");
-      });
-    }
-
-    if (filterCloseBtn && filterPopover) {
-      filterCloseBtn.addEventListener("click", function () {
-        filterPopover.classList.remove("show");
-      });
-    }
-
-    document.addEventListener("click", function (event) {
-      if (!filterPopover || !filterToggleBtn) return;
-      const insidePopover = filterPopover.contains(event.target);
-      const clickedToggle = filterToggleBtn.contains(event.target);
-      if (!insidePopover && !clickedToggle) {
-        filterPopover.classList.remove("show");
-      }
-    });
   } catch (error) {
     console.error(error);
     featuredEl.innerHTML = '<p class="loading-note">Unable to load featured publication.</p>';
