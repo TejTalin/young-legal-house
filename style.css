@@ -40,6 +40,38 @@ body {
   color: var(--text-color);
   font-family: 'Plus Jakarta Sans', Arial, sans-serif;
   line-height: 1.6;
+  position: relative;
+}
+
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Soft orb layers to add depth without new colors */
+body::before {
+  width: 520px;
+  height: 520px;
+  top: -140px;
+  left: -120px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 30% 30%, var(--glass-border) 0%, transparent 58%),
+    radial-gradient(circle at 60% 60%, var(--glass-bg) 0%, transparent 72%);
+  filter: blur(6px);
+}
+
+/* Fine grid shimmer for modern legal-tech look */
+body::after {
+  inset: 0;
+  background-image:
+    linear-gradient(to right, var(--glass-border) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--glass-border) 1px, transparent 1px);
+  background-size: 48px 48px;
+  opacity: 0.08;
 }
 
 a {
@@ -58,6 +90,8 @@ img {
 .container {
   width: min(1120px, calc(100% - 40px));
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
 .page-spacing {
