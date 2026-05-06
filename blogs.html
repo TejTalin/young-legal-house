@@ -46,26 +46,44 @@
     </header>
 
     <main class="page-spacing container">
-        <h1 class="section-title">Legal Insights & Articles</h1>
-        
- <div class="search-container" style="text-align: center; margin-bottom: 20px;">
-    <input type="text" id="searchInput" class="blog-search" placeholder="Search articles for keywords...">
-</div>
+        <h1 class="section-title">Legal Publication Portal</h1>
 
-        <div class="filter-container" id="filterContainer">
-            <button class="filter-pill active" data-filter="All">All</button>
-            <button class="filter-pill" data-filter="Tax">Tax</button>
-            <button class="filter-pill" data-filter="TMT">TMT</button>
-            <button class="filter-pill" data-filter="Corporate">Corporate</button>
-            <button class="filter-pill" data-filter="Litigation">Litigation</button>
-            <button class="filter-pill" data-filter="M&A">M&A</button>
-            <button class="filter-pill" data-filter="ADR">ADR</button>
-            <button class="filter-pill" data-filter="IPR">IPR</button>
-            <button class="filter-pill" data-filter="Others">Others</button>
-        </div>
+        <section class="glass-card featured-publication" id="featuredPublication">
+            <p class="loading-note">Loading featured publication...</p>
+        </section>
 
-        <div class="cards-grid" id="blogsGrid">
-            <p style="text-align: center; width: 100%; grid-column: 1 / -1;">Loading latest insights...</p>
+        <section class="publication-controls glass-card">
+            <div class="search-container" style="margin-bottom: 18px;">
+                <input type="text" id="searchInput" class="blog-search" placeholder="Search publications by title, excerpt, body or citation...">
+            </div>
+
+            <div class="filter-row">
+                <div class="filter-group">
+                    <label for="contentTypeFilter">Content Type</label>
+                    <select id="contentTypeFilter" class="form-select"></select>
+                </div>
+                <div class="filter-group">
+                    <label for="practiceAreaFilter">Practice Area</label>
+                    <select id="practiceAreaFilter" class="form-select"></select>
+                </div>
+                <div class="filter-group">
+                    <label for="authorFilter">Author</label>
+                    <select id="authorFilter" class="form-select"></select>
+                </div>
+                <div class="filter-group">
+                    <label for="sortFilter">Sort By</label>
+                    <select id="sortFilter" class="form-select">
+                        <option value="latest">Latest</option>
+                        <option value="oldest">Oldest</option>
+                        <option value="az">A-Z</option>
+                        <option value="za">Z-A</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <div class="cards-grid publication-grid" id="blogsGrid">
+            <p class="loading-note">Loading latest publications...</p>
         </div>
     </main>
     
@@ -93,48 +111,8 @@
     </footer>
 
     <script src="script.js"></script>
-    
     <script src="https://cdn.jsdelivr.net/npm/contentful@latest/dist/contentful.browser.min.js"></script>
-    <script>
-        // 1. Enter your secret keys here
-        const client = contentful.createClient({
-            space: 'twt03qr6heez',
-            accessToken: 'zvthVCQasvhPp2rhH1drQTA6eE6M9q6jkxtYEMMnXmQ'
-        });
-
-   // 2. Fetch the articles from Contentful (Updated ID)
-        client.getEntries({ content_type: 'blogPost', order: '-sys.createdAt' }) 
-            .then((response) => {
-                const container = document.getElementById('blogsGrid');
-                container.innerHTML = ''; // Clear the "Loading..." text
-
-                // 3. Create a card for every article the team published
-                response.items.forEach(entry => {
-                    const title = entry.fields.title || 'Untitled';
-                    const author = entry.fields.author || 'YLH Team';
-                    const slug = entry.fields.slug || '#';
-                    
-                    // Format the date nicely (Updated to match your "Publish Date" field)
-                    let dateStr = 'Recently';
-                    if (entry.fields.publishDate) {
-                        dateStr = new Date(entry.fields.publishDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-                    }
-
-                    // This builds the HTML for the card automatically
-                    const cardHTML = `
-                        <div class="glass-card blog-item" style="text-align: left; background: var(--card-bg); padding: 30px; border-radius: 15px; border: 1px solid var(--card-border);">
-                            <span style="color: var(--grey-text); font-size: 0.85rem;">${dateStr} • By ${author}</span>
-                            <h3 class="section-title" style="font-size: 1.3rem; margin: 15px 0;">${title}</h3>
-                            <a href="article.html?id=${slug}" style="color: #6a0dad; text-decoration: none; font-weight: 600; font-size: 0.95rem;">Read Full Article &rarr;</a>
-                        </div>
-                    `;
-                    container.innerHTML += cardHTML;
-                });
-            })
-            .catch(err => {
-                console.error("Error fetching from Contentful:", err);
-                document.getElementById('blogsGrid').innerHTML = '<p style="text-align: center; width: 100%;">Failed to load articles. Please try again later.</p>';
-            });
-    </script>
+    <script src="contentful-config.js"></script>
+    <script src="blogs-page.js"></script>
 </body>
 </html>
