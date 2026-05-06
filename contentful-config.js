@@ -1,6 +1,6 @@
 window.CONTENTFUL_CONFIG = {
-  space: "REPLACE_WITH_SPACE_ID",
-  accessToken: "REPLACE_WITH_DELIVERY_ACCESS_TOKEN",
+  space: "twt03qr6heez",
+  accessToken: "zvthVCQasvhPp2rhH1drQTA6eE6M9q6jkxtYEMMnXmQ",
   environment: "master",
   contentType: "blogPost"
 };
