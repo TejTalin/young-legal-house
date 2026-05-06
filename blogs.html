@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -46,32 +46,39 @@
     </header>
 
     <main class="page-spacing container">
-        <h1 class="section-title">Legal Publication Portal</h1>
+        <h1 class="section-title">Community Publications</h1>
+        <p class="form-subtitle publication-subtitle">Explore blogs, articles, research papers, and legal insights contributed by students, professionals, and members of the legal community.</p>
 
         <section class="glass-card featured-publication" id="featuredPublication">
             <p class="loading-note">Loading featured publication...</p>
         </section>
 
-        <section class="publication-controls glass-card">
-            <div class="search-container" style="margin-bottom: 18px;">
-                <input type="text" id="searchInput" class="blog-search" placeholder="Search publications by title, excerpt, body or citation...">
+        <section class="publication-toolbar">
+            <button id="filterToggleBtn" class="filter-fab" aria-label="Open filters">
+                <i class="fas fa-sliders-h"></i>
+            </button>
+            <div class="search-container publication-search-wrap" style="margin-bottom: 0;">
+                <input type="text" id="searchInput" class="blog-search publication-search" placeholder="Search publications by title, excerpt, body or citation...">
             </div>
-
-            <div class="filter-row">
-                <div class="filter-group">
-                    <label for="contentTypeFilter">Content Type</label>
-                    <select id="contentTypeFilter" class="form-select"></select>
+            <div class="filter-popover" id="filterPopover">
+                <div class="filter-popover-head">
+                    <h3>Filters</h3>
+                    <button id="filterCloseBtn" class="filter-close-btn" aria-label="Close filters"><i class="fas fa-times"></i></button>
                 </div>
-                <div class="filter-group">
-                    <label for="practiceAreaFilter">Practice Area</label>
-                    <select id="practiceAreaFilter" class="form-select"></select>
+                <div class="filter-multi-group">
+                    <p>Content Type</p>
+                    <div id="contentTypeFilterList" class="filter-options-list"></div>
                 </div>
-                <div class="filter-group">
-                    <label for="authorFilter">Author</label>
-                    <select id="authorFilter" class="form-select"></select>
+                <div class="filter-multi-group">
+                    <p>Practice Area</p>
+                    <div id="practiceAreaFilterList" class="filter-options-list"></div>
                 </div>
-                <div class="filter-group">
-                    <label for="sortFilter">Sort By</label>
+                <div class="filter-multi-group">
+                    <p>Author</p>
+                    <div id="authorFilterList" class="filter-options-list"></div>
+                </div>
+                <div class="filter-multi-group">
+                    <p>Sort By</p>
                     <select id="sortFilter" class="form-select">
                         <option value="latest">Latest</option>
                         <option value="oldest">Oldest</option>
@@ -81,6 +88,8 @@
                 </div>
             </div>
         </section>
+
+        <section id="activeFiltersBar" class="active-filters-bar"></section>
 
         <div class="cards-grid publication-grid" id="blogsGrid">
             <p class="loading-note">Loading latest publications...</p>
