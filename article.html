@@ -9,15 +9,6 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        /* Styles to make the Contentful Rich Text look beautiful */
-        .article-body-content p { margin-bottom: 20px; line-height: 1.8; color: var(--text-color); }
-        .article-body-content h1, .article-body-content h2, .article-body-content h3 { margin-top: 40px; margin-bottom: 15px; }
-        .article-body-content a { color: #6a0dad; text-decoration: underline; }
-        .article-body-content ul { margin-left: 20px; margin-bottom: 20px; }
-        .article-body-content li { margin-bottom: 10px; }
-    </style>
 </head>
 <body class="dark-mode">
     <div class="custom-cursor" id="customCursor"></div>
@@ -49,8 +40,8 @@
         </div>
     </header>
 
-    <main class="page-spacing container" id="article-container" style="max-width: 800px; margin: 0 auto; padding-top: 40px; min-height: 60vh;">
-        <h1 style="text-align: center; width: 100%;">Loading article...</h1>
+    <main class="page-spacing container article-wrapper" id="article-container" style="padding-top: 30px; min-height: 60vh;">
+        <h1 class="loading-note">Loading article...</h1>
     </main>
     
     <footer>
@@ -77,79 +68,9 @@
     </footer>
 
     <script src="script.js"></script>
-    
     <script src="https://cdn.jsdelivr.net/npm/contentful@latest/dist/contentful.browser.min.js"></script>
-  <script src="https://unpkg.com/@contentful/rich-text-html-renderer/dist/rich-text-html-renderer.umd.js"></script>
-    
-    <script>
-        // 1. Check the URL to see which article the user clicked
-        const urlParams = new URLSearchParams(window.location.search);
-        const articleSlug = urlParams.get('id');
-        const container = document.getElementById('article-container');
-
-        if (!articleSlug) {
-            container.innerHTML = '<h1 style="text-align: center; margin-top: 50px;">Article not found.</h1><p style="text-align:center;"><a href="blogs.html" style="color:#6a0dad;">Go back to blogs</a></p>';
-        } else {
-            // 2. Connect to Contentful
-            const client = contentful.createClient({
-                space: 'twt03qr6heez',
-                accessToken: 'zvthVCQasvhPp2rhH1drQTA6eE6M9q6jkxtYEMMnXmQ'
-            });
-
-            // 3. Ask Contentful for the exact article matching this slug
-            client.getEntries({ 
-                content_type: 'blogPost',
-                'fields.slug': articleSlug,
-                limit: 1 // We only need the one matching article
-            }) 
-            .then((response) => {
-                // If the article doesn't exist
-                if (response.items.length === 0) {
-                    container.innerHTML = '<h1 style="text-align: center; margin-top: 50px;">Article not found.</h1><p style="text-align:center;"><a href="blogs.html" style="color:#6a0dad;">Go back to blogs</a></p>';
-                    return;
-                }
-
-                // Setup the data
-                const article = response.items[0].fields;
-                const title = article.title || 'Untitled';
-                const author = article.author || 'YLH Team';
-                
-                let dateStr = '';
-                if (article.publishDate) {
-                    dateStr = new Date(article.publishDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-                }
-
-                // Check if a thumbnail image was uploaded
-                let imageHTML = '';
-                if (article.thumbnail && article.thumbnail.fields && article.thumbnail.fields.file) {
-                    const imageUrl = article.thumbnail.fields.file.url;
-                    imageHTML = `<img src="https:${imageUrl}" alt="${title}" style="width: 100%; max-height: 400px; object-fit: cover; border-radius: 15px; margin-bottom: 30px;">`;
-                }
-
-                // Convert Contentful's Rich Text into standard HTML using the special renderer script
-                let bodyHTML = '';
-                if (article.articleBody) {
-                    bodyHTML = window.richText.documentToHtmlString(article.articleBody);
-                }
-
-                // 4. Inject everything into the empty shell
-                container.innerHTML = `
-                    <a href="blogs.html" style="display: inline-block; margin-bottom: 20px; color: var(--grey-text); text-decoration: none; font-size: 0.95rem;">&larr; Back to Insights</a>
-                    ${imageHTML}
-                    <h1 class="section-title" style="font-size: 2.5rem; margin-bottom: 15px; text-align: left;">${title}</h1>
-                    <div style="color: var(--grey-text); font-size: 1rem; margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--card-border);">
-                        Published on ${dateStr} • By <span style="color: #6a0dad; font-weight: 600;">${author}</span>
-                    </div>
-                    <div class="article-body-content" style="font-size: 1.1rem;">
-                        ${bodyHTML}
-                    </div>
-                `;
-            })
-            .catch(err => {
-                console.error("Error fetching article:", err);
-                container.innerHTML = '<h1 style="text-align: center;">Failed to load the article.</h1>';
-            });
-        }
-    </script>
+    <script src="https://unpkg.com/@contentful/rich-text-html-renderer/dist/rich-text-html-renderer.umd.js"></script>
+    <script src="contentful-config.js"></script>
+    <script src="article-page.js"></script>
 </body>
 </html>
