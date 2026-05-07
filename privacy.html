@@ -7,8 +7,52 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
 </head>
 <body class="dark-mode">
+    <script>
+        (function() {
+            const storedTheme = localStorage.getItem('ylh_theme');
+            const body = document.body;
+            if (storedTheme === 'light' && !body.classList.contains('light-mode')) {
+                body.classList.remove('dark-mode');
+                body.classList.add('light-mode');
+            }
+        })();
+    </script>
+    
+    <!-- Community Network Background -->
+    <div class="community-bg" id="communityBg">
+        <svg class="network-svg" viewBox="0 0 1400 900" preserveAspectRatio="xMidYMid slice">
+            <defs>
+                <g id="icon-person"><circle cx="0" cy="-8" r="7" fill="currentColor" opacity="0.8"/><path d="M-12 12 Q-12 -2 0 -2 Q12 -2 12 12" fill="none" stroke="currentColor" stroke-width="2" opacity="0.8"/></g>
+                <g id="icon-briefcase"><rect x="-10" y="-6" width="20" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="2" opacity="0.8"/><path d="M-10 -2 L10 -2 M-3 -6 L-3 -2 M3 -6 L3 -2" stroke="currentColor" stroke-width="2" opacity="0.8"/></g>
+                <g id="icon-newspaper"><rect x="-10" y="-10" width="20" height="20" rx="1" fill="none" stroke="currentColor" stroke-width="2" opacity="0.8"/><line x1="-6" y1="-4" x2="6" y2="-4" stroke="currentColor" stroke-width="1.5" opacity="0.8"/><line x1="-6" y1="0" x2="2" y2="0" stroke="currentColor" stroke-width="1.5" opacity="0.8"/><line x1="-6" y1="4" x2="6" y2="4" stroke="currentColor" stroke-width="1.5" opacity="0.8"/></g>
+                <g id="icon-document"><rect x="-8" y="-12" width="16" height="24" rx="1" fill="none" stroke="currentColor" stroke-width="2" opacity="0.8"/><line x1="-4" y1="-6" x2="4" y2="-6" stroke="currentColor" stroke-width="1.5" opacity="0.8"/><line x1="-4" y1="0" x2="4" y2="0" stroke="currentColor" stroke-width="1.5" opacity="0.8"/><line x1="-4" y1="6" x2="2" y2="6" stroke="currentColor" stroke-width="1.5" opacity="0.8"/></g>
+            </defs>
+            <g class="network-lines" stroke="currentColor" stroke-width="1" opacity="0.25">
+                <line x1="50" y1="80" x2="200" y2="120" /><line x1="200" y1="120" x2="380" y2="90" /><line x1="380" y1="90" x2="550" y2="140" /><line x1="550" y1="140" x2="720" y2="100" /><line x1="720" y1="100" x2="900" y2="130" /><line x1="900" y1="130" x2="1080" y2="85" /><line x1="1080" y1="85" x2="1250" y2="110" /><line x1="1250" y1="110" x2="1350" y2="150" />
+                <line x1="80" y1="220" x2="280" y2="260" /><line x1="280" y1="260" x2="450" y2="220" /><line x1="450" y1="220" x2="620" y2="280" /><line x1="620" y1="280" x2="800" y2="240" /><line x1="800" y1="240" x2="980" y2="300" /><line x1="980" y1="300" x2="1150" y2="260" /><line x1="1150" y1="260" x2="1300" y2="290" />
+                <line x1="60" y1="380" x2="240" y2="420" /><line x1="240" y1="420" x2="420" y2="380" /><line x1="420" y1="380" x2="600" y2="440" /><line x1="600" y1="440" x2="780" y2="400" /><line x1="780" y1="400" x2="960" y2="460" /><line x1="960" y1="460" x2="1140" y2="420" /><line x1="1140" y1="420" x2="1320" y2="450" />
+                <line x1="100" y1="540" x2="300" y2="580" /><line x1="300" y1="580" x2="500" y2="540" /><line x1="500" y1="540" x2="700" y2="600" /><line x1="700" y1="600" x2="900" y2="560" /><line x1="900" y1="560" x2="1100" y2="620" /><line x1="1100" y1="620" x2="1280" y2="580" />
+                <line x1="120" y1="700" x2="340" y2="740" /><line x1="340" y1="740" x2="560" y2="700" /><line x1="560" y1="700" x2="780" y2="760" /><line x1="780" y1="760" x2="1000" y2="720" /><line x1="1000" y1="720" x2="1180" y2="750" />
+                <line x1="180" y1="820" x2="420" y2="860" /><line x1="420" y1="860" x2="660" y2="820" /><line x1="660" y1="820" x2="900" y2="880" /><line x1="900" y1="880" x2="1120" y2="840" />
+                <line x1="200" y1="120" x2="280" y2="260" /><line x1="380" y1="90" x2="450" y2="220" /><line x1="550" y1="140" x2="620" y2="280" /><line x1="720" y1="100" x2="800" y2="240" /><line x1="900" y1="130" x2="980" y2="300" /><line x1="1080" y1="85" x2="1150" y2="260" />
+                <line x1="280" y1="260" x2="240" y2="420" /><line x1="450" y1="220" x2="420" y2="380" /><line x1="620" y1="280" x2="600" y2="440" /><line x1="800" y1="240" x2="780" y2="400" /><line x1="980" y1="300" x2="960" y2="460" /><line x1="1150" y1="260" x2="1140" y2="420" />
+                <line x1="240" y1="420" x2="300" y2="580" /><line x1="420" y1="380" x2="500" y2="540" /><line x1="600" y1="440" x2="700" y2="600" /><line x1="780" y1="400" x2="900" y2="560" /><line x1="960" y1="460" x2="1100" y2="620" />
+                <line x1="300" y1="580" x2="340" y2="740" /><line x1="500" y1="540" x2="560" y2="700" /><line x1="700" y1="600" x2="780" y2="760" /><line x1="900" y1="560" x2="1000" y2="720" />
+            </g>
+            <g class="network-icons" fill="currentColor">
+                <use href="#icon-person" x="50" y="80" /><use href="#icon-briefcase" x="200" y="120" /><use href="#icon-person" x="380" y="90" /><use href="#icon-newspaper" x="550" y="140" /><use href="#icon-person" x="720" y="100" /><use href="#icon-document" x="900" y="130" /><use href="#icon-person" x="1080" y="85" /><use href="#icon-briefcase" x="1250" y="110" /><use href="#icon-person" x="1350" y="150" />
+                <use href="#icon-newspaper" x="80" y="220" /><use href="#icon-person" x="280" y="260" /><use href="#icon-document" x="450" y="220" /><use href="#icon-person" x="620" y="280" /><use href="#icon-briefcase" x="800" y="240" /><use href="#icon-person" x="980" y="300" /><use href="#icon-newspaper" x="1150" y="260" /><use href="#icon-person" x="1300" y="290" />
+                <use href="#icon-person" x="60" y="380" /><use href="#icon-briefcase" x="240" y="420" /><use href="#icon-person" x="420" y="380" /><use href="#icon-document" x="600" y="440" /><use href="#icon-person" x="780" y="400" /><use href="#icon-newspaper" x="960" y="460" /><use href="#icon-person" x="1140" y="420" /><use href="#icon-briefcase" x="1320" y="450" />
+                <use href="#icon-document" x="100" y="540" /><use href="#icon-person" x="300" y="580" /><use href="#icon-newspaper" x="500" y="540" /><use href="#icon-person" x="700" y="600" /><use href="#icon-briefcase" x="900" y="560" /><use href="#icon-person" x="1100" y="620" /><use href="#icon-document" x="1280" y="580" />
+                <use href="#icon-person" x="120" y="700" /><use href="#icon-briefcase" x="340" y="740" /><use href="#icon-person" x="560" y="700" /><use href="#icon-newspaper" x="780" y="760" /><use href="#icon-person" x="1000" y="720" /><use href="#icon-document" x="1180" y="750" />
+                <use href="#icon-briefcase" x="180" y="820" /><use href="#icon-person" x="420" y="860" /><use href="#icon-document" x="660" y="820" /><use href="#icon-person" x="900" y="880" /><use href="#icon-newspaper" x="1120" y="840" />
+            </g>
+        </svg>
+    </div>
+    
     <header class="navbar" id="mainNav">
         <div class="ylh-header">
   <div class="ylh-header-inner">
