@@ -16,8 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
         body.classList.toggle('dark-mode', !isLight);
 
         if (themeIcon) {
-            themeIcon.classList.toggle('fa-moon', isLight);
-            themeIcon.classList.toggle('fa-sun', !isLight);
+            themeIcon.classList.toggle('fa-sun', isLight);
+            themeIcon.classList.toggle('fa-moon', !isLight);
         } else if (themeToggle) {
             themeToggle.textContent = isLight ? '🌙' : '☀';
         }
@@ -25,7 +25,13 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('ylh_theme', theme);
     }
 
-    setTheme(localStorage.getItem('ylh_theme') || (body.classList.contains('light-mode') ? 'light' : 'dark'));
+    // Initialize icon only - theme class already applied by inline script
+    const initialTheme = localStorage.getItem('ylh_theme') || 'dark';
+    const isLight = initialTheme === 'light';
+    if (themeIcon) {
+        themeIcon.classList.toggle('fa-sun', isLight);
+        themeIcon.classList.toggle('fa-moon', !isLight);
+    }
 
     themeToggle?.addEventListener('click', () => {
         setTheme(body.classList.contains('light-mode') ? 'dark' : 'light');
