@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import NetworkBackground from '@/components/NetworkBackground';
 
 function Countdown() {
-  const target = new Date('2026-06-06T00:00:00');
+  const target = new Date('2026-06-15T00:00:00');
 
   const getTimeLeft = () => {
     const diff = target - new Date();
@@ -52,7 +52,7 @@ export default function EventsPage() {
         </p>
         <Countdown />
         <p style={{ color: 'var(--muted-text)', fontSize: '0.95rem', marginTop: '10px' }}>
-          6th June 2026 &mdash; Mark your calendar.
+          15th June 2026 &mdash; Registrations opening soon.
         </p>
       </main>
     </>
