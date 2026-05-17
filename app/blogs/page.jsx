@@ -18,7 +18,7 @@ const SAMPLE_BLOGS = [
   {
     id: 2,
     title: 'Data Privacy Laws in India: Comparing PDPB with GDPR',
-    excerpt: 'A comparative study of India's Personal Data Protection Bill and the EU's GDPR, examining convergences, divergences, and what it means for tech companies operating in both jurisdictions.',
+    excerpt: "A comparative study of India's Personal Data Protection Bill and the EU's GDPR, examining convergences, divergences, and what it means for tech companies operating in both jurisdictions.",
     author: 'Rohan Mehta',
     date: 'May 5, 2026',
     category: 'TMT',
