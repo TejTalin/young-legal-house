@@ -1,10 +1,12 @@
 'use client';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 
 export default function Navbar() {
   const [isDark, setIsDark] = useState(true);
+  const pathname = usePathname();
 
   // Load saved theme on mount
   useEffect(() => {
@@ -23,6 +25,11 @@ export default function Navbar() {
     localStorage.setItem('ylh_theme', next ? 'dark' : 'light');
   };
 
+  const isActive = (href) => {
+    if (href === '/') return pathname === '/';
+    return pathname?.startsWith(href);
+  };
+
   return (
     <header className="navbar ylh-header" id="mainNav">
       <div className="ylh-header-inner">
@@ -33,13 +40,13 @@ export default function Navbar() {
           </Link>
 
           <nav className="island-nav">
-            <Link href="/">Home</Link>
-            <Link href="/blogs">Blogs</Link>
-            <Link href="/events">Events</Link>
-            <Link href="/about">About</Link>
-            <Link href="/team">Team</Link>
-            <Link href="/join">Join Us</Link>
-            <Link href="/contact">Contact</Link>
+            <Link href="/" className={isActive('/') ? 'active' : ''}>Home</Link>
+            <Link href="/blogs" className={isActive('/blogs') ? 'active' : ''}>Blogs</Link>
+            <Link href="/events" className={isActive('/events') ? 'active' : ''}>Events</Link>
+            <Link href="/about" className={isActive('/about') ? 'active' : ''}>About</Link>
+            <Link href="/team" className={isActive('/team') ? 'active' : ''}>Team</Link>
+            <Link href="/join" className={isActive('/join') ? 'active' : ''}>Join Us</Link>
+            <Link href="/contact" className={isActive('/contact') ? 'active' : ''}>Contact</Link>
           </nav>
         </div>
 
