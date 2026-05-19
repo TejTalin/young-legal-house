@@ -179,6 +179,12 @@ body.light-mode .sticky-island {
   background: var(--glass-bg);
 }
 
+.island-nav a.active {
+  border-color: var(--glass-border);
+  background: var(--glass-bg);
+  font-weight: 800;
+}
+
 .sticky-theme-toggle {
   width: 52px;
   height: 52px;
