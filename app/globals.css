@@ -107,11 +107,11 @@ img { max-width: 100%; display: block; }
 
 .ylh-header-inner {
   width: min(1240px, calc(100% - 32px));
-  min-height: 104px;
+  min-height: 84px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: minmax(0,1fr) 64px;
-  gap: 22px;
+  grid-template-columns: minmax(0,1fr) 52px;
+  gap: 12px;
   align-items: center;
   pointer-events: none;
 }
@@ -119,8 +119,8 @@ img { max-width: 100%; display: block; }
 .sticky-logo, .sticky-island, .sticky-theme-toggle { pointer-events: auto; }
 
 .sticky-logo img {
-  width: 96px;
-  height: 96px;
+  width: 86px;
+  height: 86px;
   object-fit: contain;
 }
 
@@ -131,8 +131,8 @@ body.light-mode .footer-logo {
 
 .sticky-island {
   position: relative;
-  min-height: 64px;
-  padding: 0 20px;
+  min-height: 56px;
+  padding: 0 14px;
   border: 1px solid var(--glass-border);
   border-radius: 999px;
   background: rgba(0,0,0,0.42);
@@ -151,9 +151,9 @@ body.light-mode .sticky-island {
 .island-nav {
   display: flex;
   align-items: center;
+  gap: 4px;
   justify-content: flex-end;
   flex-wrap: wrap;
-  gap: 8px;
 }
 
 .island-nav a, .island-nav button {
@@ -163,14 +163,15 @@ body.light-mode .sticky-island {
   cursor: pointer;
   font: inherit;
   font-size: 0.94rem;
-  font-weight: 700;
+  font-weight: 600;
   text-decoration: none;
 }
 
 .island-nav a {
-  padding: 7px 12px;
+  padding: 6px 10px;
   border: 1px solid transparent;
   border-radius: 999px;
+  white-space: nowrap;
 }
 
 .island-nav a:hover {
@@ -179,12 +180,12 @@ body.light-mode .sticky-island {
 }
 
 .sticky-theme-toggle {
-  width: 60px;
-  height: 60px;
+  width: 52px;
+  height: 52px;
   padding: 0;
   display: grid;
   place-items: center;
-  font-size: 1.1rem;
+  font-size: 1rem;
   border: 1px solid var(--glass-border);
   border-radius: 999px;
   background: var(--glass-bg);
@@ -649,21 +650,21 @@ main, footer { position: relative; z-index: 1; }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
-  body { padding-top: 100px; }
+  body { padding-top: 88px; }
 
   .ylh-header-inner {
-    grid-template-columns: minmax(0,1fr) 52px;
-    min-height: 96px;
-    gap: 10px;
+    grid-template-columns: minmax(0,1fr) 46px;
+    min-height: 78px;
+    gap: 8px;
     width: min(100% - 18px, 760px);
   }
 
-  .sticky-logo img { width: 72px; height: 72px; }
-  .sticky-island { min-height: 58px; padding: 0 12px; gap: 8px; }
-  .island-nav { overflow-x: auto; flex-wrap: nowrap; justify-content: flex-start; scrollbar-width: none; }
+  .sticky-logo img { width: 74px; height: 74px; }
+  .sticky-island { min-height: 52px; padding: 0 10px; }
+  .island-nav { overflow-x: auto; flex-wrap: nowrap; scrollbar-width: none; }
   .island-nav::-webkit-scrollbar { display: none; }
-  .island-nav a { white-space: nowrap; font-size: 0.83rem; padding: 6px 10px; }
-  .sticky-theme-toggle { width: 50px; height: 50px; }
+  .island-nav a { font-size: 0.82rem; padding: 5px 8px; }
+  .sticky-theme-toggle { width: 46px; height: 46px; }
 
   .cards-grid { grid-template-columns: 1fr; }
   .join-grid { grid-template-columns: 1fr; }
@@ -679,19 +680,19 @@ main, footer { position: relative; z-index: 1; }
 }
 
 @media (max-width: 560px) {
-  body { padding-top: 88px; }
+  body { padding-top: 82px; }
   .container, footer { width: min(100% - 28px, 1120px); }
 
   .ylh-header-inner {
-    grid-template-columns: minmax(0,1fr) 44px;
-    min-height: 82px;
-    gap: 8px;
+    grid-template-columns: minmax(0,1fr) 42px;
+    min-height: 72px;
+    gap: 7px;
   }
 
-  .sticky-logo img { width: 52px; height: 52px; }
-  .sticky-island { min-height: 52px; padding: 0 10px; }
-  .island-nav a { font-size: 0.77rem; padding: 5px 9px; }
-  .sticky-theme-toggle { width: 44px; height: 44px; font-size: 1rem; }
+  .sticky-logo img { width: 66px; height: 66px; }
+  .sticky-island { min-height: 48px; padding: 0 8px; }
+  .island-nav a { font-size: 0.76rem; padding: 4px 7px; }
+  .sticky-theme-toggle { width: 42px; height: 42px; font-size: 1rem; }
   .theme-icon { width: 18px; height: 18px; }
   .page-spacing { padding-top: 8px; }
   .glass-card { padding: 22px; }
