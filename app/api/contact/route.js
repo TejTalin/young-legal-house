@@ -1,5 +1,8 @@
 const AIRTABLE_TOKEN = process.env.AIRTABLE_TOKEN;
-const AIRTABLE_BASE_ID = process.env.AIRTABLE_CONTACT_BASE_ID || process.env.AIRTABLE_BASE_ID;
+const AIRTABLE_BASE_ID =
+  process.env.AIRTABLE_CONTACT_BASE_ID ||
+  process.env.AIRTABLE_JOIN_BASE_ID ||
+  process.env.AIRTABLE_BASE_ID;
 const AIRTABLE_CONTACT_TABLE = process.env.AIRTABLE_CONTACT_TABLE || 'Contact Messages';
 export const runtime = 'nodejs';
 
