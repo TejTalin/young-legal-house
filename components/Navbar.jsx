@@ -27,13 +27,13 @@ export default function Navbar() {
     <header className="navbar ylh-header" id="mainNav">
       <div className="ylh-header-inner">
 
-        {/* Logo */}
         <div className="sticky-island">
           <Link href="/" className="sticky-logo">
-            <Image src="/logoylh.png" alt="Young Legal House Logo" width={104} height={104} priority />
+            <Image src="/logoylh.png" alt="Young Legal House Logo" width={124} height={124} priority />
           </Link>
 
           <nav className="island-nav">
+            <Link href="/">Home</Link>
             <Link href="/blogs">Blogs</Link>
             <Link href="/events">Events</Link>
             <Link href="/about">About</Link>
@@ -43,17 +43,16 @@ export default function Navbar() {
           </nav>
         </div>
 
-        {/* Theme Toggle */}
         <button className="sticky-theme-toggle" onClick={toggleTheme} aria-label="Toggle theme">
           {isDark ? (
             <svg className="theme-icon" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M14.5 3.2a8.5 8.5 0 1 0 6.3 12.9 8 8 0 1 1-6.3-12.9z" fill="currentColor" />
+              <path d="M15.3 3.4a8.6 8.6 0 1 0 5.3 13.2A7.7 7.7 0 1 1 15.3 3.4z" fill="currentColor" />
             </svg>
           ) : (
             <svg className="theme-icon" viewBox="0 0 24 24" aria-hidden="true">
               <circle cx="12" cy="12" r="4.2" fill="currentColor" />
               <g stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
-                <path d="M12 2.5v2.7M12 18.8v2.7M21.5 12h-2.7M5.2 12H2.5M18.7 5.3l-1.9 1.9M7.2 16.8l-1.9 1.9M18.7 18.7l-1.9-1.9M7.2 7.2 5.3 5.3" />
+                <path d="M12 2.2v2.7M12 19.1v2.7M21.8 12h-2.7M4.9 12H2.2M18.9 5.1l-1.9 1.9M7 17l-1.9 1.9M18.9 18.9l-1.9-1.9M7 7l-1.9-1.9" />
               </g>
             </svg>
           )}
