@@ -5,17 +5,52 @@ import NetworkBackground from '@/components/NetworkBackground';
 
 export default function JoinPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
+    setError('');
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const cvFile = formData.get('cvFile');
+
+    if (!cvFile || cvFile.size === 0) {
+      setError('Please upload your CV before submitting.');
+      return;
+    }
+
+    if (cvFile.size > 5 * 1024 * 1024) {
+      setError('CV file is too large. Please upload a file up to 5MB.');
+      return;
+    }
+
+    try {
+      setSubmitting(true);
+      const res = await fetch('/join', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.error || 'Could not submit your application.');
+      }
+
+      setSubmitted(true);
+      form.reset();
+    } catch (err) {
+      setError(err.message || 'Something went wrong. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
     <>
       <NetworkBackground />
       <main className="page-spacing container">
-
         <div style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto 40px' }}>
           <h1 className="section-title">Shape the Future of Law</h1>
           <p style={{ color: 'var(--grey-text)', fontSize: '1.1rem', lineHeight: '1.8' }}>
@@ -26,8 +61,6 @@ export default function JoinPage() {
         </div>
 
         <div className="join-grid">
-
-          {/* Application Form */}
           <div className="glass-card">
             <h2 style={{ marginBottom: '25px', borderBottom: '1px solid var(--glass-border)', paddingBottom: '10px' }}>
               Careers &amp; Internships
@@ -41,27 +74,27 @@ export default function JoinPage() {
               <form onSubmit={handleSubmit}>
                 <div className="form-group">
                   <label className="form-label">Full Name</label>
-                  <input type="text" className="form-input" placeholder="e.g., Jane Doe" required />
+                  <input name="fullName" type="text" className="form-input" placeholder="e.g., Jane Doe" required />
                 </div>
 
                 <div className="form-group">
                   <label className="form-label">Email Address</label>
-                  <input type="email" className="form-input" placeholder="jane@example.com" required />
+                  <input name="email" type="email" className="form-input" placeholder="jane@example.com" required />
                 </div>
 
                 <div className="form-group">
                   <label className="form-label">Phone Number</label>
-                  <input type="tel" className="form-input" placeholder="+91 XXXXX XXXXX" required />
+                  <input name="phone" type="tel" className="form-input" placeholder="+91 XXXXX XXXXX" required />
                 </div>
 
                 <div className="form-group">
                   <label className="form-label">LinkedIn Profile URL</label>
-                  <input type="url" className="form-input" placeholder="https://linkedin.com/in/..." required />
+                  <input name="linkedinUrl" type="url" className="form-input" placeholder="https://linkedin.com/in/..." required />
                 </div>
 
                 <div className="form-group">
                   <label className="form-label">Position Applying For</label>
-                  <select className="form-select" required defaultValue="">
+                  <select name="position" className="form-select" required defaultValue="">
                     <option value="" disabled>Select a position...</option>
                     <option value="legal_research">Legal Research Intern</option>
                     <option value="graphic_designer">Graphic Designer</option>
@@ -70,16 +103,30 @@ export default function JoinPage() {
                 </div>
 
                 <div className="form-group">
-                  <label className="form-label">Link to Resume / Portfolio</label>
-                  <input type="url" className="form-input" placeholder="Paste Google Drive link here" required />
+                  <label className="form-label">Upload CV</label>
+                  <input
+                    name="cvFile"
+                    type="file"
+                    className="form-input"
+                    accept=".pdf,.doc,.docx"
+                    required
+                  />
+                  <p className="word-count-indicator" style={{ marginTop: '8px' }}>
+                    Accepted formats: PDF, DOC, DOCX (max 5MB)
+                  </p>
                 </div>
 
-                <button type="submit" className="submit-btn">Submit Application</button>
+                {error ? (
+                  <p style={{ color: '#d9534f', marginBottom: '12px' }}>{error}</p>
+                ) : null}
+
+                <button type="submit" className="submit-btn" disabled={submitting}>
+                  {submitting ? 'Submitting...' : 'Submit Application'}
+                </button>
               </form>
             )}
           </div>
 
-          {/* Subscription Card */}
           <div>
             <div className="glass-card subscription-card">
               <h2 style={{ fontSize: '1.8rem' }}>YLH Premium Updates</h2>
@@ -106,7 +153,6 @@ export default function JoinPage() {
               </Link>
             </div>
           </div>
-
         </div>
       </main>
     </>
