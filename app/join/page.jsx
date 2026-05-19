@@ -28,7 +28,7 @@ export default function JoinPage() {
 
     try {
       setSubmitting(true);
-      const res = await fetch('/join', {
+      const res = await fetch('/api/join', {
         method: 'POST',
         body: formData,
       });
