@@ -1,12 +1,10 @@
 'use client';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
 export default function Navbar() {
   const [isDark, setIsDark] = useState(true);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const dropdownRef = useRef(null);
 
   // Load saved theme on mount
   useEffect(() => {
@@ -25,55 +23,40 @@ export default function Navbar() {
     localStorage.setItem('ylh_theme', next ? 'dark' : 'light');
   };
 
-  // Close dropdown when clicking outside
-  useEffect(() => {
-    const handler = (e) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
-        setDropdownOpen(false);
-      }
-    };
-    document.addEventListener('mousedown', handler);
-    return () => document.removeEventListener('mousedown', handler);
-  }, []);
-
   return (
     <header className="navbar ylh-header" id="mainNav">
       <div className="ylh-header-inner">
 
         {/* Logo */}
-        <Link href="/" className="sticky-logo">
-          <Image src="/logoylh.png" alt="Young Legal House Logo" width={132} height={132} priority />
-        </Link>
-
-        {/* Center Island */}
         <div className="sticky-island">
-          <Link href="/" className="island-title">YOUNG LEGAL HOUSE</Link>
+          <Link href="/" className="sticky-logo">
+            <Image src="/logoylh.png" alt="Young Legal House Logo" width={104} height={104} priority />
+          </Link>
 
           <nav className="island-nav">
             <Link href="/blogs">Blogs</Link>
             <Link href="/events">Events</Link>
-
-            <div className="menu-wrapper" ref={dropdownRef}>
-              <button
-                id="menuToggleBtn"
-                onClick={() => setDropdownOpen(!dropdownOpen)}
-                aria-label="Open menu"
-              >
-                <i className="fas fa-bars"></i>
-              </button>
-              <div className={`dropdown-menu${dropdownOpen ? ' show' : ''}`}>
-                <Link href="/about" onClick={() => setDropdownOpen(false)}>About</Link>
-                <Link href="/team" onClick={() => setDropdownOpen(false)}>Team</Link>
-                <Link href="/join" onClick={() => setDropdownOpen(false)}>Join Us</Link>
-                <Link href="/contact" onClick={() => setDropdownOpen(false)}>Contact</Link>
-              </div>
-            </div>
+            <Link href="/about">About</Link>
+            <Link href="/team">Team</Link>
+            <Link href="/join">Join Us</Link>
+            <Link href="/contact">Contact</Link>
           </nav>
         </div>
 
         {/* Theme Toggle */}
         <button className="sticky-theme-toggle" onClick={toggleTheme} aria-label="Toggle theme">
-          <i className={`fas ${isDark ? 'fa-moon' : 'fa-sun'}`}></i>
+          {isDark ? (
+            <svg className="theme-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M14.5 3.2a8.5 8.5 0 1 0 6.3 12.9 8 8 0 1 1-6.3-12.9z" fill="currentColor" />
+            </svg>
+          ) : (
+            <svg className="theme-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="4.2" fill="currentColor" />
+              <g stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+                <path d="M12 2.5v2.7M12 18.8v2.7M21.5 12h-2.7M5.2 12H2.5M18.7 5.3l-1.9 1.9M7.2 16.8l-1.9 1.9M18.7 18.7l-1.9-1.9M7.2 7.2 5.3 5.3" />
+              </g>
+            </svg>
+          )}
         </button>
 
       </div>
