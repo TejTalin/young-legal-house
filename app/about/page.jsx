@@ -1,24 +1,7 @@
 'use client';
-import { useState } from 'react';
 import NetworkBackground from '@/components/NetworkBackground';
 
 export default function AboutPage() {
-  const [wordCount, setWordCount] = useState(0);
-  const [message, setMessage] = useState('');
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleMessageChange = (e) => {
-    const val = e.target.value;
-    setMessage(val);
-    const words = val.trim() === '' ? 0 : val.trim().split(/\s+/).length;
-    setWordCount(words);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setSubmitted(true);
-  };
-
   return (
     <>
       <NetworkBackground />
@@ -60,40 +43,6 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Feedback Form */}
-        <section className="container form-section">
-          <h2 className="form-title">Shape Our Future</h2>
-          <p className="form-subtitle" style={{ textAlign: 'center' }}>
-            Please share inputs on how to build this community to a better reach.
-          </p>
-
-          {submitted ? (
-            <p style={{ textAlign: 'center', color: 'var(--grey-text)', fontSize: '1.1rem' }}>
-              ✅ Thank you for your feedback! We&apos;ll take it into account.
-            </p>
-          ) : (
-            <form className="glass-form" onSubmit={handleSubmit}>
-              <input type="text" placeholder="Name" required className="glass-input" />
-              <input type="email" placeholder="Email ID" required className="glass-input" />
-              <textarea
-                placeholder="Your message... (Minimum 50 words)"
-                rows={6}
-                required
-                className="glass-input"
-                value={message}
-                onChange={handleMessageChange}
-              />
-              <div className="word-count-indicator">Words: {wordCount} / 50 minimum</div>
-              <button
-                type="submit"
-                className="btn-main glass-pill"
-                disabled={wordCount < 50}
-              >
-                Submit Feedback
-              </button>
-            </form>
-          )}
-        </section>
       </main>
     </>
   );
