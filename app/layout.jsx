@@ -2,7 +2,6 @@ import './globals.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import CookieBanner from '@/components/CookieBanner';
-import { Analytics } from '@vercel/analytics/react';
 
 export const metadata = {
   title: 'Young Legal House',
@@ -23,7 +22,6 @@ export default function RootLayout({ children }) {
         {children}
         <Footer />
         <CookieBanner />
-<Analytics />
       </body>
     </html>
   );
