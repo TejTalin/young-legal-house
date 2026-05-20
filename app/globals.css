@@ -114,7 +114,7 @@ img { max-width: 100%; display: block; }
   gap: 14px;
   align-items: center;
   pointer-events: none;
-  padding-top: 8px;
+  padding-top: 8px; /* slight top gap */
 }
 
 .sticky-logo, .sticky-island, .sticky-theme-toggle { pointer-events: auto; }
@@ -127,8 +127,8 @@ img { max-width: 100%; display: block; }
 }
 
 .sticky-logo img {
-  width: 136px; /* desktop logo zoom */
-  height: 136px;
+  width: 122px;   /* visibly bigger */
+  height: 122px;
   object-fit: contain;
 }
 
@@ -139,7 +139,7 @@ body.light-mode .footer-logo {
 
 .sticky-island {
   min-height: 68px;
-  padding: 4px 18px;
+  padding: 4px 18px; /* slight top/bottom breathing space */
   border: 1px solid var(--glass-border);
   border-radius: 999px;
   background: rgba(0,0,0,0.42);
@@ -148,7 +148,7 @@ body.light-mode .footer-logo {
   display: flex;
   align-items: center;
   gap: 10px;
-  justify-content: center; /* center logo + links */
+  justify-content: flex-start; /* logo + links in one line */
   pointer-events: auto;
   overflow: hidden;
 }
@@ -161,10 +161,9 @@ body.light-mode .sticky-island {
   display: flex;
   align-items: center;
   gap: 6px;
-  justify-content: center; /* centered nav links */
+  justify-content: flex-start;
   flex-wrap: nowrap;
   min-width: 0;
-  margin-left: 0;
 }
 
 .island-nav a {
@@ -206,13 +205,43 @@ body.light-mode .sticky-island {
   cursor: pointer;
   backdrop-filter: blur(16px);
   pointer-events: auto;
-  justify-self: end;
-  margin-right: 2px;
+  justify-self: end;  /* pushed to right edge */
+  margin-right: 2px;  /* slight space from edge */
 }
 
 .theme-icon {
   width: 20px;
   height: 20px;
+}
+
+/* ── HOME HERO CTA FIX ── */
+.hero-cta-row {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.hero-cta-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 0 28px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 800;
+}
+
+.hero-cta-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 0 8px;
+  font-weight: 700;
+  text-underline-offset: 6px;
 }
 
 /* ── RESPONSIVE NAVBAR ── */
@@ -227,7 +256,7 @@ body.light-mode .sticky-island {
     padding-top: 6px;
   }
 
-  .sticky-logo img { width: 96px; height: 96px; } /* mobile tablet logo zoom */
+  .sticky-logo img { width: 88px; height: 88px; }
   .sticky-island { min-height: 56px; padding: 3px 10px; gap: 8px; }
 
   .island-nav {
@@ -243,6 +272,14 @@ body.light-mode .sticky-island {
   }
 
   .sticky-theme-toggle { width: 48px; height: 48px; }
+
+  .hero-cta-row {
+    gap: 10px;
+    flex-direction: column;
+  }
+  .hero-cta-primary, .hero-cta-secondary {
+    min-height: 48px;
+  }
 }
 
 @media (max-width: 560px) {
@@ -255,7 +292,7 @@ body.light-mode .sticky-island {
     padding-top: 5px;
   }
 
-  .sticky-logo img { width: 84px; height: 84px; } /* phone logo zoom */
+  .sticky-logo img { width: 78px; height: 78px; }
   .sticky-island { min-height: 52px; padding: 3px 8px; }
 
   .island-nav a {
