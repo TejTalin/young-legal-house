@@ -83,7 +83,7 @@ function RegistrationForm() {
         amount: 15000, // ₹150 in paise
         currency: 'INR',
         name: 'Young Legal House',
-        description: 'YLH CRIMINAL LAW TRIVIA — Trivia Registration',
+        description: 'YLH Criminal Law Trivia — Trivia Registration',
         order_id: orderData.orderId,
         prefill: {
           name: form.name,
@@ -136,7 +136,7 @@ function RegistrationForm() {
           Registrations Open on 22nd May
         </h3>
         <p style={{ color: 'var(--grey-text)', lineHeight: '1.7' }}>
-          Mark your calendar! Registration for the YLH CRIMINAL LAW TRIVIA Event opens on 22nd May 2026.
+          Mark your calendar! Registration for the YLH Criminal Law Trivia Event opens on 22nd May 2026.
           Follow us on Instagram and LinkedIn to stay updated.
         </p>
         <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', marginTop: '24px' }}>
@@ -159,7 +159,7 @@ function RegistrationForm() {
           You&apos;re Registered!
         </h3>
         <p style={{ color: 'var(--grey-text)', lineHeight: '1.7' }}>
-          Welcome to the YLH CRIMINAL LAW TRIVIA! A confirmation email has been sent to <strong>{form.email}</strong>.
+          Welcome to the YLH Criminal Law Trivia! A confirmation email has been sent to <strong>{form.email}</strong>.
           See you on 15th June 2026!
         </p>
       </div>
@@ -242,7 +242,7 @@ export default function EventsPage() {
         <div style={{ display: 'inline-block', background: 'var(--glass-bg)', border: '1px solid var(--glass-border)', borderRadius: '999px', padding: '6px 18px', fontSize: '0.8rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: '20px', color: 'var(--grey-text)' }}>
           Flagship Event 2026
         </div>
-        <h1 className="section-title">YLH CRIMINAL LAW TRIVIA</h1>
+        <h1 className="section-title">YLH Criminal Law Trivia</h1>
         <p style={{ color: 'var(--grey-text)', fontSize: '1.1rem', lineHeight: '1.8', maxWidth: '640px', margin: '0 auto' }}>
           Test your legal knowledge against the best minds across India. An exciting trivia competition
           on Criminal Law.
