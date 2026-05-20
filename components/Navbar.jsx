@@ -33,11 +33,11 @@ export default function Navbar() {
     <header className="navbar ylh-header" id="mainNav">
       <div className="ylh-header-inner">
         <div className="sticky-island">
-          <Link href="/" className="sticky-logo">
-            <Image src="/logoylh.png" alt="Young Legal House Logo" width={148} height={148} priority />
+          <Link href="/" className="sticky-logo" aria-label="Young Legal House Home">
+            <Image src="/logoylh.png" alt="Young Legal House Logo" width={160} height={160} priority />
           </Link>
 
-          <nav className="island-nav">
+          <nav className="island-nav" aria-label="Main navigation">
             <Link href="/" className={isActive('/') ? 'active' : ''}>Home</Link>
             <Link href="/blogs" className={isActive('/blogs') ? 'active' : ''}>Blogs</Link>
             <Link href="/events" className={isActive('/events') ? 'active' : ''}>Events</Link>
