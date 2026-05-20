@@ -10,7 +10,7 @@ export default function TeamPage() {
     <>
       <NetworkBackground />
       <main className="page-spacing container">
-        <h1 className="section-title">Meet Our Team</h1>
+        <h1 className="section-title">Meet the Core Team ! </h1>
 
         <div className="team-container">
           <div className="team-row top-row">
