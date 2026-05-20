@@ -8,7 +8,6 @@ export default function Navbar() {
   const [isDark, setIsDark] = useState(true);
   const pathname = usePathname();
 
-  // Load saved theme on mount
   useEffect(() => {
     const saved = localStorage.getItem('ylh_theme');
     const dark = saved !== 'light';
@@ -33,10 +32,9 @@ export default function Navbar() {
   return (
     <header className="navbar ylh-header" id="mainNav">
       <div className="ylh-header-inner">
-
         <div className="sticky-island">
           <Link href="/" className="sticky-logo">
-            <Image src="/logoylh.png" alt="Young Legal House Logo" width={124} height={124} priority />
+            <Image src="/logoylh.png" alt="Young Legal House Logo" width={148} height={148} priority />
           </Link>
 
           <nav className="island-nav">
@@ -64,7 +62,6 @@ export default function Navbar() {
             </svg>
           )}
         </button>
-
       </div>
     </header>
   );
