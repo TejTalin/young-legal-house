@@ -46,7 +46,7 @@ export default function PrivacyPage() {
               <ul style={{ marginTop: '12px', paddingLeft: '20px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
                 {[
                   'Information Technology Act, 2000 ("IT Act")',
-                  'Information Technology (Reasonable Security Practices and Procedures and Sensitive Personal Data or Information) Rules, 2011 ("SPDI Rules") — currently in full force and effect',
+                  'Information Technology (Reasonable Security Practices and Procedures and Sensitive Personal Data or Information) Rules, 2011 ("SPDI Rules") currently in full force and effect',
                   'Digital Personal Data Protection Act, 2023 ("DPDPA"), operationalised by the Digital Personal Data Protection Rules, 2025 ("DPDP Rules"), notified on 13 November 2025 and being implemented in three phases (see Section 2)',
                   'Information Technology (Intermediary Guidelines and Digital Media Ethics Code) Rules, 2021, as amended in 2025',
                 ].map((item, i) => (
@@ -56,13 +56,13 @@ export default function PrivacyPage() {
               <p style={{ marginTop: '16px' }}>By using the Platform, you consent to the collection, processing, and use of your personal information as described in this Policy. If you do not agree, please discontinue use of the Platform immediately.</p>
             </Section>
 
-            <Section number="2" title="Legislative Framework — Phase-wise Implementation of DPDPA">
+            <Section number="2" title="Legislative Framework Phase-wise Implementation of DPDPA">
               <p>The DPDPA, 2023 and DPDP Rules, 2025 are operative and being implemented as follows:</p>
               <ul style={{ marginTop: '12px', paddingLeft: '20px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
                 {[
                   'Phase 1 (effective 13 November 2025): The Data Protection Board of India ("DPBI") has been constituted. Administrative, structural, and governance provisions are now fully operative.',
                   'Phase 2 (effective 13 November 2026): Consent Manager registration and related provisions become mandatory.',
-                  'Phase 3 (effective 13 May 2027): All substantive compliance obligations become mandatory — including notice requirements, purpose limitation, data minimisation, security safeguards, Data Principal rights enforcement, and breach notification.',
+                  'Phase 3 (effective 13 May 2027): All substantive compliance obligations become mandatory including notice requirements, purpose limitation, data minimisation, security safeguards, Data Principal rights enforcement, and breach notification.',
                 ].map((item, i) => (
                   <li key={i} style={{ color: 'var(--grey-text)', lineHeight: '1.7' }}>{item}</li>
                 ))}
@@ -108,7 +108,7 @@ export default function PrivacyPage() {
                 {[
                   'To operate, maintain, improve, and personalise the Platform and its features',
                   'To deliver relevant legal news, blog content, event listings, and community updates',
-                  'To send newsletters, legal updates, and event notifications — only with your express consent, which may be withdrawn at any time',
+                  'To send newsletters, legal updates, and event notifications only with your express consent, which may be withdrawn at any time',
                   'To respond to queries, grievances, and provide community support',
                   'To detect, investigate, and prevent fraud, abuse, and violations of our Terms of Service',
                   'To comply with applicable legal obligations, court orders, and regulatory requirements under Indian law',
@@ -184,7 +184,7 @@ export default function PrivacyPage() {
                   'Encryption of personal data in transit using SSL/TLS protocols',
                   'Access controls and role-based authorisation for staff accessing personal data',
                   'Regular security reviews and vulnerability assessments',
-                  'Data minimisation — we collect only the personal data that is strictly necessary',
+                  'Data minimisation we collect only the personal data that is strictly necessary',
                 ].map((item, i) => (
                   <li key={i} style={{ color: 'var(--grey-text)', lineHeight: '1.7' }}>{item}</li>
                 ))}
