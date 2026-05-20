@@ -39,13 +39,13 @@ export default function TeamPage() {
             {/* Head of Operations */}
             <div className="glass-card team-card">
               <Image
-                src="/Head.jpeg"
-                alt="Amishee Gupta"
-                width={360}
-                height={450}
-                className="team-img"
-                style={{ transform: 'scale(1.08)', transformOrigin: 'center top' }}
-              />
+  src="/Head.jpeg"
+  alt="Amishee Gupta"
+  width={360}
+  height={450}
+  className="team-img"
+  style={{ objectFit: 'cover', objectPosition: 'center 22%' }}
+/>
               <h3>Amishee Gupta</h3>
               <p className="card-detail">Head of Operations</p>
               <a
