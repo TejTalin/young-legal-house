@@ -7,8 +7,8 @@ export default function AboutPage() {
       <NetworkBackground />
       <main className="page-spacing">
         <section className="container text-center-section">
-          <h1 className="page-title">ABOUT</h1>
-          <p className="about-text">
+          <h1 className="page-title">ABOUT THE INITIATIVE</h1>
+          <p className="about the intiative-text">
             Young Legal House is a dedicated initiative empowering law students across India.
             We provide a common platform for learning, networking, and professional growth,
             connecting aspiring legal professionals with internships, training programs,
