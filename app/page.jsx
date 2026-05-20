@@ -15,7 +15,7 @@ export default function HomePage() {
           <h1 className="section-title">Welcome to Young Legal House</h1>
           <p style={{ color: 'var(--grey-text)', fontSize: '1.15rem', lineHeight: '1.8', marginBottom: '36px' }}>
             A dedicated initiative empowering law students across India. We bridge the gap between
-            legal theory and execution — connecting aspiring professionals with internships,
+            legal theory and execution connecting aspiring professionals with internships,
             training, competitions, and community.
           </p>
 
@@ -45,7 +45,7 @@ export default function HomePage() {
               Curated Legal Insights
             </h3>
             <p style={{ color: 'var(--grey-text)', lineHeight: '1.7' }}>
-              Peer-written articles spanning Corporate Law, Tax, TMT, Litigation, ADR, IPR, and more —
+              Peer-written articles spanning Corporate Law, Tax, TMT, Litigation, ADR, IPR, and more 
               curated for students, by students.
             </p>
           </div>
