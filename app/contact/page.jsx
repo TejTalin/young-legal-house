@@ -113,7 +113,7 @@ export default function ContactPage() {
                 <i className="fas fa-map-marker-alt" style={{ color: 'var(--grey-text)', marginTop: '2px' }}></i>
                 <div>
                   <span style={{ display: 'block', fontSize: '0.9rem', color: 'var(--grey-text)' }}>Headquarters</span>
-                  <span style={{ fontWeight: 700 }}>New Delhi, India</span>
+                  <span style={{ fontWeight: 700 }}>Chennai, Tamil Nadu, India</span>
                 </div>
               </div>
 
