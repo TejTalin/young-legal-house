@@ -41,8 +41,8 @@ export default function TeamPage() {
               <Image
                 src="/Head.jpeg"
                 alt="Amishee Gupta"
-                width={360}
-                height={450}
+                width={460}
+                height={550}
                 className="team-img"
               />
               <h3>Amishee Gupta</h3>
