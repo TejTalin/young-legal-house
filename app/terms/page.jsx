@@ -20,7 +20,7 @@ export default function TermsPage() {
               www.younglegalhouse.com &nbsp;|&nbsp; connect.ylh@gmail.com
             </p>
             <p style={{ color: 'var(--grey-text)', fontSize: '0.95rem', marginTop: '4px' }}>
-              Effective Date: 19 May 2026 &nbsp;|&nbsp; Version 3.0
+              Effective Date: 20 May 2026 &nbsp;|&nbsp; Version 3.0
             </p>
             <p style={{ color: 'var(--muted-text)', fontSize: '0.9rem', fontStyle: 'italic', marginTop: '12px' }}>
               Please read this document carefully before using the Platform.
