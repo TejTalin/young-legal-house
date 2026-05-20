@@ -52,7 +52,7 @@ export default function TermsPage() {
                 <p style={{ fontWeight: 700 }}>NOT LEGAL ADVICE — READ CAREFULLY</p>
                 <p style={{ color: 'var(--grey-text)', marginTop: '8px', lineHeight: '1.8', fontSize: '0.95rem' }}>Young Legal House is NOT a law firm and does NOT provide legal advice, legal opinions, legal representation, or any professional legal services of any kind.</p>
               </div>
-              <p>All content on the Platform — including but not limited to articles, blogs, commentary, event information, live updates, newsletters, discussions, and any other materials — is provided solely for general informational and educational purposes. Such content does not constitute and must not be construed as:</p>
+              <p>All content on the Platform including but not limited to articles, blogs, commentary, event information, live updates, newsletters, discussions, and any other materials is provided solely for general informational and educational purposes. Such content does not constitute and must not be construed as:</p>
               <ul style={{ marginTop: '12px', paddingLeft: '20px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
                 {['Legal advice of any kind', 'A legal opinion on any matter', 'A recommendation to take or refrain from any legal action', 'The establishment of an attorney-client, solicitor-client, or any other professional relationship', 'A substitute for consultation with a qualified and licensed legal professional'].map((item, i) => (
                   <li key={i} style={{ color: 'var(--grey-text)', lineHeight: '1.7' }}>{item}</li>
@@ -78,7 +78,7 @@ export default function TermsPage() {
               <p style={{ marginTop: '16px' }}>Young Legal House reserves the right to refuse access to the Platform to any person at any time, with or without cause, with or without notice.</p>
             </Section>
 
-            <Section number="4" title="Platform as Intermediary — Safe Harbour">
+            <Section number="4" title="Platform as Intermediary Safe Harbour">
               <p>Young Legal House operates as an intermediary within the meaning of Section 2(1)(w) of the Information Technology Act, 2000. The Platform complies with the Information Technology (Intermediary Guidelines and Digital Media Ethics Code) Rules, 2021, as amended by the IT Amendment Rules, 2025.</p>
               <p style={{ marginTop: '12px' }}>Pursuant to Section 79 of the IT Act, 2000, Young Legal House shall not be held liable for any third-party content, user-generated content, or information hosted on the Platform, provided that the Platform acts expeditiously upon receiving actual knowledge of any unlawful content. Users may report unlawful content to our Grievance Officer at connect.ylh@gmail.com. Complaints will be acknowledged within 24 hours and acted upon within the timelines prescribed under the IT Rules, 2021.</p>
             </Section>
@@ -125,7 +125,7 @@ export default function TermsPage() {
             </Section>
 
             <Section number="7" title="Intellectual Property">
-              <p>All content on the Platform that is created, compiled, or owned by Young Legal House — including without limitation its name, logo, trade dress, platform design, original articles, curated databases, and editorial content — is the exclusive intellectual property of Young Legal House and is protected under the Copyright Act, 1957, the Trade Marks Act, 1999, and all other applicable Indian and international intellectual property laws.</p>
+              <p>All content on the Platform that is created, compiled, or owned by Young Legal House including without limitation its name, logo, trade dress, platform design, original articles, curated databases, and editorial content is the exclusive intellectual property of Young Legal House and is protected under the Copyright Act, 1957, the Trade Marks Act, 1999, and all other applicable Indian and international intellectual property laws.</p>
               <p style={{ marginTop: '12px' }}>No content from the Platform may be reproduced, distributed, modified, adapted, publicly displayed, transmitted, sold, licensed, or otherwise exploited, in whole or in part, for any commercial purpose without the prior express written permission of Young Legal House.</p>
               <p style={{ marginTop: '12px' }}>The Platform name "Young Legal House" and its logo are trade marks of Young Legal House. Nothing in these Terms grants you any right or licence to use any trade mark, trade name, or service mark of Young Legal House.</p>
             </Section>
