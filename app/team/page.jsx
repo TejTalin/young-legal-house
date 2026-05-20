@@ -46,7 +46,7 @@ export default function TeamPage() {
                 className="team-img"
               />
               <h3>Amishee Gupta</h3>
-              <p className="card-detail">Head of Operations</p>
+              <p className="card-detail">Co Founder of the Community</p>
               <a
                 href="https://www.linkedin.com/in/amishee-gupta-95b65b303/"
                 target="_blank"
