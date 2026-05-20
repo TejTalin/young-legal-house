@@ -9,11 +9,7 @@ export default function AboutPage() {
         <section className="container text-center-section">
           <h1 className="page-title">ABOUT THE INITIATIVE</h1>
           <p className="about the intiative-text">
-            Young Legal House is a dedicated initiative empowering law students across India.
-            We provide a common platform for learning, networking, and professional growth,
-            connecting aspiring legal professionals with internships, training programs,
-            competitions, events, and career opportunities. Our mission is to build a vibrant,
-            informed, and collaborative legal community.
+            Young Legal House is a pioneering initiative dedicated to empowering law students across India by fostering a dynamic ecosystem of learning, collaboration, and professional development. Serving as a unified platform for aspiring legal professionals, we bridge the gap between academic pursuits and career advancement through access to internships, training programmes, competitions, events, mentorship, and diverse professional opportunities.Driven by a vision to cultivate an informed, connected, and progressive legal community, Young Legal House strives to nurture the next generation of legal minds by encouraging excellence, innovation, and meaningful engagement within the legal fraternity.Established in mid-2024, the initiative gained full operational momentum in December 2025 and has since continued to expand its presence and impact across the Indian legal landscape.
           </p>
         </section>
 
