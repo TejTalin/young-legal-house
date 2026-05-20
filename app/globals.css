@@ -127,8 +127,8 @@ img { max-width: 100%; display: block; }
 }
 
 .sticky-logo img {
-  width: 122px;   /* visibly bigger */
-  height: 122px;
+  width: 142px;   /* visibly bigger */
+  height: 142px;
   object-fit: contain;
 }
 
@@ -138,17 +138,17 @@ body.light-mode .footer-logo {
 }
 
 .sticky-island {
-  min-height: 68px;
+  min-height: 38px;
   padding: 4px 18px; /* slight top/bottom breathing space */
   border: 1px solid var(--glass-border);
-  border-radius: 999px;
+  border-radius: 888px;
   background: rgba(0,0,0,0.42);
   box-shadow: var(--shadow);
   backdrop-filter: blur(26px);
   display: flex;
   align-items: center;
   gap: 10px;
-  justify-content: flex-start; /* logo + links in one line */
+  justify-content: center; /* logo + links in one line */
   pointer-events: auto;
   overflow: hidden;
 }
