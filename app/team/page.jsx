@@ -10,7 +10,7 @@ export default function TeamPage() {
     <>
       <NetworkBackground />
       <main className="page-spacing container">
-        <h1 className="section-title">Meet the Core Team ! </h1>
+        <h1 className="section-title">Meet Our Team</h1>
 
         <div className="team-container">
           <div className="team-row top-row">
@@ -41,12 +41,13 @@ export default function TeamPage() {
               <Image
                 src="/Head.jpeg"
                 alt="Amishee Gupta"
-                width={560}
+                width={360}
                 height={450}
                 className="team-img"
+                style={{ transform: 'scale(1.08)', transformOrigin: 'center top' }}
               />
               <h3>Amishee Gupta</h3>
-              <p className="card-detail">Co Founder of the Community</p>
+              <p className="card-detail">Head of Operations</p>
               <a
                 href="https://www.linkedin.com/in/amishee-gupta-95b65b303/"
                 target="_blank"
