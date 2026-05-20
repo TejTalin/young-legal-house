@@ -20,11 +20,9 @@ export default function ContactPage() {
         method: 'POST',
         body: formData,
       });
-      const data = await res.json();
 
-      if (!res.ok) {
-        throw new Error(data.error || 'Could not send your message.');
-      }
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Could not send your message.');
 
       setSubmitted(true);
       form.reset();
