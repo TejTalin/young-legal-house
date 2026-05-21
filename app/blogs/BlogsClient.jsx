@@ -1,5 +1,6 @@
 'use client';
 import { useState } from 'react';
+import Link from 'next/link';
 import { urlFor } from '@/lib/sanity';
 
 const CATEGORIES = ['All', 'Tax', 'TMT', 'Corporate', 'Litigation', 'M&A', 'ADR', 'IPR', 'Others'];
@@ -140,7 +141,9 @@ export default function BlogsClient({ blogs }) {
                   <span className="content-type-badge">{blog.contentType}</span>
                   <span className="meta-tag">{blog.category}</span>
                 </div>
-                <h3><a href="#">{blog.title}</a></h3>
+                <h3>
+                  <Link href={`/blogs/${blog?.slug?.current || ''}`}>{blog.title}</Link>
+                </h3>
                 <p style={{ color: 'var(--grey-text)', fontSize: '0.93rem', lineHeight: '1.6', marginBottom: '12px' }}>
                   {blog.excerpt}
                 </p>
