@@ -59,6 +59,7 @@ export default function EventsPage() {
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+            alignItems: 'start',
             gap: '18px',
             marginBottom: '24px',
           }}
