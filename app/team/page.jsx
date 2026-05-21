@@ -6,6 +6,10 @@ export const metadata = {
 };
 
 export default function TeamPage() {
+  const blockImageActions = (event) => {
+    event.preventDefault();
+  };
+
   return (
     <>
       <NetworkBackground />
@@ -22,6 +26,9 @@ export default function TeamPage() {
                 width={360}
                 height={450}
                 className="team-img"
+                draggable={false}
+                onContextMenu={blockImageActions}
+                style={{ WebkitTouchCallout: 'none', userSelect: 'none' }}
               />
               <h3>Achyuta Narayanan</h3>
               <p className="card-detail">Founder of the Community</p>
@@ -44,7 +51,14 @@ export default function TeamPage() {
   width={360}
   height={450}
   className="team-img"
-  style={{ objectFit: 'cover', objectPosition: 'center 22%' }}
+  draggable={false}
+  onContextMenu={blockImageActions}
+  style={{
+    objectFit: 'cover',
+    objectPosition: 'center 22%',
+    WebkitTouchCallout: 'none',
+    userSelect: 'none',
+  }}
 />
               <h3>Amishee Gupta</h3>
               <p className="card-detail">Head of Operations</p>
@@ -57,6 +71,22 @@ export default function TeamPage() {
               >
                 <i className="fab fa-linkedin"></i>
               </a>
+            </div>
+
+            {/* Head of Technology */}
+            <div className="glass-card team-card">
+              <Image
+                src="/Tej-Talin.png"
+                alt="Tej Talin"
+                width={360}
+                height={450}
+                className="team-img"
+                draggable={false}
+                onContextMenu={blockImageActions}
+                style={{ objectFit: 'cover', WebkitTouchCallout: 'none', userSelect: 'none' }}
+              />
+              <h3>Tej Talin</h3>
+              <p className="card-detail">Head of Technology</p>
             </div>
           </div>
 
