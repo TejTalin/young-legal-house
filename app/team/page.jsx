@@ -5,11 +5,29 @@ export const metadata = {
   title: 'Team | Young Legal House',
 };
 
-export default function TeamPage() {
-  const blockImageActions = (event) => {
-    event.preventDefault();
-  };
+const TEAM_MEMBERS = [
+  {
+    name: 'Achyuta Narayanan',
+    role: 'Founder of the Community',
+    image: '/Founder.jpeg',
+    linkedIn: 'https://www.linkedin.com/in/achyuta-narayanan/',
+  },
+  {
+    name: 'Amishee Gupta',
+    role: 'Head of Operations',
+    image: '/Head.jpeg',
+    linkedIn: 'https://www.linkedin.com/in/amishee-gupta-95b65b303/',
+    imageStyle: { objectFit: 'cover', objectPosition: 'center 22%' },
+  },
+  {
+    name: 'Tej Talin',
+    role: 'Head of Technology',
+    image: '/Tej-Talin.png',
+    imageStyle: { objectFit: 'cover' },
+  },
+];
 
+export default function TeamPage() {
   return (
     <>
       <NetworkBackground />
@@ -18,79 +36,35 @@ export default function TeamPage() {
 
         <div className="team-container">
           <div className="team-row top-row">
-            {/* Founder */}
-            <div className="glass-card team-card">
-              <Image
-                src="/Founder.jpeg"
-                alt="Achyuta Narayanan"
-                width={360}
-                height={450}
-                className="team-img"
-                draggable={false}
-                onContextMenu={blockImageActions}
-                style={{ WebkitTouchCallout: 'none', userSelect: 'none' }}
-              />
-              <h3>Achyuta Narayanan</h3>
-              <p className="card-detail">Founder of the Community</p>
-              <a
-                href="https://www.linkedin.com/in/achyuta-narayanan/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="team-social"
-                style={{ color: 'var(--text-color)' }}
-              >
-                <i className="fab fa-linkedin"></i>
-              </a>
-            </div>
+            {TEAM_MEMBERS.map((member) => (
+              <div key={member.name} className="glass-card team-card">
+                <Image
+                  src={member.image}
+                  alt={member.name}
+                  width={360}
+                  height={450}
+                  className="team-img no-save-img"
+                  draggable={false}
+                  style={member.imageStyle}
+                />
+                <h3>{member.name}</h3>
+                <p className="card-detail">{member.role}</p>
 
-            {/* Head of Operations */}
-            <div className="glass-card team-card">
-              <Image
-  src="/Head.jpeg"
-  alt="Amishee Gupta"
-  width={360}
-  height={450}
-  className="team-img"
-  draggable={false}
-  onContextMenu={blockImageActions}
-  style={{
-    objectFit: 'cover',
-    objectPosition: 'center 22%',
-    WebkitTouchCallout: 'none',
-    userSelect: 'none',
-  }}
-/>
-              <h3>Amishee Gupta</h3>
-              <p className="card-detail">Head of Operations</p>
-              <a
-                href="https://www.linkedin.com/in/amishee-gupta-95b65b303/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="team-social"
-                style={{ color: 'var(--text-color)' }}
-              >
-                <i className="fab fa-linkedin"></i>
-              </a>
-            </div>
-
-            {/* Head of Technology */}
-            <div className="glass-card team-card">
-              <Image
-                src="/Tej-Talin.png"
-                alt="Tej Talin"
-                width={360}
-                height={450}
-                className="team-img"
-                draggable={false}
-                onContextMenu={blockImageActions}
-                style={{ objectFit: 'cover', WebkitTouchCallout: 'none', userSelect: 'none' }}
-              />
-              <h3>Tej Talin</h3>
-              <p className="card-detail">Head of Technology</p>
-            </div>
+                {member.linkedIn ? (
+                  <a
+                    href={member.linkedIn}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="team-social"
+                    style={{ color: 'var(--text-color)' }}
+                  >
+                    <i className="fab fa-linkedin"></i>
+                  </a>
+                ) : null}
+              </div>
+            ))}
           </div>
 
-          {/* Community Card */}
           <div className="team-row">
             <div className="glass-card community-card">
               <h3>And a Growing Community...</h3>
