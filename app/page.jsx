@@ -111,7 +111,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <style jsx>{`
+        <style>{`
           @keyframes ylh-ticker {
             0% { transform: translateX(0%); }
             100% { transform: translateX(-100%); }
