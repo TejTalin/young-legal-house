@@ -53,6 +53,22 @@ export default {
       validation: Rule => Rule.required()
     },
     {
+      name: 'publicationStatus',
+      title: 'Publication Status',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Draft', value: 'draft' },
+          { title: 'Under Review', value: 'under_review' },
+          { title: 'Published', value: 'published' },
+        ],
+        layout: 'radio',
+      },
+      initialValue: 'draft',
+      validation: Rule => Rule.required(),
+      description: 'Only content marked as Published appears on the website.',
+    },
+    {
       name: 'excerpt',
       title: 'Short Excerpt',
       type: 'text',
@@ -90,6 +106,20 @@ export default {
     select: {
       title: 'title',
       subtitle: 'author',
+      status: 'publicationStatus',
     }
+    ,
+    prepare({ title, subtitle, status }) {
+      const statusLabel = status === 'published'
+        ? 'Published'
+        : status === 'under_review'
+          ? 'Under Review'
+          : 'Draft';
+
+      return {
+        title,
+        subtitle: `${subtitle || 'Unknown Author'} • ${statusLabel}`,
+      };
+    },
   }
 }
