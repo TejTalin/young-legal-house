@@ -176,7 +176,6 @@ export async function POST(request) {
           'Name of Institution': payload.institution,
           'Year of Study': payload.yearOfStudy,
           Phone: payload.phone,
-          'Submitted At': new Date().toISOString(),
         });
         await uploadAttachment(record.id, paymentScreenshot);
         airtableOk = true;
