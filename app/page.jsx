@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import NetworkBackground from '@/components/NetworkBackground';
+import HomeEventPopup from '@/components/HomeEventPopup';
 
 export const metadata = {
   title: 'Young Legal House | Where Young Legal Minds Meet',
@@ -9,6 +10,7 @@ export default function HomePage() {
   return (
     <>
       <NetworkBackground />
+      <HomeEventPopup />
 
       <main className="page-spacing container">
         <div style={{ textAlign: 'center', maxWidth: '800px', margin: '60px auto 60px' }}>
