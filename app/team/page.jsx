@@ -23,6 +23,7 @@ const TEAM_MEMBERS = [
     name: 'Tej Talin',
     role: 'Head of Technology',
     image: '/Tej-Talin.png',
+    linkedIn: 'https://www.linkedin.com/in/tejtalind/',
     imageStyle: { objectFit: 'cover' },
   },
 ];
