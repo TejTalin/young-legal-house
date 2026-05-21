@@ -34,7 +34,11 @@ export default function EventsPage() {
       const data = await res.json();
 
       if (!res.ok || !data.success) {
-        throw new Error(data.error || 'Could not complete registration.');
+        const extra =
+          data?.details?.airtableErr || data?.details?.googleErr
+            ? ` (${data?.details?.airtableErr || ''}${data?.details?.airtableErr && data?.details?.googleErr ? ' | ' : ''}${data?.details?.googleErr || ''})`
+            : '';
+        throw new Error((data.error || 'Could not complete registration.') + extra);
       }
 
       const name = encodeURIComponent(formData.get('fullName') || 'Participant');
@@ -55,37 +59,27 @@ export default function EventsPage() {
           A cinematic, story-driven criminal law trivia where each clue unfolds a case and every round tests your legal acumen.
         </p>
 
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-            alignItems: 'start',
-            gap: '18px',
-            marginBottom: '24px',
-          }}
-        >
-          <div className="glass-card">
-            <img
-              src="/lex-noctis-launch-poster.jpeg"
-              alt="Lex Noctis poster"
-              style={{
-                borderRadius: '10px',
-                width: '100%',
-                maxWidth: '380px',
-                maxHeight: '560px',
-                objectFit: 'cover',
-                margin: '0 auto',
-              }}
-            />
-          </div>
+        <div className="glass-card" style={{ marginBottom: '18px' }}>
+          <h3 style={{ marginBottom: '12px' }}>Cinematic Criminal Law Trivia</h3>
+          <p style={{ color: 'var(--grey-text)', marginBottom: 0, lineHeight: '1.8' }}>
+            Lex Noctis is an immersive legal trivia built around a cinematic narrative. Participants move through timed rounds,
+            decode clues, and apply criminal law principles to progress through the case journey.
+          </p>
+        </div>
 
-          <div className="glass-card">
-            <h3 style={{ marginBottom: '12px' }}>Cinematic Criminal Law Trivia</h3>
-            <p style={{ color: 'var(--grey-text)', marginBottom: 0, lineHeight: '1.8' }}>
-              Lex Noctis is an immersive legal trivia built around a cinematic narrative. Participants move through timed rounds,
-              decode clues, and apply criminal law principles to progress through the case journey.
-            </p>
-          </div>
+        <div className="glass-card" style={{ marginBottom: '24px' }}>
+          <img
+            src="/lex-noctis-launch-poster.jpeg"
+            alt="Lex Noctis poster"
+            style={{
+              borderRadius: '10px',
+              width: '100%',
+              maxWidth: '380px',
+              maxHeight: '560px',
+              objectFit: 'cover',
+              margin: '0 auto',
+            }}
+          />
         </div>
 
         <div
