@@ -50,42 +50,75 @@ export default function EventsPage() {
       <NetworkBackground />
       <main className="page-spacing container">
         <h1 className="section-title">Lex Noctis - Legal Trivia</h1>
-        <p className="form-subtitle" style={{ textAlign: 'center' }}>
-          Criminal law themed trivia event by Young Legal House. Registration deadline: <strong>13 June 2026</strong>. Event date: <strong>15 June 2026</strong>.
+        <p className="form-subtitle" style={{ textAlign: 'center', marginBottom: '26px' }}>
+          A cinematic, story-driven criminal law trivia where each clue unfolds a case and every round tests your legal acumen.
         </p>
 
-        <div className="cards-grid" style={{ marginBottom: '32px' }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: '18px',
+            marginBottom: '24px',
+          }}
+        >
           <div className="glass-card">
             <h3 style={{ marginBottom: '12px' }}>Event Poster</h3>
-            <img src="/lex-noctis-launch-poster.jpeg" alt="Lex Noctis poster" style={{ borderRadius: '10px' }} />
+            <img src="/lex-noctis-launch-poster.jpeg" alt="Lex Noctis poster" style={{ borderRadius: '10px', width: '100%' }} />
           </div>
 
           <div className="glass-card">
-            <h3 style={{ marginBottom: '12px' }}>Payment Details</h3>
+            <h3 style={{ marginBottom: '12px' }}>Event Essentials</h3>
+            <p style={{ color: 'var(--grey-text)', marginBottom: '10px' }}><strong>Date:</strong> 15 June 2026</p>
+            <p style={{ color: 'var(--grey-text)', marginBottom: '10px' }}><strong>Last date to register:</strong> 13 June 2026</p>
+            <p style={{ color: 'var(--grey-text)', marginBottom: '10px' }}><strong>Venue:</strong> Online (YouTube livestream)</p>
+            <p style={{ color: 'var(--grey-text)', marginBottom: '10px' }}><strong>Fee:</strong> Rs. 150</p>
+            <p style={{ color: 'var(--grey-text)', marginBottom: 0 }}>
+              <strong>Who can join:</strong> Law students (all years), legal aspirants, and legal enthusiasts.
+            </p>
+          </div>
+        </div>
+
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+            gap: '16px',
+            marginBottom: '24px',
+          }}
+        >
+          <div className="glass-card">
+            <h3 style={{ marginBottom: '8px' }}>How the Event Works</h3>
+            <p style={{ color: 'var(--grey-text)', marginBottom: 0 }}>
+              1. Story premiere and case setup<br />
+              2. Clues and questions across rounds<br />
+              3. Timed legal decision making<br />
+              4. Criminal law focus on evidence, procedure, liability, and defenses
+            </p>
+          </div>
+          <div className="glass-card">
+            <h3 style={{ marginBottom: '8px' }}>Payment Details</h3>
             <p style={{ color: 'var(--grey-text)', marginBottom: '8px' }}>
-              Registration amount: <strong>Rs. 150</strong>
+              <strong>UPI ID:</strong> achyutanarayan03-1@okicici
             </p>
-            <p style={{ color: 'var(--grey-text)', marginBottom: '14px' }}>
-              UPI ID: <strong>achyutanarayan03-1@okicici</strong>
-            </p>
-            <img src="/ylh-payment-qr.jpeg" alt="YLH UPI QR" style={{ borderRadius: '10px', maxWidth: '320px', width: '100%' }} />
-            <p style={{ color: 'var(--muted-text)', marginTop: '10px', fontSize: '0.9rem' }}>
-              Please make payment first, then upload the screenshot in the form below.
+            <img src="/ylh-payment-qr.jpeg" alt="YLH UPI QR" style={{ borderRadius: '10px', maxWidth: '300px', width: '100%' }} />
+            <p style={{ color: 'var(--muted-text)', marginTop: '8px', marginBottom: 0, fontSize: '0.9rem' }}>
+              Make payment first and upload the screenshot in registration form.
             </p>
           </div>
         </div>
 
         <div className="glass-card" style={{ marginBottom: '30px' }}>
-          <h2 style={{ marginBottom: '8px' }}>Brochure & Event Information</h2>
+          <h2 style={{ marginBottom: '8px' }}>Brochure</h2>
           <p style={{ color: 'var(--grey-text)', marginBottom: '14px' }}>
-            Download the full brochure for rules, rounds, judging details, and participation terms.
+            Full brochure includes detailed flow, terms, and competition info.
           </p>
           <a href="/lex-noctis-brochure.pdf" target="_blank" rel="noopener noreferrer" className="glass-pill" style={{ display: 'inline-block', textDecoration: 'none' }}>
             Open Brochure (PDF)
           </a>
         </div>
 
-        <div className="glass-card" style={{ maxWidth: '760px', margin: '0 auto' }}>
+        <div className="glass-card" style={{ maxWidth: '760px', margin: '0 auto', width: '100%' }}>
           <h2 style={{ marginBottom: '6px' }}>Register for Lex Noctis</h2>
           <p style={{ color: 'var(--grey-text)', marginBottom: '20px' }}>
             Fill all compulsory fields. You will receive an email confirmation after successful registration.
