@@ -5,7 +5,7 @@ import { schemaTypes } from './schema/index'
 export default defineConfig({
   name: 'young-legal-house',
   title: 'Young Legal House CMS',
-  projectId: 'c2r4n385',
+  projectId: 'rfchx8l1',
   dataset: 'production',
   plugins: [structureTool()],
   schema: { types: schemaTypes },
