@@ -49,7 +49,7 @@ export default function EventsPage() {
   return (
     <>
       <NetworkBackground />
-      <main className="page-spacing container">
+      <main className="page-spacing container" style={{ paddingTop: '24px' }}>
         <h1 className="section-title">Lex Noctis - Legal Trivia</h1>
         <p className="form-subtitle" style={{ textAlign: 'center', marginBottom: '26px' }}>
           A cinematic, story-driven criminal law trivia where each clue unfolds a case and every round tests your legal acumen.
@@ -68,7 +68,14 @@ export default function EventsPage() {
             <img
               src="/lex-noctis-launch-poster.jpeg"
               alt="Lex Noctis poster"
-              style={{ borderRadius: '10px', width: '100%', maxWidth: '460px', margin: '0 auto' }}
+              style={{
+                borderRadius: '10px',
+                width: '100%',
+                maxWidth: '380px',
+                maxHeight: '560px',
+                objectFit: 'cover',
+                margin: '0 auto',
+              }}
             />
           </div>
 
