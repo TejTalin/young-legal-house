@@ -10,19 +10,19 @@ export default function HomePage() {
     <>
       <NetworkBackground />
 
-      <main className="page-spacing container" style={{ paddingTop: '24px' }}>
+      <main className="page-spacing container" style={{ paddingTop: '28px', paddingBottom: '120px' }}>
         <section
           style={{
             textAlign: 'center',
             maxWidth: '880px',
-            margin: '0 auto 24px',
+            margin: '0 auto 34px',
             padding: '8px 6px',
           }}
         >
           <h1
             className="section-title"
             style={{
-              marginBottom: '14px',
+              marginBottom: '16px',
               lineHeight: 1.04,
               textWrap: 'balance',
             }}
@@ -33,7 +33,7 @@ export default function HomePage() {
             style={{
               color: 'var(--grey-text)',
               fontSize: 'clamp(1rem, 2.4vw, 1.16rem)',
-              lineHeight: 1.8,
+              lineHeight: 1.85,
               margin: '0 auto 18px',
               maxWidth: '760px',
               textWrap: 'pretty',
@@ -49,7 +49,7 @@ export default function HomePage() {
           style={{
             display: 'block',
             textDecoration: 'none',
-            marginBottom: '26px',
+            marginBottom: '34px',
           }}
           aria-label="Open Lex Noctis event page"
         >
@@ -84,12 +84,15 @@ export default function HomePage() {
 
         <section
           style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(230px, 1fr))',
-            gap: '16px',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '18px',
+            maxWidth: '900px',
+            margin: '0 auto',
           }}
         >
           <div className="glass-card">
+            <i className="fas fa-gavel" style={{ fontSize: '1.8rem', marginBottom: '12px', color: 'var(--grey-text)' }}></i>
             <h3 style={{ marginBottom: '10px' }}>Curated Legal Insights</h3>
             <p style={{ color: 'var(--grey-text)', lineHeight: 1.75 }}>
               Student-focused legal articles across major practice areas.
@@ -97,6 +100,7 @@ export default function HomePage() {
           </div>
 
           <div className="glass-card">
+            <i className="fas fa-calendar-alt" style={{ fontSize: '1.8rem', marginBottom: '12px', color: 'var(--grey-text)' }}></i>
             <h3 style={{ marginBottom: '10px' }}>Competitions & Events</h3>
             <p style={{ color: 'var(--grey-text)', lineHeight: 1.75 }}>
               Practical legal competitions, workshops, and flagship events.
@@ -104,9 +108,18 @@ export default function HomePage() {
           </div>
 
           <div className="glass-card">
+            <i className="fas fa-users" style={{ fontSize: '1.8rem', marginBottom: '12px', color: 'var(--grey-text)' }}></i>
             <h3 style={{ marginBottom: '10px' }}>Career Community</h3>
             <p style={{ color: 'var(--grey-text)', lineHeight: 1.75 }}>
               Build your profile with peers, mentors, and legal opportunities.
+            </p>
+          </div>
+
+          <div className="glass-card">
+            <i className="fas fa-bullseye" style={{ fontSize: '1.8rem', marginBottom: '12px', color: 'var(--grey-text)' }}></i>
+            <h3 style={{ marginBottom: '10px' }}>Built for Growth</h3>
+            <p style={{ color: 'var(--grey-text)', lineHeight: 1.75 }}>
+              Explore opportunities, improve legal application skills, and stay connected with a serious learner community.
             </p>
           </div>
         </section>
