@@ -110,7 +110,7 @@ export default function HomePage() {
                 Curated Legal Insights
               </h3>
               <p style={{ color: 'var(--grey-text)', lineHeight: 1.75, fontSize: '0.93rem' }}>
-                Peer-written articles covering Corporate Law, Tax, TMT, Litigation, ADR, IPR, and more —
+                Peer-written articles covering Corporate Law, Tax, TMT, Litigation, ADR, IPR, and more
                 written by students for students.
               </p>
             </div>
@@ -187,7 +187,7 @@ export default function HomePage() {
           </h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '16px' }}>
             {[
-              { icon: 'fa-graduation-cap', title: 'Built for Students', text: 'Every resource, event, and article is created with law students in mind — practical, relevant, and accessible.' },
+              { icon: 'fa-graduation-cap', title: 'Built for Students', text: 'Every resource, event, and article is created with law students in mind practical, relevant, and accessible.' },
               { icon: 'fa-handshake', title: 'Real Connections', text: 'Network with peers from law schools across India and build relationships that last beyond college.' },
               { icon: 'fa-trophy', title: 'Compete & Grow', text: 'From trivia challenges to moot courts, every competition is a chance to apply what you learn in the real world.' },
               { icon: 'fa-pen-nib', title: 'Publish Your Work', text: 'Contribute articles, case commentaries, and research papers. Get your name out there before you even graduate.' },
