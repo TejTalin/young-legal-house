@@ -1,56 +1,10 @@
 'use client';
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import NetworkBackground from '@/components/NetworkBackground';
 import EventBrochureTile from '@/components/EventBrochureTile';
 
-const YEAR_OPTIONS = ['1st Year', '2nd Year', '3rd Year', '4th Year', '5th Year', 'LLM', 'Other'];
-
 export default function EventsPage() {
-  const [submitting, setSubmitting] = useState(false);
-  const [error, setError] = useState('');
-  const [showPaymentPopup, setShowPaymentPopup] = useState(false);
-  const router = useRouter();
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    setError('');
-
-    const form = event.currentTarget;
-    const formData = new FormData(form);
-    const file = formData.get('paymentScreenshot');
-
-    if (!file || file.size === 0) {
-      setError('Please attach your payment screenshot.');
-      return;
-    }
-
-    try {
-      setSubmitting(true);
-      const res = await fetch('/api/register', {
-        method: 'POST',
-        body: formData,
-      });
-      const data = await res.json();
-
-      if (!res.ok || !data.success) {
-        const extra =
-          data?.details?.airtableErr || data?.details?.googleErr
-            ? ` (${data?.details?.airtableErr || ''}${data?.details?.airtableErr && data?.details?.googleErr ? ' | ' : ''}${data?.details?.googleErr || ''})`
-            : '';
-        throw new Error((data.error || 'Could not complete registration.') + extra);
-      }
-
-      const name = encodeURIComponent(formData.get('fullName') || 'Participant');
-      router.push(`/events/thank-you?name=${name}`);
-    } catch (err) {
-      setError(err.message || 'Something went wrong. Please try again.');
-    } finally {
-      setSubmitting(false);
-    }
-  };
-
   return (
     <>
       <NetworkBackground />
@@ -146,121 +100,15 @@ export default function EventsPage() {
             </p>
           </div>
         </div>
-
-        <div className="glass-card" style={{ maxWidth: '760px', margin: '0 auto', width: '100%' }}>
-          <h2 style={{ marginBottom: '6px' }}>Register for Lex Noctis</h2>
-          <p style={{ color: 'var(--grey-text)', marginBottom: '20px' }}>
-            Fill all compulsory fields. You will receive an email confirmation after successful registration.
+        <div className="glass-card" style={{ textAlign: 'center', marginBottom: '20px' }}>
+          <h3 style={{ marginBottom: '8px' }}>Ready to Join Lex Noctis?</h3>
+          <p style={{ color: 'var(--grey-text)', marginBottom: '14px' }}>
+            Complete your registration on our dedicated registration page.
           </p>
-
-          <form onSubmit={handleSubmit}>
-            <div className="form-group">
-              <label className="form-label">Full Name (compulsory)</label>
-              <input name="fullName" type="text" className="form-input" required />
-            </div>
-
-            <div className="form-group">
-              <label className="form-label">Age (compulsory)</label>
-              <input name="age" type="number" min="15" max="80" className="form-input" required />
-            </div>
-
-            <div className="form-group">
-              <label className="form-label">Personal Email ID (compulsory)</label>
-              <input name="personalEmail" type="email" className="form-input" required />
-            </div>
-
-            <div className="form-group">
-              <label className="form-label">Name of Institution (compulsory)</label>
-              <input name="institution" type="text" className="form-input" required />
-            </div>
-
-            <div className="form-group">
-              <label className="form-label">Year of Law / Study (compulsory)</label>
-              <select name="yearOfStudy" className="form-select" required defaultValue="">
-                <option value="" disabled>Select year</option>
-                {YEAR_OPTIONS.map((year) => (
-                  <option value={year} key={year}>{year}</option>
-                ))}
-              </select>
-            </div>
-
-            <div className="form-group">
-              <label className="form-label">Institutional Email ID (optional)</label>
-              <input name="institutionEmail" type="email" className="form-input" />
-            </div>
-
-            <div className="form-group">
-              <label className="form-label">WhatsApp Mobile Number (compulsory)</label>
-              <input name="phone" type="tel" className="form-input" required />
-            </div>
-
-            <div className="form-group" style={{ marginBottom: '10px' }}>
-              <button
-                type="button"
-                className="glass-pill"
-                style={{ border: 0, cursor: 'pointer' }}
-                onClick={() => setShowPaymentPopup(true)}
-              >
-                View QR Code / UPI Details for Payment
-              </button>
-            </div>
-
-            <div className="form-group">
-              <label className="form-label">Payment QR Screenshot (compulsory)</label>
-              <input name="paymentScreenshot" type="file" accept="image/*,.pdf" className="form-input" required />
-              <p className="word-count-indicator" style={{ marginTop: '8px' }}>Accepted: image/PDF up to 8MB</p>
-            </div>
-
-            {error ? <p style={{ color: '#ff6b6b', marginBottom: '12px' }}>{error}</p> : null}
-
-            <button type="submit" className="submit-btn" disabled={submitting}>
-              {submitting ? 'Submitting...' : 'Submit Registration'}
-            </button>
-          </form>
+          <Link href="/events/register" className="submit-btn" style={{ textDecoration: 'none', display: 'inline-block' }}>
+            Register for Trivia
+          </Link>
         </div>
-
-        {showPaymentPopup ? (
-          <div
-            style={{
-              position: 'fixed',
-              inset: 0,
-              background: 'rgba(0,0,0,0.72)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              zIndex: 2500,
-              padding: '16px',
-            }}
-            onClick={() => setShowPaymentPopup(false)}
-          >
-            <div
-              className="glass-card"
-              style={{ width: 'min(94vw, 420px)', textAlign: 'center', position: 'relative' }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <button
-                type="button"
-                onClick={() => setShowPaymentPopup(false)}
-                style={{
-                  position: 'absolute',
-                  right: '10px',
-                  top: '8px',
-                  border: 0,
-                  background: 'transparent',
-                  color: 'var(--text-color)',
-                  fontSize: '1.3rem',
-                  cursor: 'pointer',
-                }}
-              >
-                ×
-              </button>
-              <h3 style={{ marginBottom: '10px' }}>Payment QR & UPI</h3>
-              <img src="/ylh-payment-qr.jpeg" alt="YLH UPI QR code" style={{ borderRadius: '10px', width: '100%', maxWidth: '300px', margin: '0 auto 12px' }} />
-              <p style={{ color: 'var(--grey-text)', marginBottom: '6px' }}><strong>Amount:</strong> Rs. 150</p>
-              <p style={{ color: 'var(--grey-text)', marginBottom: 0 }}><strong>UPI ID:</strong> achyutanarayan03-1@okicici</p>
-            </div>
-          </div>
-        ) : null}
       </main>
     </>
   );
