@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import NetworkBackground from '@/components/NetworkBackground';
+import EventBrochureTile from '@/components/EventBrochureTile';
 
 const YEAR_OPTIONS = ['1st Year', '2nd Year', '3rd Year', '4th Year', '5th Year', 'LLM', 'Other'];
 
@@ -54,6 +55,8 @@ export default function EventsPage() {
     <>
       <NetworkBackground />
       <main className="page-spacing container" style={{ paddingTop: '24px' }}>
+        <EventBrochureTile />
+
         <h1 className="section-title">Lex Noctis - Legal Trivia</h1>
         <p className="form-subtitle" style={{ textAlign: 'center', marginBottom: '26px' }}>
           A cinematic, story-driven criminal law trivia where each clue unfolds a case and every round tests your legal acumen.
@@ -163,16 +166,6 @@ export default function EventsPage() {
               For queries and support: <strong>connect.ylh@gmail.com</strong>
             </p>
           </div>
-        </div>
-
-        <div className="glass-card" style={{ marginBottom: '28px' }}>
-          <h3 style={{ marginBottom: '8px' }}>Brochure (Formal Document)</h3>
-          <p style={{ color: 'var(--grey-text)', marginBottom: '14px' }}>
-            The complete formal brochure is also available below.
-          </p>
-          <a href="/lex-noctis-brochure.pdf" target="_blank" rel="noopener noreferrer" className="glass-pill" style={{ display: 'inline-block', textDecoration: 'none' }}>
-            Open Brochure (PDF)
-          </a>
         </div>
 
         <div className="glass-card" style={{ maxWidth: '760px', margin: '0 auto', width: '100%' }}>
