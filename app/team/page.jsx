@@ -14,7 +14,7 @@ const TEAM_MEMBERS = [
   },
   {
     name: 'Amishee Gupta',
-    role: 'Head of Operations',
+    role: 'Co Founder of the Community',
     image: '/Head.jpeg',
     linkedIn: 'https://www.linkedin.com/in/amishee-gupta-95b65b303/',
     imageStyle: { objectFit: 'cover', objectPosition: 'center 22%' },
