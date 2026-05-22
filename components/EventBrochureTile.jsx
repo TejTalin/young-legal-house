@@ -6,12 +6,17 @@ const BROCHURE_PATH = '/lex-noctis-brochure.pdf';
 
 function buildSpreads(totalPages) {
   if (!totalPages) return [];
-  const result = [[1]];
-  for (let page = 2; page <= totalPages; page += 2) {
-    if (page + 1 <= totalPages) result.push([page, page + 1]);
-    else result.push([page]);
+  const result = [];
+  for (let page = 1; page <= totalPages; page += 1) {
+    result.push([page]);
   }
-  return result;
+  if (totalPages >= 3) {
+    result[1] = [2, 3];
+  }
+  if (totalPages >= 5) {
+    result[2] = [4, 5];
+  }
+  return result.filter((spread, idx, arr) => idx === 0 || (arr[idx - 1]?.[0] !== spread[0]));
 }
 
 export default function EventBrochureTile() {
@@ -40,7 +45,7 @@ export default function EventBrochureTile() {
 
         for (let p = 1; p <= pdf.numPages; p += 1) {
           const page = await pdf.getPage(p);
-          const viewport = page.getViewport({ scale: 1.35 });
+          const viewport = page.getViewport({ scale: 1.2 });
           const canvas = document.createElement('canvas');
           const context = canvas.getContext('2d', { alpha: false });
           canvas.width = viewport.width;
@@ -122,7 +127,7 @@ export default function EventBrochureTile() {
           background: 'var(--panel-bg)',
           borderRadius: '16px',
           padding: '14px',
-          minHeight: '340px',
+          minHeight: '420px',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -133,7 +138,17 @@ export default function EventBrochureTile() {
         {loading ? (
           <p style={{ color: 'var(--grey-text)' }}>Loading brochure preview...</p>
         ) : pageImages.length === 0 ? (
-          <p style={{ color: '#ff8f8f' }}>Could not load brochure preview. Use Open Brochure.</p>
+          <iframe
+            src="/lex-noctis-brochure.pdf#toolbar=0&navpanes=0&scrollbar=0&page=1&view=FitH"
+            title="Lex Noctis brochure"
+            style={{
+              width: '100%',
+              height: '70vh',
+              border: 'none',
+              borderRadius: '12px',
+              background: 'transparent',
+            }}
+          />
         ) : (
           <div
             key={spreadIndex}
@@ -154,7 +169,9 @@ export default function EventBrochureTile() {
                 alt={`Brochure page ${pageNumber}`}
                 style={{
                   width: '100%',
-                  maxWidth: activeSpread.length === 2 ? '420px' : '560px',
+                  maxWidth: activeSpread.length === 2 ? '340px' : '390px',
+                  maxHeight: '74vh',
+                  objectFit: 'contain',
                   borderRadius: '12px',
                   boxShadow: '0 14px 26px rgba(0,0,0,0.22)',
                 }}
@@ -166,13 +183,13 @@ export default function EventBrochureTile() {
 
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '14px', gap: '12px', flexWrap: 'wrap' }}>
         <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-          <button type="button" className="glass-pill" onClick={openBrochure} style={{ border: '1px solid var(--glass-border)', cursor: 'pointer' }}>
+          <button type="button" className="glass-pill brochure-btn" onClick={openBrochure}>
             Open Brochure
           </button>
-          <button type="button" className="glass-pill" onClick={downloadBrochure} style={{ border: '1px solid var(--glass-border)', cursor: 'pointer' }}>
+          <button type="button" className="glass-pill brochure-btn" onClick={downloadBrochure}>
             Download Brochure
           </button>
-          <button type="button" className="glass-pill" onClick={shareBrochure} style={{ border: '1px solid var(--glass-border)', cursor: 'pointer' }}>
+          <button type="button" className="glass-pill brochure-btn" onClick={shareBrochure}>
             Share Brochure
           </button>
         </div>
@@ -183,7 +200,7 @@ export default function EventBrochureTile() {
             className="glass-pill"
             disabled={spreadIndex <= 0}
             onClick={() => setSpreadIndex((s) => Math.max(0, s - 1))}
-            style={{ border: '1px solid var(--glass-border)', cursor: 'pointer', opacity: spreadIndex <= 0 ? 0.5 : 1 }}
+            style={{ border: '1px solid var(--glass-border)', cursor: 'pointer', opacity: spreadIndex <= 0 ? 0.5 : 1, minWidth: '80px' }}
           >
             Prev
           </button>
@@ -195,7 +212,7 @@ export default function EventBrochureTile() {
             className="glass-pill"
             disabled={spreadIndex >= spreads.length - 1}
             onClick={() => setSpreadIndex((s) => Math.min(spreads.length - 1, s + 1))}
-            style={{ border: '1px solid var(--glass-border)', cursor: 'pointer', opacity: spreadIndex >= spreads.length - 1 ? 0.5 : 1 }}
+            style={{ border: '1px solid var(--glass-border)', cursor: 'pointer', opacity: spreadIndex >= spreads.length - 1 ? 0.5 : 1, minWidth: '80px' }}
           >
             Next
           </button>
@@ -207,6 +224,21 @@ export default function EventBrochureTile() {
       ) : null}
 
       <style jsx>{`
+        .brochure-btn {
+          border: 1px solid var(--glass-border);
+          cursor: pointer;
+          transition: transform .2s ease, background .2s ease, border-color .2s ease;
+          min-width: 148px;
+          justify-content: center;
+          background: transparent;
+          color: var(--text-color);
+          font-weight: 600;
+        }
+        .brochure-btn:hover {
+          transform: translateY(-1px);
+          background: var(--glass-bg);
+          border-color: var(--text-color);
+        }
         @keyframes spreadSlide {
           from {
             opacity: 0.25;
