@@ -55,12 +55,11 @@ export default function EventsPage() {
     <>
       <NetworkBackground />
       <main className="page-spacing container" style={{ paddingTop: '24px' }}>
-        <EventBrochureTile />
-
         <h1 className="section-title">Lex Noctis - Legal Trivia</h1>
         <p className="form-subtitle" style={{ textAlign: 'center', marginBottom: '26px' }}>
           A cinematic, story-driven criminal law trivia where each clue unfolds a case and every round tests your legal acumen.
         </p>
+        <EventBrochureTile />
 
         <div className="glass-card" style={{ marginBottom: '18px' }}>
           <h3 style={{ marginBottom: '12px' }}>Cinematic Criminal Law Trivia</h3>
@@ -70,7 +69,7 @@ export default function EventsPage() {
           </p>
         </div>
 
-        <div className="glass-card" style={{ marginBottom: '24px' }}>
+        <div className="glass-card" style={{ marginBottom: '24px', padding: '12px', display: 'flex', justifyContent: 'center' }}>
           <img
             src="/lex-noctis-launch-poster.jpeg"
             alt="Lex Noctis poster"
@@ -79,8 +78,8 @@ export default function EventsPage() {
               width: '100%',
               maxWidth: '380px',
               maxHeight: '560px',
-              objectFit: 'cover',
-              margin: '0 auto',
+              objectFit: 'contain',
+              margin: 0,
             }}
           />
         </div>
