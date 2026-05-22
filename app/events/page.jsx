@@ -61,7 +61,7 @@ export default function EventsPage() {
         </p>
         <EventBrochureTile />
 
-        <div className="glass-card" style={{ marginBottom: '18px' }}>
+        <div className="glass-card" style={{ marginBottom: '16px' }}>
           <h3 style={{ marginBottom: '12px' }}>Cinematic Criminal Law Trivia</h3>
           <p style={{ color: 'var(--grey-text)', marginBottom: 0, lineHeight: '1.8' }}>
             Lex Noctis is an immersive legal trivia built around a cinematic narrative. Participants move through timed rounds,
@@ -69,29 +69,23 @@ export default function EventsPage() {
           </p>
         </div>
 
-        <div className="glass-card" style={{ marginBottom: '24px', padding: '12px', display: 'flex', justifyContent: 'center' }}>
+        <div className="glass-card" style={{ marginBottom: '22px', padding: 0, overflow: 'hidden' }}>
           <img
             src="/lex-noctis-launch-poster.jpeg"
             alt="Lex Noctis poster"
             style={{
-              borderRadius: '10px',
+              borderRadius: '0',
               width: '100%',
-              maxWidth: '380px',
-              maxHeight: '560px',
-              objectFit: 'contain',
-              margin: 0,
+              maxWidth: '100%',
+              maxHeight: 'none',
+              objectFit: 'cover',
+              aspectRatio: '3 / 4',
+              display: 'block',
             }}
           />
         </div>
 
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-            gap: '16px',
-            marginBottom: '24px',
-          }}
-        >
+        <div style={{ display: 'grid', gap: '16px', marginBottom: '24px' }}>
           <div className="glass-card">
             <h3 style={{ marginBottom: '8px' }}>Event Format</h3>
             <p style={{ color: 'var(--grey-text)', marginBottom: 0 }}>
@@ -117,14 +111,7 @@ export default function EventsPage() {
           </p>
         </div>
 
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-            gap: '16px',
-            marginBottom: '24px',
-          }}
-        >
+        <div style={{ display: 'grid', gap: '16px', marginBottom: '24px' }}>
           <div className="glass-card">
             <h3 style={{ marginBottom: '8px' }}>Evaluation Criteria</h3>
             <p style={{ color: 'var(--grey-text)', lineHeight: '1.8', marginBottom: 0 }}>
@@ -139,14 +126,7 @@ export default function EventsPage() {
           </div>
         </div>
 
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-            gap: '16px',
-            marginBottom: '30px',
-          }}
-        >
+        <div style={{ display: 'grid', gap: '16px', marginBottom: '30px' }}>
           <div className="glass-card">
             <h3 style={{ marginBottom: '8px' }}>Prize & Recognition</h3>
             <p style={{ color: 'var(--grey-text)', lineHeight: '1.8', marginBottom: 0 }}>
