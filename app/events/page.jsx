@@ -8,8 +8,9 @@ export default function EventsPage() {
   return (
     <>
       <NetworkBackground />
-      <main className="page-spacing container" style={{ paddingTop: '24px' }}>
-        <h1 className="section-title">Lex Noctis</h1>
+      <main className="page-spacing container events-page" style={{ paddingTop: '24px' }}>
+        <p className="events-pretitle">Young Legal House Presents</p>
+        <h1 className="section-title">Legal Trivia - Lex Noctis</h1>
 
         <div className="glass-card" style={{ marginBottom: '16px' }}>
           <h3 style={{ marginBottom: '10px' }}>Cinematic Criminal Law Trivia</h3>
@@ -29,16 +30,11 @@ export default function EventsPage() {
           </p>
         </div>
 
-        <div className="glass-card" style={{ marginBottom: '20px', padding: 0, overflow: 'hidden' }}>
+        <div className="glass-card event-poster-card" style={{ marginBottom: '20px', overflow: 'hidden' }}>
           <img
             src="/lex-noctis-launch-poster.jpeg"
             alt="Lex Noctis poster"
-            style={{
-              width: '100%',
-              display: 'block',
-              objectFit: 'cover',
-              aspectRatio: '3 / 4',
-            }}
+            className="event-poster-img"
           />
         </div>
 
@@ -113,7 +109,86 @@ export default function EventsPage() {
             Register for Trivia
           </Link>
         </div>
+
+        <Link href="/events/register" className="floating-register-tab" aria-label="Register now for Lex Noctis">
+          Register Now
+        </Link>
       </main>
+
+      <style jsx>{`
+        .events-pretitle {
+          text-align: center;
+          font-size: 0.95rem;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          color: var(--grey-text);
+          margin-bottom: 8px;
+          font-weight: 700;
+        }
+
+        .event-poster-card {
+          padding: 12px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .event-poster-img {
+          width: min(100%, 440px);
+          height: auto;
+          display: block;
+          object-fit: contain;
+          border-radius: 12px;
+        }
+
+        .floating-register-tab {
+          position: fixed;
+          right: 10px;
+          top: 52%;
+          transform: translateY(-50%);
+          writing-mode: vertical-rl;
+          text-orientation: mixed;
+          border-radius: 16px 0 0 16px;
+          padding: 14px 10px;
+          text-decoration: none;
+          font-weight: 700;
+          font-size: 0.88rem;
+          color: #fff;
+          background: #111319;
+          border: 1px solid rgba(255, 255, 255, 0.24);
+          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+          z-index: 1200;
+          transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+
+        .floating-register-tab:hover {
+          background: #1b1e27;
+          transform: translateY(-50%) translateX(-2px);
+        }
+
+        @media (max-width: 768px) {
+          .events-page {
+            padding-left: 10px;
+            padding-right: 10px;
+          }
+
+          .event-poster-card {
+            padding: 10px;
+          }
+
+          .event-poster-img {
+            width: min(100%, 360px);
+          }
+
+          .floating-register-tab {
+            right: 6px;
+            top: 62%;
+            padding: 12px 8px;
+            font-size: 0.8rem;
+            border-radius: 14px 0 0 14px;
+          }
+        }
+      `}</style>
     </>
   );
 }
