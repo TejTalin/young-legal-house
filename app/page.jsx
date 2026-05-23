@@ -13,223 +13,230 @@ export default function HomePage() {
       <main className="page-spacing container" style={{ paddingBottom: '100px' }}>
 
         {/* ── HERO ── */}
-        <section style={{ textAlign: 'center', maxWidth: '860px', margin: '20px auto 40px' }}>
-          <div style={{
-            display: 'inline-block',
-            background: 'var(--glass-bg)',
-            border: '1px solid var(--glass-border)',
-            borderRadius: '999px',
-            padding: '5px 18px',
+        <section style={{
+          textAlign: 'center',
+          maxWidth: '820px',
+          margin: '24px auto 52px',
+        }}>
+          <p style={{
             fontSize: '0.78rem',
             fontWeight: 700,
-            letterSpacing: '0.1em',
+            letterSpacing: '0.12em',
             textTransform: 'uppercase',
             color: 'var(--grey-text)',
-            marginBottom: '20px',
+            marginBottom: '18px',
           }}>
             India&apos;s Legal Student Community
-          </div>
+          </p>
 
-          <h1 className="section-title" style={{ marginBottom: '18px', lineHeight: 1.04 }}>
+          <h1 style={{
+            fontFamily: "'Cormorant Garamond', Georgia, serif",
+            fontSize: 'clamp(2.6rem, 6vw, 5rem)',
+            fontWeight: 700,
+            lineHeight: 1.04,
+            marginBottom: '20px',
+            color: 'var(--text-color)',
+          }}>
             Young Legal House
           </h1>
 
           <p style={{
             color: 'var(--grey-text)',
-            fontSize: 'clamp(1rem, 2.2vw, 1.15rem)',
+            fontSize: 'clamp(0.97rem, 2vw, 1.1rem)',
             lineHeight: 1.85,
-            maxWidth: '720px',
+            maxWidth: '680px',
             margin: '0 auto 32px',
           }}>
-            A dedicated initiative bridging the gap between legal theory and execution.
-            We connect aspiring legal professionals with knowledge, competitions, events,
-            and a community that takes law seriously.
+            A community bridging the gap between legal theory and execution.
+            We connect aspiring legal professionals with knowledge, competitions,
+            events, and a network that takes law seriously.
           </p>
 
           <div style={{ display: 'flex', gap: '14px', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link href="/join" className="glass-pill" style={{
+            <Link href="/join" style={{
+              display: 'inline-block',
+              padding: '12px 30px',
+              borderRadius: '999px',
               background: 'var(--text-color)',
               color: 'var(--bg-color)',
-              fontWeight: 800,
-              padding: '12px 28px',
-              fontSize: '0.95rem',
+              fontWeight: 700,
+              fontSize: '0.93rem',
+              textDecoration: 'none',
+              border: '1px solid var(--text-color)',
             }}>
               Join the Community
             </Link>
-            <Link href="/blogs" className="glass-pill" style={{
+            <Link href="/blogs" style={{
+              display: 'inline-block',
+              padding: '12px 30px',
+              borderRadius: '999px',
+              background: 'transparent',
+              color: 'var(--text-color)',
               fontWeight: 700,
-              padding: '12px 28px',
-              fontSize: '0.95rem',
+              fontSize: '0.93rem',
+              textDecoration: 'none',
+              border: '1px solid var(--glass-border)',
+              backdropFilter: 'blur(12px)',
             }}>
               Read Legal Insights
             </Link>
           </div>
         </section>
 
-        {/* ── LIVE EVENT TICKER ── */}
-        <Link href="/events" style={{ display: 'block', textDecoration: 'none', marginBottom: '48px', maxWidth: '860px', margin: '0 auto 48px' }} aria-label="View flagship event">
+        {/* ── EVENT TICKER ── */}
+        <Link href="/events" style={{ display: 'block', textDecoration: 'none', maxWidth: '820px', margin: '0 auto 56px' }}>
           <div style={{
             border: '1px solid var(--glass-border)',
             borderRadius: '999px',
             overflow: 'hidden',
             background: 'var(--glass-bg)',
-            height: '46px',
+            height: '44px',
             display: 'flex',
             alignItems: 'center',
+            backdropFilter: 'blur(12px)',
           }}>
             <div style={{
               whiteSpace: 'nowrap',
               display: 'inline-block',
               paddingLeft: '100%',
-              animation: 'ylh-ticker 18s linear infinite',
+              animation: 'ylh-ticker 20s linear infinite',
               color: 'var(--text-color)',
-              fontWeight: 700,
-              letterSpacing: '0.03em',
-              fontSize: '0.88rem',
+              fontWeight: 600,
+              fontSize: '0.83rem',
+              letterSpacing: '0.04em',
             }}>
-              🔴 LIVE: LEX NOCTIS — YLH FLAGSHIP EVENT &nbsp;·&nbsp; CRIMINAL LAW TRIVIA &nbsp;·&nbsp; 15 JUNE 2026 &nbsp;·&nbsp; REGISTRATIONS OPEN &nbsp;·&nbsp; CLICK TO REGISTER
+              🔴&nbsp; FLAGSHIP EVENT — LEX NOCTIS &nbsp;·&nbsp; CRIMINAL LAW TRIVIA &nbsp;·&nbsp; 15 JUNE 2026 &nbsp;·&nbsp; REGISTRATIONS NOW OPEN &nbsp;·&nbsp; CLICK TO REGISTER
             </div>
           </div>
         </Link>
 
-        {/* ── WHAT WE OFFER — 3 column grid ── */}
-        <section style={{ maxWidth: '1000px', margin: '0 auto 56px' }}>
+        {/* ── WHAT WE OFFER ── */}
+        <section style={{ maxWidth: '960px', margin: '0 auto 56px' }}>
           <h2 style={{
             fontFamily: "'Cormorant Garamond', Georgia, serif",
-            fontSize: 'clamp(1.6rem, 3vw, 2.2rem)',
+            fontSize: 'clamp(1.5rem, 3vw, 2rem)',
             fontWeight: 700,
             textAlign: 'center',
-            marginBottom: '28px',
+            marginBottom: '8px',
+            color: 'var(--text-color)',
           }}>
             What We Offer
           </h2>
-          <div className="cards-grid">
-            <div className="glass-card">
-              <i className="fas fa-newspaper" style={{ fontSize: '1.6rem', marginBottom: '14px', color: 'var(--grey-text)' }}></i>
-              <h3 style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: '1.35rem', marginBottom: '10px' }}>
-                Curated Legal Insights
-              </h3>
-              <p style={{ color: 'var(--grey-text)', lineHeight: 1.75, fontSize: '0.93rem' }}>
-                Peer-written articles covering Corporate Law, Tax, TMT, Litigation, ADR, IPR, and more
-                written by students for students.
-              </p>
-            </div>
-
-            <div className="glass-card">
-              <i className="fas fa-gavel" style={{ fontSize: '1.6rem', marginBottom: '14px', color: 'var(--grey-text)' }}></i>
-              <h3 style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: '1.35rem', marginBottom: '10px' }}>
-                Competitions &amp; Events
-              </h3>
-              <p style={{ color: 'var(--grey-text)', lineHeight: 1.75, fontSize: '0.93rem' }}>
-                National moot courts, trivia challenges, workshops, and webinars designed to
-                sharpen your legal skills and build your profile.
-              </p>
-            </div>
-
-            <div className="glass-card">
-              <i className="fas fa-users" style={{ fontSize: '1.6rem', marginBottom: '14px', color: 'var(--grey-text)' }}></i>
-              <h3 style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: '1.35rem', marginBottom: '10px' }}>
-                Expert Community
-              </h3>
-              <p style={{ color: 'var(--grey-text)', lineHeight: 1.75, fontSize: '0.93rem' }}>
-                Connect with founders, researchers, and practitioners across India.
-                A vibrant network built for the next generation of legal professionals.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* ── PRACTICE AREAS ── */}
-        <section style={{ maxWidth: '900px', margin: '0 auto 56px', textAlign: 'center' }}>
-          <h2 style={{
-            fontFamily: "'Cormorant Garamond', Georgia, serif",
-            fontSize: 'clamp(1.6rem, 3vw, 2.2rem)',
-            fontWeight: 700,
-            marginBottom: '8px',
-          }}>
-            Practice Areas We Cover
-          </h2>
-          <p style={{ color: 'var(--grey-text)', fontSize: '0.93rem', marginBottom: '24px' }}>
-            Explore legal insights across every major domain
-          </p>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', justifyContent: 'center' }}>
-            {['Corporate Law', 'Tax', 'TMT', 'Litigation', 'M&A', 'ADR', 'IPR', 'Constitutional', 'Criminal', 'International Law'].map(area => (
-              <Link key={area} href="/blogs" style={{ textDecoration: 'none' }}>
-                <span style={{
-                  display: 'inline-block',
-                  padding: '8px 18px',
-                  border: '1px solid var(--glass-border)',
-                  borderRadius: '999px',
-                  fontSize: '0.85rem',
-                  fontWeight: 600,
-                  color: 'var(--grey-text)',
-                  background: 'var(--glass-bg)',
-                  cursor: 'pointer',
-                  transition: 'all 0.15s',
-                }}>
-                  {area}
-                </span>
-              </Link>
-            ))}
-          </div>
-        </section>
-
-        {/* ── WHY YLH — 2 column ── */}
-        <section style={{ maxWidth: '900px', margin: '0 auto 56px' }}>
-          <h2 style={{
-            fontFamily: "'Cormorant Garamond', Georgia, serif",
-            fontSize: 'clamp(1.6rem, 3vw, 2.2rem)',
-            fontWeight: 700,
+          <p style={{
             textAlign: 'center',
+            color: 'var(--grey-text)',
+            fontSize: '0.9rem',
             marginBottom: '28px',
           }}>
-            Why Young Legal House?
-          </h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '16px' }}>
+            Everything a law student needs — in one place
+          </p>
+
+          <div className="cards-grid">
             {[
-              { icon: 'fa-graduation-cap', title: 'Built for Students', text: 'Every resource, event, and article is created with law students in mind practical, relevant, and accessible.' },
-              { icon: 'fa-handshake', title: 'Real Connections', text: 'Network with peers from law schools across India and build relationships that last beyond college.' },
-              { icon: 'fa-trophy', title: 'Compete & Grow', text: 'From trivia challenges to moot courts, every competition is a chance to apply what you learn in the real world.' },
-              { icon: 'fa-pen-nib', title: 'Publish Your Work', text: 'Contribute articles, case commentaries, and research papers. Get your name out there before you even graduate.' },
+              { icon: 'fa-newspaper', title: 'Curated Legal Insights', text: 'Peer-written articles covering Corporate Law, Tax, TMT, Litigation, ADR, IPR, and more — written by students, for students.' },
+              { icon: 'fa-gavel', title: 'Competitions & Events', text: 'National moot courts, trivia challenges, workshops, and flagship events designed to sharpen your legal skills.' },
+              { icon: 'fa-users', title: 'Expert Community', text: 'Connect with peers, researchers, and practitioners across India. A serious network built for the next generation of lawyers.' },
             ].map(item => (
-              <div key={item.title} className="glass-card" style={{ display: 'flex', gap: '16px', alignItems: 'flex-start', padding: '22px' }}>
-                <i className={`fas ${item.icon}`} style={{ fontSize: '1.3rem', color: 'var(--grey-text)', marginTop: '2px', flexShrink: 0 }}></i>
-                <div>
-                  <h4 style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: '1.15rem', fontWeight: 700, marginBottom: '8px' }}>
-                    {item.title}
-                  </h4>
-                  <p style={{ color: 'var(--grey-text)', fontSize: '0.9rem', lineHeight: 1.7 }}>{item.text}</p>
-                </div>
+              <div key={item.title} className="glass-card" style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                <i className={`fas ${item.icon}`} style={{ fontSize: '1.4rem', color: 'var(--grey-text)' }}></i>
+                <h3 style={{
+                  fontFamily: "'Cormorant Garamond', Georgia, serif",
+                  fontSize: '1.25rem',
+                  fontWeight: 700,
+                  color: 'var(--text-color)',
+                }}>
+                  {item.title}
+                </h3>
+                <p style={{ color: 'var(--grey-text)', fontSize: '0.91rem', lineHeight: 1.75 }}>
+                  {item.text}
+                </p>
               </div>
             ))}
           </div>
         </section>
 
-        {/* ── CTA BANNER ── */}
-        <section style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
-          <div className="glass-card" style={{ padding: '44px 32px' }}>
+        {/* ── PRACTICE AREAS ── */}
+        <section style={{ maxWidth: '820px', margin: '0 auto 56px', textAlign: 'center' }}>
+          <h2 style={{
+            fontFamily: "'Cormorant Garamond', Georgia, serif",
+            fontSize: 'clamp(1.5rem, 3vw, 2rem)',
+            fontWeight: 700,
+            marginBottom: '8px',
+            color: 'var(--text-color)',
+          }}>
+            Practice Areas
+          </h2>
+          <p style={{ color: 'var(--grey-text)', fontSize: '0.9rem', marginBottom: '22px' }}>
+            Legal insights across every major domain
+          </p>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', justifyContent: 'center' }}>
+            {['Corporate Law', 'Tax', 'TMT', 'Litigation', 'M&A', 'ADR', 'IPR', 'Constitutional', 'Criminal Law', 'International Law'].map(area => (
+              <Link key={area} href="/blogs" style={{
+                display: 'inline-block',
+                padding: '7px 16px',
+                border: '1px solid var(--glass-border)',
+                borderRadius: '999px',
+                fontSize: '0.83rem',
+                fontWeight: 600,
+                color: 'var(--grey-text)',
+                background: 'var(--glass-bg)',
+                textDecoration: 'none',
+              }}>
+                {area}
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        {/* ── CTA ── */}
+        <section style={{ maxWidth: '720px', margin: '0 auto', textAlign: 'center' }}>
+          <div className="glass-card" style={{ padding: '48px 32px' }}>
             <h2 style={{
               fontFamily: "'Cormorant Garamond', Georgia, serif",
-              fontSize: 'clamp(1.6rem, 3vw, 2.4rem)',
+              fontSize: 'clamp(1.5rem, 3vw, 2rem)',
               fontWeight: 700,
-              marginBottom: '14px',
+              marginBottom: '12px',
+              color: 'var(--text-color)',
             }}>
-              Ready to be part of it?
+              Be Part of the Movement
             </h2>
-            <p style={{ color: 'var(--grey-text)', lineHeight: 1.8, marginBottom: '28px', fontSize: '0.98rem' }}>
-              Join hundreds of law students building their legal careers through YLH.
+            <p style={{
+              color: 'var(--grey-text)',
+              lineHeight: 1.8,
+              marginBottom: '28px',
+              fontSize: '0.93rem',
+              maxWidth: '540px',
+              margin: '0 auto 28px',
+            }}>
+              Join law students across India building their careers through YLH.
               Stay informed, stay competitive, stay connected.
             </p>
             <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
-              <Link href="/join" className="glass-pill" style={{
+              <Link href="/join" style={{
+                display: 'inline-block',
+                padding: '12px 30px',
+                borderRadius: '999px',
                 background: 'var(--text-color)',
                 color: 'var(--bg-color)',
-                fontWeight: 800,
-                padding: '12px 28px',
+                fontWeight: 700,
+                fontSize: '0.93rem',
+                textDecoration: 'none',
+                border: '1px solid var(--text-color)',
               }}>
-                Join Now — It&apos;s Free
+                Join the Community
               </Link>
-              <Link href="/contact" className="glass-pill" style={{ fontWeight: 700, padding: '12px 28px' }}>
+              <Link href="/contact" style={{
+                display: 'inline-block',
+                padding: '12px 30px',
+                borderRadius: '999px',
+                background: 'transparent',
+                color: 'var(--text-color)',
+                fontWeight: 700,
+                fontSize: '0.93rem',
+                textDecoration: 'none',
+                border: '1px solid var(--glass-border)',
+                backdropFilter: 'blur(12px)',
+              }}>
                 Get in Touch
               </Link>
             </div>
