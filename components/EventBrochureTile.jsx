@@ -34,16 +34,17 @@ export default function EventBrochureTile() {
 
   return (
     <section className="glass-card brochure-tile">
-      <h2>Event Brochure Experience</h2>
-      <p className="brochure-subtitle">Explore the official event brochure in portrait preview mode.</p>
+      <h2>Event Brochure</h2>
+      <p className="brochure-subtitle">Scroll through the official Lex Noctis brochure below.</p>
 
       <div className="brochure-frame">
         <iframe
-          src={`${BROCHURE_URL}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
+          src={BROCHURE_URL}
           title="Lex Noctis Brochure"
           className="brochure-iframe"
         />
       </div>
+      <p className="brochure-mobile-help">If brochure preview is limited on your phone browser, tap Open Brochure.</p>
 
       <div className="brochure-actions">
         <a href={BROCHURE_URL} target="_blank" rel="noreferrer" className="brochure-btn">
@@ -79,7 +80,7 @@ export default function EventBrochureTile() {
           border-radius: 18px;
           background: rgba(8, 12, 20, 0.18);
           padding: 10px;
-          overflow: hidden;
+          overflow: auto;
           box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
         }
 
@@ -88,8 +89,14 @@ export default function EventBrochureTile() {
           border: 0;
           border-radius: 12px;
           background: #0f1115;
-          min-height: clamp(460px, 72vh, 980px);
+          min-height: clamp(560px, 78vh, 1100px);
           display: block;
+        }
+
+        .brochure-mobile-help {
+          margin-top: 8px;
+          color: var(--muted-text);
+          font-size: 0.84rem;
         }
 
         .brochure-actions {
@@ -136,7 +143,7 @@ export default function EventBrochureTile() {
           }
 
           .brochure-iframe {
-            min-height: 70vh;
+            min-height: 78vh;
           }
 
           .brochure-actions {
