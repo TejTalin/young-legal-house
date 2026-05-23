@@ -110,7 +110,26 @@ export default function EventsPage() {
           </Link>
         </div>
 
-        <Link href="/events/register" className="floating-register-tab" aria-label="Register now for Lex Noctis">
+        <Link
+          href="/events/register"
+          aria-label="Register now for Lex Noctis"
+          style={{
+            position: 'fixed',
+            right: '0',
+            top: '52%',
+            transform: 'translateY(-50%)',
+            borderRadius: '16px 0 0 16px',
+            padding: '12px 16px',
+            textDecoration: 'none',
+            fontWeight: 700,
+            fontSize: '0.9rem',
+            color: '#fff',
+            background: '#111319',
+            border: '1px solid rgba(255, 255, 255, 0.24)',
+            boxShadow: '0 8px 24px rgba(0, 0, 0, 0.2)',
+            zIndex: 4000,
+          }}
+        >
           Register Now
         </Link>
       </main>
@@ -141,31 +160,6 @@ export default function EventsPage() {
           border-radius: 0;
         }
 
-        .floating-register-tab {
-          position: fixed;
-          right: 0;
-          top: 52%;
-          transform: translateY(-50%);
-          writing-mode: vertical-rl;
-          text-orientation: mixed;
-          border-radius: 16px 0 0 16px;
-          padding: 14px 10px;
-          text-decoration: none;
-          font-weight: 700;
-          font-size: 0.88rem;
-          color: #fff;
-          background: #111319;
-          border: 1px solid rgba(255, 255, 255, 0.24);
-          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-          z-index: 4000;
-          transition: transform 0.2s ease, background-color 0.2s ease;
-        }
-
-        .floating-register-tab:hover {
-          background: #1b1e27;
-          transform: translateY(-50%) translateX(-2px);
-        }
-
         @media (max-width: 768px) {
           .events-page {
             padding-left: 10px;
@@ -180,13 +174,6 @@ export default function EventsPage() {
             width: 100%;
           }
 
-          .floating-register-tab {
-            right: 0;
-            top: 62%;
-            padding: 12px 8px;
-            font-size: 0.8rem;
-            border-radius: 14px 0 0 14px;
-          }
         }
       `}</style>
     </>
