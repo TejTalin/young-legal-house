@@ -155,7 +155,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ── PRACTICE AREAS ── */}
+        {/* ── Legal Insights ── */}
         <section style={{ maxWidth: '820px', margin: '0 auto 56px', textAlign: 'center' }}>
           <h2 style={{
             fontFamily: "'Cormorant Garamond', Georgia, serif",
@@ -164,10 +164,10 @@ export default function HomePage() {
             marginBottom: '8px',
             color: 'var(--text-color)',
           }}>
-            Practice Areas
+            Legal Insights
           </h2>
           <p style={{ color: 'var(--grey-text)', fontSize: '0.9rem', marginBottom: '22px' }}>
-            Legal insights across every major domain
+            Legal insights across every major domain (Coming Soon)
           </p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', justifyContent: 'center' }}>
             {['Corporate Law', 'Tax', 'TMT', 'Litigation', 'M&A', 'ADR', 'IPR', 'Constitutional', 'Criminal Law', 'International Law'].map(area => (
