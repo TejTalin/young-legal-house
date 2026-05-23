@@ -1,10 +1,9 @@
 'use client';
-import { useEffect, useRef } from 'react';
 
-// Icon positions across the grid
+// All icon nodes with exact positions
 const NODES = [
   // Row 1
-  { x: 60,   y: 90,  icon: 'fa-gavel' },
+  { x: 60,   y: 90,  icon: 'fa-hammer' },
   { x: 210,  y: 130, icon: 'fa-user-tie' },
   { x: 390,  y: 100, icon: 'fa-file-alt' },
   { x: 560,  y: 150, icon: 'fa-newspaper' },
@@ -12,7 +11,7 @@ const NODES = [
   { x: 910,  y: 140, icon: 'fa-handshake' },
   { x: 1090, y: 95,  icon: 'fa-briefcase' },
   { x: 1260, y: 120, icon: 'fa-balance-scale' },
-  { x: 1360, y: 160, icon: 'fa-gavel' },
+  { x: 1360, y: 160, icon: 'fa-hammer' },
   // Row 2
   { x: 90,   y: 240, icon: 'fa-balance-scale' },
   { x: 290,  y: 275, icon: 'fa-landmark' },
@@ -21,11 +20,11 @@ const NODES = [
   { x: 810,  y: 255, icon: 'fa-user-tie' },
   { x: 990,  y: 315, icon: 'fa-file-alt' },
   { x: 1160, y: 275, icon: 'fa-newspaper' },
-  { x: 1310, y: 300, icon: 'fa-gavel' },
+  { x: 1310, y: 300, icon: 'fa-hammer' },
   // Row 3
   { x: 70,   y: 400, icon: 'fa-newspaper' },
   { x: 250,  y: 440, icon: 'fa-balance-scale' },
-  { x: 430,  y: 400, icon: 'fa-gavel' },
+  { x: 430,  y: 400, icon: 'fa-hammer' },
   { x: 610,  y: 460, icon: 'fa-user-tie' },
   { x: 790,  y: 420, icon: 'fa-landmark' },
   { x: 970,  y: 480, icon: 'fa-file-alt' },
@@ -35,7 +34,7 @@ const NODES = [
   { x: 110,  y: 560, icon: 'fa-briefcase' },
   { x: 310,  y: 600, icon: 'fa-newspaper' },
   { x: 510,  y: 560, icon: 'fa-balance-scale' },
-  { x: 710,  y: 620, icon: 'fa-gavel' },
+  { x: 710,  y: 620, icon: 'fa-hammer' },
   { x: 910,  y: 580, icon: 'fa-user-tie' },
   { x: 1110, y: 640, icon: 'fa-landmark' },
   { x: 1290, y: 600, icon: 'fa-handshake' },
@@ -44,26 +43,30 @@ const NODES = [
   { x: 350,  y: 760, icon: 'fa-briefcase' },
   { x: 570,  y: 720, icon: 'fa-newspaper' },
   { x: 790,  y: 780, icon: 'fa-balance-scale' },
-  { x: 1010, y: 740, icon: 'fa-gavel' },
+  { x: 1010, y: 740, icon: 'fa-hammer' },
   { x: 1190, y: 770, icon: 'fa-user-tie' },
 ];
 
-const LINES = [
-  [60,90,210,130],[210,130,390,100],[390,100,560,150],[560,150,730,110],
-  [730,110,910,140],[910,140,1090,95],[1090,95,1260,120],[1260,120,1360,160],
-  [90,240,290,275],[290,275,460,235],[460,235,630,295],[630,295,810,255],
-  [810,255,990,315],[990,315,1160,275],[1160,275,1310,300],
-  [70,400,250,440],[250,440,430,400],[430,400,610,460],[610,460,790,420],
-  [790,420,970,480],[970,480,1150,440],[1150,440,1330,465],
-  [110,560,310,600],[310,600,510,560],[510,560,710,620],[710,620,910,580],
-  [910,580,1110,640],[1110,640,1290,600],
-  [130,720,350,760],[350,760,570,720],[570,720,790,780],[790,780,1010,740],[1010,740,1190,770],
-  // verticals
-  [210,130,290,275],[390,100,460,235],[560,150,630,295],[730,110,810,255],
-  [910,140,990,315],[1090,95,1160,275],
-  [290,275,250,440],[460,235,430,400],[630,295,610,460],[810,255,790,420],[990,315,970,480],
-  [250,440,310,600],[430,400,510,560],[610,460,710,620],[790,420,910,580],
-  [310,600,350,760],[510,560,570,720],[710,620,790,780],[910,580,1010,740],
+// Lines connect FROM one node index TO another node index
+const CONNECTIONS = [
+  // Row 1 horizontal
+  [0,1],[1,2],[2,3],[3,4],[4,5],[5,6],[6,7],[7,8],
+  // Row 2 horizontal
+  [9,10],[10,11],[11,12],[12,13],[13,14],[14,15],[15,16],
+  // Row 3 horizontal
+  [17,18],[18,19],[19,20],[20,21],[21,22],[22,23],[23,24],
+  // Row 4 horizontal
+  [25,26],[26,27],[27,28],[28,29],[29,30],[30,31],
+  // Row 5 horizontal
+  [32,33],[33,34],[34,35],[35,36],[36,37],
+  // Row 1 → Row 2 verticals
+  [1,10],[2,11],[3,12],[4,13],[5,14],[6,15],
+  // Row 2 → Row 3 verticals
+  [10,18],[11,19],[12,20],[13,21],[14,22],[15,23],
+  // Row 3 → Row 4 verticals
+  [18,25],[19,26],[20,27],[21,28],[22,29],[23,30],
+  // Row 4 → Row 5 verticals
+  [25,32],[26,33],[27,34],[28,35],[29,36],[30,37],
 ];
 
 export default function NetworkBackground() {
@@ -75,21 +78,40 @@ export default function NetworkBackground() {
         preserveAspectRatio="xMidYMid slice"
         style={{ width: '100%', height: '100%' }}
       >
-        {/* Connecting lines */}
-        <g stroke="currentColor" strokeWidth="1" opacity="0.25">
-          {LINES.map(([x1,y1,x2,y2], i) => (
+        <defs>
+          <style>{`
+            @keyframes flowLine {
+              0%   { stroke-dashoffset: 0; }
+              100% { stroke-dashoffset: -120; }
+            }
+            .bg-line {
+              stroke: currentColor;
+              stroke-width: 1;
+              stroke-dasharray: 60 40;
+              opacity: 0.3;
+              animation: flowLine 8s linear infinite;
+            }
+            .bg-line:nth-child(3n)   { animation-duration: 11s; animation-delay: -3s; }
+            .bg-line:nth-child(5n)   { animation-duration: 6s;  animation-delay: -5s; }
+            .bg-line:nth-child(7n)   { animation-duration: 9s;  animation-delay: -1s; }
+          `}</style>
+        </defs>
+
+        {/* Lines — each one connects exactly between two icon nodes */}
+        <g>
+          {CONNECTIONS.map(([a, b], i) => (
             <line
-              key={i} x1={x1} y1={y1} x2={x2} y2={y2}
-              strokeDasharray="80 40"
-              style={{
-                animation: `flowLine ${6 + (i % 5)}s linear infinite`,
-                animationDelay: `${-(i % 4) * 2}s`,
-              }}
+              key={i}
+              className="bg-line"
+              x1={NODES[a].x}
+              y1={NODES[a].y}
+              x2={NODES[b].x}
+              y2={NODES[b].y}
             />
           ))}
         </g>
 
-        {/* Icons via foreignObject — uses Font Awesome which is already loaded */}
+        {/* Icons — Font Awesome via foreignObject */}
         {NODES.map((node, i) => (
           <foreignObject
             key={i}
@@ -97,7 +119,6 @@ export default function NetworkBackground() {
             y={node.y - 14}
             width="28"
             height="28"
-            style={{ overflow: 'visible' }}
           >
             <div
               xmlns="http://www.w3.org/1999/xhtml"
@@ -108,8 +129,8 @@ export default function NetworkBackground() {
                 alignItems: 'center',
                 justifyContent: 'center',
                 color: 'currentColor',
-                fontSize: '18px',
-                opacity: 0.7,
+                fontSize: '16px',
+                opacity: 0.75,
               }}
             >
               <i className={`fas ${node.icon}`}></i>
@@ -117,13 +138,6 @@ export default function NetworkBackground() {
           </foreignObject>
         ))}
       </svg>
-
-      <style>{`
-        @keyframes flowLine {
-          0%   { stroke-dashoffset: 0; }
-          100% { stroke-dashoffset: 120; }
-        }
-      `}</style>
     </div>
   );
 }
