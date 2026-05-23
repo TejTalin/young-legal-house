@@ -736,7 +736,7 @@ footer {
   pointer-events: none;
   z-index: 0;
   overflow: hidden;
-  opacity: 0.6;
+  opacity: 0.18;
 }
 
 .network-svg { width: 100%; height: 100%; color: var(--text-color); }
@@ -760,7 +760,7 @@ footer {
 
 .network-icons use { opacity: 0.8; filter: drop-shadow(0 0 4px currentColor); }
 
-body.light-mode .community-bg { opacity: 0.5; }
+body.light-mode .community-bg { opacity: 0.12; }
 body.light-mode .network-lines line { opacity: 0.4; stroke-width: 2; }
 body.light-mode .network-icons use { opacity: 0.6; filter: drop-shadow(0 0 2px currentColor); }
 
