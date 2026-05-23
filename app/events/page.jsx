@@ -127,23 +127,23 @@ export default function EventsPage() {
         }
 
         .event-poster-card {
-          padding: 12px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
+          padding: 0;
+          line-height: 0;
         }
 
         .event-poster-img {
-          width: min(100%, 440px);
+          width: 100%;
           height: auto;
           display: block;
-          object-fit: contain;
-          border-radius: 12px;
+          object-fit: cover;
+          object-position: center top;
+          aspect-ratio: 3 / 4;
+          border-radius: 0;
         }
 
         .floating-register-tab {
           position: fixed;
-          right: 10px;
+          right: 0;
           top: 52%;
           transform: translateY(-50%);
           writing-mode: vertical-rl;
@@ -157,7 +157,7 @@ export default function EventsPage() {
           background: #111319;
           border: 1px solid rgba(255, 255, 255, 0.24);
           box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-          z-index: 1200;
+          z-index: 4000;
           transition: transform 0.2s ease, background-color 0.2s ease;
         }
 
@@ -173,15 +173,15 @@ export default function EventsPage() {
           }
 
           .event-poster-card {
-            padding: 10px;
+            padding: 0;
           }
 
           .event-poster-img {
-            width: min(100%, 360px);
+            width: 100%;
           }
 
           .floating-register-tab {
-            right: 6px;
+            right: 0;
             top: 62%;
             padding: 12px 8px;
             font-size: 0.8rem;
