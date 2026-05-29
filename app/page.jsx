@@ -128,12 +128,12 @@ export default function HomePage() {
             fontSize: '0.9rem',
             marginBottom: '28px',
           }}>
-            Everything a law student needs — in one place
+            Everything a law student needs in one place
           </p>
 
           <div className="cards-grid">
             {[
-              { icon: 'fa-newspaper', title: 'Curated Legal Insights', text: 'Peer-written articles covering Corporate Law, Tax, TMT, Litigation, ADR, IPR, and more — written by students, for students.' },
+              { icon: 'fa-newspaper', title: 'Curated Legal Insights', text: 'Peer-written articles covering Corporate Law, Tax, TMT, Litigation, ADR, IPR, and more written by students, for students.' },
               { icon: 'fa-gavel', title: 'Competitions & Events', text: 'National moot courts, trivia challenges, workshops, and flagship events designed to sharpen your legal skills.' },
               { icon: 'fa-users', title: 'Expert Community', text: 'Connect with peers, researchers, and practitioners across India. A serious network built for the next generation of lawyers.' },
             ].map(item => (
