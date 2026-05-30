@@ -731,39 +731,83 @@ footer {
 /* ── BACKGROUND NETWORK ── */
 .community-bg {
   position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
+  inset: 0;
   pointer-events: none;
   z-index: 0;
   overflow: hidden;
-  opacity: 0.22;
+  opacity: 0.38;
+  color: var(--text-color);
 }
 
-.network-svg { width: 100%; height: 100%; color: var(--text-color); }
+.community-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 24%, rgba(255,255,255,0.08), transparent 31%),
+    radial-gradient(circle at 12% 78%, rgba(255,255,255,0.04), transparent 28%),
+    radial-gradient(circle at 88% 72%, rgba(255,255,255,0.04), transparent 30%);
+}
 
-.network-lines line {
+body.light-mode .community-bg::before {
+  background:
+    radial-gradient(circle at 50% 24%, rgba(255,255,255,0.45), transparent 31%),
+    radial-gradient(circle at 12% 78%, rgba(255,255,255,0.25), transparent 28%),
+    radial-gradient(circle at 88% 72%, rgba(255,255,255,0.24), transparent 30%);
+}
+
+.network-web {
+  position: absolute;
+  inset: -4% -2%;
+  width: 104%;
+  height: 108%;
+}
+
+.network-line {
   stroke: currentColor;
-  stroke-width: 1.5;
-  opacity: 0.5;
-  stroke-dasharray: 100 50;
-  animation: flowLine 8s linear infinite;
+  stroke-width: 0.1;
+  opacity: 0.16;
+  stroke-dasharray: 3 8;
+  animation: flowLine 18s linear infinite;
 }
 
 @keyframes flowLine {
   0% { stroke-dashoffset: 0; }
-  100% { stroke-dashoffset: 150; }
+  100% { stroke-dashoffset: 44; }
 }
 
-.network-lines line:nth-child(odd) { animation-duration: 6s; animation-delay: 0s; }
-.network-lines line:nth-child(3n) { animation-duration: 10s; animation-delay: -2s; }
-.network-lines line:nth-child(5n) { animation-duration: 7s; animation-delay: -4s; }
+.network-line:nth-child(odd) { animation-duration: 24s; animation-delay: -6s; }
+.network-line:nth-child(3n) { animation-duration: 30s; animation-delay: -12s; }
 
-.network-icons use { opacity: 0.8; filter: drop-shadow(0 0 4px currentColor); }
-
-body.light-mode .community-bg {   opacity: 0.22;
+.network-symbol-layer {
+  position: absolute;
+  inset: 0;
 }
-body.light-mode .network-lines line { opacity: 0.4; stroke-width: 2; }
-body.light-mode .network-icons use { opacity: 0.6; filter: drop-shadow(0 0 2px currentColor); }
+
+.network-symbol {
+  position: absolute;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  transform: translate(-50%, -50%);
+  color: currentColor;
+  opacity: 0.13;
+}
+
+.network-symbol i {
+  font-size: 23px;
+}
+
+body.light-mode .community-bg { opacity: 0.42; }
+body.light-mode .network-line { opacity: 0.12; stroke-width: 0.09; }
+body.light-mode .network-symbol { opacity: 0.12; }
+
+@media (max-width: 760px) {
+  .community-bg { opacity: 0.28; }
+  .network-symbol:nth-child(2n) { display: none; }
+  .network-line { opacity: 0.1; }
+}
 
 main, footer { position: relative; z-index: 1; }
 .navbar { z-index: 1000 !important; }
@@ -823,6 +867,4 @@ main, footer { position: relative; z-index: 1; }
   .theme-icon { width: 16px; height: 16px; }
   .page-spacing { padding-top: 8px; }
   .glass-card { padding: 22px; }
-  .community-bg {   opacity: 0.22;
-}
 }
