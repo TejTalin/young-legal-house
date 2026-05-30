@@ -736,7 +736,7 @@ footer {
   z-index: 0;
   overflow: hidden;
   color: var(--text-color);
-  opacity: 0.72;
+  opacity: 0.58;
 }
 
 .community-bg::before {
@@ -766,8 +766,8 @@ body.light-mode .community-bg::before {
 .network-lattice line {
   fill: none;
   stroke: currentColor;
-  stroke-width: 0.12;
-  opacity: 0.22;
+  stroke-width: 0.075;
+  opacity: 0.16;
   stroke-linecap: round;
   stroke-dasharray: 12 14;
   animation: networkPulse 18s ease-in-out infinite;
@@ -781,30 +781,33 @@ body.light-mode .community-bg::before {
 .network-icon {
   position: absolute;
   transform: translate(-50%, -50%);
-  object-fit: contain;
-  opacity: 0.17;
-  filter: invert(1);
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 0.22;
+  filter: invert(1) grayscale(1);
   mix-blend-mode: screen;
 }
 
-body.light-mode .community-bg { opacity: 0.8; }
-body.light-mode .network-lattice line { opacity: 0.18; stroke-width: 0.1; }
+body.light-mode .community-bg { opacity: 0.72; }
+body.light-mode .network-lattice line { opacity: 0.14; stroke-width: 0.07; }
 body.light-mode .network-icon {
-  opacity: 0.16;
-  filter: none;
+  opacity: 0.2;
+  filter: grayscale(1);
   mix-blend-mode: multiply;
 }
 
 @keyframes networkPulse {
-  0%, 100% { opacity: 0.14; stroke-dashoffset: 0; }
-  50% { opacity: 0.28; stroke-dashoffset: -18; }
+  0%, 100% { opacity: 0.11; stroke-dashoffset: 0; }
+  50% { opacity: 0.2; stroke-dashoffset: -18; }
 }
 
 @media (max-width: 760px) {
-  .community-bg { opacity: 0.55; }
+  .community-bg { opacity: 0.5; }
   .network-icon { width: 34px !important; height: 34px !important; opacity: 0.12; }
   .network-icon:nth-child(2n) { display: none; }
-  .network-lattice line { opacity: 0.12; }
+  .network-lattice line { opacity: 0.08; }
 }
 
 main, footer { position: relative; z-index: 1; }
