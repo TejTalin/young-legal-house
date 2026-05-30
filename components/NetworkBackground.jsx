@@ -54,16 +54,15 @@ export default function NetworkBackground() {
 
       <div className="network-icons">
         {nodes.map((node, index) => (
-          <img
+          <span
             key={`${node.icon}-${index}`}
-            src={`/network-icons/legal-icon-${node.icon}.png`}
-            alt=""
             className="network-icon"
             style={{
               left: `${node.x}%`,
               top: `${node.y}%`,
               width: `${node.size}px`,
               height: `${node.size}px`,
+              backgroundImage: `url(/network-icons/legal-icon-${node.icon}.png)`,
             }}
           />
         ))}
