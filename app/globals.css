@@ -728,14 +728,13 @@ footer {
 .footer-right { justify-self: end; }
 .footer-socials { justify-content: flex-end; }
 
-/* ── BACKGROUND NETWORK ── */
+/* ── BACKGROUND ATMOSPHERE ── */
 .community-bg {
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 0;
   overflow: hidden;
-  opacity: 0.38;
   color: var(--text-color);
 }
 
@@ -744,69 +743,97 @@ footer {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 50% 24%, rgba(255,255,255,0.08), transparent 31%),
-    radial-gradient(circle at 12% 78%, rgba(255,255,255,0.04), transparent 28%),
-    radial-gradient(circle at 88% 72%, rgba(255,255,255,0.04), transparent 30%);
+    radial-gradient(circle at 50% 16%, rgba(255,255,255,0.055), transparent 30%),
+    radial-gradient(circle at 18% 72%, rgba(255,255,255,0.035), transparent 26%),
+    radial-gradient(circle at 86% 70%, rgba(255,255,255,0.035), transparent 28%),
+    linear-gradient(180deg, rgba(255,255,255,0.02), transparent 34%);
 }
 
 body.light-mode .community-bg::before {
   background:
-    radial-gradient(circle at 50% 24%, rgba(255,255,255,0.45), transparent 31%),
-    radial-gradient(circle at 12% 78%, rgba(255,255,255,0.25), transparent 28%),
-    radial-gradient(circle at 88% 72%, rgba(255,255,255,0.24), transparent 30%);
+    radial-gradient(circle at 50% 14%, rgba(255,255,255,0.55), transparent 32%),
+    radial-gradient(circle at 14% 74%, rgba(255,255,255,0.32), transparent 28%),
+    radial-gradient(circle at 88% 70%, rgba(255,255,255,0.28), transparent 30%),
+    linear-gradient(180deg, rgba(255,255,255,0.34), transparent 38%);
 }
 
-.network-web {
+.legal-atmosphere {
   position: absolute;
-  inset: -4% -2%;
-  width: 104%;
-  height: 108%;
+  width: 620px;
+  height: 620px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  opacity: 0.035;
+  filter: blur(0.2px);
 }
 
-.network-line {
-  stroke: currentColor;
-  stroke-width: 0.1;
-  opacity: 0.16;
-  stroke-dasharray: 3 8;
-  animation: flowLine 18s linear infinite;
+.legal-atmosphere::before,
+.legal-atmosphere::after {
+  content: "";
+  position: absolute;
+  inset: 16%;
+  border: 1px solid currentColor;
+  border-radius: inherit;
 }
 
-@keyframes flowLine {
-  0% { stroke-dashoffset: 0; }
-  100% { stroke-dashoffset: 44; }
+.legal-atmosphere::after {
+  inset: 31%;
 }
 
-.network-line:nth-child(odd) { animation-duration: 24s; animation-delay: -6s; }
-.network-line:nth-child(3n) { animation-duration: 30s; animation-delay: -12s; }
+.legal-atmosphere-left {
+  left: -220px;
+  top: 120px;
+}
 
-.network-symbol-layer {
+.legal-atmosphere-right {
+  right: -240px;
+  bottom: 20px;
+}
+
+.legal-grid {
   position: absolute;
   inset: 0;
+  opacity: 0.045;
+  background-image:
+    linear-gradient(currentColor 1px, transparent 1px),
+    linear-gradient(90deg, currentColor 1px, transparent 1px);
+  background-size: 120px 120px;
+  mask-image: radial-gradient(circle at center, black 0%, transparent 72%);
 }
 
-.network-symbol {
+.legal-lines {
   position: absolute;
-  width: 42px;
-  height: 42px;
-  display: grid;
-  place-items: center;
-  transform: translate(-50%, -50%);
-  color: currentColor;
-  opacity: 0.13;
+  inset: 0;
+  width: 100%;
+  height: 100%;
 }
 
-.network-symbol i {
-  font-size: 23px;
+.legal-lines path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1;
+  opacity: 0.055;
+  stroke-dasharray: 10 28;
+  animation: legalLineDrift 36s linear infinite;
 }
 
-body.light-mode .community-bg { opacity: 0.42; }
-body.light-mode .network-line { opacity: 0.12; stroke-width: 0.09; }
-body.light-mode .network-symbol { opacity: 0.12; }
+@keyframes legalLineDrift {
+  0% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: 76; }
+}
+
+body.light-mode .legal-atmosphere { opacity: 0.05; }
+body.light-mode .legal-grid { opacity: 0.035; }
+body.light-mode .legal-lines path { opacity: 0.045; }
 
 @media (max-width: 760px) {
-  .community-bg { opacity: 0.28; }
-  .network-symbol:nth-child(2n) { display: none; }
-  .network-line { opacity: 0.1; }
+  .legal-grid { background-size: 92px 92px; opacity: 0.03; }
+  .legal-lines path { opacity: 0.035; }
+  .legal-atmosphere {
+    width: 420px;
+    height: 420px;
+    opacity: 0.03;
+  }
 }
 
 main, footer { position: relative; z-index: 1; }
