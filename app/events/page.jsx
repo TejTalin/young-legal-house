@@ -212,7 +212,7 @@ export default function EventsPage() {
 
         .event-media-showcase {
           display: grid;
-          grid-template-columns: minmax(260px, 0.82fr) minmax(340px, 1.18fr);
+          grid-template-columns: repeat(2, minmax(260px, 1fr));
           gap: 20px;
           align-items: stretch;
           margin-bottom: 20px;
@@ -238,12 +238,14 @@ export default function EventsPage() {
           display: flex;
           flex-direction: column;
           justify-content: center;
+          align-items: center;
           gap: 16px;
           padding: 18px;
         }
 
         .event-reel-frame {
-          width: 100%;
+          width: min(100%, 520px);
+          aspect-ratio: 3 / 4;
           border-radius: 22px;
           overflow: hidden;
           background: #0f1012;
@@ -253,8 +255,10 @@ export default function EventsPage() {
 
         .event-reel-video {
           width: 100%;
-          aspect-ratio: 16 / 9;
+          height: 100%;
           display: block;
+          object-fit: cover;
+          object-position: center;
           background: #0f1012;
         }
 
@@ -305,6 +309,8 @@ export default function EventsPage() {
 
           .event-reel-frame {
             border-radius: 16px;
+            width: 100%;
+            max-width: 520px;
           }
 
           .instagram-reel-pill {
