@@ -66,12 +66,46 @@ export default function EventsPage() {
           </p>
         </div>
 
-        <div className="glass-card" style={{ marginBottom: '16px' }}>
-          <h3 style={{ marginBottom: '8px' }}>Evaluation Criteria</h3>
-          <p className="events-copy">
-            Evaluation is based on accuracy, legal relevance, and promptness of submission. Answers are assessed by the internal panel,
-            including qualified legal professionals, and the panel decision remains final and binding.
-          </p>
+        <div className="events-two-up" style={{ marginBottom: '16px' }}>
+          <div className="glass-card">
+            <h3 style={{ marginBottom: '8px' }}>Evaluation Criteria</h3>
+            <p className="events-copy">
+              Evaluation is based on accuracy, legal relevance, and promptness of submission. Answers are assessed by the internal panel,
+              including qualified legal professionals, and the panel decision remains final and binding.
+            </p>
+          </div>
+
+          <div className="glass-card">
+            <h3 style={{ marginBottom: '8px' }}>Why Should You Participate?</h3>
+            <p className="events-copy" style={{ marginBottom: '10px' }}>
+              Experience Criminal Law Beyond the Classroom
+            </p>
+            <p className="events-copy" style={{ marginBottom: '14px' }}>
+              Engage with realistic legal situations and discover how principles of Indian Criminal Law are applied in practice.
+              Develop the ability to think like a lawyer when faced with complex legal challenges.
+            </p>
+            <p className="events-copy" style={{ marginBottom: '10px' }}>
+              Develop the Skills That Distinguish Exceptional Lawyers
+            </p>
+            <p className="events-copy" style={{ marginBottom: '14px' }}>
+              Strengthen your legal reasoning, logical analysis, and critical thinking abilities core competencies that are indispensable
+              for success in litigation, judiciary, corporate practice, and beyond.
+            </p>
+            <p className="events-copy" style={{ marginBottom: '10px' }}>
+              Challenge Yourself with Practical, Situation-Based Questions
+            </p>
+            <p className="events-copy" style={{ marginBottom: '14px' }}>
+              Move beyond memorization and learn to evaluate facts, identify legal issues, and formulate well-reasoned solutions under
+              realistic circumstances.
+            </p>
+            <p className="events-copy" style={{ marginBottom: '10px' }}>
+              Build Confidence for Your Legal Career and Everyday Decision-Making
+            </p>
+            <p className="events-copy">
+              This unique event equips you with analytical and problem-solving skills that extend beyond law school, empowering you to
+              approach professional and real-life situations with clarity, precision, and confidence.
+            </p>
+          </div>
         </div>
 
         <div className="glass-card" style={{ marginBottom: '16px' }}>
@@ -183,6 +217,18 @@ export default function EventsPage() {
           text-align: justify;
           text-justify: inter-word;
           hyphens: auto;
+        }
+
+        .events-two-up {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 16px;
+        }
+
+        @media (max-width: 860px) {
+          .events-two-up {
+            grid-template-columns: 1fr;
+          }
         }
       `}</style>
     </>
