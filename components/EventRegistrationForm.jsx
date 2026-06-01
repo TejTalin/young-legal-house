@@ -56,32 +56,32 @@ export default function EventRegistrationForm() {
           Register for Lex Noctis
         </h1>
         <p style={{ color: 'var(--grey-text)', marginBottom: '20px', textAlign: 'center' }}>
-          Fill all compulsory fields. You will receive an email confirmation after successful registration.
+          Fill all required fields. You will receive an email confirmation after successful registration.
         </p>
 
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label className="form-label">Full Name (compulsory)</label>
+            <label className="form-label">Full Name</label>
             <input name="fullName" type="text" className="form-input" required />
           </div>
 
           <div className="form-group">
-            <label className="form-label">Age (compulsory)</label>
+            <label className="form-label">Age</label>
             <input name="age" type="number" min="15" max="80" className="form-input" required />
           </div>
 
           <div className="form-group">
-            <label className="form-label">Personal Email ID (compulsory)</label>
+            <label className="form-label">Personal Email ID</label>
             <input name="personalEmail" type="email" className="form-input" required />
           </div>
 
           <div className="form-group">
-            <label className="form-label">Name of Institution (compulsory)</label>
+            <label className="form-label">Name of Institution</label>
             <input name="institution" type="text" className="form-input" required />
           </div>
 
           <div className="form-group">
-            <label className="form-label">Year of Law / Study (compulsory)</label>
+            <label className="form-label">Year of Law / Study</label>
             <select name="yearOfStudy" className="form-select" required defaultValue="">
               <option value="" disabled>Select year</option>
               {YEAR_OPTIONS.map((year) => (
@@ -96,7 +96,7 @@ export default function EventRegistrationForm() {
           </div>
 
           <div className="form-group">
-            <label className="form-label">WhatsApp Mobile Number (compulsory)</label>
+            <label className="form-label">WhatsApp Mobile Number</label>
             <input name="phone" type="tel" className="form-input" required />
           </div>
 
@@ -116,7 +116,7 @@ export default function EventRegistrationForm() {
           </div>
 
           <div className="form-group">
-            <label className="form-label">Payment QR Screenshot (compulsory)</label>
+            <label className="form-label">Payment QR Screenshot</label>
             <input name="paymentScreenshot" type="file" accept="image/*,.pdf" className="form-input" required />
             <p className="word-count-indicator" style={{ marginTop: '8px' }}>Accepted: image/PDF up to 8MB</p>
           </div>
