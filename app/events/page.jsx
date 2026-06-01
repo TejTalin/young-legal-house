@@ -4,6 +4,9 @@ import Link from 'next/link';
 import NetworkBackground from '@/components/NetworkBackground';
 import EventBrochureTile from '@/components/EventBrochureTile';
 
+const INSTAGRAM_REEL_URL = 'https://www.instagram.com/younglegalhouse/';
+const REEL_VIDEO_URL = '/lex-noctis-reel.mp4';
+
 export default function EventsPage() {
   return (
     <>
@@ -30,13 +33,41 @@ export default function EventsPage() {
           </p>
         </div>
 
-        <div className="glass-card event-poster-card" style={{ marginBottom: '20px', overflow: 'hidden' }}>
-          <img
-            src="/lex-noctis-launch-poster.jpeg"
-            alt="Lex Noctis poster"
-            className="event-poster-img"
-          />
-        </div>
+        <section className="event-media-showcase" aria-label="Lex Noctis poster and reel">
+          <div className="glass-card event-media-poster">
+            <img
+              src="/lex-noctis-launch-poster.jpeg"
+              alt="Lex Noctis poster"
+              className="event-media-poster-img"
+            />
+          </div>
+
+          <div className="glass-card event-media-reel">
+            <div className="event-reel-frame">
+              <video
+                src={REEL_VIDEO_URL}
+                poster="/lex-noctis-launch-poster.jpeg"
+                className="event-reel-video"
+                controls
+                playsInline
+                preload="metadata"
+              >
+                Your browser does not support the video tag.
+              </video>
+            </div>
+
+            <a
+              href={INSTAGRAM_REEL_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="instagram-reel-pill"
+              aria-label="View Lex Noctis reel on Instagram"
+            >
+              <i className="fab fa-instagram" aria-hidden="true"></i>
+              View on Instagram
+            </a>
+          </div>
+        </section>
 
         <EventBrochureTile />
 
@@ -179,19 +210,76 @@ export default function EventsPage() {
           font-weight: 700;
         }
 
-        .event-poster-card {
+        .event-media-showcase {
+          display: grid;
+          grid-template-columns: minmax(260px, 0.82fr) minmax(340px, 1.18fr);
+          gap: 20px;
+          align-items: stretch;
+          margin-bottom: 20px;
+        }
+
+        .event-media-poster {
           padding: 0;
+          overflow: hidden;
           line-height: 0;
         }
 
-        .event-poster-img {
+        .event-media-poster-img {
           width: 100%;
-          height: auto;
+          height: 100%;
+          min-height: 420px;
           display: block;
           object-fit: cover;
           object-position: center top;
-          aspect-ratio: 3 / 4;
-          border-radius: 0;
+          border-radius: inherit;
+        }
+
+        .event-media-reel {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          gap: 16px;
+          padding: 18px;
+        }
+
+        .event-reel-frame {
+          width: 100%;
+          border-radius: 22px;
+          overflow: hidden;
+          background: #0f1012;
+          border: 1px solid var(--glass-border);
+          box-shadow: 0 18px 42px rgba(0, 0, 0, 0.16);
+        }
+
+        .event-reel-video {
+          width: 100%;
+          aspect-ratio: 16 / 9;
+          display: block;
+          background: #0f1012;
+        }
+
+        .instagram-reel-pill {
+          align-self: center;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 9px;
+          min-height: 46px;
+          padding: 0 20px;
+          border-radius: 999px;
+          border: 1px solid var(--glass-border);
+          color: var(--text-color);
+          background: var(--glass-bg);
+          box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
+          font-weight: 800;
+          text-decoration: none;
+          transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+        }
+
+        .instagram-reel-pill:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 16px 34px rgba(0, 0, 0, 0.16);
+          background: rgba(255, 255, 255, 0.92);
         }
 
         @media (max-width: 768px) {
@@ -200,11 +288,26 @@ export default function EventsPage() {
             padding-right: 10px;
           }
 
-          .event-poster-card {
-            padding: 0;
+          .event-media-showcase {
+            grid-template-columns: 1fr;
+            gap: 14px;
           }
 
-          .event-poster-img {
+          .event-media-poster-img {
+            min-height: 0;
+            height: auto;
+            aspect-ratio: 3 / 4;
+          }
+
+          .event-media-reel {
+            padding: 12px;
+          }
+
+          .event-reel-frame {
+            border-radius: 16px;
+          }
+
+          .instagram-reel-pill {
             width: 100%;
           }
 
