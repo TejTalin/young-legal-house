@@ -7,6 +7,10 @@ import { Analytics } from '@vercel/analytics/react';
 export const metadata = {
   title: 'Young Legal House',
   description: 'A dedicated initiative empowering law students across India.',
+  icons: {
+    icon: '/favicon.png',
+    apple: '/apple-icon.png',
+  },
 };
 
 export default function RootLayout({ children }) {
