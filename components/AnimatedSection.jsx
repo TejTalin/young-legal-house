@@ -4,17 +4,15 @@ import { fadeUp, slideLeft, slideRight, scaleUp, VIEW } from '@/lib/motion';
 
 const VARIANTS = { fadeUp, slideLeft, slideRight, scaleUp };
 
-/**
- * AnimatedSection
- * A generic scroll-triggered reveal wrapper.
- * 
- * Props:
- *   variant   — 'fadeUp' | 'slideLeft' | 'slideRight' | 'scaleUp'  (default: 'fadeUp')
- *   delay     — extra delay in seconds (default: 0)
- *   className — forwarded to the motion.div
- *   style     — forwarded to the motion.div
- *   as        — HTML tag to render as (default: 'div')
- */
+const TAGS = {
+  div:     motion.div,
+  section: motion.section,
+  footer:  motion.footer,
+  article: motion.article,
+  header:  motion.header,
+  span:    motion.span,
+};
+
 export default function AnimatedSection({
   children,
   variant   = 'fadeUp',
@@ -35,7 +33,7 @@ export default function AnimatedSection({
     },
   };
 
-  const Tag = motion[as] ?? motion.div;
+  const Tag = TAGS[as] ?? TAGS.div;
 
   return (
     <Tag
@@ -50,4 +48,3 @@ export default function AnimatedSection({
     </Tag>
   );
 }
-
