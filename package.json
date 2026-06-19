@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start"
-  },
+  },"framer-motion": "^12.0.0",
   "dependencies": {
     "next": "^14.2.33",
     "react": "^18.3.1",
