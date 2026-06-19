@@ -1,18 +1,15 @@
 'use client';
 import { motion } from 'framer-motion';
-import { wordRevealContainer, wordRevealItem, VIEW } from '@/lib/motion';
+import { wordRevealItem, VIEW } from '@/lib/motion';
 
-/**
- * WordReveal
- * Splits a heading into words and reveals them one-by-one on scroll.
- *
- * Props:
- *   text      — the string to animate
- *   as        — HTML tag: 'h1' | 'h2' | 'h3' | 'p' (default: 'h1')
- *   className — forwarded to the wrapper element
- *   style     — forwarded to the wrapper element
- *   stagger   — seconds between each word (default: 0.07)
- */
+const TAGS = {
+  h1: motion.h1,
+  h2: motion.h2,
+  h3: motion.h3,
+  h4: motion.h4,
+  p:  motion.p,
+};
+
 export default function WordReveal({
   text,
   as        = 'h1',
@@ -26,7 +23,7 @@ export default function WordReveal({
     visible: { transition: { staggerChildren: stagger, delayChildren: 0.1 } },
   };
 
-  const Tag = motion[as] ?? motion.h1;
+  const Tag = TAGS[as] ?? TAGS.h1;
 
   return (
     <Tag
@@ -50,4 +47,3 @@ export default function WordReveal({
     </Tag>
   );
 }
-
