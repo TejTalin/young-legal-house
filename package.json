@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start"
-  },"framer-motion": "^12.0.0",
+  },
   "dependencies": {
     "next": "^14.2.33",
     "react": "^18.3.1",
@@ -16,6 +16,7 @@
     "@sanity/image-url": "^1.0.2",
     "next-sanity": "^9.3.0",
     "sanity": "^3.93.0",
-    "@vercel/analytics": "^1.3.1"
+    "@vercel/analytics": "^1.3.1",
+    "framer-motion": "^12.0.0"
   }
 }
