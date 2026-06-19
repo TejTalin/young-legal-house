@@ -1,7 +1,15 @@
+'use client';
 import Link from 'next/link';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 import AnimatedSection from '@/components/AnimatedSection';
-import StaggerGrid from '@/components/StaggerGrid';
+
+const SOCIALS = [
+  { href: 'https://www.linkedin.com/company/young-legal-house/', icon: 'fa-linkedin',  type: 'fab' },
+  { href: 'https://www.instagram.com/younglegalhouse/',          icon: 'fa-instagram', type: 'fab' },
+  { href: 'https://linktr.ee/younglegalhouse',                   icon: 'fa-link',      type: 'fas' },
+  { href: 'mailto:connect.ylh@gmail.com',                        icon: 'fa-envelope',  type: 'fas' },
+];
 
 export default function Footer() {
   return (
@@ -22,27 +30,20 @@ export default function Footer() {
         </div>
 
         <div className="footer-socials footer-right">
-          {[
-            { href: 'https://www.linkedin.com/company/young-legal-house/', icon: 'fa-linkedin',  type: 'fab' },
-            { href: 'https://www.instagram.com/younglegalhouse/',          icon: 'fa-instagram', type: 'fab' },
-            { href: 'https://linktr.ee/younglegalhouse',                   icon: 'fa-link',      type: 'fas' },
-            { href: 'mailto:connect.ylh@gmail.com',                        icon: 'fa-envelope',  type: 'fas' },
-          ].map(({ href, icon, type }) => (
-            <a
+          {SOCIALS.map(({ href, icon, type }) => (
+            <motion.a
               key={icon}
               href={href}
               className="soc-icon"
               target={href.startsWith('mailto') ? undefined : '_blank'}
               rel="noopener noreferrer"
-              style={{
-                color: 'var(--text-color)',
-                transition: 'transform 0.22s ease, opacity 0.22s ease',
-              }}
-              onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-3px) scale(1.12)'; }}
-              onMouseLeave={e => { e.currentTarget.style.transform = ''; }}
+              style={{ color: 'var(--text-color)' }}
+              whileHover={{ y: -3, scale: 1.12 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.22 }}
             >
               <i className={`${type} ${icon}`}></i>
-            </a>
+            </motion.a>
           ))}
         </div>
       </div>
