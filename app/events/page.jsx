@@ -12,8 +12,9 @@ export default function EventsPage() {
     <>
       <NetworkBackground />
       <main className="page-spacing container events-page" style={{ paddingTop: '24px' }}>
-        <p className="events-pretitle">Young Legal House Presents</p>
+        <p className="events-pretitle">Past Event Archive</p>
         <h1 className="section-title">Legal Trivia - Lex Noctis</h1>
+        <p className="event-status-pill">Event Concluded · 15 June 2026</p>
 
         <div className="glass-card" style={{ marginBottom: '16px' }}>
           <h3 style={{ marginBottom: '10px' }}>Cinematic Criminal Law Trivia</h3>
@@ -69,7 +70,7 @@ export default function EventsPage() {
           </div>
         </section>
 
-        <EventBrochureTile />
+        <div id="brochure"><EventBrochureTile /></div>
 
         <div className="glass-card" style={{ marginBottom: '16px' }}>
           <h3 style={{ marginBottom: '8px' }}>Who can Participate?</h3>
@@ -152,7 +153,7 @@ export default function EventsPage() {
         <div className="glass-card" style={{ marginBottom: '16px' }}>
           <h3 style={{ marginBottom: '8px' }}>Registration Fee & Deadline</h3>
           <p className="events-copy">
-            The registration fee is Rs. 150/- INR per participant, and the last date for registration is 13 June 2026.
+            Registration for Lex Noctis closed on 13 June 2026. The event was held on 15 June 2026 with a registration fee of Rs. 150/- INR per participant.
           </p>
         </div>
 
@@ -165,38 +166,15 @@ export default function EventsPage() {
           </p>
         </div>
 
-        <div className="glass-card" style={{ textAlign: 'center', marginBottom: '20px' }}>
-          <h3 style={{ marginBottom: '8px' }}>Registration</h3>
+        <div className="glass-card event-archive-card" style={{ textAlign: 'center', marginBottom: '20px' }}>
+          <h3 style={{ marginBottom: '8px' }}>Event Archive</h3>
           <p className="events-copy" style={{ textAlign: 'center', marginBottom: '14px' }}>
-            Continue to the dedicated registration page to submit your details.
+            Lex Noctis has concluded. You can still explore the poster, brochure, event format, and recap media on this page.
           </p>
-          <Link href="/events/register" className="submit-btn" style={{ textDecoration: 'none', display: 'inline-block' }}>
-            Register for Trivia
+          <Link href="/events#brochure" className="submit-btn" style={{ textDecoration: 'none', display: 'inline-block' }}>
+            View Event Materials
           </Link>
         </div>
-
-        <Link
-          href="/events/register"
-          aria-label="Register now for Lex Noctis"
-          style={{
-            position: 'fixed',
-            right: '0',
-            top: '52%',
-            transform: 'translateY(-50%)',
-            borderRadius: '16px 0 0 16px',
-            padding: '12px 16px',
-            textDecoration: 'none',
-            fontWeight: 700,
-            fontSize: '0.9rem',
-            color: '#fff',
-            background: '#111319',
-            border: '1px solid rgba(255, 255, 255, 0.24)',
-            boxShadow: '0 8px 24px rgba(0, 0, 0, 0.2)',
-            zIndex: 4000,
-          }}
-        >
-          Register Now
-        </Link>
       </main>
 
       <style jsx>{`
@@ -208,6 +186,25 @@ export default function EventsPage() {
           color: var(--grey-text);
           margin-bottom: 8px;
           font-weight: 700;
+        }
+
+        .event-status-pill {
+          width: fit-content;
+          margin: -8px auto 26px;
+          padding: 8px 18px;
+          border-radius: 999px;
+          border: 1px solid var(--glass-border);
+          background: var(--glass-bg);
+          color: var(--grey-text);
+          font-weight: 800;
+          letter-spacing: 0.06em;
+          text-transform: uppercase;
+          font-size: 0.78rem;
+          backdrop-filter: blur(14px);
+        }
+
+        .event-archive-card {
+          box-shadow: 0 18px 45px rgba(0, 0, 0, 0.14);
         }
 
         .event-media-showcase {
@@ -292,7 +289,26 @@ export default function EventsPage() {
             padding-right: 10px;
           }
 
-          .event-media-showcase {
+          .event-status-pill {
+          width: fit-content;
+          margin: -8px auto 26px;
+          padding: 8px 18px;
+          border-radius: 999px;
+          border: 1px solid var(--glass-border);
+          background: var(--glass-bg);
+          color: var(--grey-text);
+          font-weight: 800;
+          letter-spacing: 0.06em;
+          text-transform: uppercase;
+          font-size: 0.78rem;
+          backdrop-filter: blur(14px);
+        }
+
+        .event-archive-card {
+          box-shadow: 0 18px 45px rgba(0, 0, 0, 0.14);
+        }
+
+        .event-media-showcase {
             grid-template-columns: 1fr;
             gap: 14px;
           }
