@@ -120,7 +120,7 @@ export default function HomeClient() {
               style={{
                 border: '1px solid var(--glass-border)', borderRadius: '999px',
                 overflow: 'hidden', background: 'var(--glass-bg)',
-                height: '44px', display: 'flex', alignItems: 'center',
+                height: '44px', display: 'flex', alignItems: 'center', position: 'relative',
                 backdropFilter: 'blur(12px)',
               }}
             >
@@ -131,7 +131,7 @@ export default function HomeClient() {
                 color: 'var(--text-color)', fontWeight: 600,
                 fontSize: '0.83rem', letterSpacing: '0.04em',
               }}>
-                🔴&nbsp; FLAGSHIP EVENT — LEX NOCTIS &nbsp;·&nbsp; CRIMINAL LAW TRIVIA &nbsp;·&nbsp; 15 JUNE 2026 &nbsp;·&nbsp; REGISTRATIONS NOW OPEN &nbsp;·&nbsp; CLICK TO REGISTER
+                ⚖️&nbsp; PAST EVENT ARCHIVE — LEX NOCTIS &nbsp;·&nbsp; CRIMINAL LAW TRIVIA &nbsp;·&nbsp; EVENT CONCLUDED &nbsp;·&nbsp; VIEW RECAP
               </div>
             </motion.div>
           </Link>
