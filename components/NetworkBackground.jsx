@@ -3,168 +3,329 @@
 import { useEffect, useRef } from 'react';
 
 const nodes = [
-  { x: 7, y: 17, icon: 1, size: 44 },
-  { x: 20, y: 29, icon: 6, size: 38 },
-  { x: 36, y: 18, icon: 8, size: 42 },
-  { x: 52, y: 32, icon: 4, size: 46 },
-  { x: 68, y: 18, icon: 3, size: 42 },
-  { x: 86, y: 30, icon: 2, size: 44 },
-  { x: 94, y: 15, icon: 5, size: 38 },
-  { x: 12, y: 56, icon: 5, size: 42 },
-  { x: 28, y: 68, icon: 7, size: 44 },
-  { x: 44, y: 54, icon: 1, size: 46 },
-  { x: 61, y: 70, icon: 6, size: 40 },
-  { x: 78, y: 55, icon: 8, size: 45 },
-  { x: 92, y: 73, icon: 4, size: 44 },
-  { x: 5, y: 84, icon: 3, size: 38 },
-  { x: 35, y: 90, icon: 2, size: 42 },
-  { x: 70, y: 88, icon: 7, size: 40 },
+  { x: 8, y: 18, icon: 'scale', size: 34 },
+  { x: 20, y: 31, icon: 'briefcase', size: 31 },
+  { x: 34, y: 18, icon: 'handshake', size: 34 },
+  { x: 50, y: 32, icon: 'document', size: 35 },
+  { x: 66, y: 18, icon: 'gavel', size: 34 },
+  { x: 84, y: 30, icon: 'court', size: 36 },
+  { x: 94, y: 15, icon: 'lawyer', size: 32 },
+  { x: 12, y: 58, icon: 'news', size: 33 },
+  { x: 29, y: 70, icon: 'scale', size: 35 },
+  { x: 44, y: 54, icon: 'briefcase', size: 32 },
+  { x: 61, y: 71, icon: 'document', size: 33 },
+  { x: 78, y: 56, icon: 'handshake', size: 36 },
+  { x: 92, y: 74, icon: 'gavel', size: 34 },
+  { x: 5, y: 86, icon: 'court', size: 34 },
+  { x: 35, y: 91, icon: 'news', size: 32 },
+  { x: 70, y: 89, icon: 'lawyer', size: 33 },
 ];
 
-const connections = [
+const links = [
   [0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 6],
-  [1, 7], [3, 9], [5, 11],
-  [7, 8], [8, 9], [9, 10], [10, 11], [11, 12],
-  [7, 13], [8, 14], [10, 15],
+  [1, 7], [3, 9], [5, 11], [7, 8], [8, 9], [9, 10],
+  [10, 11], [11, 12], [7, 13], [8, 14], [10, 15],
 ];
+
+const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
+const lerp = (from, to, amount) => from + (to - from) * amount;
+
+function line(ctx, x1, y1, x2, y2) {
+  ctx.moveTo(x1, y1);
+  ctx.lineTo(x2, y2);
+}
+
+function drawScale(ctx, s) {
+  ctx.beginPath();
+  line(ctx, 0, -s * 0.46, 0, s * 0.35);
+  line(ctx, -s * 0.42, -s * 0.22, s * 0.42, -s * 0.22);
+  line(ctx, -s * 0.32, -s * 0.22, -s * 0.48, s * 0.16);
+  line(ctx, -s * 0.18, -s * 0.22, -s * 0.04, s * 0.16);
+  line(ctx, s * 0.18, -s * 0.22, s * 0.04, s * 0.16);
+  line(ctx, s * 0.32, -s * 0.22, s * 0.48, s * 0.16);
+  line(ctx, -s * 0.55, s * 0.16, -s * 0.02, s * 0.16);
+  line(ctx, s * 0.02, s * 0.16, s * 0.55, s * 0.16);
+  line(ctx, -s * 0.24, s * 0.48, s * 0.24, s * 0.48);
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.arc(0, -s * 0.52, s * 0.1, 0, Math.PI * 2);
+  ctx.stroke();
+}
+
+function drawGavel(ctx, s) {
+  ctx.save();
+  ctx.rotate(-0.65);
+  ctx.strokeRect(-s * 0.28, -s * 0.36, s * 0.55, s * 0.18);
+  ctx.strokeRect(-s * 0.07, -s * 0.18, s * 0.14, s * 0.7);
+  ctx.restore();
+  ctx.beginPath();
+  line(ctx, -s * 0.5, s * 0.44, s * 0.1, s * 0.44);
+  line(ctx, -s * 0.4, s * 0.34, 0, s * 0.34);
+  ctx.stroke();
+}
+
+function drawDocument(ctx, s) {
+  ctx.beginPath();
+  line(ctx, -s * 0.34, -s * 0.5, s * 0.18, -s * 0.5);
+  line(ctx, s * 0.18, -s * 0.5, s * 0.42, -s * 0.25);
+  line(ctx, s * 0.42, -s * 0.25, s * 0.42, s * 0.52);
+  line(ctx, s * 0.42, s * 0.52, -s * 0.34, s * 0.52);
+  line(ctx, -s * 0.34, s * 0.52, -s * 0.34, -s * 0.5);
+  line(ctx, s * 0.18, -s * 0.5, s * 0.18, -s * 0.25);
+  line(ctx, s * 0.18, -s * 0.25, s * 0.42, -s * 0.25);
+  line(ctx, -s * 0.18, -s * 0.06, s * 0.2, -s * 0.06);
+  line(ctx, -s * 0.18, s * 0.14, s * 0.24, s * 0.14);
+  line(ctx, -s * 0.18, s * 0.34, s * 0.08, s * 0.34);
+  ctx.stroke();
+}
+
+function drawCourt(ctx, s) {
+  ctx.beginPath();
+  line(ctx, -s * 0.55, -s * 0.2, 0, -s * 0.5);
+  line(ctx, 0, -s * 0.5, s * 0.55, -s * 0.2);
+  line(ctx, -s * 0.45, -s * 0.2, s * 0.45, -s * 0.2);
+  [-0.32, 0, 0.32].forEach((x) => {
+    line(ctx, s * x, -s * 0.14, s * x, s * 0.34);
+  });
+  line(ctx, -s * 0.5, s * 0.38, s * 0.5, s * 0.38);
+  line(ctx, -s * 0.56, s * 0.52, s * 0.56, s * 0.52);
+  ctx.stroke();
+}
+
+function drawBriefcase(ctx, s) {
+  ctx.strokeRect(-s * 0.5, -s * 0.1, s, s * 0.58);
+  ctx.strokeRect(-s * 0.22, -s * 0.3, s * 0.44, s * 0.2);
+  ctx.strokeRect(-s * 0.1, s * 0.08, s * 0.2, s * 0.16);
+  ctx.beginPath();
+  line(ctx, -s * 0.5, s * 0.12, -s * 0.1, s * 0.12);
+  line(ctx, s * 0.1, s * 0.12, s * 0.5, s * 0.12);
+  ctx.stroke();
+}
+
+function drawHandshake(ctx, s) {
+  ctx.beginPath();
+  line(ctx, -s * 0.56, -s * 0.1, -s * 0.28, s * 0.18);
+  line(ctx, s * 0.56, -s * 0.1, s * 0.28, s * 0.18);
+  line(ctx, -s * 0.28, s * 0.18, -s * 0.06, -s * 0.02);
+  line(ctx, -s * 0.06, -s * 0.02, s * 0.08, s * 0.1);
+  line(ctx, s * 0.08, s * 0.1, s * 0.28, s * 0.18);
+  line(ctx, -s * 0.08, s * 0.18, s * 0.14, s * 0.38);
+  line(ctx, s * 0.14, s * 0.38, s * 0.34, s * 0.16);
+  ctx.stroke();
+}
+
+function drawLawyer(ctx, s) {
+  ctx.beginPath();
+  ctx.arc(0, -s * 0.34, s * 0.18, 0, Math.PI * 2);
+  line(ctx, -s * 0.38, s * 0.44, -s * 0.22, -s * 0.02);
+  line(ctx, s * 0.38, s * 0.44, s * 0.22, -s * 0.02);
+  line(ctx, -s * 0.22, -s * 0.02, 0, s * 0.18);
+  line(ctx, s * 0.22, -s * 0.02, 0, s * 0.18);
+  line(ctx, -s * 0.36, s * 0.44, s * 0.36, s * 0.44);
+  ctx.stroke();
+}
+
+function drawNews(ctx, s) {
+  ctx.strokeRect(-s * 0.44, -s * 0.42, s * 0.74, s * 0.78);
+  ctx.beginPath();
+  line(ctx, s * 0.3, -s * 0.26, s * 0.48, -s * 0.16);
+  line(ctx, s * 0.48, -s * 0.16, s * 0.48, s * 0.36);
+  line(ctx, -s * 0.24, -s * 0.16, s * 0.12, -s * 0.16);
+  line(ctx, -s * 0.24, s * 0.02, s * 0.16, s * 0.02);
+  line(ctx, -s * 0.24, s * 0.2, s * 0.06, s * 0.2);
+  ctx.stroke();
+}
+
+const iconDrawers = {
+  scale: drawScale,
+  gavel: drawGavel,
+  document: drawDocument,
+  court: drawCourt,
+  briefcase: drawBriefcase,
+  handshake: drawHandshake,
+  lawyer: drawLawyer,
+  news: drawNews,
+};
 
 export default function NetworkBackground() {
-  const rootRef = useRef(null);
-  const svgRef = useRef(null);
-  const nodeRefs = useRef([]);
+  const canvasRef = useRef(null);
+  const pointerRef = useRef({ x: 0, y: 0, tx: 0, ty: 0, active: false, down: false });
+  const ripplesRef = useRef([]);
   const rafRef = useRef(null);
-  const cursorRef = useRef({ x: 50, y: 50, active: false });
+  const timeRef = useRef(0);
 
   useEffect(() => {
-    const root = rootRef.current;
-    if (!root) return undefined;
+    const canvas = canvasRef.current;
+    if (!canvas) return undefined;
 
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const ctx = canvas.getContext('2d', { alpha: true });
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let width = 0;
+    let height = 0;
+    let dpr = 1;
+    let liveNodes = [];
 
-    const setCursor = (event) => {
-      const x = (event.clientX / window.innerWidth) * 100;
-      const y = (event.clientY / window.innerHeight) * 100;
-      cursorRef.current = { x, y, active: true };
-      root.style.setProperty('--cursor-x', `${x}%`);
-      root.style.setProperty('--cursor-y', `${y}%`);
-    };
-
-    const triggerPulse = (event) => {
-      const x = (event.clientX / window.innerWidth) * 100;
-      const y = (event.clientY / window.innerHeight) * 100;
-      root.style.setProperty('--click-x', `${x}%`);
-      root.style.setProperty('--click-y', `${y}%`);
-      root.classList.remove('network-clicked');
-      // Reflow intentionally restarts the CSS pulse animation.
-      void root.offsetWidth;
-      root.classList.add('network-clicked');
-
-      const pulse = document.createElement('span');
-      pulse.className = 'network-click-pulse';
-      pulse.style.left = `${event.clientX}px`;
-      pulse.style.top = `${event.clientY}px`;
-      root.appendChild(pulse);
-      window.setTimeout(() => pulse.remove(), 900);
-    };
-
-    window.addEventListener('pointermove', setCursor, { passive: true });
-    window.addEventListener('pointerdown', triggerPulse, { passive: true });
-
-    if (!reducedMotion) {
-      const phases = nodes.map((_, index) => ({
-        xPhase: index * 0.73,
-        yPhase: index * 0.47 + 1.4,
-        xAmp: 2.2 + (index % 3) * 0.85,
-        yAmp: 1.7 + (index % 4) * 0.65,
-        speed: 0.00022 + (index % 5) * 0.00004,
+    const resize = () => {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = Math.floor(width * dpr);
+      canvas.height = Math.floor(height * dpr);
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      liveNodes = nodes.map((node, index) => ({
+        ...node,
+        baseX: (node.x / 100) * width,
+        baseY: (node.y / 100) * height,
+        phase: index * 0.83,
+        x: (node.x / 100) * width,
+        y: (node.y / 100) * height,
       }));
+    };
 
-      const offsetFor = (index, timestamp) => {
-        const node = nodes[index];
-        const phase = phases[index];
-        const cursor = cursorRef.current;
-        const distance = Math.hypot(cursor.x - node.x, cursor.y - node.y);
-        const influence = cursor.active ? Math.max(0, 1 - distance / 24) : 0;
-        const angle = Math.atan2(node.y - cursor.y, node.x - cursor.x);
+    const onMove = (event) => {
+      const pointer = pointerRef.current;
+      pointer.tx = event.clientX;
+      pointer.ty = event.clientY;
+      pointer.active = true;
+    };
 
-        return {
-          dx: Math.sin(timestamp * phase.speed + phase.xPhase) * phase.xAmp + Math.cos(angle) * influence * 18,
-          dy: Math.cos(timestamp * phase.speed + phase.yPhase) * phase.yAmp + Math.sin(angle) * influence * 18,
-          influence,
-        };
-      };
+    const onLeave = () => {
+      pointerRef.current.active = false;
+    };
 
-      const animate = (timestamp) => {
-        const offsets = nodes.map((_, index) => offsetFor(index, timestamp));
+    const onDown = (event) => {
+      const pointer = pointerRef.current;
+      pointer.down = true;
+      pointer.tx = event.clientX;
+      pointer.ty = event.clientY;
+      pointer.active = true;
+      ripplesRef.current.push({ x: event.clientX, y: event.clientY, radius: 0, alpha: 1 });
+    };
 
-        nodeRefs.current.forEach((element, index) => {
-          if (!element) return;
-          const { dx, dy, influence } = offsets[index];
-          element.style.transform = `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px)) scale(${1 + influence * 0.18})`;
-          element.style.opacity = `${0.22 + influence * 0.34}`;
-          element.classList.toggle('is-near-cursor', influence > 0.45);
-        });
+    const onUp = () => {
+      pointerRef.current.down = false;
+    };
 
-        if (svgRef.current) {
-          const lines = svgRef.current.querySelectorAll('line');
-          lines.forEach((line, index) => {
-            const [from, to] = connections[index];
-            const fromOffset = offsets[from];
-            const toOffset = offsets[to];
-            const active = Math.max(fromOffset.influence, toOffset.influence);
+    const drawIcon = (node, color, alpha, glow) => {
+      const draw = iconDrawers[node.icon] || drawScale;
+      ctx.save();
+      ctx.translate(node.x, node.y);
+      ctx.lineWidth = Math.max(1.2, node.size * 0.075);
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      ctx.strokeStyle = color;
+      ctx.globalAlpha = alpha;
+      if (glow > 0) {
+        ctx.shadowColor = color;
+        ctx.shadowBlur = 10 + glow * 18;
+      }
+      draw(ctx, node.size);
+      ctx.restore();
+    };
 
-            line.setAttribute('x1', nodes[from].x + (fromOffset.dx / window.innerWidth) * 100);
-            line.setAttribute('y1', nodes[from].y + (fromOffset.dy / window.innerHeight) * 100);
-            line.setAttribute('x2', nodes[to].x + (toOffset.dx / window.innerWidth) * 100);
-            line.setAttribute('y2', nodes[to].y + (toOffset.dy / window.innerHeight) * 100);
-            line.style.opacity = String(0.16 + active * 0.42);
-            line.style.strokeWidth = String(0.085 + active * 0.06);
-          });
-        }
+    const render = () => {
+      const dark = document.body.classList.contains('dark-mode');
+      const ink = dark ? '255,255,255' : '16,16,16';
+      const accent = dark ? '235,235,235' : '20,20,20';
+      const pointer = pointerRef.current;
+      const speed = reduced ? 0 : 1;
 
-        rafRef.current = window.requestAnimationFrame(animate);
-      };
+      timeRef.current += 0.016;
+      pointer.x = lerp(pointer.x || pointer.tx || width / 2, pointer.tx || width / 2, 0.14);
+      pointer.y = lerp(pointer.y || pointer.ty || height / 2, pointer.ty || height / 2, 0.14);
 
-      rafRef.current = window.requestAnimationFrame(animate);
-    }
+      ctx.clearRect(0, 0, width, height);
+
+      const halo = ctx.createRadialGradient(pointer.x, pointer.y, 0, pointer.x, pointer.y, Math.max(width, height) * 0.42);
+      halo.addColorStop(0, `rgba(${ink}, ${dark ? 0.13 : 0.08})`);
+      halo.addColorStop(0.35, `rgba(${ink}, ${dark ? 0.045 : 0.035})`);
+      halo.addColorStop(1, 'rgba(0,0,0,0)');
+      ctx.fillStyle = halo;
+      ctx.fillRect(0, 0, width, height);
+
+      liveNodes.forEach((node, index) => {
+        const floatX = Math.sin(timeRef.current * (0.55 + (index % 4) * 0.06) + node.phase) * 7 * speed;
+        const floatY = Math.cos(timeRef.current * (0.48 + (index % 5) * 0.05) + node.phase) * 6 * speed;
+        const distance = Math.hypot(pointer.x - node.baseX, pointer.y - node.baseY);
+        const influence = pointer.active ? clamp(1 - distance / 250, 0, 1) : 0;
+        const angle = Math.atan2(node.baseY - pointer.y, node.baseX - pointer.x);
+        const force = pointer.down ? 44 : 24;
+
+        node.x = lerp(node.x, node.baseX + floatX + Math.cos(angle) * influence * force, 0.12);
+        node.y = lerp(node.y, node.baseY + floatY + Math.sin(angle) * influence * force, 0.12);
+        node.influence = influence;
+      });
+
+      links.forEach(([from, to], index) => {
+        const a = liveNodes[from];
+        const b = liveNodes[to];
+        const active = Math.max(a.influence, b.influence);
+        ctx.beginPath();
+        ctx.lineWidth = 0.7 + active * 1.25;
+        ctx.strokeStyle = `rgba(${ink}, ${dark ? 0.13 + active * 0.4 : 0.14 + active * 0.32})`;
+        line(ctx, a.x, a.y, b.x, b.y);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.lineWidth = 2.1 + active * 1.5;
+        ctx.strokeStyle = `rgba(${ink}, ${0.018 + active * 0.11})`;
+        line(ctx, a.x, a.y, b.x, b.y);
+        ctx.stroke();
+
+        const progress = (timeRef.current * (0.08 + (index % 4) * 0.012) + index * 0.09) % 1;
+        const px = lerp(a.x, b.x, progress);
+        const py = lerp(a.y, b.y, progress);
+        ctx.beginPath();
+        ctx.fillStyle = `rgba(${accent}, ${0.25 + active * 0.45})`;
+        ctx.shadowColor = `rgba(${accent}, 0.45)`;
+        ctx.shadowBlur = 12 + active * 18;
+        ctx.arc(px, py, 2.1 + active * 2.2, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.shadowBlur = 0;
+      });
+
+      liveNodes.forEach((node) => {
+        const pulse = 0.5 + Math.sin(timeRef.current * 1.4 + node.phase) * 0.5;
+        drawIcon(node, `rgba(${ink}, 1)`, dark ? 0.18 + node.influence * 0.5 + pulse * 0.04 : 0.16 + node.influence * 0.42 + pulse * 0.035, node.influence);
+      });
+
+      ripplesRef.current = ripplesRef.current.filter((ripple) => ripple.alpha > 0.02);
+      ripplesRef.current.forEach((ripple) => {
+        ripple.radius += 9;
+        ripple.alpha *= 0.91;
+        ctx.beginPath();
+        ctx.lineWidth = 1.2;
+        ctx.strokeStyle = `rgba(${ink}, ${ripple.alpha * 0.38})`;
+        ctx.arc(ripple.x, ripple.y, ripple.radius, 0, Math.PI * 2);
+        ctx.stroke();
+      });
+
+      rafRef.current = window.requestAnimationFrame(render);
+    };
+
+    resize();
+    window.addEventListener('resize', resize);
+    window.addEventListener('pointermove', onMove, { passive: true });
+    window.addEventListener('pointerleave', onLeave, { passive: true });
+    window.addEventListener('pointerdown', onDown, { passive: true });
+    window.addEventListener('pointerup', onUp, { passive: true });
+    rafRef.current = window.requestAnimationFrame(render);
 
     return () => {
-      window.removeEventListener('pointermove', setCursor);
-      window.removeEventListener('pointerdown', triggerPulse);
+      window.removeEventListener('resize', resize);
+      window.removeEventListener('pointermove', onMove);
+      window.removeEventListener('pointerleave', onLeave);
+      window.removeEventListener('pointerdown', onDown);
+      window.removeEventListener('pointerup', onUp);
       if (rafRef.current) window.cancelAnimationFrame(rafRef.current);
     };
   }, []);
 
   return (
-    <div ref={rootRef} className="community-bg ylh-interactive-network" aria-hidden="true">
-      <svg ref={svgRef} className="network-lattice" viewBox="0 0 100 100" preserveAspectRatio="none">
-        {connections.map(([from, to], index) => (
-          <line
-            key={`${from}-${to}-${index}`}
-            x1={nodes[from].x}
-            y1={nodes[from].y}
-            x2={nodes[to].x}
-            y2={nodes[to].y}
-          />
-        ))}
-      </svg>
-
-      <div className="network-icons">
-        {nodes.map((node, index) => (
-          <span
-            key={`${node.icon}-${index}`}
-            ref={(element) => { nodeRefs.current[index] = element; }}
-            className="network-icon"
-            style={{
-              left: `${node.x}%`,
-              top: `${node.y}%`,
-              width: `${node.size}px`,
-              height: `${node.size}px`,
-              backgroundImage: `url(/network-icons/legal-icon-${node.icon}.png)`,
-            }}
-          />
-        ))}
-      </div>
+    <div className="community-bg ylh-live-legal-field" aria-hidden="true">
+      <canvas ref={canvasRef} className="ylh-legal-canvas" />
     </div>
   );
 }
