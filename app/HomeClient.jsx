@@ -89,22 +89,12 @@ export default function HomeClient() {
             style={{ display: 'flex', gap: '14px', justifyContent: 'center', flexWrap: 'wrap' }}
           >
             <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
-              <Link href="/join" style={{
-                display: 'inline-block', padding: '12px 30px', borderRadius: '999px',
-                background: 'var(--text-color)', color: 'var(--bg-color)',
-                fontWeight: 700, fontSize: '0.93rem', textDecoration: 'none',
-                border: '1px solid var(--text-color)',
-              }}>
+              <Link href="/join" className="btn-main" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}>
                 Join the Community
               </Link>
             </motion.div>
             <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
-              <Link href="/blogs" style={{
-                display: 'inline-block', padding: '12px 30px', borderRadius: '999px',
-                background: 'transparent', color: 'var(--text-color)',
-                fontWeight: 700, fontSize: '0.93rem', textDecoration: 'none',
-                border: '1px solid var(--glass-border)', backdropFilter: 'blur(12px)',
-              }}>
+              <Link href="/blogs" className="btn-main btn-ghost" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}>
                 Read Legal Insights
               </Link>
             </motion.div>
@@ -196,12 +186,7 @@ export default function HomeClient() {
                 whileHover={{ scale: 1.08, y: -2 }}
                 whileTap={{ scale: 0.96 }}
               >
-                <Link href="/blogs" style={{
-                  display: 'inline-block', padding: '7px 16px',
-                  border: '1px solid var(--glass-border)', borderRadius: '999px',
-                  fontSize: '0.83rem', fontWeight: 600, color: 'var(--grey-text)',
-                  background: 'var(--glass-bg)', textDecoration: 'none',
-                }}>
+                <Link href="/blogs" className="filter-pill" style={{ display: 'inline-block', textDecoration: 'none' }}>
                   {area}
                 </Link>
               </motion.div>
@@ -235,22 +220,12 @@ export default function HomeClient() {
             </p>
             <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
               <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
-                <Link href="/join" style={{
-                  display: 'inline-block', padding: '12px 30px', borderRadius: '999px',
-                  background: 'var(--text-color)', color: 'var(--bg-color)',
-                  fontWeight: 700, fontSize: '0.93rem', textDecoration: 'none',
-                  border: '1px solid var(--text-color)',
-                }}>
+                <Link href="/join" className="btn-main" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}>
                   Join the Community
                 </Link>
               </motion.div>
               <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
-                <Link href="/contact" style={{
-                  display: 'inline-block', padding: '12px 30px', borderRadius: '999px',
-                  background: 'transparent', color: 'var(--text-color)',
-                  fontWeight: 700, fontSize: '0.93rem', textDecoration: 'none',
-                  border: '1px solid var(--glass-border)', backdropFilter: 'blur(12px)',
-                }}>
+                <Link href="/contact" className="btn-main btn-ghost" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}>
                   Get in Touch
                 </Link>
               </motion.div>
