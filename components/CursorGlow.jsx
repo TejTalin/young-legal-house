@@ -26,9 +26,9 @@ export default function CursorGlow() {
     };
 
     const tick = () => {
-      pos.current.x += (pos.current.tx - pos.current.x) * 0.12;
-      pos.current.y += (pos.current.ty - pos.current.y) * 0.12;
-      el.style.transform = `translate3d(${pos.current.x - 300}px, ${pos.current.y - 300}px, 0)`;
+      pos.current.x += (pos.current.tx - pos.current.x) * 0.16;
+      pos.current.y += (pos.current.ty - pos.current.y) * 0.16;
+      el.style.transform = `translate3d(${pos.current.x - 170}px, ${pos.current.y - 170}px, 0)`;
       rafRef.current = requestAnimationFrame(tick);
     };
 
@@ -40,7 +40,7 @@ export default function CursorGlow() {
       spark.style.left = `${event.clientX}px`;
       spark.style.top = `${event.clientY}px`;
       holder.appendChild(spark);
-      window.setTimeout(() => spark.remove(), 720);
+      window.setTimeout(() => spark.remove(), 560);
     };
 
     window.addEventListener('pointermove', onMove, { passive: true });
@@ -63,16 +63,16 @@ export default function CursorGlow() {
           position: fixed;
           top: 0;
           left: 0;
-          width: 600px;
-          height: 600px;
+          width: 340px;
+          height: 340px;
           border-radius: 50%;
           pointer-events: none;
           z-index: 0;
           will-change: transform;
           background: radial-gradient(
             circle,
-            rgba(255, 255, 255, 0.055) 0%,
-            rgba(255, 255, 255, 0.014) 42%,
+            rgba(255, 255, 255, 0.036) 0%,
+            rgba(255, 255, 255, 0.01) 42%,
             transparent 70%
           );
           mix-blend-mode: screen;
@@ -82,8 +82,8 @@ export default function CursorGlow() {
         body.light-mode .ylh-cursor-glow {
           background: radial-gradient(
             circle,
-            rgba(0, 0, 0, 0.028) 0%,
-            rgba(0, 0, 0, 0.008) 40%,
+            rgba(0, 0, 0, 0.018) 0%,
+            rgba(0, 0, 0, 0.006) 40%,
             transparent 70%
           );
           mix-blend-mode: multiply;
@@ -104,14 +104,14 @@ export default function CursorGlow() {
           border: 1px solid currentColor;
           color: var(--text-color);
           transform: translate(-50%, -50%);
-          opacity: 0.55;
-          animation: ylhClickSpark 0.72s ease-out forwards;
+          opacity: 0.45;
+          animation: ylhClickSpark 0.56s ease-out forwards;
         }
 
         @keyframes ylhClickSpark {
           0% { opacity: 0.6; transform: translate(-50%, -50%) scale(0.45); }
           70% { opacity: 0.18; }
-          100% { opacity: 0; transform: translate(-50%, -50%) scale(7.5); }
+          100% { opacity: 0; transform: translate(-50%, -50%) scale(5.2); }
         }
 
         @media (prefers-reduced-motion: reduce) {
