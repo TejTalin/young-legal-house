@@ -142,6 +142,30 @@ body.light-mode .footer-logo {
   background: rgba(0, 0, 0, 0.42);
   backdrop-filter: blur(26px);
   box-shadow: var(--shadow);
+  overflow: hidden;
+  isolation: isolate;
+  transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease, background 0.28s ease;
+}
+
+.sticky-island::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(105deg, transparent 0 28%, rgba(255,255,255,0.16) 44%, transparent 62% 100%);
+  transform: translateX(-115%);
+  transition: transform 0.7s ease;
+  z-index: -1;
+}
+
+.sticky-island:hover {
+  transform: translateY(-1px);
+  border-color: rgba(255,255,255,0.26);
+}
+
+.sticky-island:hover::before {
+  transform: translateX(115%);
 }
 
 body.light-mode .sticky-island {
@@ -157,12 +181,13 @@ body.light-mode .sticky-island {
   padding: 7px 12px;
   border-radius: 999px;
   white-space: nowrap;
-  transition: background 0.15s;
+  transition: background 0.2s ease, transform 0.2s ease, color 0.2s ease;
   letter-spacing: 0.01em;
 }
 
 .nav-link:hover {
   background: var(--glass-bg);
+  transform: translateY(-1px);
 }
 
 .sticky-theme-toggle {
@@ -180,6 +205,24 @@ body.light-mode .sticky-island {
   cursor: pointer;
   backdrop-filter: blur(16px);
   justify-self: end;
+  overflow: hidden;
+  position: relative;
+}
+
+.sticky-theme-toggle::after {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border-radius: inherit;
+  border: 1px solid currentColor;
+  opacity: 0;
+  transform: scale(0.72);
+  transition: opacity 0.24s ease, transform 0.24s ease;
+}
+
+.sticky-theme-toggle:hover::after {
+  opacity: 0.22;
+  transform: scale(1);
 }
 
 .theme-icon {
@@ -729,6 +772,7 @@ footer {
 .footer-socials { justify-content: flex-end; }
 
 /* ── BACKGROUND NETWORK ── */
+/* -- INTERACTIVE LEGAL NETWORK -- */
 .community-bg {
   position: fixed;
   inset: 0;
@@ -736,24 +780,58 @@ footer {
   z-index: 0;
   overflow: hidden;
   color: var(--text-color);
-  opacity: 0.58;
+  opacity: 0.66;
+  --cursor-x: 50%;
+  --cursor-y: 50%;
+  --click-x: 50%;
+  --click-y: 50%;
 }
 
-.community-bg::before {
+.community-bg::before,
+.community-bg::after {
   content: "";
   position: absolute;
   inset: 0;
+}
+
+.community-bg::before {
   background:
+    radial-gradient(circle at var(--cursor-x) var(--cursor-y), rgba(255,255,255,0.14), transparent 18%),
     radial-gradient(circle at 50% 18%, rgba(255,255,255,0.075), transparent 28%),
     radial-gradient(circle at 12% 72%, rgba(255,255,255,0.04), transparent 24%),
     radial-gradient(circle at 88% 70%, rgba(255,255,255,0.04), transparent 26%);
+  transition: background 0.18s ease-out;
+}
+
+.community-bg::after {
+  opacity: 0.32;
+  mix-blend-mode: screen;
+  background:
+    linear-gradient(90deg, transparent 0 48%, rgba(255,255,255,0.06) 49% 51%, transparent 52% 100%),
+    linear-gradient(0deg, transparent 0 48%, rgba(255,255,255,0.035) 49% 51%, transparent 52% 100%);
+  background-size: 220px 220px;
+  mask-image: radial-gradient(circle at var(--cursor-x) var(--cursor-y), #000 0 21%, transparent 45%);
+  animation: networkFlicker 6.5s steps(2, end) infinite;
+}
+
+body.light-mode .community-bg {
+  opacity: 0.8;
 }
 
 body.light-mode .community-bg::before {
   background:
+    radial-gradient(circle at var(--cursor-x) var(--cursor-y), rgba(0,0,0,0.09), transparent 17%),
     radial-gradient(circle at 50% 16%, rgba(255,255,255,0.5), transparent 32%),
     radial-gradient(circle at 14% 74%, rgba(255,255,255,0.22), transparent 26%),
     radial-gradient(circle at 88% 70%, rgba(255,255,255,0.2), transparent 28%);
+}
+
+body.light-mode .community-bg::after {
+  opacity: 0.24;
+  mix-blend-mode: multiply;
+  background:
+    linear-gradient(90deg, transparent 0 48%, rgba(0,0,0,0.06) 49% 51%, transparent 52% 100%),
+    linear-gradient(0deg, transparent 0 48%, rgba(0,0,0,0.035) 49% 51%, transparent 52% 100%);
 }
 
 .network-lattice {
@@ -761,6 +839,7 @@ body.light-mode .community-bg::before {
   inset: 0;
   width: 100%;
   height: 100%;
+  z-index: 1;
 }
 
 .network-lattice line {
@@ -769,46 +848,106 @@ body.light-mode .community-bg::before {
   stroke-width: 0.09;
   opacity: 0.18;
   stroke-linecap: round;
-  stroke-dasharray: 10 10;
-  animation: networkPulse 18s ease-in-out infinite;
+  stroke-dasharray: 11 9;
+  filter: drop-shadow(0 0 6px rgba(255,255,255,0.18));
+  transition: opacity 0.18s ease, stroke-width 0.18s ease;
+  animation: networkPulse 17s ease-in-out infinite;
 }
 
 .network-icons {
   position: absolute;
   inset: 0;
-  z-index: 1;
+  z-index: 2;
 }
 
 .network-icon {
   position: absolute;
-  transform: translate(-50%, -50%);
   display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
-  opacity: 0.22;
-  filter: invert(1) grayscale(1);
+  opacity: 0.24;
+  filter: invert(1) grayscale(1) drop-shadow(0 0 10px rgba(255,255,255,0.16));
   mix-blend-mode: screen;
+  will-change: transform, opacity;
+  transition: opacity 0.2s ease, filter 0.2s ease;
 }
 
-body.light-mode .community-bg { opacity: 0.72; }
-body.light-mode .network-lattice line { opacity: 0.16; stroke-width: 0.085; }
-body.light-mode .network-icon {
+.network-icon.is-near-cursor {
+  filter: invert(1) grayscale(1) drop-shadow(0 0 16px rgba(255,255,255,0.34));
+}
+
+body.light-mode .network-lattice line {
   opacity: 0.2;
-  filter: grayscale(1);
+  stroke-width: 0.085;
+  filter: drop-shadow(0 0 5px rgba(0,0,0,0.08));
+}
+
+body.light-mode .network-icon {
+  opacity: 0.24;
+  filter: grayscale(1) contrast(1.08) drop-shadow(0 0 9px rgba(0,0,0,0.08));
   mix-blend-mode: multiply;
+}
+
+body.light-mode .network-icon.is-near-cursor {
+  filter: grayscale(1) contrast(1.18) drop-shadow(0 0 12px rgba(0,0,0,0.18));
+}
+
+.network-click-pulse {
+  position: fixed;
+  width: 18px;
+  height: 18px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.6;
+  z-index: 4;
+  animation: networkClickPulse 0.9s ease-out forwards;
+}
+
+.community-bg.network-clicked::before {
+  animation: networkClickFlash 0.55s ease-out;
 }
 
 @keyframes networkPulse {
   0%, 100% { opacity: 0.13; stroke-dashoffset: 0; }
-  50% { opacity: 0.22; stroke-dashoffset: -16; }
+  50% { opacity: 0.24; stroke-dashoffset: -18; }
+}
+
+@keyframes networkFlicker {
+  0%, 100% { opacity: 0.18; transform: translate3d(0,0,0); }
+  44% { opacity: 0.32; }
+  45% { opacity: 0.12; transform: translate3d(1px,-1px,0); }
+  46% { opacity: 0.34; transform: translate3d(0,0,0); }
+  72% { opacity: 0.24; }
+}
+
+@keyframes networkClickPulse {
+  from { opacity: 0.62; transform: translate(-50%, -50%) scale(0.35); }
+  to { opacity: 0; transform: translate(-50%, -50%) scale(9); }
+}
+
+@keyframes networkClickFlash {
+  0% { filter: brightness(1); }
+  18% { filter: brightness(1.45); }
+  100% { filter: brightness(1); }
 }
 
 @media (max-width: 760px) {
-  .community-bg { opacity: 0.5; }
-  .network-icon { width: 34px !important; height: 34px !important; opacity: 0.12; }
+  .community-bg { opacity: 0.58; }
+  .network-icon { width: 34px !important; height: 34px !important; opacity: 0.16; }
   .network-icon:nth-child(2n) { display: none; }
-  .network-lattice line { opacity: 0.08; }
+  .network-lattice line { opacity: 0.1; }
+  .community-bg::after { background-size: 150px 150px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .network-lattice line,
+  .community-bg::after,
+  .community-bg.network-clicked::before,
+  .network-click-pulse {
+    animation: none !important;
+  }
 }
 
 main, footer { position: relative; z-index: 1; }
