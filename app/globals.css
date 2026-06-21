@@ -98,7 +98,7 @@ textarea:focus-visible {
   font-weight: 700;
   letter-spacing: 0;
   position: relative;
-  animation: ylh-title-reveal 0.95s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: ylh-title-reveal 0.56s cubic-bezier(0.22, 1, 0.36, 1) both;
   text-wrap: balance;
 }
 
@@ -126,7 +126,7 @@ textarea:focus-visible {
   background: linear-gradient(90deg, transparent, currentColor, transparent);
   opacity: 0.38;
   transform-origin: center;
-  animation: ylh-title-rule 1s 0.18s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: ylh-title-rule 0.56s 0.08s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .form-subtitle, .about-text {
@@ -474,7 +474,7 @@ body.light-mode .sticky-island {
   isolation: isolate;
   backdrop-filter: blur(18px);
   transform: translateZ(0);
-  animation: ylh-card-rise 0.72s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: ylh-card-rise 0.46s cubic-bezier(0.22, 1, 0.36, 1) both;
   transition:
     transform 0.34s cubic-bezier(0.22, 1, 0.36, 1),
     box-shadow 0.34s ease,
@@ -1010,16 +1010,16 @@ body.light-mode .community-bg::before {
   width: 100%;
   height: 100%;
   display: block;
-  opacity: 0.94;
+  opacity: 0.86;
 }
 
 body.light-mode .ylh-legal-canvas {
-  opacity: 0.9;
+  opacity: 0.74;
 }
 
 @media (max-width: 760px) {
-  .ylh-legal-canvas { opacity: 0.72; }
-  body.light-mode .ylh-legal-canvas { opacity: 0.64; }
+  .ylh-legal-canvas { opacity: 0.68; }
+  body.light-mode .ylh-legal-canvas { opacity: 0.6; }
 }
 
 main, footer { position: relative; z-index: 1; }
@@ -1028,14 +1028,12 @@ main, footer { position: relative; z-index: 1; }
 @keyframes ylh-title-reveal {
   0% {
     opacity: 0;
-    transform: translateY(26px);
-    filter: blur(10px);
+    transform: translateY(18px);
     letter-spacing: 0.02em;
   }
   100% {
     opacity: 1;
     transform: translateY(0);
-    filter: blur(0);
     letter-spacing: 0;
   }
 }
@@ -1054,13 +1052,11 @@ main, footer { position: relative; z-index: 1; }
 @keyframes ylh-card-rise {
   0% {
     opacity: 0;
-    transform: translateY(24px) scale(0.985);
-    filter: blur(8px);
+    transform: translateY(16px) scale(0.992);
   }
   100% {
     opacity: 1;
     transform: translateY(0) scale(1);
-    filter: blur(0);
   }
 }
 
