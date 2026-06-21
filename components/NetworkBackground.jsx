@@ -3,28 +3,49 @@
 import { useEffect, useRef } from 'react';
 
 const nodes = [
-  { x: 8, y: 18, icon: 'scale', size: 34 },
-  { x: 20, y: 31, icon: 'briefcase', size: 31 },
-  { x: 34, y: 18, icon: 'handshake', size: 34 },
-  { x: 50, y: 32, icon: 'document', size: 35 },
-  { x: 66, y: 18, icon: 'gavel', size: 34 },
-  { x: 84, y: 30, icon: 'court', size: 36 },
-  { x: 94, y: 15, icon: 'lawyer', size: 32 },
-  { x: 12, y: 58, icon: 'news', size: 33 },
-  { x: 29, y: 70, icon: 'scale', size: 35 },
-  { x: 44, y: 54, icon: 'briefcase', size: 32 },
-  { x: 61, y: 71, icon: 'document', size: 33 },
-  { x: 78, y: 56, icon: 'handshake', size: 36 },
-  { x: 92, y: 74, icon: 'gavel', size: 34 },
-  { x: 5, y: 86, icon: 'court', size: 34 },
-  { x: 35, y: 91, icon: 'news', size: 32 },
-  { x: 70, y: 89, icon: 'lawyer', size: 33 },
+  { x: 6, y: 14, icon: 'scale', size: 27 },
+  { x: 18, y: 11, icon: 'document', size: 25 },
+  { x: 31, y: 15, icon: 'gavel', size: 27 },
+  { x: 45, y: 10, icon: 'court', size: 29 },
+  { x: 58, y: 16, icon: 'briefcase', size: 26 },
+  { x: 72, y: 11, icon: 'handshake', size: 28 },
+  { x: 88, y: 15, icon: 'lawyer', size: 26 },
+  { x: 96, y: 29, icon: 'news', size: 25 },
+
+  { x: 10, y: 35, icon: 'court', size: 28 },
+  { x: 24, y: 31, icon: 'briefcase', size: 25 },
+  { x: 38, y: 37, icon: 'scale', size: 28 },
+  { x: 52, y: 32, icon: 'news', size: 25 },
+  { x: 66, y: 38, icon: 'document', size: 27 },
+  { x: 80, y: 33, icon: 'gavel', size: 27 },
+  { x: 92, y: 43, icon: 'handshake', size: 28 },
+
+  { x: 5, y: 57, icon: 'document', size: 25 },
+  { x: 19, y: 62, icon: 'lawyer', size: 27 },
+  { x: 33, y: 55, icon: 'handshake', size: 28 },
+  { x: 48, y: 61, icon: 'gavel', size: 27 },
+  { x: 62, y: 56, icon: 'court', size: 29 },
+  { x: 76, y: 62, icon: 'briefcase', size: 26 },
+  { x: 91, y: 58, icon: 'scale', size: 28 },
+
+  { x: 11, y: 82, icon: 'news', size: 25 },
+  { x: 27, y: 86, icon: 'scale', size: 28 },
+  { x: 42, y: 78, icon: 'document', size: 26 },
+  { x: 57, y: 84, icon: 'lawyer', size: 27 },
+  { x: 72, y: 78, icon: 'court', size: 29 },
+  { x: 87, y: 86, icon: 'briefcase', size: 26 },
+  { x: 97, y: 74, icon: 'gavel', size: 27 },
 ];
 
 const links = [
-  [0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 6],
-  [1, 7], [3, 9], [5, 11], [7, 8], [8, 9], [9, 10],
-  [10, 11], [11, 12], [7, 13], [8, 14], [10, 15],
+  [0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [6, 7],
+  [0, 8], [2, 9], [3, 10], [4, 11], [5, 12], [6, 13], [7, 14],
+  [8, 9], [9, 10], [10, 11], [11, 12], [12, 13], [13, 14],
+  [8, 15], [9, 16], [10, 17], [11, 18], [12, 19], [13, 20], [14, 21],
+  [15, 16], [16, 17], [17, 18], [18, 19], [19, 20], [20, 21],
+  [15, 22], [16, 23], [17, 24], [18, 25], [19, 26], [20, 27], [21, 28],
+  [22, 23], [23, 24], [24, 25], [25, 26], [26, 27], [27, 28],
+  [1, 9], [5, 13], [10, 18], [17, 25], [12, 20], [20, 28],
 ];
 
 const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
@@ -153,6 +174,7 @@ export default function NetworkBackground() {
   const ripplesRef = useRef([]);
   const rafRef = useRef(null);
   const timeRef = useRef(0);
+  const lastFrameRef = useRef(0);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -166,7 +188,7 @@ export default function NetworkBackground() {
     let liveNodes = [];
 
     const resize = () => {
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      dpr = Math.min(window.devicePixelRatio || 1, 1.35);
       width = window.innerWidth;
       height = window.innerHeight;
       canvas.width = Math.floor(width * dpr);
@@ -217,44 +239,46 @@ export default function NetworkBackground() {
       ctx.lineJoin = 'round';
       ctx.strokeStyle = color;
       ctx.globalAlpha = alpha;
-      if (glow > 0) {
+      if (glow > 0.28) {
         ctx.shadowColor = color;
-        ctx.shadowBlur = 10 + glow * 18;
+        ctx.shadowBlur = 5 + glow * 9;
       }
       draw(ctx, node.size);
       ctx.restore();
     };
 
-    const render = () => {
+    const render = (now = 0) => {
       const dark = document.body.classList.contains('dark-mode');
       const ink = dark ? '255,255,255' : '16,16,16';
       const accent = dark ? '235,235,235' : '20,20,20';
       const pointer = pointerRef.current;
       const speed = reduced ? 0 : 1;
+      const delta = lastFrameRef.current ? Math.min((now - lastFrameRef.current) / 1000, 0.033) : 0.016;
 
-      timeRef.current += 0.016;
-      pointer.x = lerp(pointer.x || pointer.tx || width / 2, pointer.tx || width / 2, 0.14);
-      pointer.y = lerp(pointer.y || pointer.ty || height / 2, pointer.ty || height / 2, 0.14);
+      lastFrameRef.current = now;
+      timeRef.current += delta;
+      pointer.x = lerp(pointer.x || pointer.tx || width / 2, pointer.tx || width / 2, 0.12);
+      pointer.y = lerp(pointer.y || pointer.ty || height / 2, pointer.ty || height / 2, 0.12);
 
       ctx.clearRect(0, 0, width, height);
 
-      const halo = ctx.createRadialGradient(pointer.x, pointer.y, 0, pointer.x, pointer.y, Math.max(width, height) * 0.42);
-      halo.addColorStop(0, `rgba(${ink}, ${dark ? 0.13 : 0.08})`);
-      halo.addColorStop(0.35, `rgba(${ink}, ${dark ? 0.045 : 0.035})`);
+      const halo = ctx.createRadialGradient(pointer.x, pointer.y, 0, pointer.x, pointer.y, Math.max(width, height) * 0.26);
+      halo.addColorStop(0, `rgba(${ink}, ${dark ? 0.055 : 0.032})`);
+      halo.addColorStop(0.42, `rgba(${ink}, ${dark ? 0.018 : 0.014})`);
       halo.addColorStop(1, 'rgba(0,0,0,0)');
       ctx.fillStyle = halo;
       ctx.fillRect(0, 0, width, height);
 
       liveNodes.forEach((node, index) => {
-        const floatX = Math.sin(timeRef.current * (0.55 + (index % 4) * 0.06) + node.phase) * 7 * speed;
-        const floatY = Math.cos(timeRef.current * (0.48 + (index % 5) * 0.05) + node.phase) * 6 * speed;
+        const floatX = Math.sin(timeRef.current * (0.38 + (index % 4) * 0.035) + node.phase) * 3.2 * speed;
+        const floatY = Math.cos(timeRef.current * (0.34 + (index % 5) * 0.03) + node.phase) * 2.8 * speed;
         const distance = Math.hypot(pointer.x - node.baseX, pointer.y - node.baseY);
-        const influence = pointer.active ? clamp(1 - distance / 250, 0, 1) : 0;
+        const influence = pointer.active ? clamp(1 - distance / 230, 0, 1) : 0;
         const angle = Math.atan2(node.baseY - pointer.y, node.baseX - pointer.x);
-        const force = pointer.down ? 44 : 24;
+        const force = pointer.down ? 20 : 10;
 
-        node.x = lerp(node.x, node.baseX + floatX + Math.cos(angle) * influence * force, 0.12);
-        node.y = lerp(node.y, node.baseY + floatY + Math.sin(angle) * influence * force, 0.12);
+        node.x = lerp(node.x, node.baseX + floatX + Math.cos(angle) * influence * force, 0.08);
+        node.y = lerp(node.y, node.baseY + floatY + Math.sin(angle) * influence * force, 0.08);
         node.influence = influence;
       });
 
@@ -263,41 +287,52 @@ export default function NetworkBackground() {
         const b = liveNodes[to];
         const active = Math.max(a.influence, b.influence);
         ctx.beginPath();
-        ctx.lineWidth = 0.7 + active * 1.25;
-        ctx.strokeStyle = `rgba(${ink}, ${dark ? 0.13 + active * 0.4 : 0.14 + active * 0.32})`;
+        ctx.lineCap = 'round';
+        ctx.lineWidth = 0.55 + active * 0.95;
+        ctx.strokeStyle = `rgba(${ink}, ${dark ? 0.075 + active * 0.22 : 0.065 + active * 0.18})`;
         line(ctx, a.x, a.y, b.x, b.y);
         ctx.stroke();
 
         ctx.beginPath();
-        ctx.lineWidth = 2.1 + active * 1.5;
-        ctx.strokeStyle = `rgba(${ink}, ${0.018 + active * 0.11})`;
+        ctx.lineWidth = 1.5 + active * 0.9;
+        ctx.strokeStyle = `rgba(${ink}, ${0.012 + active * 0.05})`;
         line(ctx, a.x, a.y, b.x, b.y);
         ctx.stroke();
 
-        const progress = (timeRef.current * (0.08 + (index % 4) * 0.012) + index * 0.09) % 1;
-        const px = lerp(a.x, b.x, progress);
-        const py = lerp(a.y, b.y, progress);
-        ctx.beginPath();
-        ctx.fillStyle = `rgba(${accent}, ${0.25 + active * 0.45})`;
-        ctx.shadowColor = `rgba(${accent}, 0.45)`;
-        ctx.shadowBlur = 12 + active * 18;
-        ctx.arc(px, py, 2.1 + active * 2.2, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.shadowBlur = 0;
+        const dotCount = 2 + (index % 2);
+        for (let dot = 0; dot < dotCount; dot += 1) {
+          const progress = (timeRef.current * (0.075 + (index % 4) * 0.01) + index * 0.065 + dot / dotCount) % 1;
+          const px = lerp(a.x, b.x, progress);
+          const py = lerp(a.y, b.y, progress);
+          ctx.beginPath();
+          ctx.fillStyle = `rgba(${accent}, ${0.16 + active * 0.32})`;
+          if (active > 0.38) {
+            ctx.shadowColor = `rgba(${accent}, 0.28)`;
+            ctx.shadowBlur = 5 + active * 7;
+          }
+          ctx.arc(px, py, 1.25 + active * 1.15, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.shadowBlur = 0;
+        }
       });
 
       liveNodes.forEach((node) => {
         const pulse = 0.5 + Math.sin(timeRef.current * 1.4 + node.phase) * 0.5;
-        drawIcon(node, `rgba(${ink}, 1)`, dark ? 0.18 + node.influence * 0.5 + pulse * 0.04 : 0.16 + node.influence * 0.42 + pulse * 0.035, node.influence);
+        drawIcon(
+          node,
+          `rgba(${ink}, 1)`,
+          dark ? 0.115 + node.influence * 0.34 + pulse * 0.024 : 0.092 + node.influence * 0.27 + pulse * 0.018,
+          node.influence
+        );
       });
 
       ripplesRef.current = ripplesRef.current.filter((ripple) => ripple.alpha > 0.02);
       ripplesRef.current.forEach((ripple) => {
-        ripple.radius += 9;
-        ripple.alpha *= 0.91;
+        ripple.radius += 7;
+        ripple.alpha *= 0.9;
         ctx.beginPath();
         ctx.lineWidth = 1.2;
-        ctx.strokeStyle = `rgba(${ink}, ${ripple.alpha * 0.38})`;
+        ctx.strokeStyle = `rgba(${ink}, ${ripple.alpha * 0.24})`;
         ctx.arc(ripple.x, ripple.y, ripple.radius, 0, Math.PI * 2);
         ctx.stroke();
       });
