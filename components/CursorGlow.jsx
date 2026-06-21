@@ -9,7 +9,7 @@ import { useEffect, useRef } from 'react';
  */
 export default function CursorGlow() {
   const glowRef = useRef(null);
-  const pos     = useRef({ x: -400, y: -400 });
+  const pos     = useRef({ x: -400, y: -400, tx: -400, ty: -400 });
   const rafRef  = useRef(null);
   const sparksRef = useRef(null);
 
@@ -21,11 +21,14 @@ export default function CursorGlow() {
     if (!el) return;
 
     const onMove = (e) => {
-      pos.current = { x: e.clientX, y: e.clientY };
+      pos.current.tx = e.clientX;
+      pos.current.ty = e.clientY;
     };
 
     const tick = () => {
-      el.style.transform = `translate(${pos.current.x - 300}px, ${pos.current.y - 300}px)`;
+      pos.current.x += (pos.current.tx - pos.current.x) * 0.12;
+      pos.current.y += (pos.current.ty - pos.current.y) * 0.12;
+      el.style.transform = `translate3d(${pos.current.x - 300}px, ${pos.current.y - 300}px, 0)`;
       rafRef.current = requestAnimationFrame(tick);
     };
 
@@ -68,8 +71,8 @@ export default function CursorGlow() {
           will-change: transform;
           background: radial-gradient(
             circle,
-            rgba(255, 255, 255, 0.045) 0%,
-            rgba(255, 255, 255, 0.012) 40%,
+            rgba(255, 255, 255, 0.055) 0%,
+            rgba(255, 255, 255, 0.014) 42%,
             transparent 70%
           );
           mix-blend-mode: screen;
