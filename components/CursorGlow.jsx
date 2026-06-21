@@ -11,6 +11,7 @@ export default function CursorGlow() {
   const glowRef = useRef(null);
   const pos     = useRef({ x: -400, y: -400 });
   const rafRef  = useRef(null);
+  const sparksRef = useRef(null);
 
   useEffect(() => {
     // Respect reduced-motion preference
@@ -28,11 +29,24 @@ export default function CursorGlow() {
       rafRef.current = requestAnimationFrame(tick);
     };
 
+    const onDown = (event) => {
+      const holder = sparksRef.current;
+      if (!holder) return;
+      const spark = document.createElement('span');
+      spark.className = 'ylh-click-spark';
+      spark.style.left = `${event.clientX}px`;
+      spark.style.top = `${event.clientY}px`;
+      holder.appendChild(spark);
+      window.setTimeout(() => spark.remove(), 720);
+    };
+
     window.addEventListener('pointermove', onMove, { passive: true });
+    window.addEventListener('pointerdown', onDown, { passive: true });
     rafRef.current = requestAnimationFrame(tick);
 
     return () => {
       window.removeEventListener('pointermove', onMove);
+      window.removeEventListener('pointerdown', onDown);
       cancelAnimationFrame(rafRef.current);
     };
   }, []);
@@ -40,6 +54,7 @@ export default function CursorGlow() {
   return (
     <>
       <div ref={glowRef} className="ylh-cursor-glow" aria-hidden="true" />
+      <div ref={sparksRef} className="ylh-click-sparks" aria-hidden="true" />
       <style>{`
         .ylh-cursor-glow {
           position: fixed;
@@ -71,13 +86,38 @@ export default function CursorGlow() {
           mix-blend-mode: multiply;
         }
 
+        .ylh-click-sparks {
+          position: fixed;
+          inset: 0;
+          pointer-events: none;
+          z-index: 2;
+        }
+
+        .ylh-click-spark {
+          position: fixed;
+          width: 10px;
+          height: 10px;
+          border-radius: 999px;
+          border: 1px solid currentColor;
+          color: var(--text-color);
+          transform: translate(-50%, -50%);
+          opacity: 0.55;
+          animation: ylhClickSpark 0.72s ease-out forwards;
+        }
+
+        @keyframes ylhClickSpark {
+          0% { opacity: 0.6; transform: translate(-50%, -50%) scale(0.45); }
+          70% { opacity: 0.18; }
+          100% { opacity: 0; transform: translate(-50%, -50%) scale(7.5); }
+        }
+
         @media (prefers-reduced-motion: reduce) {
-          .ylh-cursor-glow { display: none; }
+          .ylh-cursor-glow, .ylh-click-sparks { display: none; }
         }
 
         @media (pointer: coarse) {
           /* Hide on touch devices — no cursor */
-          .ylh-cursor-glow { display: none; }
+          .ylh-cursor-glow, .ylh-click-sparks { display: none; }
         }
       `}</style>
     </>
