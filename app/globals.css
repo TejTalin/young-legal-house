@@ -100,6 +100,8 @@ textarea:focus-visible {
   position: relative;
   animation: ylh-title-reveal 0.56s cubic-bezier(0.22, 1, 0.36, 1) both;
   text-wrap: balance;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 .section-title, .page-title {
@@ -473,6 +475,7 @@ body.light-mode .sticky-island {
   overflow: hidden;
   isolation: isolate;
   backdrop-filter: blur(18px);
+  backface-visibility: hidden;
   transform: translateZ(0);
   animation: ylh-card-rise 0.46s cubic-bezier(0.22, 1, 0.36, 1) both;
   transition:
@@ -1028,13 +1031,11 @@ main, footer { position: relative; z-index: 1; }
 @keyframes ylh-title-reveal {
   0% {
     opacity: 0;
-    transform: translateY(18px);
-    letter-spacing: 0.02em;
+    transform: translate3d(0, 12px, 0);
   }
   100% {
     opacity: 1;
-    transform: translateY(0);
-    letter-spacing: 0;
+    transform: translate3d(0, 0, 0);
   }
 }
 
@@ -1052,11 +1053,11 @@ main, footer { position: relative; z-index: 1; }
 @keyframes ylh-card-rise {
   0% {
     opacity: 0;
-    transform: translateY(16px) scale(0.992);
+    transform: translate3d(0, 12px, 0) scale(0.996);
   }
   100% {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translate3d(0, 0, 0) scale(1);
   }
 }
 
