@@ -1,52 +1,55 @@
 'use client';
 import Link from 'next/link';
-import Image from 'next/image';
-import { motion } from 'framer-motion';
-import AnimatedSection from '@/components/AnimatedSection';
+import { FOOTER_LINKS } from '@/lib/site-data';
 
 const SOCIALS = [
-  { href: 'https://www.linkedin.com/company/young-legal-house/', icon: 'fa-linkedin',  type: 'fab' },
-  { href: 'https://www.instagram.com/younglegalhouse/',          icon: 'fa-instagram', type: 'fab' },
-  { href: 'https://linktr.ee/younglegalhouse',                   icon: 'fa-link',      type: 'fas' },
-  { href: 'mailto:connect.ylh@gmail.com',                        icon: 'fa-envelope',  type: 'fas' },
+  { href: 'https://www.linkedin.com/company/young-legal-house/', icon: 'fa-linkedin', type: 'fab' },
+  { href: 'https://www.instagram.com/younglegalhouse/', icon: 'fa-instagram', type: 'fab' },
+  { href: 'https://twitter.com/younglegalhouse', icon: 'fa-x-twitter', type: 'fab' },
+  { href: 'https://www.youtube.com/@younglegalhouse', icon: 'fa-youtube', type: 'fab' },
+  { href: 'mailto:connect.ylh@gmail.com', icon: 'fa-envelope', type: 'fas' },
 ];
 
 export default function Footer() {
   return (
-    <AnimatedSection variant="fadeUp" as="footer">
-      <div className="footer-top">
-        <div className="footer-left">
-          <Image src="/logoylh.png" alt="YLH Logo" width={92} height={92} className="footer-logo" />
-          <div className="footer-links">
-            <Link href="/terms">Terms of Service</Link>
-            <Link href="/privacy">Privacy Policy</Link>
-            <Link href="/cookies">Cookie Policy</Link>
-            <Link href="/about">About Us</Link>
+    <footer className="ylh-footer">
+      <div className="ylh-container">
+        <div className="ylh-footer-grid">
+          <div className="ylh-footer-brand">
+            <Link href="/" className="ylh-logo-text">
+              <span className="logo-main">YLH</span>
+              <span className="logo-sub">Young Legal House</span>
+            </Link>
+            <p>India&apos;s elite law student community, bridging legal theory and execution.</p>
+            <div className="ylh-footer-socials">
+              {SOCIALS.map(({ href, icon, type }) => (
+                <a
+                  key={icon}
+                  href={href}
+                  target={href.startsWith('mailto') ? undefined : '_blank'}
+                  rel="noopener noreferrer"
+                  aria-label={icon}
+                >
+                  <i className={`${type} ${icon}`} />
+                </a>
+              ))}
+            </div>
           </div>
-        </div>
 
-        <div className="footer-center">
-          <p className="copyright">&copy; 2026 Young Legal House</p>
-        </div>
-
-        <div className="footer-socials footer-right">
-          {SOCIALS.map(({ href, icon, type }) => (
-            <motion.a
-              key={icon}
-              href={href}
-              className="soc-icon"
-              target={href.startsWith('mailto') ? undefined : '_blank'}
-              rel="noopener noreferrer"
-              style={{ color: 'var(--text-color)' }}
-              whileHover={{ y: -3, scale: 1.12 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ duration: 0.22 }}
-            >
-              <i className={`${type} ${icon}`}></i>
-            </motion.a>
+          {Object.entries(FOOTER_LINKS).map(([title, links]) => (
+            <div key={title} className="ylh-footer-col">
+              <h4>{title}</h4>
+              {links.map(({ href, label }) => (
+                <Link key={label} href={href}>{label}</Link>
+              ))}
+            </div>
           ))}
         </div>
+
+        <div className="ylh-footer-bottom">
+          &copy; 2026 Young Legal House. All rights reserved.
+        </div>
       </div>
-    </AnimatedSection>
+    </footer>
   );
 }

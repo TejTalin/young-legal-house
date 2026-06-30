@@ -1,7 +1,5 @@
 'use client';
 import { useState } from 'react';
-import Link from 'next/link';
-import NetworkBackground from '@/components/NetworkBackground';
 
 export default function JoinPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -11,33 +9,14 @@ export default function JoinPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
-
     const form = e.currentTarget;
     const formData = new FormData(form);
-    const cvFile = formData.get('cvFile');
-
-    if (!cvFile || cvFile.size === 0) {
-      setError('Please upload your CV before submitting.');
-      return;
-    }
-
-    if (cvFile.size > 5 * 1024 * 1024) {
-      setError('CV file is too large. Please upload a file up to 5MB.');
-      return;
-    }
 
     try {
       setSubmitting(true);
-      const res = await fetch('/api/join', {
-        method: 'POST',
-        body: formData,
-      });
-
+      const res = await fetch('/api/join', { method: 'POST', body: formData });
       const data = await res.json();
-      if (!res.ok) {
-        throw new Error(data.error || 'Could not submit your application.');
-      }
-
+      if (!res.ok) throw new Error(data.error || 'Could not submit.');
       setSubmitted(true);
       form.reset();
     } catch (err) {
@@ -48,113 +27,75 @@ export default function JoinPage() {
   };
 
   return (
-    <>
-      <NetworkBackground />
-      <main className="page-spacing container">
-        <div style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto 40px' }}>
-          <h1 className="section-title">Shape the Future of Law</h1>
-          <p style={{ color: 'var(--grey-text)', fontSize: '1.1rem', lineHeight: '1.8' }}>
-            Whether you want to build your resume with hands-on experience by joining our core team,
-            or you simply want a strategic edge by receiving curated legal updates, Young Legal House
-            is the place for you.
+    <main>
+      <section className="ylh-container ylh-form-grid" style={{ padding: '48px 0 64px' }}>
+        <div>
+          <p className="ylh-section-label">Join the Community</p>
+          <h1 className="ylh-page-title">Shape the Future of Law</h1>
+          <p className="ylh-page-sub">
+            Whether you want to build your resume with hands-on experience or receive curated legal updates, Young Legal House is the place for you.
           </p>
-        </div>
-
-        <div className="join-grid">
-          <div className="glass-card">
-            <h2 style={{ marginBottom: '25px', borderBottom: '1px solid var(--glass-border)', paddingBottom: '10px' }}>
-              Careers &amp; Internships
-            </h2>
-
-            {submitted ? (
-              <p style={{ color: 'var(--grey-text)', lineHeight: '1.8' }}>
-                ✅ Application submitted! We will get back to you soon.
-              </p>
-            ) : (
-              <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                  <label className="form-label">Full Name</label>
-                  <input name="fullName" type="text" className="form-input" placeholder="e.g., Jane Doe" required />
-                </div>
-
-                <div className="form-group">
-                  <label className="form-label">Email Address</label>
-                  <input name="email" type="email" className="form-input" placeholder="jane@example.com" required />
-                </div>
-
-                <div className="form-group">
-                  <label className="form-label">Phone Number</label>
-                  <input name="phone" type="tel" className="form-input" placeholder="+91 XXXXX XXXXX" required />
-                </div>
-
-                <div className="form-group">
-                  <label className="form-label">LinkedIn Profile URL</label>
-                  <input name="linkedinUrl" type="url" className="form-input" placeholder="https://linkedin.com/in/..." required />
-                </div>
-
-                <div className="form-group">
-                  <label className="form-label">Position Applying For</label>
-                  <select name="position" className="form-select" required defaultValue="">
-                    <option value="" disabled>Select a position...</option>
-                    <option value="legal_research">Legal Research Intern</option>
-                    <option value="graphic_designer">Graphic Designer</option>
-                    <option value="editor">Editor / Proofreader</option>
-                  </select>
-                </div>
-
-                <div className="form-group">
-                  <label className="form-label">Upload CV</label>
-                  <input
-                    name="cvFile"
-                    type="file"
-                    className="form-input"
-                    accept=".pdf,.doc,.docx"
-                    required
-                  />
-                  <p className="word-count-indicator" style={{ marginTop: '8px' }}>
-                    Accepted formats: PDF, DOC, DOCX (max 5MB)
-                  </p>
-                </div>
-
-                {error ? (
-                  <p style={{ color: '#d9534f', marginBottom: '12px' }}>{error}</p>
-                ) : null}
-
-                <button type="submit" className="submit-btn" disabled={submitting}>
-                  {submitting ? 'Submitting...' : 'Submit Application'}
-                </button>
-              </form>
-            )}
-          </div>
-
-          <div>
-            <div className="glass-card subscription-card">
-              <h2 style={{ fontSize: '1.8rem' }}>YLH Premium Updates</h2>
-              <p style={{ color: 'var(--grey-text)', marginTop: '10px' }}>
-                Stay ahead of the curve. Never miss a deadline again.
-              </p>
-
-              <div className="sub-price">
-                <span className="sub-currency">₹</span>39<span className="sub-month">/mo</span>
+          <div className="ylh-join-features">
+            <div className="ylh-join-feature">
+              <i className="fas fa-users" />
+              <div>
+                <h4>For Aspiring Legal Professionals</h4>
+                <p>Join our core team and gain hands-on experience in legal research, events, and community building.</p>
               </div>
-
-              <ul className="sub-perks">
-                <li>Curated legal updates and event reminders.</li>
-                <li>Priority access to workshops and community announcements.</li>
-                <li>Monthly opportunities digest for internships, moots, and calls for papers.</li>
-              </ul>
-
-              <Link
-                href="/contact"
-                className="glass-pill"
-                style={{ display: 'inline-block', marginTop: '24px', background: 'var(--text-color)', color: 'var(--bg-color)', fontWeight: 800 }}
-              >
-                Contact Us to Subscribe
-              </Link>
+            </div>
+            <div className="ylh-join-feature">
+              <i className="fas fa-envelope" />
+              <div>
+                <h4>For Knowledge Seekers</h4>
+                <p>Subscribe to specialised email updates covering legal news, events, and career opportunities.</p>
+              </div>
             </div>
           </div>
         </div>
-      </main>
-    </>
+
+        <div className="ylh-card">
+          <div style={{ display: 'flex', gap: 12, alignItems: 'center', marginBottom: 24 }}>
+            <i className="fas fa-envelope" style={{ fontSize: '1.2rem', color: 'var(--ylh-gray-500)' }} />
+            <div>
+              <h2 style={{ fontSize: '1.1rem', fontWeight: 600 }}>Specialised Email Updates</h2>
+              <p style={{ fontSize: '0.82rem', color: 'var(--ylh-gray-500)' }}>Stay ahead with curated legal insights.</p>
+            </div>
+          </div>
+
+          {submitted ? (
+            <p style={{ color: 'var(--ylh-gray-300)' }}>Thank you for subscribing! We&apos;ll be in touch soon.</p>
+          ) : (
+            <form onSubmit={handleSubmit}>
+              <div className="ylh-form-group">
+                <label htmlFor="fullName">Full Name</label>
+                <input id="fullName" name="fullName" type="text" placeholder="e.g., Jane Doe" required />
+              </div>
+              <div className="ylh-form-group">
+                <label htmlFor="email">Email Address</label>
+                <input id="email" name="email" type="email" placeholder="jane@example.com" required />
+              </div>
+              <div className="ylh-form-group">
+                <label htmlFor="position">Areas of Interest (Optional)</label>
+                <select id="position" name="position" defaultValue="">
+                  <option value="">Select an area...</option>
+                  <option value="legal_research">Legal Research</option>
+                  <option value="events">Events &amp; Competitions</option>
+                  <option value="content">Content &amp; Writing</option>
+                  <option value="design">Design &amp; Media</option>
+                </select>
+              </div>
+              {error && <p style={{ color: '#d9534f', marginBottom: 12 }}>{error}</p>}
+              <button type="submit" className="ylh-btn ylh-btn-primary" style={{ width: '100%' }} disabled={submitting}>
+                {submitting ? 'Submitting...' : 'Subscribe Now'}
+              </button>
+              <p style={{ fontSize: '0.75rem', color: 'var(--ylh-gray-500)', marginTop: 16, textAlign: 'center' }}>
+                <i className="fas fa-lock" style={{ marginRight: 6 }} />
+                We respect your privacy. Unsubscribe at any time.
+              </p>
+            </form>
+          )}
+        </div>
+      </section>
+    </main>
   );
 }

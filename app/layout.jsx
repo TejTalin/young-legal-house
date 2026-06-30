@@ -1,8 +1,9 @@
 import './globals.css';
+import './redesign.css';
+import NetworkBackground from '@/components/NetworkBackground';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import CookieBanner from '@/components/CookieBanner';
-import CursorGlow from '@/components/CursorGlow';
 import { Analytics } from '@vercel/analytics/react';
 
 export const metadata = {
@@ -24,7 +25,8 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className="dark-mode">
-        <CursorGlow />
+        <NetworkBackground />
+        <div className="ylh-bg-pattern" aria-hidden="true" />
         <Navbar />
         {children}
         <Footer />
