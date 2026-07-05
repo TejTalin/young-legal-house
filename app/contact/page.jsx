@@ -1,5 +1,6 @@
 'use client';
 import { useState } from 'react';
+import NetworkBackground from '@/components/NetworkBackground';
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -9,14 +10,20 @@ export default function ContactPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+
     const form = e.currentTarget;
     const formData = new FormData(form);
 
     try {
       setSubmitting(true);
-      const res = await fetch('/api/contact', { method: 'POST', body: formData });
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        body: formData,
+      });
+
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Could not send your message.');
+
       setSubmitted(true);
       form.reset();
     } catch (err) {
@@ -27,78 +34,104 @@ export default function ContactPage() {
   };
 
   return (
-    <main>
-      <section className="ylh-container" style={{ textAlign: 'center', padding: '48px 0 24px' }}>
-        <h1 className="ylh-page-title">Get in Touch</h1>
-        <p className="ylh-page-sub" style={{ margin: '0 auto' }}>
-          Have a question, feedback, or want to collaborate? Fill out the form below or reach out through our official channels.
-        </p>
-      </section>
-
-      <section className="ylh-container ylh-form-grid" style={{ paddingBottom: 64 }}>
-        <div className="ylh-card">
-          <h2 style={{ fontSize: '1.1rem', fontWeight: 600, marginBottom: 24 }}>Send a Message</h2>
-          {submitted ? (
-            <p style={{ color: 'var(--ylh-gray-300)' }}>Message sent! We will respond to your email shortly.</p>
-          ) : (
-            <form onSubmit={handleSubmit}>
-              <div className="ylh-form-group">
-                <label htmlFor="fullName">Full Name</label>
-                <input id="fullName" name="fullName" type="text" placeholder="Enter your full name" required />
-              </div>
-              <div className="ylh-form-group">
-                <label htmlFor="email">Email Address</label>
-                <input id="email" name="email" type="email" placeholder="Enter your email" required />
-              </div>
-              <div className="ylh-form-group">
-                <label htmlFor="subject">Subject</label>
-                <select id="subject" name="subject" required defaultValue="">
-                  <option value="" disabled>What is this regarding?</option>
-                  <option value="General Inquiry">General Inquiry</option>
-                  <option value="Partnerships & Collaborations">Partnerships &amp; Collaborations</option>
-                  <option value="Events & Workshops">Events &amp; Workshops</option>
-                  <option value="Website Feedback">Website Feedback</option>
-                </select>
-              </div>
-              <div className="ylh-form-group">
-                <label htmlFor="message">Your Message</label>
-                <textarea id="message" name="message" rows={5} placeholder="Type your message here..." required />
-              </div>
-              {error && <p style={{ color: '#d9534f', marginBottom: 12 }}>{error}</p>}
-              <button type="submit" className="ylh-btn ylh-btn-primary" disabled={submitting}>
-                {submitting ? 'Sending...' : 'Send Message'}
-              </button>
-            </form>
-          )}
+    <>
+      <NetworkBackground />
+      <main className="page-spacing container">
+        <div style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto 40px' }}>
+          <h1 className="section-title">Get in Touch</h1>
+          <p style={{ color: 'var(--grey-text)', fontSize: '1.1rem', lineHeight: '1.8' }}>
+            Have a question, feedback, or want to collaborate with Young Legal House? Fill out the
+            form below or reach out to us directly through our official channels.
+            We would love to hear from you.
+          </p>
         </div>
 
-        <div className="ylh-card">
-          <h2 style={{ fontSize: '1.1rem', fontWeight: 600, marginBottom: 24 }}>Contact Details</h2>
-          <div style={{ marginBottom: 24 }}>
-            <div style={{ display: 'flex', gap: 12, marginBottom: 20 }}>
-              <i className="fas fa-envelope" style={{ color: 'var(--ylh-gray-500)', marginTop: 4 }} />
-              <div>
-                <span style={{ display: 'block', fontSize: '0.82rem', color: 'var(--ylh-gray-500)' }}>Official Email</span>
-                <a href="mailto:connect.ylh@gmail.com" style={{ fontWeight: 600, textDecoration: 'none', color: 'inherit' }}>
-                  connect.ylh@gmail.com
+        <div className="join-grid">
+          <div className="glass-card">
+            <h2 style={{ marginBottom: '25px', borderBottom: '1px solid var(--glass-border)', paddingBottom: '10px' }}>
+              Send a Message
+            </h2>
+
+            {submitted ? (
+              <p style={{ color: 'var(--grey-text)', lineHeight: '1.8' }}>
+                ✅ Message sent! We will respond to your email shortly.
+              </p>
+            ) : (
+              <form onSubmit={handleSubmit}>
+                <div className="form-group">
+                  <label className="form-label">Full Name</label>
+                  <input name="fullName" type="text" className="form-input" placeholder="Enter your full name" required />
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label">Email Address</label>
+                  <input name="email" type="email" className="form-input" placeholder="Enter your email" required />
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label">Subject</label>
+                  <select name="subject" className="form-select" required defaultValue="">
+                    <option value="" disabled>What is this regarding?</option>
+                    <option value="General Inquiry">General Inquiry</option>
+                    <option value="Partnerships & Collaborations">Partnerships & Collaborations</option>
+                    <option value="Events & Workshops">Events & Workshops</option>
+                    <option value="Website Feedback">Website Feedback</option>
+                  </select>
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label">Your Message</label>
+                  <textarea name="message" className="form-textarea" rows={5} placeholder="Type your message here..." required />
+                </div>
+
+                {error ? (
+                  <p style={{ color: '#d9534f', marginBottom: '12px' }}>{error}</p>
+                ) : null}
+
+                <button type="submit" className="submit-btn" disabled={submitting}>
+                  {submitting ? 'Sending...' : 'Send Message'}
+                </button>
+              </form>
+            )}
+          </div>
+
+          <div>
+            <div className="glass-card contact-info-card">
+              <h2 style={{ marginBottom: '30px' }}>Contact Details</h2>
+
+              <div className="contact-detail-item">
+                <i className="fas fa-envelope" style={{ color: 'var(--grey-text)', marginTop: '2px' }}></i>
+                <div>
+                  <span style={{ display: 'block', fontSize: '0.9rem', color: 'var(--grey-text)' }}>Official Email</span>
+                  <a href="mailto:connect.ylh@gmail.com" style={{ color: 'var(--text-color)', textDecoration: 'none', fontWeight: 700 }}>
+                    connect.ylh@gmail.com
+                  </a>
+                </div>
+              </div>
+
+              <div className="contact-detail-item">
+                <i className="fas fa-map-marker-alt" style={{ color: 'var(--grey-text)', marginTop: '2px' }}></i>
+                <div>
+                  <span style={{ display: 'block', fontSize: '0.9rem', color: 'var(--grey-text)' }}>Headquarters</span>
+                  <span style={{ fontWeight: 700 }}>Chennai, Tamil Nadu, India</span>
+                </div>
+              </div>
+
+              <div className="contact-socials">
+                <a href="https://www.linkedin.com/company/young-legal-house/" className="contact-social-btn" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-color)' }}>
+                  <i className="fab fa-linkedin"></i>
+                </a>
+                <a href="https://www.instagram.com/younglegalhouse/" className="contact-social-btn" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-color)' }}>
+                  <i className="fab fa-instagram"></i>
+                </a>
+                <a href="https://linktr.ee/younglegalhouse" className="contact-social-btn" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-color)' }}>
+                  <i className="fas fa-link"></i>
                 </a>
               </div>
             </div>
-            <div style={{ display: 'flex', gap: 12 }}>
-              <i className="fas fa-map-marker-alt" style={{ color: 'var(--ylh-gray-500)', marginTop: 4 }} />
-              <div>
-                <span style={{ display: 'block', fontSize: '0.82rem', color: 'var(--ylh-gray-500)' }}>Headquarters</span>
-                <span style={{ fontWeight: 600 }}>Chennai, Tamil Nadu, India</span>
-              </div>
-            </div>
-          </div>
-          <div className="ylh-footer-socials">
-            <a href="https://www.linkedin.com/company/young-legal-house/" target="_blank" rel="noopener noreferrer"><i className="fab fa-linkedin" /></a>
-            <a href="https://www.instagram.com/younglegalhouse/" target="_blank" rel="noopener noreferrer"><i className="fab fa-instagram" /></a>
-            <a href="https://linktr.ee/younglegalhouse" target="_blank" rel="noopener noreferrer"><i className="fas fa-link" /></a>
           </div>
         </div>
-      </section>
-    </main>
+      </main>
+    </>
   );
 }
