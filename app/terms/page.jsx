@@ -1,5 +1,3 @@
-import NetworkBackground from '@/components/NetworkBackground';
-
 export const metadata = {
   title: 'Terms of Service | Young Legal House',
 };
@@ -7,7 +5,6 @@ export const metadata = {
 export default function TermsPage() {
   return (
     <>
-      <NetworkBackground />
       <main className="page-spacing container">
         <div style={{ maxWidth: '860px', margin: '0 auto' }}>
 

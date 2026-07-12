@@ -1,246 +1,185 @@
 'use client';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
-import AnimatedNetworkBackground from '@/components/AnimatedNetworkBackground';
+import Image from 'next/image';
 import PageWrapper from '@/components/PageWrapper';
 import AnimatedSection from '@/components/AnimatedSection';
 import StaggerGrid from '@/components/StaggerGrid';
 import WordReveal from '@/components/WordReveal';
-import { VIEW } from '@/lib/motion';
+import { urlFor } from '@/lib/sanity';
+import { INSTAGRAM_INSIGHTS, HOME_FEATURES } from '@/lib/site-data.js';
 
-const LAW_AREAS = [
-  'Corporate Law', 'Tax', 'TMT', 'Litigation', 'M&A',
-  'ADR', 'IPR', 'Constitutional', 'Criminal Law', 'International Law',
+const BLOG_FALLBACK_IMAGE = '/design-assets/law-books.jpg';
+
+function formatEventDay(eventDate) {
+  if (!eventDate) return { day: '--', month: '' };
+  const d = new Date(eventDate);
+  return {
+    day: d.toLocaleDateString('en-IN', { day: '2-digit' }),
+    month: d.toLocaleDateString('en-IN', { month: 'short' }).toUpperCase(),
+  };
+}
+
+const INSIGHT_IMAGES = [
+  '/design-assets/home-insight-01.jpg',
+  '/design-assets/home-insight-02.jpg',
+  '/design-assets/home-insight-03.jpg',
+  '/design-assets/home-insight-04.jpg',
 ];
 
-const OFFER_CARDS = [
-  {
-    icon: 'fa-newspaper',
-    title: 'Curated Legal Insights',
-    text: 'Peer-written articles covering Corporate Law, Tax, TMT, Litigation, ADR, IPR, and more written by students, for students.',
-  },
-  {
-    icon: 'fa-gavel',
-    title: 'Competitions & Events',
-    text: 'National moot courts, trivia challenges, workshops, and flagship events designed to sharpen your legal skills.',
-  },
-  {
-    icon: 'fa-users',
-    title: 'Expert Community',
-    text: 'Connect with peers, researchers, and practitioners across India. A serious network built for the next generation of lawyers.',
-  },
-];
-
-export default function HomeClient() {
+export default function HomeClient({ recentBlogs = [], upcomingEvents = [] }) {
   return (
     <>
-      <AnimatedNetworkBackground />
+      <PageWrapper className="ylh-container">
 
-      <PageWrapper className="page-spacing container" style={{ paddingBottom: '100px' }}>
-
-        {/* ── HERO — exact original copy, animated entrance ── */}
-        <motion.section
-          style={{ textAlign: 'center', maxWidth: '820px', margin: '24px auto 52px' }}
-          variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.13, delayChildren: 0.05 } } }}
-          initial="hidden"
-          animate="visible"
-        >
-          <motion.p
-            variants={{ hidden: { opacity: 0, y: 18 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } }}
-            style={{
-              fontSize: '0.78rem', fontWeight: 700, letterSpacing: '0.12em',
-              textTransform: 'uppercase', color: 'var(--grey-text)', marginBottom: '18px',
-            }}
-          >
-            India&apos;s Legal Student Community
-          </motion.p>
-
-          <WordReveal
-            text="Young Legal House"
-            as="h1"
-            style={{
-              fontFamily: "'Cormorant Garamond', Georgia, serif",
-              fontSize: 'clamp(2.6rem, 6vw, 5rem)',
-              fontWeight: 700,
-              lineHeight: 1.04,
-              marginBottom: '20px',
-              color: 'var(--text-color)',
-              textAlign: 'center',
-            }}
-          />
-
-          <motion.p
-            variants={{ hidden: { opacity: 0, y: 18 }, visible: { opacity: 1, y: 0, transition: { duration: 0.55 } } }}
-            style={{
-              color: 'var(--grey-text)',
-              fontSize: 'clamp(0.97rem, 2vw, 1.1rem)',
-              lineHeight: 1.85,
-              maxWidth: '680px',
-              margin: '0 auto 32px',
-            }}
-          >
-            A community bridging the gap between legal theory and execution.
-            We connect aspiring legal professionals with knowledge, competitions,
-            events, and a network that takes law seriously.
-          </motion.p>
-
-          <motion.div
-            variants={{ hidden: { opacity: 0, y: 18 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } }}
-            style={{ display: 'flex', gap: '14px', justifyContent: 'center', flexWrap: 'wrap' }}
-          >
-            <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
-              <Link href="/join" className="btn-main" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}>
-                Join the Community
-              </Link>
-            </motion.div>
-            <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
-              <Link href="/blogs" className="btn-main btn-ghost" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}>
-                Read Legal Insights
-              </Link>
-            </motion.div>
-          </motion.div>
-        </motion.section>
-
-        {/* ── EVENT TICKER ── */}
-        <AnimatedSection variant="fadeUp" delay={0.1} style={{ maxWidth: '820px', margin: '0 auto 56px' }}>
-          <Link href="/events" style={{ display: 'block', textDecoration: 'none' }}>
-            <motion.div
-              whileHover={{ scale: 1.015, boxShadow: '0 12px 36px rgba(0,0,0,0.22)' }}
-              transition={{ duration: 0.25 }}
-              style={{
-                border: '1px solid var(--glass-border)', borderRadius: '999px',
-                overflow: 'hidden', background: 'var(--glass-bg)',
-                height: '44px', display: 'flex', alignItems: 'center', position: 'relative',
-                backdropFilter: 'blur(12px)',
-              }}
-            >
-              <div style={{
-                whiteSpace: 'nowrap', display: 'inline-block',
-                paddingLeft: '100%',
-                animation: 'ylh-ticker 20s linear infinite',
-                color: 'var(--text-color)', fontWeight: 600,
-                fontSize: '0.83rem', letterSpacing: '0.04em',
-              }}>
-                ⚖️&nbsp; PAST EVENT ARCHIVE — LEX NOCTIS &nbsp;·&nbsp; CRIMINAL LAW TRIVIA &nbsp;·&nbsp; EVENT CONCLUDED &nbsp;·&nbsp; VIEW RECAP
+        {/* ── HERO ── */}
+        <AnimatedSection variant="fadeUp" className="ylh-hero">
+          <div className="ylh-hero-grid">
+            <div>
+              <p className="ylh-hero-label">India&apos;s Elite Law Network</p>
+              <WordReveal
+                text="Young Legal House"
+                as="h1"
+                className="ylh-hero-title"
+              />
+              <p className="ylh-hero-sub">
+                Bridging legal education, competitions, research, and opportunity.
+              </p>
+              <div className="ylh-hero-actions">
+                <Link href="/join" className="ylh-btn ylh-btn-primary">
+                  Join the Community
+                </Link>
+                <Link href="/blogs" className="ylh-btn ylh-btn-outline">
+                  Explore Insights
+                </Link>
               </div>
-            </motion.div>
-          </Link>
+            </div>
+            <div className="ylh-hero-image">
+              <Image
+                src="/design-assets/home-hero.jpg"
+                alt="Young Legal House"
+                fill
+                priority
+              />
+            </div>
+          </div>
         </AnimatedSection>
 
-        {/* ── WHAT WE OFFER ── */}
-        <AnimatedSection variant="fadeUp" style={{ maxWidth: '960px', margin: '0 auto 56px' }}>
-          <WordReveal
-            text="What We Offer"
-            as="h2"
-            style={{
-              fontFamily: "'Cormorant Garamond', Georgia, serif",
-              fontSize: 'clamp(1.5rem, 3vw, 2rem)', fontWeight: 700,
-              textAlign: 'center', marginBottom: '8px', color: 'var(--text-color)',
-            }}
-          />
-          <p style={{ textAlign: 'center', color: 'var(--grey-text)', fontSize: '0.9rem', marginBottom: '28px' }}>
-            Everything a law student needs in one place
+        {/* ── PULL-QUOTE BANNER ── */}
+        <AnimatedSection variant="fadeUp" className="ylh-quote">
+          <div className="ylh-quote-mark">"</div>
+          <p className="ylh-quote-text">
+            Where law students evolve into legal professionals.
           </p>
+          <p className="ylh-quote-author">— YLH</p>
+        </AnimatedSection>
 
-          <StaggerGrid className="cards-grid">
-            {OFFER_CARDS.map(item => (
-              <div key={item.title} className="glass-card" style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                <i className={`fas ${item.icon}`} style={{ fontSize: '1.4rem', color: 'var(--grey-text)' }}></i>
-                <h3 style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: '1.25rem', fontWeight: 700, color: 'var(--text-color)' }}>
-                  {item.title}
-                </h3>
-                <p style={{ color: 'var(--grey-text)', fontSize: '0.91rem', lineHeight: 1.75 }}>
-                  {item.text}
-                </p>
+        {/* ── THREE COLUMN SECTION ── */}
+        <AnimatedSection variant="fadeUp" className="ylh-three-col">
+          {/* Latest Legal Insights */}
+          <div>
+            <div className="ylh-col-header">
+              <h3>Latest Legal Insights</h3>
+            </div>
+            <StaggerGrid className="ylh-insight-grid">
+              {INSTAGRAM_INSIGHTS.map((insight, index) => (
+                <Link key={index} href="/blogs" className="ylh-insight-card">
+                  <Image
+                    src={INSIGHT_IMAGES[index]}
+                    alt={insight.title}
+                    fill
+                  />
+                  <span>{insight.title}</span>
+                </Link>
+              ))}
+            </StaggerGrid>
+          </div>
+
+          {/* Recent Blogs */}
+          <div>
+            <div className="ylh-col-header">
+              <h3>Recent Blogs</h3>
+              <Link href="/blogs">View all blogs →</Link>
+            </div>
+            <StaggerGrid>
+              {recentBlogs.length === 0 ? (
+                <p style={{ color: 'var(--muted-text)', fontSize: '0.85rem' }}>No published blogs yet.</p>
+              ) : (
+                recentBlogs.map((blog) => (
+                  <Link key={blog._id} href={`/blogs/${blog?.slug?.current || ''}`} className="ylh-list-item">
+                    <Image
+                      src={blog.coverImage ? urlFor(blog.coverImage).width(112).height(112).url() : BLOG_FALLBACK_IMAGE}
+                      alt={blog.title}
+                      width={56}
+                      height={56}
+                      className="ylh-list-thumb"
+                    />
+                    <div>
+                      <div className="ylh-list-meta">{blog.category}{blog.readTime ? ` · ${blog.readTime}` : ''}</div>
+                      <div className="ylh-list-title">{blog.title}</div>
+                    </div>
+                  </Link>
+                ))
+              )}
+            </StaggerGrid>
+          </div>
+
+          {/* Upcoming Events */}
+          <div>
+            <div className="ylh-col-header">
+              <h3>Upcoming Events</h3>
+              <Link href="/events">See All Events →</Link>
+            </div>
+            <StaggerGrid>
+              {upcomingEvents.length === 0 ? (
+                <p style={{ color: 'var(--muted-text)', fontSize: '0.85rem' }}>No upcoming events right now.</p>
+              ) : (
+                upcomingEvents.map((event) => {
+                  const { day, month } = formatEventDay(event.eventDate);
+                  return (
+                    <Link key={event._id} href={`/events/${event?.slug?.current || ''}`} className="ylh-event-card">
+                      <div className="ylh-event-date">
+                        <div className="day">{day}</div>
+                        <div className="month">{month}</div>
+                      </div>
+                      <div>
+                        <div className="ylh-event-tag">{event.eventType}</div>
+                        <div className="ylh-event-title">{event.title}</div>
+                        <div className="ylh-event-loc">{event.location}</div>
+                      </div>
+                    </Link>
+                  );
+                })
+              )}
+            </StaggerGrid>
+          </div>
+        </AnimatedSection>
+
+        {/* ── ABOUT YLH TEASER ── */}
+        <AnimatedSection variant="fadeUp" className="ylh-about-split">
+          <div>
+            <h2>About Young Legal House</h2>
+            <p>
+              Young Legal House is a pioneering initiative dedicated to empowering law students across India by fostering a dynamic ecosystem of learning, collaboration, and professional development.
+            </p>
+            <p>
+              Serving as a unified platform for aspiring legal professionals, we bridge the gap between academic pursuits and career advancement through access to internships, training programmes, competitions, events, mentorship, and diverse professional opportunities.
+            </p>
+            <Link href="/about" className="ylh-btn ylh-btn-outline">
+              Know More About Us →
+            </Link>
+          </div>
+          <StaggerGrid className="ylh-feature-grid">
+            {HOME_FEATURES.map((feature) => (
+              <div key={feature.title} className="ylh-feature-box">
+                <i className={`fas ${feature.icon}`}></i>
+                <h4>{feature.title}</h4>
+                <p>{feature.text}</p>
               </div>
             ))}
           </StaggerGrid>
         </AnimatedSection>
 
-        {/* ── LEGAL INSIGHTS TAG CLOUD ── */}
-        <AnimatedSection variant="fadeUp" style={{ maxWidth: '820px', margin: '0 auto 56px', textAlign: 'center' }}>
-          <WordReveal
-            text="Legal Insights"
-            as="h2"
-            style={{
-              fontFamily: "'Cormorant Garamond', Georgia, serif",
-              fontSize: 'clamp(1.5rem, 3vw, 2rem)', fontWeight: 700,
-              marginBottom: '8px', color: 'var(--text-color)', textAlign: 'center',
-            }}
-          />
-          <p style={{ color: 'var(--grey-text)', fontSize: '0.9rem', marginBottom: '22px' }}>
-            Legal insights across every major domain (Coming Soon)
-          </p>
-
-          <motion.div
-            style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', justifyContent: 'center' }}
-            variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.06, delayChildren: 0.1 } } }}
-            initial="hidden"
-            whileInView="visible"
-            viewport={VIEW}
-          >
-            {LAW_AREAS.map(area => (
-              <motion.div
-                key={area}
-                variants={{ hidden: { opacity: 0, scale: 0.85 }, visible: { opacity: 1, scale: 1, transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] } } }}
-                whileHover={{ scale: 1.08, y: -2 }}
-                whileTap={{ scale: 0.96 }}
-              >
-                <Link href="/blogs" className="filter-pill" style={{ display: 'inline-block', textDecoration: 'none' }}>
-                  {area}
-                </Link>
-              </motion.div>
-            ))}
-          </motion.div>
-        </AnimatedSection>
-
-        {/* ── CTA ── */}
-        <AnimatedSection variant="scaleUp" style={{ maxWidth: '720px', margin: '0 auto', textAlign: 'center' }}>
-          <motion.div
-            className="glass-card"
-            style={{ padding: '48px 32px' }}
-            whileHover={{ boxShadow: '0 32px 72px rgba(0,0,0,0.22)' }}
-            transition={{ duration: 0.3 }}
-          >
-            <WordReveal
-              text="Be Part of the Movement"
-              as="h2"
-              style={{
-                fontFamily: "'Cormorant Garamond', Georgia, serif",
-                fontSize: 'clamp(1.5rem, 3vw, 2rem)', fontWeight: 700,
-                marginBottom: '12px', color: 'var(--text-color)', textAlign: 'center',
-              }}
-            />
-            <p style={{
-              color: 'var(--grey-text)', lineHeight: 1.8, marginBottom: '28px',
-              fontSize: '0.93rem', maxWidth: '540px', margin: '0 auto 28px',
-            }}>
-              Join law students across India building their careers through YLH.
-              Stay informed, stay competitive, stay connected.
-            </p>
-            <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
-              <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
-                <Link href="/join" className="btn-main" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}>
-                  Join the Community
-                </Link>
-              </motion.div>
-              <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
-                <Link href="/contact" className="btn-main btn-ghost" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}>
-                  Get in Touch
-                </Link>
-              </motion.div>
-            </div>
-          </motion.div>
-        </AnimatedSection>
-
       </PageWrapper>
-
-      <style>{`
-        @keyframes ylh-ticker {
-          0%   { transform: translateX(0%); }
-          100% { transform: translateX(-100%); }
-        }
-      `}</style>
     </>
   );
 }

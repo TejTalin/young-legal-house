@@ -119,26 +119,35 @@ export default function Navbar() {
           })}
         </nav>
 
-        {/* Theme toggle */}
-        <motion.button
-          className="sticky-theme-toggle"
-          onClick={toggleTheme}
-          aria-label="Toggle theme"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          transition={{ duration: 0.18 }}
-        >
-          <AnimatePresence mode="wait">
-            <motion.i
-              key={isDark ? 'moon' : 'sun'}
-              className={`fas ${isDark ? 'fa-moon' : 'fa-sun'}`}
-              initial={{ opacity: 0, rotate: -30, scale: 0.7 }}
-              animate={{ opacity: 1, rotate: 0,   scale: 1   }}
-              exit={{    opacity: 0, rotate:  30,  scale: 0.7 }}
-              transition={{ duration: 0.22 }}
-            />
-          </AnimatePresence>
-        </motion.button>
+        {/* Actions */}
+        <div className="ylh-nav-actions">
+          <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
+            <Link href="/join" className="ylh-btn ylh-btn-primary">
+              Join the Community
+            </Link>
+          </motion.div>
+
+          {/* Theme toggle */}
+          <motion.button
+            className="sticky-theme-toggle"
+            onClick={toggleTheme}
+            aria-label="Toggle theme"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            transition={{ duration: 0.18 }}
+          >
+            <AnimatePresence mode="wait">
+              <motion.i
+                key={isDark ? 'moon' : 'sun'}
+                className={`fas ${isDark ? 'fa-moon' : 'fa-sun'}`}
+                initial={{ opacity: 0, rotate: -30, scale: 0.7 }}
+                animate={{ opacity: 1, rotate: 0,   scale: 1   }}
+                exit={{    opacity: 0, rotate:  30,  scale: 0.7 }}
+                transition={{ duration: 0.22 }}
+              />
+            </AnimatePresence>
+          </motion.button>
+        </div>
       </div>
     </motion.header>
   );

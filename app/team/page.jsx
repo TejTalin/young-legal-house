@@ -1,83 +1,73 @@
+'use client';
 import Image from 'next/image';
-import NetworkBackground from '@/components/NetworkBackground';
-
-export const metadata = {
-  title: 'Team | Young Legal House',
-};
-
-const TEAM_MEMBERS = [
-  {
-    name: 'Achyuta Narayanan',
-    role: 'Founder of the Community',
-    image: '/Founder.jpeg',
-    linkedIn: 'https://www.linkedin.com/in/achyuta-narayanan/',
-  },
-  {
-    name: 'Amishee Gupta',
-    role: 'Co Founder of the Community',
-    image: '/Head.jpeg',
-    linkedIn: 'https://www.linkedin.com/in/amishee-gupta-95b65b303/',
-    imageStyle: { objectFit: 'cover', objectPosition: 'center 22%' },
-  },
-  {
-    name: 'Tej Talin',
-    role: 'Head of Technology',
-    image: '/Tej-Talin.png',
-    linkedIn: 'https://www.linkedin.com/in/tejtalind/',
-    imageStyle: { objectFit: 'cover' },
-  },
-];
+import PageWrapper from '@/components/PageWrapper';
+import AnimatedSection from '@/components/AnimatedSection';
+import StaggerGrid from '@/components/StaggerGrid';
+import WordReveal from '@/components/WordReveal';
+import { TEAM_MEMBERS } from '@/lib/site-data.js';
 
 export default function TeamPage() {
   return (
     <>
-      <NetworkBackground />
-      <main className="page-spacing container">
-        <h1 className="section-title">Meet Our Team</h1>
+      <PageWrapper className="ylh-container">
 
-        <div className="team-container">
-          <div className="team-row top-row">
+        {/* ── PAGE HERO ── */}
+        <AnimatedSection variant="fadeUp" className="ylh-page-hero">
+          <div style={{ position: 'relative', zIndex: 1 }}>
+            <p className="ylh-hero-label">Meet the Team</p>
+            <WordReveal
+              text="The People Behind YLH"
+              as="h1"
+              className="ylh-page-title"
+            />
+            <p className="ylh-page-sub">
+              The dedicated individuals driving Young Legal House forward.
+            </p>
+          </div>
+        </AnimatedSection>
+
+        {/* ── TEAM GRID (3-across) ── */}
+        <AnimatedSection variant="fadeUp">
+          <StaggerGrid className="ylh-team-grid">
             {TEAM_MEMBERS.map((member) => (
-              <div key={member.name} className="glass-card team-card">
-                <Image
-                  src={member.image}
-                  alt={member.name}
-                  width={360}
-                  height={450}
-                  className="team-img no-save-img"
-                  draggable={false}
-                  style={member.imageStyle}
-                />
+              <div key={member.name} className="ylh-team-card">
+                <div style={{ position: 'relative', height: '320px' }}>
+                  <Image
+                    src={member.image}
+                    alt={member.name}
+                    fill
+                    style={member.imageStyle || { objectFit: 'cover' }}
+                  />
+                </div>
                 <h3>{member.name}</h3>
-                <p className="card-detail">{member.role}</p>
-
-                {member.linkedIn ? (
+                <p>{member.role}</p>
+                {member.linkedIn && (
                   <a
                     href={member.linkedIn}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="team-social"
-                    style={{ color: 'var(--text-color)' }}
                   >
                     <i className="fab fa-linkedin"></i>
                   </a>
-                ) : null}
+                )}
               </div>
             ))}
-          </div>
+          </StaggerGrid>
+        </AnimatedSection>
 
-          <div className="team-row">
-            <div className="glass-card community-card">
-              <h3>And a Growing Community...</h3>
-              <p style={{ color: 'var(--grey-text)', lineHeight: '1.6', marginTop: '10px' }}>
-                Behind the scenes, we have an incredible team of 10+ dedicated members, interns,
-                and contributors who are working tirelessly to build, manage, and better this
-                community every single day.
-              </p>
-            </div>
+        {/* ── COMMUNITY CALLOUT ── */}
+        <AnimatedSection variant="fadeUp" style={{ maxWidth: '720px', margin: '0 auto' }}>
+          <div className="ylh-card">
+            <h3 style={{ fontSize: '1.1rem', fontWeight: 600, marginBottom: '12px' }}>And a Growing Community...</h3>
+            <p style={{ color: 'var(--grey-text)', lineHeight: 1.7 }}>
+              Behind the scenes, we have an incredible team of 10+ dedicated members, interns,
+              and contributors who are working tirelessly to build, manage, and better this
+              community every single day.
+            </p>
           </div>
-        </div>
-      </main>
+        </AnimatedSection>
+
+      </PageWrapper>
     </>
   );
 }

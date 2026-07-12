@@ -1,2 +1,4 @@
 import blog from './blog'
-export const schemaTypes = [blog]
+import event from './event'
+import legalInsight from './legalInsight'
+export const schemaTypes = [blog, event, legalInsight]

@@ -33,6 +33,9 @@ export default {
           { title: 'M&A', value: 'M&A' },
           { title: 'ADR', value: 'ADR' },
           { title: 'IPR', value: 'IPR' },
+          { title: 'Constitutional Law', value: 'Constitutional Law' },
+          { title: 'Criminal Law', value: 'Criminal Law' },
+          { title: 'International Law', value: 'International Law' },
           { title: 'Others', value: 'Others' },
         ]
       },
@@ -69,24 +72,78 @@ export default {
       description: 'Only content marked as Published appears on the website.',
     },
     {
+      name: 'readTime',
+      title: 'Read Time',
+      type: 'string',
+      description: 'e.g. "6 min read" — shown on homepage and blog cards',
+      initialValue: '5 min read',
+    },
+    {
       name: 'excerpt',
       title: 'Short Excerpt',
       type: 'text',
       rows: 3,
-      description: '2-3 sentence summary shown on the blogs page',
+      description: '2-3 sentence summary shown on the blogs page card',
       validation: Rule => Rule.required()
+    },
+    {
+      name: 'abstract',
+      title: 'Abstract',
+      type: 'text',
+      rows: 5,
+      description: 'Longer academic-style abstract, shown at the top of the full article/research paper page. Optional — leave blank for short-form articles.',
     },
     {
       name: 'body',
       title: 'Full Article Content',
       type: 'array',
-      of: [{ type: 'block' }],
+      of: [
+        {
+          type: 'block',
+          styles: [
+            { title: 'Normal', value: 'normal' },
+            { title: 'Heading', value: 'h2' },
+            { title: 'Sub-heading', value: 'h3' },
+            { title: 'Quote', value: 'blockquote' },
+            { title: 'Justified', value: 'justify' },
+          ],
+          lists: [
+            { title: 'Bullet', value: 'bullet' },
+            { title: 'Numbered', value: 'number' },
+          ],
+          marks: {
+            decorators: [
+              { title: 'Bold', value: 'strong' },
+              { title: 'Italic', value: 'em' },
+              { title: 'Underline', value: 'underline' },
+            ],
+            annotations: [
+              {
+                name: 'link',
+                type: 'object',
+                title: 'Link',
+                fields: [{ name: 'href', type: 'url', title: 'URL' }],
+              },
+            ],
+          },
+        },
+      ],
+      description: 'Use "Justified" from the paragraph style dropdown to justify a paragraph — no separate alignment tool needed.',
+    },
+    {
+      name: 'bibliography',
+      title: 'Bibliography / Citations',
+      type: 'array',
+      of: [{ type: 'string' }],
+      description: 'One citation per line, e.g. "Kesavananda Bharati v. State of Kerala, (1973) 4 SCC 225". Shown at the end of the article. Leave empty if not applicable.',
     },
     {
       name: 'coverImage',
       title: 'Cover Image',
       type: 'image',
-      options: { hotspot: true }
+      options: { hotspot: true },
+      validation: Rule => Rule.required(),
+      description: 'Shown as the title/hero image on the blogs page, blog card, and homepage widget.',
     },
     {
       name: 'publishedAt',

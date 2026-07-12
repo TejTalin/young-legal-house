@@ -166,8 +166,9 @@ textarea:focus-visible {
 }
 
 body.light-mode .sticky-logo img,
-body.light-mode .footer-logo {
-  filter: brightness(0);
+body.light-mode .footer-logo,
+body.light-mode .ylh-footer-brand img {
+  filter: brightness(0.08);
 }
 
 .sticky-island {
@@ -972,55 +973,6 @@ footer {
 .footer-center { justify-self: center; text-align: center; }
 .footer-right { justify-self: end; }
 .footer-socials { justify-content: flex-end; }
-
-/* ── LIVE CANVAS LEGAL FIELD ── */
-.community-bg {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  overflow: hidden;
-  opacity: 1;
-}
-
-.community-bg::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 50% 18%, rgba(255,255,255,0.09), transparent 30%),
-    radial-gradient(circle at 14% 74%, rgba(255,255,255,0.05), transparent 26%),
-    radial-gradient(circle at 88% 72%, rgba(255,255,255,0.045), transparent 28%);
-}
-
-body.light-mode .community-bg::before {
-  background:
-    radial-gradient(circle at 50% 16%, rgba(255,255,255,0.6), transparent 34%),
-    radial-gradient(circle at 14% 74%, rgba(255,255,255,0.28), transparent 28%),
-    radial-gradient(circle at 88% 72%, rgba(255,255,255,0.24), transparent 30%);
-}
-
-.ylh-live-legal-field {
-  filter: saturate(1.02);
-}
-
-.ylh-legal-canvas {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
-  opacity: 0.86;
-}
-
-body.light-mode .ylh-legal-canvas {
-  opacity: 0.74;
-}
-
-@media (max-width: 760px) {
-  .ylh-legal-canvas { opacity: 0.68; }
-  body.light-mode .ylh-legal-canvas { opacity: 0.6; }
-}
 
 main, footer { position: relative; z-index: 1; }
 .navbar { z-index: 1000 !important; }

@@ -1,6 +1,9 @@
 'use client';
 import { useState } from 'react';
-import NetworkBackground from '@/components/NetworkBackground';
+import Image from 'next/image';
+import PageWrapper from '@/components/PageWrapper';
+import AnimatedSection from '@/components/AnimatedSection';
+import WordReveal from '@/components/WordReveal';
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -35,42 +38,60 @@ export default function ContactPage() {
 
   return (
     <>
-      <NetworkBackground />
-      <main className="page-spacing container">
-        <div style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto 40px' }}>
-          <h1 className="section-title">Get in Touch</h1>
-          <p style={{ color: 'var(--grey-text)', fontSize: '1.1rem', lineHeight: '1.8' }}>
-            Have a question, feedback, or want to collaborate with Young Legal House? Fill out the
-            form below or reach out to us directly through our official channels.
-            We would love to hear from you.
-          </p>
-        </div>
+      <PageWrapper className="ylh-container">
 
-        <div className="join-grid">
-          <div className="glass-card">
-            <h2 style={{ marginBottom: '25px', borderBottom: '1px solid var(--glass-border)', paddingBottom: '10px' }}>
+        {/* ── PAGE HERO ── */}
+        <AnimatedSection variant="fadeUp" className="ylh-page-hero">
+          <div className="ylh-page-hero-bg">
+            <Image
+              src="/design-assets/contact-section-bg.jpg"
+              alt="Contact Young Legal House"
+              fill
+              priority
+            />
+          </div>
+          <div>
+            <p className="ylh-hero-label">Contact</p>
+            <WordReveal
+              text="Get in Touch"
+              as="h1"
+              className="ylh-page-title"
+            />
+            <p className="ylh-page-sub">
+              Have a question, feedback, or want to collaborate with Young Legal House? Fill out the
+              form below or reach out to us directly through our official channels.
+              We would love to hear from you.
+            </p>
+          </div>
+        </AnimatedSection>
+
+        {/* ── FORM GRID ── */}
+        <AnimatedSection variant="fadeUp" className="ylh-form-grid">
+          {/* Form */}
+          <div className="ylh-card">
+            <h2 style={{ fontSize: '1.1rem', fontWeight: 600, marginBottom: '20px', borderBottom: '1px solid var(--glass-border)', paddingBottom: '12px' }}>
               Send a Message
             </h2>
 
             {submitted ? (
-              <p style={{ color: 'var(--grey-text)', lineHeight: '1.8' }}>
+              <p style={{ color: 'var(--grey-text)', lineHeight: 1.8 }}>
                 ✅ Message sent! We will respond to your email shortly.
               </p>
             ) : (
               <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                  <label className="form-label">Full Name</label>
-                  <input name="fullName" type="text" className="form-input" placeholder="Enter your full name" required />
+                <div className="ylh-form-group">
+                  <label>Full Name</label>
+                  <input name="fullName" type="text" placeholder="Enter your full name" required />
                 </div>
 
-                <div className="form-group">
-                  <label className="form-label">Email Address</label>
-                  <input name="email" type="email" className="form-input" placeholder="Enter your email" required />
+                <div className="ylh-form-group">
+                  <label>Email Address</label>
+                  <input name="email" type="email" placeholder="Enter your email" required />
                 </div>
 
-                <div className="form-group">
-                  <label className="form-label">Subject</label>
-                  <select name="subject" className="form-select" required defaultValue="">
+                <div className="ylh-form-group">
+                  <label>Subject</label>
+                  <select name="subject" required defaultValue="">
                     <option value="" disabled>What is this regarding?</option>
                     <option value="General Inquiry">General Inquiry</option>
                     <option value="Partnerships & Collaborations">Partnerships & Collaborations</option>
@@ -79,59 +100,81 @@ export default function ContactPage() {
                   </select>
                 </div>
 
-                <div className="form-group">
-                  <label className="form-label">Your Message</label>
-                  <textarea name="message" className="form-textarea" rows={5} placeholder="Type your message here..." required />
+                <div className="ylh-form-group">
+                  <label>Your Message</label>
+                  <textarea name="message" rows={5} placeholder="Type your message here..." required />
                 </div>
 
                 {error ? (
                   <p style={{ color: '#d9534f', marginBottom: '12px' }}>{error}</p>
                 ) : null}
 
-                <button type="submit" className="submit-btn" disabled={submitting}>
+                <button
+                  type="submit"
+                  className="ylh-btn ylh-btn-primary"
+                  disabled={submitting}
+                >
                   {submitting ? 'Sending...' : 'Send Message'}
                 </button>
               </form>
             )}
           </div>
 
-          <div>
-            <div className="glass-card contact-info-card">
-              <h2 style={{ marginBottom: '30px' }}>Contact Details</h2>
+          {/* Contact Details */}
+          <div className="ylh-card">
+            <h2 style={{ fontSize: '1.1rem', fontWeight: 600, marginBottom: '24px' }}>Contact Details</h2>
 
-              <div className="contact-detail-item">
-                <i className="fas fa-envelope" style={{ color: 'var(--grey-text)', marginTop: '2px' }}></i>
-                <div>
-                  <span style={{ display: 'block', fontSize: '0.9rem', color: 'var(--grey-text)' }}>Official Email</span>
-                  <a href="mailto:connect.ylh@gmail.com" style={{ color: 'var(--text-color)', textDecoration: 'none', fontWeight: 700 }}>
-                    connect.ylh@gmail.com
-                  </a>
-                </div>
-              </div>
-
-              <div className="contact-detail-item">
-                <i className="fas fa-map-marker-alt" style={{ color: 'var(--grey-text)', marginTop: '2px' }}></i>
-                <div>
-                  <span style={{ display: 'block', fontSize: '0.9rem', color: 'var(--grey-text)' }}>Headquarters</span>
-                  <span style={{ fontWeight: 700 }}>Chennai, Tamil Nadu, India</span>
-                </div>
-              </div>
-
-              <div className="contact-socials">
-                <a href="https://www.linkedin.com/company/young-legal-house/" className="contact-social-btn" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-color)' }}>
-                  <i className="fab fa-linkedin"></i>
-                </a>
-                <a href="https://www.instagram.com/younglegalhouse/" className="contact-social-btn" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-color)' }}>
-                  <i className="fab fa-instagram"></i>
-                </a>
-                <a href="https://linktr.ee/younglegalhouse" className="contact-social-btn" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-color)' }}>
-                  <i className="fas fa-link"></i>
+            <div style={{ display: 'flex', gap: '16px', marginBottom: '20px' }}>
+              <i className="fas fa-envelope" style={{ color: 'var(--muted-text)', marginTop: '2px' }}></i>
+              <div>
+                <div style={{ fontSize: '0.85rem', color: 'var(--muted-text)', marginBottom: '4px' }}>Official Email</div>
+                <a href="mailto:connect.ylh@gmail.com" style={{ color: 'var(--text-color)', textDecoration: 'none', fontWeight: 600 }}>
+                  connect.ylh@gmail.com
                 </a>
               </div>
             </div>
+
+            <div style={{ display: 'flex', gap: '16px', marginBottom: '20px' }}>
+              <i className="fas fa-map-marker-alt" style={{ color: 'var(--muted-text)', marginTop: '2px' }}></i>
+              <div>
+                <div style={{ fontSize: '0.85rem', color: 'var(--muted-text)', marginBottom: '4px' }}>Headquarters</div>
+                <div style={{ fontWeight: 600 }}>Chennai, Tamil Nadu, India</div>
+              </div>
+            </div>
+
+            <div style={{ display: 'flex', gap: '12px', marginTop: '24px' }}>
+              <a
+                href="https://www.linkedin.com/company/young-legal-house/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ylh-footer-socials"
+                style={{ display: 'grid', placeItems: 'center', width: '40px', height: '40px', borderRadius: '50%', border: '1px solid var(--glass-border)', color: 'var(--grey-text)' }}
+              >
+                <i className="fab fa-linkedin"></i>
+              </a>
+              <a
+                href="https://www.instagram.com/younglegalhouse/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ylh-footer-socials"
+                style={{ display: 'grid', placeItems: 'center', width: '40px', height: '40px', borderRadius: '50%', border: '1px solid var(--glass-border)', color: 'var(--grey-text)' }}
+              >
+                <i className="fab fa-instagram"></i>
+              </a>
+              <a
+                href="https://linktr.ee/younglegalhouse"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ylh-footer-socials"
+                style={{ display: 'grid', placeItems: 'center', width: '40px', height: '40px', borderRadius: '50%', border: '1px solid var(--glass-border)', color: 'var(--grey-text)' }}
+              >
+                <i className="fas fa-link"></i>
+              </a>
+            </div>
           </div>
-        </div>
-      </main>
+        </AnimatedSection>
+
+      </PageWrapper>
     </>
   );
 }

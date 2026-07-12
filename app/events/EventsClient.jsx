@@ -1,25 +1,72 @@
 'use client';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import Link from 'next/link';
-import { UPCOMING_EVENTS, PAST_EVENTS, EVENT_STATS } from '@/lib/site-data';
+import { urlFor } from '@/lib/sanity';
 
-const EVENT_FILTERS = ['All Events', 'Upcoming Events', 'Past Events', 'Competitions', 'Webinars', 'Workshops', 'Talks'];
+const FILTERS = ['All Events', 'Upcoming Events', 'Past Events', 'Competition', 'Webinar', 'Workshop', 'Talk'];
 
-export default function EventsClient() {
+function formatDay(dateStr) {
+  if (!dateStr) return { day: '--', month: '' };
+  const d = new Date(dateStr);
+  return {
+    day: d.toLocaleDateString('en-IN', { day: '2-digit' }),
+    month: d.toLocaleDateString('en-IN', { month: 'short' }).toUpperCase(),
+  };
+}
+
+function formatFullDate(dateStr) {
+  if (!dateStr) return '';
+  return new Date(dateStr).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
+}
+
+function EventImage({ event, className }) {
+  if (event.coverImage) {
+    return <img src={urlFor(event.coverImage).width(500).height(280).url()} alt={event.title} />;
+  }
+  return (
+    <div className={className} style={{ width: '100%', height: '100%', display: 'grid', placeItems: 'center', background: 'var(--panel-bg)' }}>
+      <i className="fas fa-calendar-alt" style={{ fontSize: '1.4rem', color: 'var(--muted-text)' }}></i>
+    </div>
+  );
+}
+
+export default function EventsClient({ events }) {
   const [activeFilter, setActiveFilter] = useState('All Events');
   const [searchQuery, setSearchQuery] = useState('');
+
+  const upcoming = useMemo(() => events.filter((e) => e.status === 'upcoming'), [events]);
+  const past = useMemo(() => events.filter((e) => e.status === 'concluded'), [events]);
+
+  const filtered = useMemo(() => {
+    return events.filter((e) => {
+      let matchFilter = true;
+      if (activeFilter === 'Upcoming Events') matchFilter = e.status === 'upcoming';
+      else if (activeFilter === 'Past Events') matchFilter = e.status === 'concluded';
+      else if (['Competition', 'Webinar', 'Workshop', 'Talk'].includes(activeFilter)) matchFilter = e.eventType === activeFilter;
+
+      const q = searchQuery.trim().toLowerCase();
+      const matchSearch = !q || e.title.toLowerCase().includes(q) || e.shortDescription?.toLowerCase().includes(q);
+      return matchFilter && matchSearch;
+    });
+  }, [events, activeFilter, searchQuery]);
+
+  const isFiltering = activeFilter !== 'All Events' || searchQuery.trim() !== '';
+  const upcomingToShow = isFiltering ? filtered.filter((e) => e.status === 'upcoming') : upcoming.slice(0, 4);
+  const pastToShow = isFiltering ? filtered.filter((e) => e.status === 'concluded') : past.slice(0, 5);
 
   return (
     <main>
       <section className="ylh-page-hero ylh-container">
-        <p className="ylh-hero-label">Events That Inspire, Discussions That Drive Change</p>
+        <div className="ylh-breadcrumb">
+          <Link href="/">Home</Link> &nbsp;›&nbsp; Events
+        </div>
         <h1 className="ylh-page-title">YLH Events</h1>
         <p className="ylh-page-sub">
-          YLH events bring India&apos;s legal minds together to learn, compete, and grow.
+          From national moots to thought-provoking webinars, YLH events bring together India&apos;s legal minds to learn, compete, and grow.
         </p>
-        <div className="ylh-hero-actions" style={{ marginTop: 24 }}>
-          <Link href="#upcoming" className="ylh-btn ylh-btn-primary">Explore Events &rarr;</Link>
-          <Link href="#past" className="ylh-btn ylh-btn-outline">View Past Events &rarr;</Link>
+        <div className="ylh-hero-actions" style={{ justifyContent: 'center', marginTop: '20px' }}>
+          <a href="#upcoming" className="ylh-btn ylh-btn-primary">Explore Events <i className="fas fa-arrow-right"></i></a>
+          <a href="#past" className="ylh-btn ylh-btn-outline">View Past Events <i className="fas fa-arrow-right"></i></a>
         </div>
         <div className="ylh-page-hero-bg">
           <img src="/design-assets/hero-courthouse.jpg" alt="" />
@@ -27,20 +74,31 @@ export default function EventsClient() {
       </section>
 
       <section className="ylh-container">
-        <div className="ylh-stats-bar" style={{ gridTemplateColumns: 'repeat(4, 1fr)' }}>
-          {EVENT_STATS.map(({ icon, value, label }) => (
-            <div key={label} className="ylh-stat">
-              <i className={`fas ${icon}`} />
-              <div className="ylh-stat-value">{value}</div>
-              <div className="ylh-stat-label">{label}</div>
-            </div>
-          ))}
+        <div className="ylh-stats-bar">
+          <div className="ylh-stat">
+            <i className="fas fa-calendar"></i>
+            <div className="ylh-stat-value">{events.length > 0 ? `${events.length}+` : '25+'}</div>
+            <div className="ylh-stat-label">Events Hosted</div>
+          </div>
+          <div className="ylh-stat">
+            <i className="fas fa-users"></i>
+            <div className="ylh-stat-value">8K+</div>
+            <div className="ylh-stat-label">Active Participants</div>
+          </div>
+          <div className="ylh-stat">
+            <i className="fas fa-landmark"></i>
+            <div className="ylh-stat-value">50+</div>
+            <div className="ylh-stat-label">Partner Institutions</div>
+          </div>
+          <div className="ylh-stat">
+            <i className="fas fa-trophy"></i>
+            <div className="ylh-stat-value">10+</div>
+            <div className="ylh-stat-label">Flagship Events</div>
+          </div>
         </div>
-      </section>
 
-      <section className="ylh-container">
         <div className="ylh-filters">
-          {EVENT_FILTERS.map((f) => (
+          {FILTERS.map((f) => (
             <button
               key={f}
               type="button"
@@ -51,7 +109,7 @@ export default function EventsClient() {
             </button>
           ))}
           <div className="ylh-search">
-            <i className="fas fa-search" />
+            <i className="fas fa-search"></i>
             <input
               type="text"
               placeholder="Search events..."
@@ -62,70 +120,89 @@ export default function EventsClient() {
         </div>
       </section>
 
-      <section className="ylh-container" id="upcoming" style={{ paddingBottom: 48 }}>
+      <section className="ylh-container" id="upcoming" style={{ paddingTop: '32px' }}>
         <div className="ylh-col-header">
           <div>
-            <p className="ylh-section-label">Upcoming Events</p>
-            <h2 className="ylh-section-title">What&apos;s Coming Up</h2>
+            <p className="ylh-section-label">UPCOMING EVENTS</p>
+            <h2 className="ylh-section-title" style={{ marginBottom: 0 }}>What&apos;s Coming Up</h2>
           </div>
-          <Link href="/events">View all events &rarr;</Link>
+          {!isFiltering && <a href="#" onClick={(e) => { e.preventDefault(); setActiveFilter('Upcoming Events'); }}>View all events →</a>}
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: 16 }}>
-          {UPCOMING_EVENTS.filter((e) =>
-            !searchQuery || e.title.toLowerCase().includes(searchQuery.toLowerCase())
-          ).map((event) => (
-            <Link key={event.id} href="/events/register" className="ylh-card" style={{ textDecoration: 'none', color: 'inherit', padding: 0, overflow: 'hidden' }}>
-              <img src={event.image} alt="" style={{ width: '100%', height: 140, objectFit: 'cover', filter: 'grayscale(80%)' }} />
-              <div style={{ padding: 20 }}>
-                <div style={{ display: 'flex', gap: 12, marginBottom: 12 }}>
-                  <div className="ylh-event-date">
-                    <div className="day">{event.date.split(' ')[0]}</div>
-                    <div className="month">{event.date.split(' ')[1]}</div>
+
+        {upcomingToShow.length === 0 ? (
+          <p style={{ color: 'var(--muted-text)', padding: '20px 0 40px' }}>
+            {events.length === 0 ? 'No events published yet. Check back soon!' : 'No upcoming events match your filters.'}
+          </p>
+        ) : (
+          <div className="ylh-events-grid" style={{ marginBottom: '48px' }}>
+            {upcomingToShow.map((event) => {
+              const { day, month } = formatDay(event.eventDate);
+              return (
+                <Link key={event._id} href={`/events/${event?.slug?.current || ''}`} className="ylh-event-grid-card">
+                  <div className="ylh-event-grid-card-img-wrap">
+                    <EventImage event={event} />
+                    <div className="ylh-event-grid-date-badge">
+                      <span className="day">{day}</span>
+                      <span className="month">{month}</span>
+                    </div>
                   </div>
-                  <div>
-                    <div className="ylh-event-tag">{event.category}</div>
-                    <div className="ylh-event-title">{event.title}</div>
+                  <div className="ylh-event-grid-card-body">
+                    <span className="ylh-event-tag">{event.eventType}</span>
+                    <h4>{event.title}</h4>
+                    <p>{event.shortDescription}</p>
+                    <div className="ylh-event-grid-meta">
+                      <span><i className="fas fa-map-marker-alt"></i>{event.location}</span>
+                      <span><i className="fas fa-calendar"></i>{formatFullDate(event.eventDate)}</span>
+                    </div>
+                    <span className="ylh-event-view-details">View Details <i className="fas fa-arrow-right"></i></span>
                   </div>
-                </div>
-                <p style={{ fontSize: '0.82rem', color: 'var(--ylh-gray-500)', lineHeight: 1.6, marginBottom: 12 }}>{event.desc}</p>
-                <div style={{ fontSize: '0.78rem', color: 'var(--ylh-gray-500)' }}>{event.location}</div>
-                <div style={{ marginTop: 12, fontSize: '0.82rem' }}>View Details &rarr;</div>
-              </div>
-            </Link>
-          ))}
-        </div>
+                </Link>
+              );
+            })}
+          </div>
+        )}
       </section>
 
-      <section className="ylh-container" id="past" style={{ paddingBottom: 48 }}>
+      <section className="ylh-container" id="past">
         <div className="ylh-col-header">
           <div>
-            <p className="ylh-section-label">Past Events</p>
-            <h2 className="ylh-section-title">From Our Legacy</h2>
+            <p className="ylh-section-label">PAST EVENTS</p>
+            <h2 className="ylh-section-title" style={{ marginBottom: 0 }}>From Our Legacy</h2>
           </div>
-          <Link href="/events">View past events &rarr;</Link>
+          {!isFiltering && <a href="#" onClick={(e) => { e.preventDefault(); setActiveFilter('Past Events'); }}>View past events →</a>}
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 16 }}>
-          {PAST_EVENTS.map((event) => (
-            <div key={event.title} className="ylh-card" style={{ padding: 0, overflow: 'hidden' }}>
-              <img src={event.image} alt="" style={{ width: '100%', height: 120, objectFit: 'cover', filter: 'grayscale(80%)' }} />
-              <div style={{ padding: 16 }}>
-                <div style={{ fontSize: '0.85rem', fontWeight: 600, marginBottom: 4 }}>{event.title}</div>
-                <div style={{ fontSize: '0.78rem', color: 'var(--ylh-gray-500)' }}>{event.date}</div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
 
-      <section className="ylh-container">
+        {pastToShow.length === 0 ? (
+          <p style={{ color: 'var(--muted-text)', padding: '20px 0 40px' }}>No past events to show yet.</p>
+        ) : (
+          <div className="ylh-past-events-row" style={{ marginBottom: '48px' }}>
+            {pastToShow.map((event) => (
+              <Link key={event._id} href={`/events/${event?.slug?.current || ''}`} className="ylh-past-event-card">
+                {event.coverImage ? (
+                  <img src={urlFor(event.coverImage).width(260).height(150).url()} alt={event.title} />
+                ) : (
+                  <div style={{ height: 110, borderRadius: 4, background: 'var(--panel-bg)', border: '1px solid var(--glass-border)', marginBottom: 10, display: 'grid', placeItems: 'center' }}>
+                    <i className="fas fa-calendar-alt" style={{ color: 'var(--muted-text)' }}></i>
+                  </div>
+                )}
+                <h5>{event.title}</h5>
+                <span><i className="fas fa-calendar" style={{ marginRight: 4 }}></i>{formatFullDate(event.eventDate)}</span>
+              </Link>
+            ))}
+          </div>
+        )}
+
         <div className="ylh-newsletter-bar">
-          <div>
-            <h3><i className="fas fa-envelope" style={{ marginRight: 8 }} />Stay Updated</h3>
-            <p>Never miss an event. Subscribe to get notified about upcoming competitions and workshops.</p>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+            <i className="fas fa-envelope" style={{ fontSize: '1.2rem', color: 'var(--muted-text)' }}></i>
+            <div>
+              <h3>Stay Updated</h3>
+              <p>Subscribe to our newsletter for the latest events, opportunities, and legal insights.</p>
+            </div>
           </div>
           <form className="ylh-newsletter-form" onSubmit={(e) => e.preventDefault()}>
             <input type="email" placeholder="Enter your email address" required />
-            <button type="submit" className="ylh-btn ylh-btn-primary ylh-btn-sm">Subscribe</button>
+            <button type="submit" className="ylh-btn ylh-btn-primary">Subscribe</button>
           </form>
         </div>
       </section>

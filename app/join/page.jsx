@@ -1,7 +1,10 @@
 'use client';
 import { useState } from 'react';
 import Link from 'next/link';
-import NetworkBackground from '@/components/NetworkBackground';
+import Image from 'next/image';
+import PageWrapper from '@/components/PageWrapper';
+import AnimatedSection from '@/components/AnimatedSection';
+import WordReveal from '@/components/WordReveal';
 
 export default function JoinPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -49,52 +52,104 @@ export default function JoinPage() {
 
   return (
     <>
-      <NetworkBackground />
-      <main className="page-spacing container">
-        <div style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto 40px' }}>
-          <h1 className="section-title">Shape the Future of Law</h1>
-          <p style={{ color: 'var(--grey-text)', fontSize: '1.1rem', lineHeight: '1.8' }}>
-            Whether you want to build your resume with hands-on experience by joining our core team,
-            or you simply want a strategic edge by receiving curated legal updates, Young Legal House
-            is the place for you.
-          </p>
-        </div>
+      <PageWrapper className="ylh-container">
 
-        <div className="join-grid">
-          <div className="glass-card">
-            <h2 style={{ marginBottom: '25px', borderBottom: '1px solid var(--glass-border)', paddingBottom: '10px' }}>
+        {/* ── PAGE HERO ── */}
+        <AnimatedSection variant="fadeUp" className="ylh-page-hero">
+          <div className="ylh-page-hero-bg">
+            <Image
+              src="/design-assets/join-section-bg.jpg"
+              alt="Join Young Legal House"
+              fill
+              priority
+            />
+          </div>
+          <div>
+            <p className="ylh-hero-label">Join the Community</p>
+            <WordReveal
+              text="Shape the Future of Law"
+              as="h1"
+              className="ylh-page-title"
+            />
+            <p className="ylh-page-sub">
+              Whether you want to build your resume with hands-on experience by joining our core team,
+              or you simply want a strategic edge by receiving curated legal updates, Young Legal House
+              is the place for you.
+            </p>
+          </div>
+        </AnimatedSection>
+
+        {/* ── FORM GRID ── */}
+        <AnimatedSection variant="fadeUp" className="ylh-form-grid">
+          {/* Left column */}
+          <div style={{ position: 'relative' }}>
+            <div style={{ position: 'absolute', inset: 0, zIndex: -1, opacity: 0.15 }}>
+              <Image
+                src="/design-assets/join-section-bg.jpg"
+                alt="Background"
+                fill
+                style={{ objectFit: 'cover' }}
+              />
+            </div>
+            <div className="ylh-join-features">
+              <div style={{ marginBottom: '22px' }}>
+                <h2 style={{ fontSize: '1.5rem', marginBottom: '10px' }}>Join the Community</h2>
+                <p style={{ color: 'var(--grey-text)', lineHeight: 1.7 }}>
+                  Build your legal edge with meaningful opportunities, practical experience, and curated legal updates.
+                </p>
+              </div>
+              <div className="ylh-join-feature">
+                <i className="fas fa-briefcase"></i>
+                <div>
+                  <h4>For Aspiring Legal Professionals</h4>
+                  <p>Join our core team and gain hands-on experience in legal research, content creation, event management, and community building.</p>
+                </div>
+              </div>
+              <div className="ylh-join-feature">
+                <i className="fas fa-lightbulb"></i>
+                <div>
+                  <h4>For Knowledge Seekers</h4>
+                  <p>Stay ahead with curated legal updates, event reminders, and exclusive opportunities delivered directly to you.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right column - Form */}
+          <div className="ylh-card">
+            <h2 style={{ fontSize: '1.1rem', fontWeight: 600, marginBottom: '20px', borderBottom: '1px solid var(--glass-border)', paddingBottom: '12px' }}>
               Careers &amp; Internships
             </h2>
 
             {submitted ? (
-              <p style={{ color: 'var(--grey-text)', lineHeight: '1.8' }}>
+              <p style={{ color: 'var(--grey-text)', lineHeight: 1.8 }}>
                 ✅ Application submitted! We will get back to you soon.
               </p>
             ) : (
               <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                  <label className="form-label">Full Name</label>
-                  <input name="fullName" type="text" className="form-input" placeholder="e.g., Jane Doe" required />
+                <div className="ylh-form-group">
+                  <label>Full Name</label>
+                  <input name="fullName" type="text" placeholder="e.g., Jane Doe" required />
                 </div>
 
-                <div className="form-group">
-                  <label className="form-label">Email Address</label>
-                  <input name="email" type="email" className="form-input" placeholder="jane@example.com" required />
+                <div className="ylh-form-group">
+                  <label>Email Address</label>
+                  <input name="email" type="email" placeholder="jane@example.com" required />
                 </div>
 
-                <div className="form-group">
-                  <label className="form-label">Phone Number</label>
-                  <input name="phone" type="tel" className="form-input" placeholder="+91 XXXXX XXXXX" required />
+                <div className="ylh-form-group">
+                  <label>Phone Number</label>
+                  <input name="phone" type="tel" placeholder="+91 XXXXX XXXXX" required />
                 </div>
 
-                <div className="form-group">
-                  <label className="form-label">LinkedIn Profile URL</label>
-                  <input name="linkedinUrl" type="url" className="form-input" placeholder="https://linkedin.com/in/..." required />
+                <div className="ylh-form-group">
+                  <label>LinkedIn Profile URL</label>
+                  <input name="linkedinUrl" type="url" placeholder="https://linkedin.com/in/..." required />
                 </div>
 
-                <div className="form-group">
-                  <label className="form-label">Position Applying For</label>
-                  <select name="position" className="form-select" required defaultValue="">
+                <div className="ylh-form-group">
+                  <label>Position Applying For</label>
+                  <select name="position" required defaultValue="">
                     <option value="" disabled>Select a position...</option>
                     <option value="legal_research">Legal Research Intern</option>
                     <option value="graphic_designer">Graphic Designer</option>
@@ -102,16 +157,15 @@ export default function JoinPage() {
                   </select>
                 </div>
 
-                <div className="form-group">
-                  <label className="form-label">Upload CV</label>
+                <div className="ylh-form-group">
+                  <label>Upload CV</label>
                   <input
                     name="cvFile"
                     type="file"
-                    className="form-input"
                     accept=".pdf,.doc,.docx"
                     required
                   />
-                  <p className="word-count-indicator" style={{ marginTop: '8px' }}>
+                  <p style={{ marginTop: '8px', fontSize: '0.8rem', color: 'var(--muted-text)' }}>
                     Accepted formats: PDF, DOC, DOCX (max 5MB)
                   </p>
                 </div>
@@ -120,41 +174,53 @@ export default function JoinPage() {
                   <p style={{ color: '#d9534f', marginBottom: '12px' }}>{error}</p>
                 ) : null}
 
-                <button type="submit" className="submit-btn" disabled={submitting}>
+                <button
+                  type="submit"
+                  className="ylh-btn ylh-btn-primary"
+                  disabled={submitting}
+                >
                   {submitting ? 'Submitting...' : 'Submit Application'}
                 </button>
               </form>
             )}
           </div>
+        </AnimatedSection>
 
-          <div>
-            <div className="glass-card subscription-card">
-              <h2 style={{ fontSize: '1.8rem' }}>YLH Premium Updates</h2>
-              <p style={{ color: 'var(--grey-text)', marginTop: '10px' }}>
-                Stay ahead of the curve. Never miss a deadline again.
-              </p>
+        {/* ── PREMIUM CARD ── */}
+        <AnimatedSection variant="fadeUp" style={{ maxWidth: '480px', margin: '48px auto 0' }}>
+          <div className="ylh-card">
+            <h2 style={{ fontSize: '1.4rem', fontWeight: 700, marginBottom: '8px' }}>YLH Premium Updates</h2>
+            <p style={{ color: 'var(--muted-text)', marginBottom: '16px' }}>
+              Stay ahead of the curve. Never miss a deadline again.
+            </p>
 
-              <div className="sub-price">
-                <span className="sub-currency">₹</span>39<span className="sub-month">/mo</span>
-              </div>
-
-              <ul className="sub-perks">
-                <li>Curated legal updates and event reminders.</li>
-                <li>Priority access to workshops and community announcements.</li>
-                <li>Monthly opportunities digest for internships, moots, and calls for papers.</li>
-              </ul>
-
-              <Link
-                href="/contact"
-                className="glass-pill"
-                style={{ display: 'inline-block', marginTop: '24px', background: 'var(--text-color)', color: 'var(--bg-color)', fontWeight: 800 }}
-              >
-                Contact Us to Subscribe
-              </Link>
+            <div style={{ fontSize: '2.5rem', fontWeight: 700, marginBottom: '4px' }}>
+              <span style={{ fontSize: '1.5rem' }}>₹</span>39<span style={{ fontSize: '1rem', color: 'var(--muted-text)' }}>/mo</span>
             </div>
+
+            <ul style={{ listStyle: 'none', padding: 0, marginBottom: '24px' }}>
+              <li style={{ marginBottom: '12px', color: 'var(--grey-text)', fontSize: '0.9rem' }}>
+                ✓ Curated legal updates and event reminders.
+              </li>
+              <li style={{ marginBottom: '12px', color: 'var(--grey-text)', fontSize: '0.9rem' }}>
+                ✓ Priority access to workshops and community announcements.
+              </li>
+              <li style={{ marginBottom: '12px', color: 'var(--grey-text)', fontSize: '0.9rem' }}>
+                ✓ Monthly opportunities digest for internships, moots, and calls for papers.
+              </li>
+            </ul>
+
+            <Link
+              href="/contact"
+              className="ylh-btn ylh-btn-primary"
+              style={{ display: 'inline-block', width: '100%', textAlign: 'center' }}
+            >
+              Contact Us to Subscribe
+            </Link>
           </div>
-        </div>
-      </main>
+        </AnimatedSection>
+
+      </PageWrapper>
     </>
   );
 }

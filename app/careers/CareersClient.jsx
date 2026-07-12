@@ -73,9 +73,9 @@ export default function CareersClient() {
               <h3 style={{ fontSize: '1rem', fontWeight: 600, marginBottom: 6 }}>{employer.name}</h3>
               <div style={{ marginBottom: 8 }}>
                 <span className="ylh-tier-tag">{employer.tier}</span>
-                <span style={{ fontSize: '0.78rem', color: 'var(--ylh-gray-500)' }}>{employer.type} &middot; {employer.location}</span>
+                <span style={{ fontSize: '0.78rem', color: 'var(--muted-text)' }}>{employer.type} &middot; {employer.location}</span>
               </div>
-              <p style={{ fontSize: '0.85rem', color: 'var(--ylh-gray-500)', lineHeight: 1.6 }}>{employer.desc}</p>
+              <p style={{ fontSize: '0.85rem', color: 'var(--muted-text)', lineHeight: 1.6 }}>{employer.desc}</p>
             </div>
             <span className="ylh-btn ylh-btn-outline ylh-btn-sm">View Details &rarr;</span>
           </Link>

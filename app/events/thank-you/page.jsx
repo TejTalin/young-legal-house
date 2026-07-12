@@ -1,12 +1,10 @@
 import Link from 'next/link';
-import NetworkBackground from '@/components/NetworkBackground';
 
 export default function EventThankYouPage({ searchParams }) {
   const participantName = searchParams?.name || 'Participant';
 
   return (
     <>
-      <NetworkBackground />
       <main className="page-spacing container" style={{ maxWidth: '760px' }}>
         <div className="glass-card" style={{ textAlign: 'center', padding: '42px 26px' }}>
           <i className="fas fa-check-circle" style={{ fontSize: '3rem', color: '#6ddf9f', marginBottom: '14px', display: 'block' }}></i>

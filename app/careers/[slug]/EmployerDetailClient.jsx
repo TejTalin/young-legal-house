@@ -36,9 +36,9 @@ export default function EmployerDetailClient({ employer }) {
             <h1 style={{ fontSize: '1.6rem', fontWeight: 700, marginBottom: 8 }}>{employer.name}</h1>
             <div style={{ marginBottom: 12 }}>
               <span className="ylh-tier-tag">{employer.tier}</span>
-              <span style={{ fontSize: '0.85rem', color: 'var(--ylh-gray-500)' }}>{employer.type} &middot; {employer.location}</span>
+              <span style={{ fontSize: '0.85rem', color: 'var(--muted-text)' }}>{employer.type} &middot; {employer.location}</span>
             </div>
-            <p style={{ color: 'var(--ylh-gray-300)', lineHeight: 1.7, fontSize: '0.9rem' }}>{employer.desc}</p>
+            <p style={{ color: 'var(--grey-text)', lineHeight: 1.7, fontSize: '0.9rem' }}>{employer.desc}</p>
           </div>
           <a href={employer.website} target="_blank" rel="noopener noreferrer" className="ylh-btn ylh-btn-primary ylh-btn-sm">
             Visit Official Website <i className="fas fa-external-link-alt" style={{ marginLeft: 6 }} />
@@ -54,7 +54,7 @@ export default function EmployerDetailClient({ employer }) {
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 280px', gap: 32 }}>
           <div>
             <h2 style={{ fontSize: '1.1rem', fontWeight: 600, marginBottom: 16 }}>About {employer.name}</h2>
-            <p style={{ color: 'var(--ylh-gray-300)', lineHeight: 1.85, fontSize: '0.92rem', marginBottom: 32 }}>
+            <p style={{ color: 'var(--grey-text)', lineHeight: 1.85, fontSize: '0.92rem', marginBottom: 32 }}>
               {employer.name} is one of India&apos;s leading full-service law firms, providing comprehensive legal services across corporate, banking, dispute resolution, and regulatory matters. With offices across major cities, the firm serves domestic and international clients across diverse sectors.
             </p>
 
@@ -69,10 +69,10 @@ export default function EmployerDetailClient({ employer }) {
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16 }}>
               {team.map((member) => (
                 <div key={member.name} className="ylh-card" style={{ padding: 16, textAlign: 'center' }}>
-                  <div style={{ width: 64, height: 64, borderRadius: '50%', background: 'var(--ylh-gray-800)', margin: '0 auto 12px' }} />
+                  <div style={{ width: 64, height: 64, borderRadius: '50%', background: 'var(--panel-bg)', margin: '0 auto 12px' }} />
                   <div style={{ fontWeight: 600, fontSize: '0.9rem' }}>{member.name}</div>
-                  <div style={{ fontSize: '0.78rem', color: 'var(--ylh-gray-500)' }}>{member.title}</div>
-                  <div style={{ fontSize: '0.72rem', color: 'var(--ylh-gray-500)', marginTop: 4 }}>{member.area}</div>
+                  <div style={{ fontSize: '0.78rem', color: 'var(--muted-text)' }}>{member.title}</div>
+                  <div style={{ fontSize: '0.72rem', color: 'var(--muted-text)', marginTop: 4 }}>{member.area}</div>
                 </div>
               ))}
             </div>
@@ -87,7 +87,7 @@ export default function EmployerDetailClient({ employer }) {
               ['Website', employer.website],
             ].map(([label, value]) => (
               <div key={label} style={{ marginBottom: 14 }}>
-                <div style={{ fontSize: '0.72rem', color: 'var(--ylh-gray-500)', marginBottom: 2 }}>{label}</div>
+                <div style={{ fontSize: '0.72rem', color: 'var(--muted-text)', marginBottom: 2 }}>{label}</div>
                 <div style={{ fontSize: '0.85rem' }}>
                   {label === 'Website' ? (
                     <a href={value} target="_blank" rel="noopener noreferrer" style={{ color: 'inherit' }}>{value.replace('https://', '')}</a>

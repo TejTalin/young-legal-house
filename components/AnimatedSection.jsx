@@ -1,17 +1,5 @@
 'use client';
-import { motion } from 'framer-motion';
-import { fadeUp, slideLeft, slideRight, scaleUp, VIEW } from '@/lib/motion';
-
-const VARIANTS = { fadeUp, slideLeft, slideRight, scaleUp };
-
-const TAGS = {
-  div:     motion.div,
-  section: motion.section,
-  footer:  motion.footer,
-  article: motion.article,
-  header:  motion.header,
-  span:    motion.span,
-};
+import { createElement } from 'react';
 
 export default function AnimatedSection({
   children,
@@ -21,30 +9,7 @@ export default function AnimatedSection({
   style     = {},
   as        = 'div',
 }) {
-  const base     = VARIANTS[variant] ?? fadeUp;
-  const variants = {
-    hidden:  base.hidden,
-    visible: {
-      ...base.visible,
-      transition: {
-        ...base.visible.transition,
-        delay,
-      },
-    },
-  };
-
-  const Tag = TAGS[as] ?? TAGS.div;
-
-  return (
-    <Tag
-      className={className}
-      style={style}
-      variants={variants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={VIEW}
-    >
-      {children}
-    </Tag>
-  );
+  void variant;
+  void delay;
+  return createElement(as, { className, style }, children);
 }

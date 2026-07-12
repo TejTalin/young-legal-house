@@ -66,18 +66,18 @@ export default function BareActsClient() {
                 onClick={(e) => { e.preventDefault(); setActiveCategory(name); }}
               >
                 <span><i className={`fas ${icon}`} style={{ marginRight: 8, width: 16 }} />{name}</span>
-                <span style={{ color: 'var(--ylh-gray-500)' }}>{count}</span>
+                <span style={{ color: 'var(--muted-text)' }}>{count}</span>
               </a>
             ))}
           </div>
           <div className="ylh-card" style={{ marginTop: 24, padding: 16 }}>
             <p style={{ fontSize: '0.82rem', marginBottom: 8 }}>Can&apos;t find an Act?</p>
-            <a href="/contact" style={{ fontSize: '0.82rem', color: 'var(--ylh-gray-300)' }}>Request Now &rarr;</a>
+            <a href="/contact" style={{ fontSize: '0.82rem', color: 'var(--grey-text)' }}>Request Now &rarr;</a>
           </div>
         </aside>
 
         <div>
-          <p style={{ fontSize: '0.82rem', color: 'var(--ylh-gray-500)', marginBottom: 16 }}>
+          <p style={{ fontSize: '0.82rem', color: 'var(--muted-text)', marginBottom: 16 }}>
             Showing 1-{filtered.length} of 142 Acts
           </p>
           {filtered.map((act) => (
@@ -90,10 +90,10 @@ export default function BareActsClient() {
               tabIndex={0}
             >
               <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
-                <i className="fas fa-file-lines" style={{ color: 'var(--ylh-gray-500)' }} />
+                <i className="fas fa-file-lines" style={{ color: 'var(--muted-text)' }} />
                 <div>
                   <div style={{ fontWeight: 600, fontSize: '0.9rem' }}>{act.title}</div>
-                  <div style={{ fontSize: '0.78rem', color: 'var(--ylh-gray-500)' }}>{act.year} &middot; {act.category}</div>
+                  <div style={{ fontSize: '0.78rem', color: 'var(--muted-text)' }}>{act.year} &middot; {act.category}</div>
                 </div>
               </div>
               <button type="button" className="ylh-btn ylh-btn-outline ylh-btn-sm">View</button>
@@ -114,10 +114,10 @@ export default function BareActsClient() {
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 16 }}>
               <h3 style={{ fontSize: '1rem', fontWeight: 600, lineHeight: 1.4 }}>{selectedAct.title}</h3>
               <div style={{ display: 'flex', gap: 8 }}>
-                <button type="button" aria-label="Bookmark" style={{ background: 'none', border: 'none', color: 'var(--ylh-gray-500)', cursor: 'pointer' }}>
+                <button type="button" aria-label="Bookmark" style={{ background: 'none', border: 'none', color: 'var(--muted-text)', cursor: 'pointer' }}>
                   <i className="fas fa-bookmark" />
                 </button>
-                <button type="button" aria-label="Download" style={{ background: 'none', border: 'none', color: 'var(--ylh-gray-500)', cursor: 'pointer' }}>
+                <button type="button" aria-label="Download" style={{ background: 'none', border: 'none', color: 'var(--muted-text)', cursor: 'pointer' }}>
                   <i className="fas fa-download" />
                 </button>
               </div>
@@ -138,7 +138,7 @@ export default function BareActsClient() {
 
             <div style={{ marginBottom: 20 }}>
               <h4 style={{ fontSize: '0.85rem', fontWeight: 600, marginBottom: 8 }}>Preamble</h4>
-              <p style={{ fontSize: '0.82rem', color: 'var(--ylh-gray-300)', lineHeight: 1.7, fontStyle: 'italic' }}>
+              <p style={{ fontSize: '0.82rem', color: 'var(--grey-text)', lineHeight: 1.7, fontStyle: 'italic' }}>
                 {selectedAct.preamble}
               </p>
               <button type="button" className="ylh-btn ylh-btn-outline ylh-btn-sm" style={{ marginTop: 12 }}>
@@ -148,14 +148,14 @@ export default function BareActsClient() {
 
             <div style={{ marginBottom: 20 }}>
               <h4 style={{ fontSize: '0.85rem', fontWeight: 600, marginBottom: 8 }}>About this Act</h4>
-              <p style={{ fontSize: '0.82rem', color: 'var(--ylh-gray-500)', lineHeight: 1.7 }}>{selectedAct.about}</p>
+              <p style={{ fontSize: '0.82rem', color: 'var(--muted-text)', lineHeight: 1.7 }}>{selectedAct.about}</p>
             </div>
 
             <div>
               <h4 style={{ fontSize: '0.85rem', fontWeight: 600, marginBottom: 8 }}>Key Features</h4>
               <ul style={{ listStyle: 'none', padding: 0 }}>
                 {selectedAct.features.map((f) => (
-                  <li key={f} style={{ fontSize: '0.82rem', color: 'var(--ylh-gray-500)', marginBottom: 6, paddingLeft: 16, position: 'relative' }}>
+                  <li key={f} style={{ fontSize: '0.82rem', color: 'var(--muted-text)', marginBottom: 6, paddingLeft: 16, position: 'relative' }}>
                     <span style={{ position: 'absolute', left: 0 }}>&bull;</span>
                     {f}
                   </li>

@@ -1,8 +1,8 @@
 import './globals.css';
+import './redesign.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import CookieBanner from '@/components/CookieBanner';
-import CursorGlow from '@/components/CursorGlow';
 import { Analytics } from '@vercel/analytics/react';
 
 export const metadata = {
@@ -24,7 +24,6 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className="dark-mode">
-        <CursorGlow />
         <Navbar />
         {children}
         <Footer />
