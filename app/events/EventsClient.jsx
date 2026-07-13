@@ -57,24 +57,28 @@ export default function EventsClient({ events }) {
   return (
     <main>
       <section className="ylh-page-hero ylh-container">
-        <div className="ylh-breadcrumb">
-          <Link href="/">Home</Link> &nbsp;›&nbsp; Events
-        </div>
-        <h1 className="ylh-page-title">YLH Events</h1>
-        <p className="ylh-page-sub">
-          From national moots to thought-provoking webinars, YLH events bring together India&apos;s legal minds to learn, compete, and grow.
-        </p>
-        <div className="ylh-hero-actions" style={{ justifyContent: 'center', marginTop: '20px' }}>
-          <a href="#upcoming" className="ylh-btn ylh-btn-primary">Explore Events <i className="fas fa-arrow-right"></i></a>
-          <a href="#past" className="ylh-btn ylh-btn-outline">View Past Events <i className="fas fa-arrow-right"></i></a>
-        </div>
-        <div className="ylh-page-hero-bg">
-          <img src="/design-assets/hero-courthouse.jpg" alt="" />
+        <div className="ylh-page-hero-shell ylh-page-hero--scoped">
+          <div className="ylh-page-hero-copy">
+            <div className="ylh-breadcrumb">
+              <Link href="/">Home</Link> &nbsp;›&nbsp; Events
+            </div>
+            <div className="ylh-page-hero-bg">
+              <img src="/design-assets/hero-courthouse.jpg" alt="" />
+            </div>
+            <h1 className="ylh-page-title">YLH Events</h1>
+            <p className="ylh-page-sub">
+              From national moots to thought-provoking webinars, YLH events bring together India&apos;s legal minds to learn, compete, and grow.
+            </p>
+            <div className="ylh-hero-actions" style={{ justifyContent: 'center', marginTop: '20px' }}>
+              <a href="#upcoming" className="ylh-btn ylh-btn-primary">Explore Events <i className="fas fa-arrow-right"></i></a>
+              <a href="#past" className="ylh-btn ylh-btn-outline">View Past Events <i className="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
         </div>
       </section>
 
       <section className="ylh-container">
-        <div className="ylh-stats-bar">
+        <div className="ylh-stats-bar ylh-stats-bar-events">
           <div className="ylh-stat">
             <i className="fas fa-calendar"></i>
             <div className="ylh-stat-value">{events.length > 0 ? `${events.length}+` : '25+'}</div>
@@ -192,18 +196,17 @@ export default function EventsClient({ events }) {
           </div>
         )}
 
-        <div className="ylh-newsletter-bar">
-          <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-            <i className="fas fa-envelope" style={{ fontSize: '1.2rem', color: 'var(--muted-text)' }}></i>
+        <div className="ylh-cta-bar">
+          <div className="ylh-cta-copy">
+            <i className="fas fa-people-group ylh-cta-icon" aria-hidden="true"></i>
             <div>
-              <h3>Stay Updated</h3>
-              <p>Subscribe to our newsletter for the latest events, opportunities, and legal insights.</p>
+              <h3>Be Part of the Movement</h3>
+              <p>Join a growing community of passionate law students and shape the future of law together.</p>
             </div>
           </div>
-          <form className="ylh-newsletter-form" onSubmit={(e) => e.preventDefault()}>
-            <input type="email" placeholder="Enter your email address" required />
-            <button type="submit" className="ylh-btn ylh-btn-primary">Subscribe</button>
-          </form>
+          <Link href="/join" className="ylh-btn ylh-btn-primary">
+            Join the Community →
+          </Link>
         </div>
       </section>
     </main>

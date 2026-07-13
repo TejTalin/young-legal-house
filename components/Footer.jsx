@@ -19,7 +19,7 @@ export default function Footer() {
         <div className="ylh-footer-grid">
           {/* Brand column */}
           <div className="ylh-footer-brand">
-            <Image src="/logoylh.png" alt="YLH Logo" width={80} height={80} style={{ marginBottom: '16px' }} />
+            <Image src="/logoylh.png" alt="YLH Logo" width={80} height={80} style={{ marginBottom: '8px' }} />
             <p>
               Young Legal House is a pioneering initiative dedicated to empowering law students across India by fostering a dynamic ecosystem of learning, collaboration, and professional development.
             </p>

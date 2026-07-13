@@ -18,6 +18,7 @@ const NAV_LINKS = [
 export default function Navbar() {
   const [isDark,    setIsDark]    = useState(true);
   const [scrolled,  setScrolled]  = useState(false);
+  const [menuOpen,  setMenuOpen]  = useState(false);
   const pathname                  = usePathname();
 
   // ── Theme init ───────────────────────────────────────────────
@@ -35,6 +36,10 @@ export default function Navbar() {
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [pathname]);
 
   const toggleTheme = () => {
     const next = !isDark;
@@ -145,10 +150,53 @@ export default function Navbar() {
                 exit={{    opacity: 0, rotate:  30,  scale: 0.7 }}
                 transition={{ duration: 0.22 }}
               />
-            </AnimatePresence>
+              </AnimatePresence>
+            </motion.button>
+
+          <motion.button
+            className="ylh-mobile-menu-toggle"
+            type="button"
+            onClick={() => setMenuOpen((value) => !value)}
+            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={menuOpen}
+            aria-controls="ylh-mobile-menu"
+            whileHover={{ scale: 1.06 }}
+            whileTap={{ scale: 0.94 }}
+          >
+            <i className={`fas ${menuOpen ? 'fa-xmark' : 'fa-bars'}`} aria-hidden="true" />
           </motion.button>
         </div>
       </div>
+
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            id="ylh-mobile-menu"
+            className="ylh-mobile-menu"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <Link href="/" className="ylh-mobile-home" onClick={() => setMenuOpen(false)}>
+              <i className="fas fa-house" aria-hidden="true" />
+              <span>Home</span>
+            </Link>
+
+            <div className="ylh-mobile-links">
+              {NAV_LINKS.filter(({ href }) => href !== '/').map(({ href, label }) => (
+                <Link key={href} href={href} className="ylh-mobile-link" onClick={() => setMenuOpen(false)}>
+                  {label}
+                </Link>
+              ))}
+            </div>
+
+            <Link href="/join" className="ylh-btn ylh-btn-primary ylh-mobile-cta" onClick={() => setMenuOpen(false)}>
+              Join the Community
+            </Link>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.header>
   );
 }

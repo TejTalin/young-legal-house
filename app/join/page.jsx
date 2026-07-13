@@ -1,6 +1,5 @@
 'use client';
 import { useState } from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
 import PageWrapper from '@/components/PageWrapper';
 import AnimatedSection from '@/components/AnimatedSection';
@@ -55,7 +54,7 @@ export default function JoinPage() {
       <PageWrapper className="ylh-container">
 
         {/* ── PAGE HERO ── */}
-        <AnimatedSection variant="fadeUp" className="ylh-page-hero">
+        <AnimatedSection variant="fadeUp" className="ylh-page-hero ylh-page-hero--join">
           <div className="ylh-page-hero-bg">
             <Image
               src="/design-assets/join-section-bg.jpg"
@@ -82,15 +81,7 @@ export default function JoinPage() {
         {/* ── FORM GRID ── */}
         <AnimatedSection variant="fadeUp" className="ylh-form-grid">
           {/* Left column */}
-          <div style={{ position: 'relative' }}>
-            <div style={{ position: 'absolute', inset: 0, zIndex: -1, opacity: 0.15 }}>
-              <Image
-                src="/design-assets/join-section-bg.jpg"
-                alt="Background"
-                fill
-                style={{ objectFit: 'cover' }}
-              />
-            </div>
+          <div className="ylh-card ylh-join-community-card">
             <div className="ylh-join-features">
               <div style={{ marginBottom: '22px' }}>
                 <h2 style={{ fontSize: '1.5rem', marginBottom: '10px' }}>Join the Community</h2>
@@ -183,40 +174,6 @@ export default function JoinPage() {
                 </button>
               </form>
             )}
-          </div>
-        </AnimatedSection>
-
-        {/* ── PREMIUM CARD ── */}
-        <AnimatedSection variant="fadeUp" style={{ maxWidth: '480px', margin: '48px auto 0' }}>
-          <div className="ylh-card">
-            <h2 style={{ fontSize: '1.4rem', fontWeight: 700, marginBottom: '8px' }}>YLH Premium Updates</h2>
-            <p style={{ color: 'var(--muted-text)', marginBottom: '16px' }}>
-              Stay ahead of the curve. Never miss a deadline again.
-            </p>
-
-            <div style={{ fontSize: '2.5rem', fontWeight: 700, marginBottom: '4px' }}>
-              <span style={{ fontSize: '1.5rem' }}>₹</span>39<span style={{ fontSize: '1rem', color: 'var(--muted-text)' }}>/mo</span>
-            </div>
-
-            <ul style={{ listStyle: 'none', padding: 0, marginBottom: '24px' }}>
-              <li style={{ marginBottom: '12px', color: 'var(--grey-text)', fontSize: '0.9rem' }}>
-                ✓ Curated legal updates and event reminders.
-              </li>
-              <li style={{ marginBottom: '12px', color: 'var(--grey-text)', fontSize: '0.9rem' }}>
-                ✓ Priority access to workshops and community announcements.
-              </li>
-              <li style={{ marginBottom: '12px', color: 'var(--grey-text)', fontSize: '0.9rem' }}>
-                ✓ Monthly opportunities digest for internships, moots, and calls for papers.
-              </li>
-            </ul>
-
-            <Link
-              href="/contact"
-              className="ylh-btn ylh-btn-primary"
-              style={{ display: 'inline-block', width: '100%', textAlign: 'center' }}
-            >
-              Contact Us to Subscribe
-            </Link>
           </div>
         </AnimatedSection>
 

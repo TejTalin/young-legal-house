@@ -34,7 +34,7 @@ export default function HomeClient({ recentBlogs = [], upcomingEvents = [] }) {
         {/* ── HERO ── */}
         <AnimatedSection variant="fadeUp" className="ylh-hero">
           <div className="ylh-hero-grid">
-            <div>
+            <div className="ylh-hero-copy">
               <p className="ylh-hero-label">India&apos;s Elite Law Network</p>
               <WordReveal
                 text="Young Legal House"
@@ -59,6 +59,7 @@ export default function HomeClient({ recentBlogs = [], upcomingEvents = [] }) {
                 alt="Young Legal House"
                 fill
                 priority
+                sizes="(max-width: 768px) 100vw, 1200px"
               />
             </div>
           </div>
@@ -87,6 +88,7 @@ export default function HomeClient({ recentBlogs = [], upcomingEvents = [] }) {
                     src={INSIGHT_IMAGES[index]}
                     alt={insight.title}
                     fill
+                    sizes="(max-width: 768px) 50vw, 320px"
                   />
                   <span>{insight.title}</span>
                 </Link>
@@ -146,6 +148,7 @@ export default function HomeClient({ recentBlogs = [], upcomingEvents = [] }) {
                         <div className="ylh-event-title">{event.title}</div>
                         <div className="ylh-event-loc">{event.location}</div>
                       </div>
+                      <i className="fas fa-arrow-right ylh-event-arrow" aria-hidden="true" />
                     </Link>
                   );
                 })

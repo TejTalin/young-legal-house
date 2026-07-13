@@ -74,15 +74,19 @@ export default function BlogsClient({ blogs, popularBlogs, insights }) {
   return (
     <main>
       <section className="ylh-page-hero ylh-container">
-        <div className="ylh-breadcrumb">
-          <Link href="/">Home</Link> &nbsp;›&nbsp; Blogs
-        </div>
-        <h1 className="ylh-page-title">Blogs &amp; Articles</h1>
-        <p className="ylh-page-sub">
-          In-depth perspectives, analyses, and updates across every major domain of law.
-        </p>
-        <div className="ylh-page-hero-bg">
-          <img src="/design-assets/hero-courthouse.jpg" alt="" />
+        <div className="ylh-page-hero-shell ylh-page-hero--left">
+          <div className="ylh-page-hero-copy">
+            <div className="ylh-breadcrumb">
+              <Link href="/">Home</Link> &nbsp;›&nbsp; Blogs
+            </div>
+            <h1 className="ylh-page-title">Blogs &amp; Articles</h1>
+            <p className="ylh-page-sub">
+              In-depth perspectives, analyses, and updates across every major domain of law.
+            </p>
+          </div>
+          <div className="ylh-page-hero-bg">
+            <img src="/design-assets/hero-courthouse.jpg" alt="" />
+          </div>
         </div>
       </section>
 
@@ -277,9 +281,9 @@ export default function BlogsClient({ blogs, popularBlogs, insights }) {
                     const card = (
                       <div className="ylh-insight-card">
                         {insight.image && (
-                          <img src={urlFor(insight.image).width(160).height(160).url()} alt={insight.caption} />
+                          <img src={urlFor(insight.image).width(260).height(300).url()} alt={insight.caption} />
                         )}
-                        <span style={{ fontSize: '0.68rem' }}>{insight.caption}</span>
+                        <span>{insight.caption}</span>
                       </div>
                     );
                     return insight.instagramUrl ? (

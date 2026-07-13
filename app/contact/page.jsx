@@ -41,7 +41,7 @@ export default function ContactPage() {
       <PageWrapper className="ylh-container">
 
         {/* ── PAGE HERO ── */}
-        <AnimatedSection variant="fadeUp" className="ylh-page-hero">
+        <AnimatedSection variant="fadeUp" className="ylh-page-hero ylh-page-hero--contact">
           <div className="ylh-page-hero-bg">
             <Image
               src="/design-assets/contact-section-bg.jpg"

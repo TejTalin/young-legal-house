@@ -1,29 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
 
-:root {
-  --bg-color: #454545;
-  --text-color: #ffffff;
-  --grey-text: #e6e6e6;
-  --muted-text: #d0d0d0;
-  --glass-bg: rgba(255, 255, 255, 0.08);
-  --glass-border: rgba(255, 255, 255, 0.22);
-  --panel-bg: rgba(255, 255, 255, 0.1);
-  --shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
-  --accent: #ffffff;
-}
-
-body.light-mode {
-  --bg-color: #dedad4;
-  --text-color: #161616;
-  --grey-text: #2d2d2d;
-  --muted-text: #494949;
-  --glass-bg: rgba(0, 0, 0, 0.065);
-  --glass-border: rgba(0, 0, 0, 0.24);
-  --panel-bg: rgba(255, 255, 255, 0.72);
-  --shadow: 0 24px 70px rgba(0, 0, 0, 0.16);
-  --accent: #000000;
-}
-
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 
