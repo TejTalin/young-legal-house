@@ -63,7 +63,7 @@ export default function EventsClient({ events }) {
               <Link href="/">Home</Link> &nbsp;›&nbsp; Events
             </div>
             <div className="ylh-page-hero-bg">
-              <img src="/design-assets/hero-courthouse.jpg" alt="" />
+              <img src="/design-assets/events-page.png" alt="" />
             </div>
             <h1 className="ylh-page-title">YLH Events</h1>
             <p className="ylh-page-sub">
@@ -185,7 +185,7 @@ export default function EventsClient({ events }) {
                 {event.coverImage ? (
                   <img src={urlFor(event.coverImage).width(260).height(150).url()} alt={event.title} />
                 ) : (
-                  <div style={{ height: 110, borderRadius: 4, background: 'var(--panel-bg)', border: '1px solid var(--glass-border)', marginBottom: 10, display: 'grid', placeItems: 'center' }}>
+                  <div style={{ height: 110, borderRadius: 'var(--ylh-radius)', background: 'var(--panel-bg)', border: '1px solid var(--glass-border)', marginBottom: 10, display: 'grid', placeItems: 'center' }}>
                     <i className="fas fa-calendar-alt" style={{ color: 'var(--muted-text)' }}></i>
                   </div>
                 )}
@@ -196,7 +196,7 @@ export default function EventsClient({ events }) {
           </div>
         )}
 
-        <div className="ylh-cta-bar">
+        <div className="ylh-cta-bar ylh-cta-bar--left">
           <div className="ylh-cta-copy">
             <i className="fas fa-people-group ylh-cta-icon" aria-hidden="true"></i>
             <div>

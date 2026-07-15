@@ -72,8 +72,8 @@ export default function Navbar() {
             <Image
               src="/logoylh.png"
               alt="Young Legal House"
-              width={scrolled ? 64 : 80}
-              height={scrolled ? 64 : 80}
+              width={scrolled ? 52 : 60}
+              height={scrolled ? 52 : 60}
               priority
               style={{ objectFit: 'contain', transition: 'width 0.35s ease, height 0.35s ease' }}
             />
@@ -127,7 +127,7 @@ export default function Navbar() {
         {/* Actions */}
         <div className="ylh-nav-actions">
           <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
-            <Link href="/join" className="ylh-btn ylh-btn-primary">
+            <Link href="/join" className="ylh-btn ylh-btn-primary ylh-header-cta">
               Join the Community
             </Link>
           </motion.div>

@@ -8,7 +8,7 @@ import { FOOTER_LINKS } from '@/lib/site-data.js';
 const SOCIALS = [
   { href: 'https://www.linkedin.com/company/young-legal-house/', icon: 'fa-linkedin',  type: 'fab' },
   { href: 'https://www.instagram.com/younglegalhouse/',          icon: 'fa-instagram', type: 'fab' },
-  { href: 'https://linktr.ee/younglegalhouse',                   icon: 'fa-link',      type: 'fas' },
+  { href: 'https://www.youtube.com/@younglegalhouse',            icon: 'fa-youtube',   type: 'fab' },
   { href: 'mailto:connect.ylh@gmail.com',                        icon: 'fa-envelope',  type: 'fas' },
 ];
 

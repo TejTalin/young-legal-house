@@ -56,8 +56,8 @@ export default function TeamPage() {
         </AnimatedSection>
 
         {/* ── COMMUNITY CALLOUT ── */}
-        <AnimatedSection variant="fadeUp" style={{ maxWidth: '720px', margin: '0 auto' }}>
-          <div className="ylh-card">
+        <AnimatedSection variant="fadeUp" className="ylh-community-callout">
+          <div className="ylh-card ylh-team-community-card">
             <h3 style={{ fontSize: '1.1rem', fontWeight: 600, marginBottom: '12px' }}>And a Growing Community...</h3>
             <p style={{ color: 'var(--grey-text)', lineHeight: 1.7 }}>
               Behind the scenes, we have an incredible team of 10+ dedicated members, interns,

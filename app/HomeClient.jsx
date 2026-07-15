@@ -32,7 +32,7 @@ export default function HomeClient({ recentBlogs = [], upcomingEvents = [] }) {
       <PageWrapper className="ylh-container">
 
         {/* ── HERO ── */}
-        <AnimatedSection variant="fadeUp" className="ylh-hero">
+        <AnimatedSection variant="fadeUp" className="ylh-hero ylh-hero--fullbleed">
           <div className="ylh-hero-grid">
             <div className="ylh-hero-copy">
               <p className="ylh-hero-label">India&apos;s Elite Law Network</p>
@@ -94,6 +94,14 @@ export default function HomeClient({ recentBlogs = [], upcomingEvents = [] }) {
                 </Link>
               ))}
             </StaggerGrid>
+            <Link
+              href="https://www.instagram.com/younglegalhouse/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="ylh-btn ylh-btn-outline ylh-home-column-cta"
+            >
+              Follow us on Instagram →
+            </Link>
           </div>
 
           {/* Recent Blogs */}
@@ -123,6 +131,9 @@ export default function HomeClient({ recentBlogs = [], upcomingEvents = [] }) {
                 ))
               )}
             </StaggerGrid>
+            <Link href="/blogs" className="ylh-btn ylh-btn-outline ylh-home-column-cta">
+              Explore All Blogs →
+            </Link>
           </div>
 
           {/* Upcoming Events */}
@@ -154,6 +165,9 @@ export default function HomeClient({ recentBlogs = [], upcomingEvents = [] }) {
                 })
               )}
             </StaggerGrid>
+            <Link href="/events" className="ylh-btn ylh-btn-outline ylh-home-column-cta">
+              See All Events →
+            </Link>
           </div>
         </AnimatedSection>
 

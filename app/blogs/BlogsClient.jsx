@@ -73,8 +73,8 @@ export default function BlogsClient({ blogs, popularBlogs, insights }) {
 
   return (
     <main>
-      <section className="ylh-page-hero ylh-container">
-        <div className="ylh-page-hero-shell ylh-page-hero--left">
+      <section className="ylh-page-hero ylh-page-hero--fullbleed">
+        <div className="ylh-page-hero-shell ylh-page-hero--left ylh-page-hero-shell--fullbleed">
           <div className="ylh-page-hero-copy">
             <div className="ylh-breadcrumb">
               <Link href="/">Home</Link> &nbsp;›&nbsp; Blogs
@@ -85,7 +85,7 @@ export default function BlogsClient({ blogs, popularBlogs, insights }) {
             </p>
           </div>
           <div className="ylh-page-hero-bg">
-            <img src="/design-assets/hero-courthouse.jpg" alt="" />
+            <img src="/design-assets/blogs-page.png" alt="" />
           </div>
         </div>
       </section>
@@ -296,16 +296,6 @@ export default function BlogsClient({ blogs, popularBlogs, insights }) {
               )}
             </div>
 
-            <div className="ylh-card">
-              <h4 style={{ fontSize: '0.95rem', fontWeight: 600, marginBottom: '6px' }}>Stay Updated</h4>
-              <p style={{ fontSize: '0.8rem', color: 'var(--muted-text)', marginBottom: '16px' }}>
-                Subscribe to our newsletter for the latest insights, events, and opportunities.
-              </p>
-              <form className="ylh-newsletter-form" style={{ flexDirection: 'column' }} onSubmit={(e) => e.preventDefault()}>
-                <input type="email" placeholder="Enter your email address" required style={{ width: '100%' }} />
-                <button type="submit" className="ylh-btn ylh-btn-primary" style={{ width: '100%' }}>Subscribe</button>
-              </form>
-            </div>
           </aside>
         </div>
       </section>
