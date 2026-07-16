@@ -1,6 +1,8 @@
 'use client';
+import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
 import AnimatedSection from '@/components/AnimatedSection';
 import { FOOTER_LINKS } from '@/lib/site-data.js';
@@ -13,15 +15,39 @@ const SOCIALS = [
 ];
 
 export default function Footer() {
+  const pathname = usePathname();
+  const [email, setEmail] = useState('');
+  const [subscribed, setSubscribed] = useState(false);
+
+  // Blogs already has its own "Stay Updated" widget in the sidebar,
+  // so the footer version is only shown on the other pages (matches PDF).
+  const showNewsletter = !pathname?.startsWith('/blogs');
+
+  const handleSubscribe = (e) => {
+    e.preventDefault();
+    if (!email.trim()) return;
+    setSubscribed(true);
+    setEmail('');
+  };
+
   return (
     <AnimatedSection variant="fadeUp" as="footer" className="ylh-footer">
       <div className="ylh-container">
         <div className="ylh-footer-grid">
           {/* Brand column */}
           <div className="ylh-footer-brand">
-            <Image src="/logoylh.png" alt="YLH Logo" width={80} height={80} style={{ marginBottom: '8px' }} />
+            <Link href="/">
+              <Image
+                src="/logoylh.png"
+                alt="YLH Logo"
+                width={80}
+                height={80}
+                className="ylh-logo-img"
+                style={{ marginBottom: '8px', transition: 'filter 0.3s ease' }}
+              />
+            </Link>
             <p>
-              Young Legal House is a pioneering initiative dedicated to empowering law students across India by fostering a dynamic ecosystem of learning, collaboration, and professional development.
+              India&apos;s elite law student community, bridging legal theory and execution.
             </p>
             <div className="ylh-footer-socials">
               {SOCIALS.map(({ href, icon, type }) => (
@@ -39,6 +65,35 @@ export default function Footer() {
               ))}
             </div>
           </div>
+
+          {/* Stay Updated newsletter column — omitted on /blogs, which has its own sidebar version */}
+          {showNewsletter && (
+            <div className="ylh-footer-col">
+              <h4>Stay Updated</h4>
+              <p style={{ color: 'var(--muted-text)', fontSize: '0.85rem', lineHeight: 1.6, marginBottom: '12px' }}>
+                Subscribe for the latest insights, events, and opportunities.
+              </p>
+              {subscribed ? (
+                <p style={{ color: 'var(--grey-text)', fontSize: '0.85rem' }}>
+                  ✅ Subscribed! Thanks for joining.
+                </p>
+              ) : (
+                <form className="ylh-footer-newsletter" onSubmit={handleSubscribe}>
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Enter your email address"
+                    aria-label="Email address"
+                    required
+                  />
+                  <button type="submit" className="ylh-btn ylh-btn-primary">
+                    Subscribe
+                  </button>
+                </form>
+              )}
+            </div>
+          )}
 
           {/* Link columns */}
           {Object.entries(FOOTER_LINKS).map(([title, links]) => (

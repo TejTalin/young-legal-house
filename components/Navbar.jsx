@@ -75,7 +75,8 @@ export default function Navbar() {
               width={scrolled ? 52 : 60}
               height={scrolled ? 52 : 60}
               priority
-              style={{ objectFit: 'contain', transition: 'width 0.35s ease, height 0.35s ease' }}
+              className="ylh-logo-img"
+              style={{ objectFit: 'contain', transition: 'width 0.35s ease, height 0.35s ease, filter 0.3s ease' }}
             />
           </motion.div>
         </Link>

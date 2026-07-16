@@ -53,6 +53,16 @@ body::before { display: none; }
 }
 
 /* ── NAVBAR ── */
+/* Logo artwork is white-on-transparent; invert it in light mode so it stays
+   visible against the light background instead of disappearing. */
+.ylh-logo-img {
+  filter: none;
+}
+
+body.light-mode .ylh-logo-img {
+  filter: invert(1);
+}
+
 .ylh-header {
   border-bottom: 1px solid var(--glass-border);
   background: rgba(0, 0, 0, 0.72);
@@ -236,7 +246,7 @@ body.light-mode .ylh-mobile-menu {
 
 .ylh-footer-grid {
   display: grid;
-  grid-template-columns: minmax(280px, 1.35fr) repeat(4, minmax(0, 1fr));
+  grid-template-columns: minmax(260px, 1.25fr) minmax(200px, 1.1fr) repeat(4, minmax(0, 0.9fr));
   gap: 32px;
   margin-bottom: 48px;
   align-items: start;

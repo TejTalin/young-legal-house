@@ -55,16 +55,28 @@ export default function AboutPage() {
             </div>
           </AnimatedSection>
 
-          <AnimatedSection variant="fadeUp" style={{ maxWidth: '720px', margin: '0 auto' }}>
-            <div className="ylh-card ylh-vision-card-compact" style={{ textAlign: 'center' }}>
-              <p style={{ fontSize: '2.3rem', color: 'var(--muted-text)', marginBottom: '8px', lineHeight: 1 }}>&ldquo;</p>
-              <h3 style={{ fontSize: '1rem', fontWeight: 600, marginBottom: '16px' }}>The Founder&apos;s Vision</h3>
-              <p style={{ fontStyle: 'italic', lineHeight: 1.8, color: 'var(--grey-text)', marginBottom: '10px', fontSize: '0.98rem' }}>
-                &ldquo;We created Young Legal House because the journey from a law student to a top-tier
-                practitioner shouldn&apos;t be a solo endeavor. This platform is designed to bridge
-                the gap between theory and execution.&rdquo;
-              </p>
-              <p style={{ color: 'var(--muted-text)', fontSize: '0.85rem', marginBottom: 0 }}>— Achyuta R</p>
+          <AnimatedSection variant="fadeUp">
+            <div className="ylh-vision-grid">
+              <div className="ylh-vision-card">
+                <i className="fas fa-user" aria-hidden="true"></i>
+                <h3>The Founder&apos;s Vision</h3>
+                <blockquote>
+                  &ldquo;We created Young Legal House because the journey from a law student to a top-tier
+                  practitioner shouldn&apos;t be a solo endeavor. This platform is designed to bridge
+                  the gap between theory and execution.&rdquo;
+                </blockquote>
+                <cite>— Achyuta R</cite>
+              </div>
+              <div className="ylh-vision-card">
+                <i className="fas fa-building-columns" aria-hidden="true"></i>
+                <h3>The Architect&apos;s Blueprint</h3>
+                <blockquote>
+                  &ldquo;Technology should elevate the legal profession, not complicate it.
+                  I built this ecosystem to be seamless, futuristic, and focused entirely on
+                  connecting our community without friction.&rdquo;
+                </blockquote>
+                <cite>— Tej Talin</cite>
+              </div>
             </div>
           </AnimatedSection>
 

@@ -6,7 +6,7 @@ import AnimatedSection from '@/components/AnimatedSection';
 import StaggerGrid from '@/components/StaggerGrid';
 import WordReveal from '@/components/WordReveal';
 import { urlFor } from '@/lib/sanity';
-import { INSTAGRAM_INSIGHTS, HOME_FEATURES } from '@/lib/site-data.js';
+import { INSTAGRAM_INSIGHTS, HOME_FEATURES, HOME_STATS } from '@/lib/site-data.js';
 
 const BLOG_FALLBACK_IMAGE = '/design-assets/law-books.jpg';
 
@@ -63,6 +63,17 @@ export default function HomeClient({ recentBlogs = [], upcomingEvents = [] }) {
               />
             </div>
           </div>
+        </AnimatedSection>
+
+        {/* ── STATS BAR ── */}
+        <AnimatedSection variant="fadeUp" className="ylh-stats-bar">
+          {HOME_STATS.map((stat) => (
+            <div key={stat.label} className="ylh-stat">
+              <i className={`fas ${stat.icon}`}></i>
+              <div className="ylh-stat-value">{stat.value}</div>
+              <div className="ylh-stat-label">{stat.label}</div>
+            </div>
+          ))}
         </AnimatedSection>
 
         {/* ── PULL-QUOTE BANNER ── */}
