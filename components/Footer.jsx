@@ -33,7 +33,7 @@ export default function Footer() {
   return (
     <AnimatedSection variant="fadeUp" as="footer" className="ylh-footer">
       <div className="ylh-container">
-        <div className="ylh-footer-grid">
+        <div className={`ylh-footer-grid${showNewsletter ? '' : ' ylh-footer-grid--no-newsletter'}`}>
           {/* Brand column */}
           <div className="ylh-footer-brand">
             <Link href="/">

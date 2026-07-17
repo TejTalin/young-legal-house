@@ -6,7 +6,7 @@ import AnimatedSection from '@/components/AnimatedSection';
 import StaggerGrid from '@/components/StaggerGrid';
 import WordReveal from '@/components/WordReveal';
 import { urlFor } from '@/lib/sanity';
-import { INSTAGRAM_INSIGHTS, HOME_FEATURES, HOME_STATS } from '@/lib/site-data.js';
+import { INSTAGRAM_INSIGHTS, HOME_FEATURES } from '@/lib/site-data.js';
 
 const BLOG_FALLBACK_IMAGE = '/design-assets/law-books.jpg';
 
@@ -65,17 +65,6 @@ export default function HomeClient({ recentBlogs = [], upcomingEvents = [] }) {
           </div>
         </AnimatedSection>
 
-        {/* ── STATS BAR ── */}
-        <AnimatedSection variant="fadeUp" className="ylh-stats-bar">
-          {HOME_STATS.map((stat) => (
-            <div key={stat.label} className="ylh-stat">
-              <i className={`fas ${stat.icon}`}></i>
-              <div className="ylh-stat-value">{stat.value}</div>
-              <div className="ylh-stat-label">{stat.label}</div>
-            </div>
-          ))}
-        </AnimatedSection>
-
         {/* ── PULL-QUOTE BANNER ── */}
         <AnimatedSection variant="fadeUp" className="ylh-quote">
           <div className="ylh-quote-mark">"</div>
@@ -89,8 +78,11 @@ export default function HomeClient({ recentBlogs = [], upcomingEvents = [] }) {
         <AnimatedSection variant="fadeUp" className="ylh-three-col">
           {/* Latest Legal Insights */}
           <div>
-            <div className="ylh-col-header">
+            <div className="ylh-col-header" style={{ flexDirection: 'column', alignItems: 'flex-start', gap: '2px', marginBottom: '16px' }}>
               <h3>Latest Legal Insights</h3>
+              <span style={{ fontSize: '0.72rem', color: 'var(--muted-text)', display: 'flex', alignItems: 'center', gap: '5px' }}>
+                via Instagram <i className="fab fa-instagram" aria-hidden="true"></i>
+              </span>
             </div>
             <StaggerGrid className="ylh-insight-grid">
               {INSTAGRAM_INSIGHTS.map((insight, index) => (
@@ -137,6 +129,7 @@ export default function HomeClient({ recentBlogs = [], upcomingEvents = [] }) {
                     <div>
                       <div className="ylh-list-meta">{blog.category}{blog.readTime ? ` · ${blog.readTime}` : ''}</div>
                       <div className="ylh-list-title">{blog.title}</div>
+                      <span className="ylh-list-link">Read More →</span>
                     </div>
                   </Link>
                 ))
@@ -185,12 +178,10 @@ export default function HomeClient({ recentBlogs = [], upcomingEvents = [] }) {
         {/* ── ABOUT YLH TEASER ── */}
         <AnimatedSection variant="fadeUp" className="ylh-about-split">
           <div>
-            <h2>About Young Legal House</h2>
+            <p className="ylh-hero-label" style={{ color: 'var(--muted-text)', marginBottom: '12px' }}>About YLH</p>
+            <h2>Building India&apos;s Strongest Legal Student Community</h2>
             <p>
-              Young Legal House is a pioneering initiative dedicated to empowering law students across India by fostering a dynamic ecosystem of learning, collaboration, and professional development.
-            </p>
-            <p>
-              Serving as a unified platform for aspiring legal professionals, we bridge the gap between academic pursuits and career advancement through access to internships, training programmes, competitions, events, mentorship, and diverse professional opportunities.
+              At Young Legal House, we connect aspiring legal professionals with knowledge, opportunities, and a network that shapes the future of law.
             </p>
             <Link href="/about" className="ylh-btn ylh-btn-outline">
               Know More About Us →

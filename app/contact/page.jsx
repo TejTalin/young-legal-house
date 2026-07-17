@@ -1,6 +1,5 @@
 'use client';
 import { useState } from 'react';
-import Image from 'next/image';
 import PageWrapper from '@/components/PageWrapper';
 import AnimatedSection from '@/components/AnimatedSection';
 import WordReveal from '@/components/WordReveal';
@@ -39,34 +38,28 @@ export default function ContactPage() {
   return (
     <>
       <PageWrapper>
-        <AnimatedSection variant="fadeUp" as="section" className="ylh-page-hero-shell ylh-page-hero--contact">
-          <div className="ylh-page-hero-bg">
-            <Image
-              src="/design-assets/contact-section-bg.jpg"
-              alt="Contact Young Legal House"
-              fill
-              priority
-            />
-          </div>
+        {/* Icon watermark background */}
+        <div className="ylh-bg-pattern" aria-hidden="true" />
+
+        {/* ── PAGE HEADER (centered, on page bg) ── */}
+        <AnimatedSection variant="fadeUp" className="ylh-page-centered-header">
           <div className="ylh-container">
-            <div className="ylh-page-hero-copy">
-              <p className="ylh-hero-label">Contact</p>
-              <WordReveal
-                text="Get in Touch"
-                as="h1"
-                className="ylh-page-title"
-              />
-              <p className="ylh-page-sub">
-                Have a question, feedback, or want to collaborate with Young Legal House? Fill out the
-                form below or reach out to us directly through our official channels.
-                We would love to hear from you.
-              </p>
-            </div>
+            <WordReveal
+              text="Get in Touch"
+              as="h1"
+              className="ylh-page-title"
+            />
+            <p className="ylh-page-sub">
+              Have a question, feedback, or want to collaborate with Young Legal House? Fill out the
+              form below or reach out to us directly through our official channels.
+              We would love to hear from you.
+            </p>
           </div>
         </AnimatedSection>
 
         <div className="ylh-container">
           <AnimatedSection variant="fadeUp" className="ylh-form-grid">
+            {/* ── SEND A MESSAGE ── */}
             <div className="ylh-card">
               <h2 style={{ fontSize: '1.1rem', fontWeight: 600, marginBottom: '20px', borderBottom: '1px solid var(--glass-border)', paddingBottom: '12px' }}>
                 Send a Message
@@ -93,8 +86,8 @@ export default function ContactPage() {
                     <select name="subject" required defaultValue="">
                       <option value="" disabled>What is this regarding?</option>
                       <option value="General Inquiry">General Inquiry</option>
-                      <option value="Partnerships & Collaborations">Partnerships & Collaborations</option>
-                      <option value="Events & Workshops">Events & Workshops</option>
+                      <option value="Partnerships & Collaborations">Partnerships &amp; Collaborations</option>
+                      <option value="Events & Workshops">Events &amp; Workshops</option>
                       <option value="Website Feedback">Website Feedback</option>
                     </select>
                   </div>
@@ -119,55 +112,64 @@ export default function ContactPage() {
               )}
             </div>
 
+            {/* ── CONTACT DETAILS ── */}
             <div className="ylh-card">
-              <h2 style={{ fontSize: '1.1rem', fontWeight: 600, marginBottom: '24px' }}>Contact Details</h2>
+              <h2 style={{ fontSize: '1.1rem', fontWeight: 600, marginBottom: '24px', borderBottom: '1px solid var(--glass-border)', paddingBottom: '12px' }}>
+                Contact Details
+              </h2>
 
-              <div style={{ display: 'flex', gap: '16px', marginBottom: '20px' }}>
-                <i className="fas fa-envelope" style={{ color: 'var(--muted-text)', marginTop: '2px' }}></i>
+              <div className="ylh-contact-detail-row">
+                <span className="ylh-contact-icon-wrap">
+                  <i className="fas fa-envelope" aria-hidden="true"></i>
+                </span>
                 <div>
-                  <div style={{ fontSize: '0.85rem', color: 'var(--muted-text)', marginBottom: '4px' }}>Official Email</div>
+                  <div style={{ fontSize: '0.82rem', color: 'var(--muted-text)', marginBottom: '4px' }}>Official Email</div>
                   <a href="mailto:connect.ylh@gmail.com" style={{ color: 'var(--text-color)', textDecoration: 'none', fontWeight: 600 }}>
                     connect.ylh@gmail.com
                   </a>
                 </div>
               </div>
 
-              <div style={{ display: 'flex', gap: '16px', marginBottom: '20px' }}>
-                <i className="fas fa-map-marker-alt" style={{ color: 'var(--muted-text)', marginTop: '2px' }}></i>
+              <div className="ylh-contact-detail-row">
+                <span className="ylh-contact-icon-wrap">
+                  <i className="fas fa-map-marker-alt" aria-hidden="true"></i>
+                </span>
                 <div>
-                  <div style={{ fontSize: '0.85rem', color: 'var(--muted-text)', marginBottom: '4px' }}>Headquarters</div>
+                  <div style={{ fontSize: '0.82rem', color: 'var(--muted-text)', marginBottom: '4px' }}>Headquarters</div>
                   <div style={{ fontWeight: 600 }}>Chennai, Tamil Nadu, India</div>
                 </div>
               </div>
 
-              <div style={{ display: 'flex', gap: '12px', marginTop: '24px' }}>
-                <a
-                  href="https://www.linkedin.com/company/young-legal-house/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="ylh-footer-socials"
-                  style={{ display: 'grid', placeItems: 'center', width: '40px', height: '40px', borderRadius: '50%', border: '1px solid var(--glass-border)', color: 'var(--grey-text)' }}
-                >
-                  <i className="fab fa-linkedin"></i>
-                </a>
-                <a
-                  href="https://www.instagram.com/younglegalhouse/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="ylh-footer-socials"
-                  style={{ display: 'grid', placeItems: 'center', width: '40px', height: '40px', borderRadius: '50%', border: '1px solid var(--glass-border)', color: 'var(--grey-text)' }}
-                >
-                  <i className="fab fa-instagram"></i>
-                </a>
-                <a
-                  href="https://linktr.ee/younglegalhouse"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="ylh-footer-socials"
-                  style={{ display: 'grid', placeItems: 'center', width: '40px', height: '40px', borderRadius: '50%', border: '1px solid var(--glass-border)', color: 'var(--grey-text)' }}
-                >
-                  <i className="fas fa-link"></i>
-                </a>
+              <div style={{ borderTop: '1px solid var(--glass-border)', marginTop: '20px', paddingTop: '20px' }}>
+                <div style={{ display: 'flex', gap: '10px' }}>
+                  <a
+                    href="https://www.linkedin.com/company/young-legal-house/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="ylh-contact-social-btn"
+                    aria-label="LinkedIn"
+                  >
+                    <i className="fab fa-linkedin" aria-hidden="true"></i>
+                  </a>
+                  <a
+                    href="https://www.instagram.com/younglegalhouse/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="ylh-contact-social-btn"
+                    aria-label="Instagram"
+                  >
+                    <i className="fab fa-instagram" aria-hidden="true"></i>
+                  </a>
+                  <a
+                    href="https://linktr.ee/younglegalhouse"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="ylh-contact-social-btn"
+                    aria-label="Linktree"
+                  >
+                    <i className="fas fa-link" aria-hidden="true"></i>
+                  </a>
+                </div>
               </div>
             </div>
           </AnimatedSection>
