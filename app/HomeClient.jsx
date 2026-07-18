@@ -33,10 +33,6 @@ export default function HomeClient({ recentBlogs = [], upcomingEvents = [] }) {
 
         {/* ── HERO ── */}
         <AnimatedSection variant="fadeUp" className="ylh-hero">
-          <div className="ylh-scroll-indicator">
-            <span>Scroll</span>
-            <span className="ylh-scroll-indicator-num">01</span>
-          </div>
           <div className="ylh-hero-grid">
             <div className="ylh-hero-copy">
               <p className="ylh-hero-label">India&apos;s Elite Law Network</p>

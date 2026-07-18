@@ -354,7 +354,7 @@ body.light-mode .ylh-mobile-menu {
 /* ── HERO ── */
 .ylh-hero {
   position: relative;
-  padding: 48px 0 0;
+  padding: 16px 0 0;
 }
 
 .ylh-nav-actions .ylh-header-cta {
@@ -369,7 +369,7 @@ body.light-mode .ylh-mobile-menu {
   grid-template-columns: 1fr 0.92fr;
   gap: 56px;
   min-height: 460px;
-  padding: 0 0 0 44px;
+  padding: 0;
   align-items: center;
 }
 
@@ -412,13 +412,15 @@ body.light-mode .ylh-mobile-menu {
 }
 
 .ylh-hero-image {
-  position: relative;
-  aspect-ratio: 4 / 5;
-  width: 100%;
-  border-radius: var(--ylh-radius-sm);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 34%;
+  z-index: 0;
   overflow: hidden;
-  box-shadow: var(--shadow);
-  border: 1px solid var(--glass-border);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 1) 260px);
+  mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 1) 260px);
 }
 
 .ylh-hero-image img {
@@ -426,39 +428,6 @@ body.light-mode .ylh-mobile-menu {
   height: 100%;
   object-fit: cover;
   filter: grayscale(100%) contrast(1.05);
-}
-
-.ylh-scroll-indicator {
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  font-size: 0.65rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--muted-text);
-}
-
-.ylh-scroll-indicator span:first-child {
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
-}
-
-.ylh-scroll-indicator-num {
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 0.9rem;
-  letter-spacing: normal;
-}
-
-.ylh-scroll-indicator::after {
-  content: "";
-  width: 1px;
-  height: 40px;
-  background: var(--glass-border);
 }
 
 /* ── STATS BAR ── */
@@ -2137,7 +2106,6 @@ body.light-mode .ylh-page-hero--join .ylh-page-hero-bg {
   .ylh-blog-layout,
   .ylh-bare-layout,
   .ylh-hero-grid { grid-template-columns: 1fr; padding-left: 0; }
-  .ylh-scroll-indicator { display: none; }
   .ylh-header-signin { display: none; }
 
   .ylh-stats-bar { grid-template-columns: repeat(3, 1fr); }
@@ -2155,6 +2123,24 @@ body.light-mode .ylh-page-hero--join .ylh-page-hero-bg {
     padding-right: 0;
     border-right: 0;
   }
+}
+
+@media (max-width: 1024px) {
+  .ylh-hero-image {
+    position: relative;
+    left: auto;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    aspect-ratio: 4 / 5;
+    width: 100%;
+    margin-top: 32px;
+    -webkit-mask-image: none;
+    mask-image: none;
+    border-radius: var(--ylh-radius-sm);
+    box-shadow: var(--shadow);
+  }
+  .ylh-hero-grid { min-height: 0; }
 }
 
 @media (max-width: 768px) {
