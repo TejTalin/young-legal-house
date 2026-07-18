@@ -6,13 +6,12 @@ import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const NAV_LINKS = [
-  { href: '/',        label: 'Home'    },
-  { href: '/blogs',   label: 'Blogs'   },
-  { href: '/events',  label: 'Events'  },
-  { href: '/about',   label: 'About'   },
-  { href: '/team',    label: 'Team'    },
-  { href: '/join',    label: 'Join Us' },
-  { href: '/contact', label: 'Contact' },
+  { href: '/',        label: 'Home'      },
+  { href: '/blogs',   label: 'Insights'  },
+  { href: '/events',  label: 'Events'    },
+  { href: '/team',    label: 'Community' },
+  { href: '/about',   label: 'About'     },
+  { href: '/contact', label: 'Contact'   },
 ];
 
 export default function Navbar() {
@@ -129,7 +128,13 @@ export default function Navbar() {
         <div className="ylh-nav-actions">
           <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
             <Link href="/join" className="ylh-btn ylh-btn-primary ylh-header-cta">
-              Join the Community
+              Join Community
+            </Link>
+          </motion.div>
+
+          <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
+            <Link href="/join" className="ylh-btn ylh-btn-outline ylh-header-cta ylh-header-signin">
+              Sign In
             </Link>
           </motion.div>
 
@@ -193,7 +198,10 @@ export default function Navbar() {
             </div>
 
             <Link href="/join" className="ylh-btn ylh-btn-primary ylh-mobile-cta" onClick={() => setMenuOpen(false)}>
-              Join the Community
+              Join Community
+            </Link>
+            <Link href="/join" className="ylh-btn ylh-btn-outline ylh-mobile-cta" onClick={() => setMenuOpen(false)}>
+              Sign In
             </Link>
           </motion.div>
         )}

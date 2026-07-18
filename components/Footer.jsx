@@ -10,6 +10,7 @@ import { FOOTER_LINKS } from '@/lib/site-data.js';
 const SOCIALS = [
   { href: 'https://www.linkedin.com/company/young-legal-house/', icon: 'fa-linkedin',  type: 'fab' },
   { href: 'https://www.instagram.com/younglegalhouse/',          icon: 'fa-instagram', type: 'fab' },
+  { href: 'https://twitter.com/younglegalhouse',                 icon: 'fa-x-twitter', type: 'fab' },
   { href: 'https://www.youtube.com/@younglegalhouse',            icon: 'fa-youtube',   type: 'fab' },
   { href: 'mailto:connect.ylh@gmail.com',                        icon: 'fa-envelope',  type: 'fas' },
 ];
@@ -33,7 +34,7 @@ export default function Footer() {
   return (
     <AnimatedSection variant="fadeUp" as="footer" className="ylh-footer">
       <div className="ylh-container">
-        <div className={`ylh-footer-grid${showNewsletter ? '' : ' ylh-footer-grid--no-newsletter'}`}>
+        <div className="ylh-footer-grid">
           {/* Brand column */}
           <div className="ylh-footer-brand">
             <Link href="/">
@@ -47,7 +48,7 @@ export default function Footer() {
               />
             </Link>
             <p>
-              India&apos;s elite law student community, bridging legal theory and execution.
+              India&apos;s elite law student community.
             </p>
             <div className="ylh-footer-socials">
               {SOCIALS.map(({ href, icon, type }) => (
@@ -71,7 +72,7 @@ export default function Footer() {
             <div className="ylh-footer-col">
               <h4>Stay Updated</h4>
               <p style={{ color: 'var(--muted-text)', fontSize: '0.85rem', lineHeight: 1.6, marginBottom: '12px' }}>
-                Subscribe for the latest insights, events, and opportunities.
+                Subscribe to our newsletter for the latest insights, events, and opportunities.
               </p>
               {subscribed ? (
                 <p style={{ color: 'var(--grey-text)', fontSize: '0.85rem' }}>
@@ -100,7 +101,7 @@ export default function Footer() {
             <div key={title} className="ylh-footer-col">
               <h4>{title}</h4>
               {links.map((link) => (
-                <Link key={link.href} href={link.href}>
+                <Link key={`${title}-${link.label}`} href={link.href}>
                   {link.label}
                 </Link>
               ))}
