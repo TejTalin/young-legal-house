@@ -23,6 +23,7 @@ body.dark-mode {
   --muted-text: var(--ylh-gray-500);
   --glass-bg: rgba(255, 255, 255, 0.04);
   --glass-border: var(--ylh-border);
+  --ylh-divider: rgba(255, 255, 255, 0.3);
   --panel-bg: var(--ylh-card);
   --shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
   --accent: var(--ylh-white);
@@ -35,6 +36,7 @@ body.light-mode {
   --muted-text: #494949;
   --glass-bg: rgba(0, 0, 0, 0.065);
   --glass-border: rgba(0, 0, 0, 0.24);
+  --ylh-divider: rgba(0, 0, 0, 0.32);
   --panel-bg: rgba(255, 255, 255, 0.72);
   --shadow: 0 24px 70px rgba(0, 0, 0, 0.16);
   --accent: #000000;
@@ -541,7 +543,7 @@ body.light-mode .ylh-mobile-menu {
   grid-template-columns: 1.08fr 0.96fr 0.96fr;
   gap: 24px;
   padding: 36px 0;
-  align-items: start;
+  align-items: stretch;
 }
 
 .ylh-three-col > div {
@@ -555,7 +557,7 @@ body.light-mode .ylh-mobile-menu {
 
 .ylh-three-col > div:nth-child(1),
 .ylh-three-col > div:nth-child(2) {
-  border-right: 1px solid var(--glass-border);
+  border-right: 1px solid var(--ylh-divider);
 }
 
 .ylh-col-header {
@@ -1058,7 +1060,7 @@ body.light-mode .ylh-mobile-menu {
 .ylh-feature-box {
   padding: 0 0 0 24px;
   border: 0;
-  border-left: 1px solid var(--glass-border);
+  border-left: 1px solid var(--ylh-divider);
 }
 
 .ylh-feature-box:first-child {
