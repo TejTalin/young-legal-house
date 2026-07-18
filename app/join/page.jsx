@@ -1,5 +1,7 @@
 'use client';
 import { useState } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
 import PageWrapper from '@/components/PageWrapper';
 import AnimatedSection from '@/components/AnimatedSection';
 import WordReveal from '@/components/WordReveal';
@@ -51,51 +53,60 @@ export default function JoinPage() {
   return (
     <>
       <PageWrapper>
-        {/* Icon watermark background */}
-        <div className="ylh-bg-pattern" aria-hidden="true" />
-
-        <div className="ylh-container">
-          <AnimatedSection variant="fadeUp" className="ylh-join-layout">
-
-            {/* ── LEFT COLUMN ── */}
-            <div className="ylh-join-left">
-              <p className="ylh-hero-label" style={{ marginBottom: '16px' }}>Join the Community</p>
+        <AnimatedSection variant="fadeUp" as="section" className="ylh-page-hero-shell ylh-page-hero--join">
+          <div className="ylh-page-hero-bg">
+            <Image
+              src="/design-assets/join-section-bg.jpg"
+              alt="Join Young Legal House"
+              fill
+              priority
+            />
+          </div>
+          <div className="ylh-container">
+            <div className="ylh-page-hero-copy">
+              <p className="ylh-hero-label">Join the Community</p>
               <WordReveal
                 text="Shape the Future of Law"
                 as="h1"
                 className="ylh-page-title"
-                style={{ color: 'var(--text-color)' }}
               />
-              <p style={{ color: 'var(--grey-text)', lineHeight: 1.75, marginTop: '16px', marginBottom: '32px', fontSize: '0.95rem' }}>
+              <p className="ylh-page-sub">
                 Whether you want to build your resume with hands-on experience by joining our core team,
                 or you simply want a strategic edge by receiving curated legal updates, Young Legal House
                 is the place for you.
               </p>
+            </div>
+          </div>
+        </AnimatedSection>
 
+        <div className="ylh-container">
+          <AnimatedSection variant="fadeUp" className="ylh-form-grid">
+            <div className="ylh-card ylh-join-community-card">
               <div className="ylh-join-features">
+                <div style={{ marginBottom: '22px' }}>
+                  <h2 style={{ fontSize: '1.5rem', marginBottom: '10px' }}>Join the Community</h2>
+                  <p style={{ color: 'var(--grey-text)', lineHeight: 1.7 }}>
+                    Build your legal edge with meaningful opportunities, practical experience, and curated legal updates.
+                  </p>
+                </div>
                 <div className="ylh-join-feature">
-                  <span className="ylh-join-feature-icon">
-                    <i className="fas fa-people-group" aria-hidden="true"></i>
-                  </span>
+                  <i className="fas fa-briefcase"></i>
                   <div>
                     <h4>For Aspiring Legal Professionals</h4>
-                    <p>Join our core team and grow with a passionate community of law students.</p>
+                    <p>Join our core team and gain hands-on experience in legal research, content creation, event management, and community building.</p>
                   </div>
                 </div>
                 <div className="ylh-join-feature">
-                  <span className="ylh-join-feature-icon">
-                    <i className="fas fa-envelope" aria-hidden="true"></i>
-                  </span>
+                  <i className="fas fa-lightbulb"></i>
                   <div>
                     <h4>For Knowledge Seekers</h4>
-                    <p>Subscribe to our specialised email updates and stay ahead with curated legal insights.</p>
+                    <p>Stay ahead with curated legal updates, event reminders, and exclusive opportunities delivered directly to you.</p>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* ── RIGHT COLUMN (form) ── */}
-            <div className="ylh-card ylh-join-form-card">
+            <div className="ylh-card">
               <h2 style={{ fontSize: '1.1rem', fontWeight: 600, marginBottom: '20px', borderBottom: '1px solid var(--glass-border)', paddingBottom: '12px' }}>
                 Careers &amp; Internships
               </h2>
@@ -156,7 +167,6 @@ export default function JoinPage() {
                   <button
                     type="submit"
                     className="ylh-btn ylh-btn-primary"
-                    style={{ width: '100%', justifyContent: 'center' }}
                     disabled={submitting}
                   >
                     {submitting ? 'Submitting...' : 'Submit Application'}
@@ -164,7 +174,6 @@ export default function JoinPage() {
                 </form>
               )}
             </div>
-
           </AnimatedSection>
         </div>
       </PageWrapper>

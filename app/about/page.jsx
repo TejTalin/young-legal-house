@@ -11,10 +11,6 @@ export default function AboutPage() {
   return (
     <>
       <PageWrapper>
-        {/* Icon watermark background */}
-        <div className="ylh-bg-pattern" aria-hidden="true" />
-
-        {/* ── HERO ── */}
         <AnimatedSection variant="fadeUp" as="section" className="ylh-page-hero-shell ylh-page-hero--about">
           <div className="ylh-page-hero-bg">
             <Image
@@ -33,61 +29,57 @@ export default function AboutPage() {
                 className="ylh-page-title"
               />
               <p className="ylh-page-sub">
-                Empowering law students across India by fostering a dynamic ecosystem of learning,
-                collaboration, and professional development.
+                Young Legal House is a pioneering initiative dedicated to empowering law students
+                across India by fostering a dynamic ecosystem of learning, collaboration, and
+                professional development.
+                Serving as a unified platform for aspiring legal professionals, we bridge the gap
+                between academic pursuits and career advancement through access to internships,
+                training programmes, competitions, events, mentorship, and diverse professional
+                opportunities.
               </p>
             </div>
           </div>
         </AnimatedSection>
 
         <div className="ylh-container">
-
-          {/* ── INTRO CARD ── */}
           <AnimatedSection variant="fadeUp">
-            <div className="ylh-about-intro-card">
-              <div className="ylh-about-intro-emblem" aria-hidden="true">
-                <Image
-                  src="/design-assets/emblem-scales.jpg"
-                  alt=""
-                  fill
-                  style={{ objectFit: 'cover', borderRadius: 'var(--ylh-radius)', filter: 'grayscale(80%)', opacity: 0.18 }}
-                />
-                <i className="fas fa-scale-balanced" style={{ fontSize: '3rem', color: 'var(--muted-text)', position: 'relative', zIndex: 1 }} />
+            <div className="ylh-about-intro">
+              <p>
+                Driven by a vision to cultivate an informed, connected, and progressive legal
+                community, Young Legal House strives to nurture the next generation of legal minds
+                by encouraging excellence, innovation, and meaningful engagement within the legal
+                fraternity. Established in mid-2024, the initiative gained full operational
+                momentum in December 2025 and has since continued to expand its presence and
+                impact across the Indian legal landscape.
+              </p>
+            </div>
+          </AnimatedSection>
+
+          <AnimatedSection variant="fadeUp">
+            <div className="ylh-vision-grid">
+              <div className="ylh-vision-card">
+                <i className="fas fa-user" aria-hidden="true"></i>
+                <h3>The Founder&apos;s Vision</h3>
+                <blockquote>
+                  &ldquo;We created Young Legal House because the journey from a law student to a top-tier
+                  practitioner shouldn&apos;t be a solo endeavor. This platform is designed to bridge
+                  the gap between theory and execution.&rdquo;
+                </blockquote>
+                <cite>— Achyuta R</cite>
               </div>
-              <div className="ylh-about-intro-text">
-                <p>
-                  Young Legal House is a pioneering initiative dedicated to empowering law students across India by
-                  fostering a dynamic ecosystem of learning, collaboration, and professional development. Serving as a
-                  unified platform for aspiring legal professionals, we bridge the gap between academic pursuits and
-                  career advancement through access to internships, training programmes, competitions, events,
-                  mentorship, and diverse professional opportunities.
-                </p>
-                <p>
-                  Driven by a vision to cultivate an informed, connected, and progressive legal community, Young Legal
-                  House strives to nurture the next generation of legal minds by encouraging excellence, innovation, and
-                  meaningful engagement within the legal fraternity. Established in mid-2024, the initiative gained full
-                  operational momentum in December 2025 and has since continued to expand its presence and impact
-                  across the Indian legal landscape.
-                </p>
+              <div className="ylh-vision-card">
+                <i className="fas fa-building-columns" aria-hidden="true"></i>
+                <h3>The Architect&apos;s Blueprint</h3>
+                <blockquote>
+                  &ldquo;Technology should elevate the legal profession, not complicate it.
+                  I built this ecosystem to be seamless, futuristic, and focused entirely on
+                  connecting our community without friction.&rdquo;
+                </blockquote>
+                <cite>— Tej Talin</cite>
               </div>
             </div>
           </AnimatedSection>
 
-          {/* ── FOUNDER'S VISION (single centered card) ── */}
-          <AnimatedSection variant="fadeUp">
-            <div className="ylh-vision-card-solo">
-              <i className="fas fa-user" aria-hidden="true"></i>
-              <h3>The Founder&apos;s Vision</h3>
-              <blockquote>
-                &ldquo;We created Young Legal House because the journey from a law student to a top-tier
-                practitioner shouldn&apos;t be a solo endeavor. This platform is designed to bridge
-                the gap between theory and execution.&rdquo;
-              </blockquote>
-              <cite>— Achyuta R</cite>
-            </div>
-          </AnimatedSection>
-
-          {/* ── CORE VALUES ── */}
           <AnimatedSection variant="fadeUp" style={{ padding: '64px 0' }}>
             <div className="ylh-card ylh-values-band">
               <p className="ylh-hero-label" style={{ textAlign: 'center', marginBottom: '6px' }}>What We Stand For</p>
@@ -104,13 +96,10 @@ export default function AboutPage() {
             </div>
           </AnimatedSection>
 
-          {/* ── CTA ── */}
           <AnimatedSection variant="fadeUp">
             <div className="ylh-cta-bar ylh-cta-bar--left">
               <div className="ylh-cta-copy">
-                <div className="ylh-cta-icon">
-                  <i className="fas fa-people-group" aria-hidden="true"></i>
-                </div>
+                <i className="fas fa-people-group ylh-cta-icon" aria-hidden="true"></i>
                 <div>
                   <h3>Be Part of the Movement</h3>
                   <p>Join a growing community of passionate law students and shape the future of law together.</p>
@@ -121,7 +110,6 @@ export default function AboutPage() {
               </Link>
             </div>
           </AnimatedSection>
-
         </div>
       </PageWrapper>
     </>

@@ -5,7 +5,7 @@ export const metadata = {
 export default function TermsPage() {
   return (
     <>
-      <main className="ylh-container" style={{ paddingTop: '56px', paddingBottom: '80px' }}>
+      <main className="page-spacing container">
         <div style={{ maxWidth: '860px', margin: '0 auto' }}>
 
           {/* Header */}
@@ -25,7 +25,7 @@ export default function TermsPage() {
           </div>
 
           {/* Important Notice */}
-          <div className="ylh-card" style={{ marginBottom: '40px', borderLeft: '3px solid var(--accent)' }}>
+          <div className="glass-card" style={{ marginBottom: '40px', borderLeft: '3px solid var(--accent)' }}>
             <p style={{ fontWeight: 700, marginBottom: '8px' }}>IMPORTANT NOTICE — NOT LEGAL ADVICE</p>
             <p style={{ color: 'var(--grey-text)', lineHeight: '1.8', fontSize: '0.95rem' }}>
               Nothing on this Platform constitutes legal advice or creates an attorney-client relationship.
@@ -45,7 +45,7 @@ export default function TermsPage() {
             </Section>
 
             <Section number="2" title="The Platform Is Not a Law Firm">
-              <div className="ylh-card" style={{ marginBottom: '16px', borderLeft: '3px solid var(--accent)' }}>
+              <div className="glass-card" style={{ marginBottom: '16px', borderLeft: '3px solid var(--accent)' }}>
                 <p style={{ fontWeight: 700 }}>NOT LEGAL ADVICE — READ CAREFULLY</p>
                 <p style={{ color: 'var(--grey-text)', marginTop: '8px', lineHeight: '1.8', fontSize: '0.95rem' }}>Young Legal House is NOT a law firm and does NOT provide legal advice, legal opinions, legal representation, or any professional legal services of any kind.</p>
               </div>
@@ -223,7 +223,7 @@ export default function TermsPage() {
 
             <Section number="22" title="Contact and Grievance Officer">
               <p>For any questions, concerns, complaints, or reports of unlawful content, please contact:</p>
-              <div className="ylh-card" style={{ marginTop: '16px' }}>
+              <div className="glass-card" style={{ marginTop: '16px' }}>
                 <p style={{ fontWeight: 700, marginBottom: '8px' }}>Grievance Officer, Young Legal House</p>
                 <p style={{ color: 'var(--grey-text)' }}>Website: <a href="https://www.younglegalhouse.com" style={{ color: 'var(--text-color)' }}>www.younglegalhouse.com</a></p>
                 <p style={{ color: 'var(--grey-text)' }}>Email: <a href="mailto:connect.ylh@gmail.com" style={{ color: 'var(--text-color)' }}>connect.ylh@gmail.com</a></p>
@@ -234,7 +234,7 @@ export default function TermsPage() {
           </div>
 
           {/* Footer reminder */}
-          <div className="ylh-card" style={{ marginTop: '48px', textAlign: 'center', borderLeft: '3px solid var(--accent)' }}>
+          <div className="glass-card" style={{ marginTop: '48px', textAlign: 'center', borderLeft: '3px solid var(--accent)' }}>
             <p style={{ fontWeight: 700, marginBottom: '8px' }}>REMINDER: NOTHING ON THIS PLATFORM IS LEGAL ADVICE.</p>
             <p style={{ color: 'var(--grey-text)', fontSize: '0.9rem' }}>Always consult a qualified legal professional for advice specific to your situation.</p>
           </div>

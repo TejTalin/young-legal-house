@@ -10,32 +10,28 @@ export default function TeamPage() {
   return (
     <>
       <PageWrapper className="ylh-container">
-        {/* Icon watermark background */}
-        <div className="ylh-bg-pattern" aria-hidden="true" />
 
-        {/* ── PAGE HERO (centered, with divider rules) ── */}
-        <AnimatedSection variant="fadeUp" className="ylh-team-hero">
-          <div className="ylh-team-eyebrow-row">
-            <span className="ylh-team-eyebrow-rule" aria-hidden="true" />
-            <p className="ylh-hero-label" style={{ margin: 0 }}>Meet the Team</p>
-            <span className="ylh-team-eyebrow-rule" aria-hidden="true" />
+        {/* ── PAGE HERO ── */}
+        <AnimatedSection variant="fadeUp" className="ylh-page-hero">
+          <div style={{ position: 'relative', zIndex: 1 }}>
+            <p className="ylh-hero-label">Meet the Team</p>
+            <WordReveal
+              text="The People Behind YLH"
+              as="h1"
+              className="ylh-page-title"
+            />
+            <p className="ylh-page-sub">
+              The dedicated individuals driving Young Legal House forward.
+            </p>
           </div>
-          <WordReveal
-            text="The People Behind YLH"
-            as="h1"
-            className="ylh-page-title"
-          />
-          <p className="ylh-page-sub">
-            A passionate team of law students building India&apos;s most engaging and impactful legal community.
-          </p>
         </AnimatedSection>
 
-        {/* ── TEAM GRID ── */}
+        {/* ── TEAM GRID (3-across) ── */}
         <AnimatedSection variant="fadeUp">
           <StaggerGrid className="ylh-team-grid">
             {TEAM_MEMBERS.map((member) => (
               <div key={member.name} className="ylh-team-card">
-                <div className="ylh-team-card-photo">
+                <div style={{ position: 'relative', height: '320px' }}>
                   <Image
                     src={member.image}
                     alt={member.name}
@@ -43,22 +39,17 @@ export default function TeamPage() {
                     style={member.imageStyle || { objectFit: 'cover' }}
                   />
                 </div>
-                <div className="ylh-team-card-body">
-                  <h3>{member.name}</h3>
-                  <span className="ylh-team-card-rule" aria-hidden="true" />
-                  <p>{member.role}</p>
-                  {member.linkedIn && (
-                    <a
-                      href={member.linkedIn}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`${member.name} on LinkedIn`}
-                      className="ylh-team-linkedin"
-                    >
-                      <i className="fab fa-linkedin"></i>
-                    </a>
-                  )}
-                </div>
+                <h3>{member.name}</h3>
+                <p>{member.role}</p>
+                {member.linkedIn && (
+                  <a
+                    href={member.linkedIn}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <i className="fab fa-linkedin"></i>
+                  </a>
+                )}
               </div>
             ))}
           </StaggerGrid>

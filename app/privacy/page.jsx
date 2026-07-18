@@ -5,7 +5,7 @@ export const metadata = {
 export default function PrivacyPage() {
   return (
     <>
-      <main className="ylh-container" style={{ paddingTop: '56px', paddingBottom: '80px' }}>
+      <main className="page-spacing container">
         <div style={{ maxWidth: '860px', margin: '0 auto' }}>
 
           {/* Header */}
@@ -25,7 +25,7 @@ export default function PrivacyPage() {
           </div>
 
           {/* Important Notice */}
-          <div className="ylh-card" style={{ marginBottom: '40px', borderLeft: '3px solid var(--accent)' }}>
+          <div className="glass-card" style={{ marginBottom: '40px', borderLeft: '3px solid var(--accent)' }}>
             <p style={{ fontWeight: 700, marginBottom: '8px' }}>IMPORTANT NOTICE</p>
             <p style={{ color: 'var(--grey-text)', lineHeight: '1.8', fontSize: '0.95rem' }}>
               This Privacy Policy describes how Young Legal House collects and uses your data.
@@ -222,7 +222,7 @@ export default function PrivacyPage() {
 
             <Section number="12" title="Grievance Officer and Escalation to DPBI">
               <p>In accordance with the IT Act, 2000, SPDI Rules, 2011, IT Rules, 2021, and the DPDPA, 2023, we have designated a Grievance Officer to address all privacy-related concerns:</p>
-              <div className="ylh-card" style={{ marginTop: '16px' }}>
+              <div className="glass-card" style={{ marginTop: '16px' }}>
                 <p style={{ fontWeight: 700, marginBottom: '8px' }}>Grievance Officer, Young Legal House</p>
                 <p style={{ color: 'var(--grey-text)' }}>Email: <a href="mailto:connect.ylh@gmail.com" style={{ color: 'var(--text-color)' }}>connect.ylh@gmail.com</a></p>
                 <p style={{ color: 'var(--grey-text)' }}>Website: <a href="https://www.younglegalhouse.com" style={{ color: 'var(--text-color)' }}>www.younglegalhouse.com</a></p>
@@ -244,7 +244,7 @@ export default function PrivacyPage() {
 
             <Section number="16" title="Contact Us">
               <p>For any privacy-related questions, requests to exercise your rights, or concerns about this Policy, please contact:</p>
-              <div className="ylh-card" style={{ marginTop: '16px' }}>
+              <div className="glass-card" style={{ marginTop: '16px' }}>
                 <p style={{ fontWeight: 700, marginBottom: '8px' }}>Young Legal House</p>
                 <p style={{ color: 'var(--grey-text)' }}>Website: <a href="https://www.younglegalhouse.com" style={{ color: 'var(--text-color)' }}>www.younglegalhouse.com</a></p>
                 <p style={{ color: 'var(--grey-text)' }}>Email: <a href="mailto:connect.ylh@gmail.com" style={{ color: 'var(--text-color)' }}>connect.ylh@gmail.com</a></p>
@@ -254,7 +254,7 @@ export default function PrivacyPage() {
           </div>
 
           {/* Footer reminder */}
-          <div className="ylh-card" style={{ marginTop: '48px', textAlign: 'center', borderLeft: '3px solid var(--accent)' }}>
+          <div className="glass-card" style={{ marginTop: '48px', textAlign: 'center', borderLeft: '3px solid var(--accent)' }}>
             <p style={{ fontWeight: 700, marginBottom: '8px' }}>REMINDER: Young Legal House does not provide legal advice.</p>
             <p style={{ color: 'var(--grey-text)', fontSize: '0.9rem' }}>Nothing in this Privacy Policy or on the Platform constitutes legal advice. Consult a qualified legal professional for advice specific to your situation.</p>
           </div>
