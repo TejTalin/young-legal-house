@@ -57,8 +57,16 @@ body::before { display: none; }
 /* ── NAVBAR ── */
 /* Logo artwork is white-on-transparent; invert it in light mode so it stays
    visible against the light background instead of disappearing. */
+.sticky-logo {
+  display: flex;
+  align-items: center;
+  height: 44px;
+}
+
 .ylh-logo-img {
   filter: none;
+  height: 100% !important;
+  width: auto !important;
 }
 
 body.light-mode .ylh-logo-img {
@@ -79,7 +87,9 @@ body.light-mode .ylh-header {
   grid-template-columns: minmax(160px, 1fr) minmax(0, auto) minmax(260px, 1fr) !important;
   gap: 12px !important;
   width: min(var(--ylh-max), calc(100% - 48px)) !important;
+  height: 64px !important;
   min-height: 64px !important;
+  max-height: 64px !important;
   position: relative;
 }
 
@@ -2151,7 +2161,13 @@ body.light-mode .ylh-page-hero--join .ylh-page-hero-bg {
   .ylh-header-inner {
     grid-template-columns: auto 1fr auto !important;
     gap: 10px !important;
+    height: 54px !important;
     min-height: 54px !important;
+    max-height: 54px !important;
+  }
+
+  .sticky-logo {
+    height: 36px;
   }
 
   .sticky-island {
