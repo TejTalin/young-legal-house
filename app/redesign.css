@@ -354,7 +354,7 @@ body.light-mode .ylh-mobile-menu {
 /* ── HERO ── */
 .ylh-hero {
   position: relative;
-  padding: 16px 0 0;
+  padding: 0;
 }
 
 .ylh-nav-actions .ylh-header-cta {
@@ -376,7 +376,7 @@ body.light-mode .ylh-mobile-menu {
 .ylh-hero-copy {
   position: relative;
   z-index: 2;
-  max-width: 480px;
+  max-width: 640px;
 }
 
 .ylh-hero-label {
@@ -390,11 +390,12 @@ body.light-mode .ylh-mobile-menu {
 
 .ylh-hero-title {
   font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: clamp(2.8rem, 5vw, 4.2rem);
+  font-size: clamp(2.2rem, 3.6vw, 3.6rem);
   font-weight: 700;
   line-height: 1.05;
   margin-bottom: 20px;
   color: var(--text-color);
+  white-space: nowrap;
 }
 
 .ylh-hero-sub {
@@ -414,7 +415,7 @@ body.light-mode .ylh-mobile-menu {
 .ylh-hero-image {
   position: absolute;
   top: 0;
-  right: 0;
+  right: calc(-50vw + 50%);
   bottom: 0;
   left: 34%;
   z-index: 0;
@@ -2106,7 +2107,6 @@ body.light-mode .ylh-page-hero--join .ylh-page-hero-bg {
   .ylh-blog-layout,
   .ylh-bare-layout,
   .ylh-hero-grid { grid-template-columns: 1fr; padding-left: 0; }
-  .ylh-header-signin { display: none; }
 
   .ylh-stats-bar { grid-template-columns: repeat(3, 1fr); }
   .ylh-values-grid { grid-template-columns: repeat(3, 1fr); }
