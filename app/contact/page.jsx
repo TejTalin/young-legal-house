@@ -1,6 +1,5 @@
 'use client';
 import { useState } from 'react';
-import Image from 'next/image';
 import PageWrapper from '@/components/PageWrapper';
 import AnimatedSection from '@/components/AnimatedSection';
 import WordReveal from '@/components/WordReveal';
@@ -38,34 +37,25 @@ export default function ContactPage() {
 
   return (
     <>
-      <PageWrapper>
-        <AnimatedSection variant="fadeUp" as="section" className="ylh-page-hero-shell ylh-page-hero--contact">
-          <div className="ylh-page-hero-bg">
-            <Image
-              src="/design-assets/contact-section-bg.jpg"
-              alt="Contact Young Legal House"
-              fill
-              priority
+      <PageWrapper className="ylh-container">
+        <div className="ylh-bg-pattern" aria-hidden="true" />
+
+        <AnimatedSection variant="fadeUp" className="ylh-page-hero">
+          <div style={{ position: 'relative', zIndex: 1 }}>
+            <WordReveal
+              text="Get in Touch"
+              as="h1"
+              className="ylh-page-title"
             />
-          </div>
-          <div className="ylh-container">
-            <div className="ylh-page-hero-copy">
-              <p className="ylh-hero-label">Contact</p>
-              <WordReveal
-                text="Get in Touch"
-                as="h1"
-                className="ylh-page-title"
-              />
-              <p className="ylh-page-sub">
-                Have a question, feedback, or want to collaborate with Young Legal House? Fill out the
-                form below or reach out to us directly through our official channels.
-                We would love to hear from you.
-              </p>
-            </div>
+            <p className="ylh-page-sub">
+              Have a question, feedback, or want to collaborate with Young Legal House? Fill out the
+              form below or reach out to us directly through our official channels.
+              We would love to hear from you.
+            </p>
           </div>
         </AnimatedSection>
 
-        <div className="ylh-container">
+        <div>
           <AnimatedSection variant="fadeUp" className="ylh-form-grid">
             <div className="ylh-card">
               <h2 style={{ fontSize: '1.1rem', fontWeight: 600, marginBottom: '20px', borderBottom: '1px solid var(--glass-border)', paddingBottom: '12px' }}>
