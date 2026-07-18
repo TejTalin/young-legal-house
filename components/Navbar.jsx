@@ -71,8 +71,8 @@ export default function Navbar() {
             <Image
               src="/logoylh.png"
               alt="Young Legal House"
-              width={scrolled ? 52 : 60}
-              height={scrolled ? 52 : 60}
+              width={scrolled ? 77 : 90}
+              height={scrolled ? 77 : 90}
               priority
               className="ylh-logo-img"
               style={{ objectFit: 'contain', transition: 'width 0.35s ease, height 0.35s ease, filter 0.3s ease' }}
