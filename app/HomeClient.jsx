@@ -6,7 +6,7 @@ import AnimatedSection from '@/components/AnimatedSection';
 import StaggerGrid from '@/components/StaggerGrid';
 import WordReveal from '@/components/WordReveal';
 import { urlFor } from '@/lib/sanity';
-import { INSTAGRAM_INSIGHTS, HOME_FEATURES } from '@/lib/site-data.js';
+import { INSTAGRAM_INSIGHTS, HOME_FEATURES, HOME_STATS } from '@/lib/site-data.js';
 
 const BLOG_FALLBACK_IMAGE = '/design-assets/law-books.jpg';
 
@@ -32,7 +32,11 @@ export default function HomeClient({ recentBlogs = [], upcomingEvents = [] }) {
       <PageWrapper className="ylh-container">
 
         {/* ── HERO ── */}
-        <AnimatedSection variant="fadeUp" className="ylh-hero ylh-hero--fullbleed">
+        <AnimatedSection variant="fadeUp" className="ylh-hero">
+          <div className="ylh-scroll-indicator">
+            <span>Scroll</span>
+            <span className="ylh-scroll-indicator-num">01</span>
+          </div>
           <div className="ylh-hero-grid">
             <div className="ylh-hero-copy">
               <p className="ylh-hero-label">India&apos;s Elite Law Network</p>
@@ -59,10 +63,21 @@ export default function HomeClient({ recentBlogs = [], upcomingEvents = [] }) {
                 alt="Young Legal House"
                 fill
                 priority
-                sizes="(max-width: 768px) 100vw, 1200px"
+                sizes="(max-width: 768px) 100vw, 600px"
               />
             </div>
           </div>
+        </AnimatedSection>
+
+        {/* ── STATS BAR ── */}
+        <AnimatedSection variant="fadeUp" className="ylh-stats-bar">
+          {HOME_STATS.map((stat) => (
+            <div key={stat.label} className="ylh-stat">
+              <i className={`fas ${stat.icon}`}></i>
+              <div className="ylh-stat-value">{stat.value}</div>
+              <div className="ylh-stat-label">{stat.label}</div>
+            </div>
+          ))}
         </AnimatedSection>
 
         {/* ── PULL-QUOTE BANNER ── */}
@@ -78,10 +93,10 @@ export default function HomeClient({ recentBlogs = [], upcomingEvents = [] }) {
         <AnimatedSection variant="fadeUp" className="ylh-three-col">
           {/* Latest Legal Insights */}
           <div>
-            <div className="ylh-col-header" style={{ flexDirection: 'column', alignItems: 'flex-start', gap: '2px', marginBottom: '16px' }}>
+            <div className="ylh-col-header ylh-col-header--stacked">
               <h3>Latest Legal Insights</h3>
-              <span style={{ fontSize: '0.72rem', color: 'var(--muted-text)', display: 'flex', alignItems: 'center', gap: '5px' }}>
-                via Instagram <i className="fab fa-instagram" aria-hidden="true"></i>
+              <span className="ylh-col-subheader">
+                <i className="fab fa-instagram" aria-hidden="true" /> via Instagram
               </span>
             </div>
             <StaggerGrid className="ylh-insight-grid">
@@ -129,7 +144,6 @@ export default function HomeClient({ recentBlogs = [], upcomingEvents = [] }) {
                     <div>
                       <div className="ylh-list-meta">{blog.category}{blog.readTime ? ` · ${blog.readTime}` : ''}</div>
                       <div className="ylh-list-title">{blog.title}</div>
-                      <span className="ylh-list-link">Read More →</span>
                     </div>
                   </Link>
                 ))
@@ -178,7 +192,7 @@ export default function HomeClient({ recentBlogs = [], upcomingEvents = [] }) {
         {/* ── ABOUT YLH TEASER ── */}
         <AnimatedSection variant="fadeUp" className="ylh-about-split">
           <div>
-            <p className="ylh-hero-label" style={{ color: 'var(--muted-text)', marginBottom: '12px' }}>About YLH</p>
+            <p className="ylh-hero-label">About YLH</p>
             <h2>Building India&apos;s Strongest Legal Student Community</h2>
             <p>
               At Young Legal House, we connect aspiring legal professionals with knowledge, opportunities, and a network that shapes the future of law.
