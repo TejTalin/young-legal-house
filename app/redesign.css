@@ -473,13 +473,15 @@ body.light-mode .ylh-mobile-menu {
 /* ── QUOTE ── */
 .ylh-quote {
   text-align: center;
-  padding: 22px 28px;
+  padding: 40px 28px;
   width: 100%;
   margin: 0 auto;
-  background: var(--panel-bg);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--ylh-radius);
-  box-shadow: var(--shadow);
+  background: none;
+  border: 0;
+  border-top: 1px solid var(--ylh-divider);
+  border-bottom: 1px solid var(--ylh-divider);
+  border-radius: 0;
+  box-shadow: none;
   display: flex;
   flex-direction: column;
   align-items: center;
