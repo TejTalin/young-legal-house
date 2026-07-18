@@ -10,7 +10,7 @@ import { FOOTER_LINKS } from '@/lib/site-data.js';
 const SOCIALS = [
   { href: 'https://www.linkedin.com/company/young-legal-house/', icon: 'fa-linkedin',  type: 'fab' },
   { href: 'https://www.instagram.com/younglegalhouse/',          icon: 'fa-instagram', type: 'fab' },
-  { href: 'https://twitter.com/younglegalhouse',                 icon: 'fa-x-twitter', type: 'fab' },
+  { href: 'https://twitter.com/younglegalhouse',                 icon: 'fa-twitter',   type: 'fab' },
   { href: 'https://www.youtube.com/@younglegalhouse',            icon: 'fa-youtube',   type: 'fab' },
   { href: 'mailto:connect.ylh@gmail.com',                        icon: 'fa-envelope',  type: 'fas' },
 ];
@@ -34,7 +34,7 @@ export default function Footer() {
   return (
     <AnimatedSection variant="fadeUp" as="footer" className="ylh-footer">
       <div className="ylh-container">
-        <div className="ylh-footer-grid">
+        <div className={`ylh-footer-grid${showNewsletter ? '' : ' ylh-footer-grid--no-newsletter'}`}>
           {/* Brand column */}
           <div className="ylh-footer-brand">
             <Link href="/">

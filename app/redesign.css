@@ -252,6 +252,14 @@ body.light-mode .ylh-mobile-menu {
   align-items: start;
 }
 
+.ylh-footer-grid > * {
+  min-width: 0;
+}
+
+.ylh-footer-grid--no-newsletter {
+  grid-template-columns: minmax(260px, 1.4fr) repeat(4, minmax(0, 0.9fr));
+}
+
 .ylh-footer-brand p {
   color: var(--muted-text);
   font-size: 0.85rem;
@@ -312,10 +320,13 @@ body.light-mode .ylh-mobile-menu {
   display: flex;
   gap: 8px;
   margin-top: 8px;
+  flex-wrap: wrap;
+  min-width: 0;
 }
 
 .ylh-footer-newsletter input {
-  flex: 1;
+  flex: 1 1 140px;
+  min-width: 0;
   background: var(--panel-bg);
   border: 1px solid var(--glass-border);
   border-radius: 999px;
@@ -323,6 +334,10 @@ body.light-mode .ylh-mobile-menu {
   color: var(--text-color);
   font-size: 0.85rem;
   outline: none;
+}
+
+.ylh-footer-newsletter .ylh-btn {
+  flex: 0 0 auto;
 }
 
 .ylh-footer-bottom {
