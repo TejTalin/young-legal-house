@@ -132,12 +132,6 @@ export default function Navbar() {
             </Link>
           </motion.div>
 
-          <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
-            <Link href="/join" className="ylh-btn ylh-btn-outline ylh-header-cta ylh-header-signin">
-              Sign In
-            </Link>
-          </motion.div>
-
           {/* Theme toggle */}
           <motion.button
             className="sticky-theme-toggle"
@@ -199,9 +193,6 @@ export default function Navbar() {
 
             <Link href="/join" className="ylh-btn ylh-btn-primary ylh-mobile-cta" onClick={() => setMenuOpen(false)}>
               Join Community
-            </Link>
-            <Link href="/join" className="ylh-btn ylh-btn-outline ylh-mobile-cta" onClick={() => setMenuOpen(false)}>
-              Sign In
             </Link>
           </motion.div>
         )}
