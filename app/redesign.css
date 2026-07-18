@@ -240,10 +240,21 @@ body.light-mode .ylh-mobile-menu {
 
 /* ── FOOTER ── */
 .ylh-footer {
-  border-top: 1px solid var(--glass-border);
+  position: relative;
+  border-top: 0;
   padding: 64px 0 32px;
   margin-top: 80px;
   background: var(--bg-color);
+}
+
+.ylh-footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 100vw;
+  transform: translateX(-50%);
+  border-top: 1px solid var(--ylh-divider);
 }
 
 .ylh-footer-grid {
