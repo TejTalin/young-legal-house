@@ -60,7 +60,7 @@ body::before { display: none; }
 .sticky-logo {
   display: flex;
   align-items: center;
-  height: 20px;
+  height: 2px;
 }
 
 .ylh-logo-img {
