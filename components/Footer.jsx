@@ -41,8 +41,8 @@ export default function Footer() {
               <Image
                 src="/logoylh.png"
                 alt="YLH Logo"
-                width={80}
-                height={80}
+                width={40}
+                height={40}
                 className="ylh-logo-img"
                 style={{ marginBottom: '8px', transition: 'filter 0.3s ease' }}
               />
